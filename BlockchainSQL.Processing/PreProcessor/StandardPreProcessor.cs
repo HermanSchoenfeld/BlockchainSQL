@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using BlockchainSQL.DataObjects;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
+
+namespace BlockchainSQL.Processing {
+    public class StandardPreProcessor : BizComponent, IPreProcessor {
+        
+        public StandardPreProcessor(bool optimizeForBulkLoading, bool expandScripts) {
+            // TODO: load tasks from config
+            var seqTasks = new[] {new ActivateMainChainTask(new OptimizedBlockOrganizer(optimizeForBulkLoading))}.AsEnumerable<IPreProcessingTask>();
+            var paraTasks = new IPreProcessingTask [] {
+                new CalculateDifficultyTask(BizLogicFactory.NewDifficultyCalculator()),
+                new CalculateRewardTask()
+            }.AsEnumerable();
+
+            if (expandScripts)
+                paraTasks = paraTasks.Concat(new ExpandScriptsTask());
+
+            SequentialTasks = seqTasks.OrderBy(t => t.Priority).ToArray();
+            ParallelTasks = paraTasks.OrderBy(t => t.Priority).ToArray();
+        }
+
+        public IPreProcessingTask[] SequentialTasks { get; }
+
+        public IPreProcessingTask[] ParallelTasks { get; }
+
+        public virtual WipBlock[] PreProcess(IEnumerable<WipBlock> blocks, CancellationToken cancellationToken) {            
+            foreach (var sequentialTask in SequentialTasks) {
+                blocks = sequentialTask.Process(blocks, cancellationToken);
+            }
+            var blocksArr = blocks as WipBlock[] ?? blocks.ToArray();
+            blocksArr.Update(b => b.StartParallelizedProcessingTime = DateTime.Now);
+            Task.WaitAll(ParallelTasks.Select(t => Task.Run(() => t.Process(blocks, cancellationToken), cancellationToken)).ToArray());
+            blocksArr.Update(b => b.EndParallelizedProcessingTime = DateTime.Now);
+            return blocksArr;
+        }
+
+
+    }
+}

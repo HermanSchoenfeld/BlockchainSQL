@@ -1,0 +1,106 @@
+﻿@using BlockchainSQL.Processing
+@using BlockchainSQL.Web.Code
+@using Sphere10.Framework
+@model BlockchainSQL.DataObjects.Block
+@{
+    ViewBag.Title = "Block #" + Model.Height;
+}
+<section class="margin-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-header">Block <small>@Model.Height</small>
+                </h1>
+
+                <!-- Horizontal Description -->
+                <dl class="dl-horizontal @ViewHelper.RandomEntryAnimationClass()">
+                    <dt>Hash</dt>
+                    <dd>@BitcoinProtocolHelper.BytesToString(Model.Hash)</dd>
+
+                    <dt>Previous Block</dt>
+                    <dd><a href="/Block/@BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)">@BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)</a></dd>
+
+                    <dt>Height</dt>
+                    <dd>@Model.Height</dd>
+
+                    <dt>Timestamp</dt>
+                    <dd>@ViewHelper.Beautify(Model.TimeStampUtc) <span class="badge badge-round margin-left-10">Unix: @Model.TimeStampUnix</span> </dd>
+
+                    <dt>Branch</dt>
+                    <dd>@ViewHelper.ToFriendlyBranchString(Model.Branch.ID)</dd>
+
+                    <dt>Size</dt>
+                    <dd>@Model.Size bytes</dd>
+
+                    <dt>Total Outputs</dt>
+                    <dd>@ViewHelper.Beautify(Model.OutputsBTC) ฿</dd>
+
+                    <dt>Reward</dt>
+                    <dd>@ViewHelper.Beautify(Model.RewardBTC) ฿</dd>
+
+                    <dt>Total Fees</dt>
+                    <dd>@ViewHelper.Beautify(Model.FeesBTC) ฿</dd>
+
+                    <dt>Transaction Count</dt>
+                    <dd>@Model.TransactionCount</dd>
+
+                    <dt>Merkle Root</dt>
+                    <dd>@ViewHelper.Beautify(Model.MerkleRoot)</dd>
+
+                    <dt>Bits</dt>
+                    <dd>@Model.Bits</dd>
+
+                    <dt>Nonce</dt>
+                    <dd>@Model.Nonce</dd>
+
+                    <dt>Difficulty</dt>
+                    <dd>@Model.Difficulty</dd>
+
+                    <dt>Version</dt>
+                    <dd>@Model.Version</dd>
+
+                </dl>
+            </div>
+
+            <div class="col-xs-12">
+                <h2>Transactions</h2>
+                @(Html.Awe()
+                      .Grid("BlockTransactionsGrid")
+                      .Mod(o => o.PageInfo().PageSize().AutoMiniPager().ColumnsSelector())
+                      .Height(0)                      
+                      .Url(Url.Action("BlockTransactions", "Grid", new { hash = BitcoinProtocolHelper.BytesToString(Model.Hash) }))
+                      .Groupable(false)
+                      //.Persistence(Persistence.Session) // save collapsed groups and nodes when switching between grid pages
+                      //.ColumnsPersistence(Persistence.Session) // save columns (width, visibility, etc..) for browser session lifetime
+                      .SingleColumnSort(true)
+                      .Selectable(SelectionType.Single)
+                      .Selectable(SelectionType.Single).Columns(
+                          new Column { Name = "Index",          Sortable = true, Header = "Index",      Hidden = false, Resizable = true, Width = 50, MinWidth = 50 },
+                          new Column { Name = "TXID",           Sortable = true, Header = "TXID",       Hidden = false, Resizable = true, Width = 560, MinWidth = 560 },
+                          new Column { Name = "InputCount",     Sortable = true, Header = "Inputs",     Hidden = true, Resizable = true, Width = 100, MinWidth = 100 },
+                          new Column { Name = "InputsBTC",      Sortable = true, Header = "Inputs (฿)", Hidden = true, Resizable = true, Width = 100 },
+                          new Column { Name = "OutputCount",    Sortable = true, Header = "Outputs",    Hidden = true, Resizable = true, Width = 100, MinWidth = 100 },
+                          new Column { Name = "OutputsBTC",     Sortable = true, Header = "Outputs (฿)",Hidden = false, Resizable = true, Width = 100 },
+                          new Column { Name = "FeeBTC",         Sortable = true, Header = "Fee (฿)",    Hidden = false, Resizable = true, Width = 100 },
+                          new Column { Name = "LockTime",       Sortable = true, Header = "Lock Time",  Hidden = true, Resizable = true, Width = 100, MinWidth = 100 },
+                          new Column { Name = "Version",        Sortable = true, Header = "Version",    Hidden = true, Resizable = true, Width = 80 }
+                      )
+                      .CssClass(ViewHelper.RandomEntryAnimationClass())
+                )
+                <script>
+                    $(function () {
+                        $('#BlockTransactionsGrid')
+                            .on('aweselect', function () {
+                                var selectedItems = $('#BlockTransactionsGrid').data('api').getSelection();
+                                if (selectedItems.length > 0) {
+                                    var selectedItem = selectedItems[0];
+                                    window.location = "/Txn/" + selectedItem.TXID;
+                                }
+                            });
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+</section>

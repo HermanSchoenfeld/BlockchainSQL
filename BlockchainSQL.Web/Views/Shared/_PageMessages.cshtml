@@ -1,0 +1,17 @@
+﻿@using BlockchainSQL.Web.Models
+@using Sphere10.Framework
+@model IEnumerable<PageMessage>
+@foreach (var pageMessage in Model.WithDescriptions()) {
+    
+    <div class="alert alert-@PageMessage.SeverityString(pageMessage.Item.Severity) @(pageMessage.Description.HasFlag(EnumeratedItemDescription.Last) ? "no-margin-bottom" : string.Empty)">
+        @if (pageMessage.Item.Dismissable) {
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        }
+        @if (!string.IsNullOrWhiteSpace(pageMessage.Item.Title)) {
+            <h4>@pageMessage.Item.Title</h4>
+        }
+        @pageMessage.Item.Description
+    </div>
+}
+                
+

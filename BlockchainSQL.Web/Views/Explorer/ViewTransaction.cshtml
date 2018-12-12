@@ -1,0 +1,121 @@
+﻿@using BlockchainSQL.Processing
+@using BlockchainSQL.Web.Code
+@model BlockchainSQL.DataObjects.Transaction
+@{
+    ViewBag.Title = "Transaction #" + ViewHelper.Beautify(Model.TXID);
+}
+
+<section class="margin-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-header">Transaction</h1>
+
+                <dl class="dl-horizontal @ViewHelper.RandomEntryAnimationClass()">
+                    <dt>TXID</dt>
+                    <dd>@ViewHelper.Beautify(Model.TXID)</dd>
+
+                    <dt>Size</dt>
+                    <dd>@Model.Size bytes</dd>
+
+                    <dt>Block</dt>
+                    <dd><a href="/Block/@BitcoinProtocolHelper.BytesToString(Model.Block.Hash)">@Model.Block.Height</a></dd>
+
+                    <dt>Index</dt>
+                    <dd>@Model.Index</dd>
+
+                    <dt>Input Count</dt>
+                    <dd>@Model.InputCount</dd>
+
+                    <dt>Inputs</dt>
+                    <dd>@ViewHelper.Beautify(Model.InputsBTC) (฿)</dd>
+
+                    <dt>Output Count</dt>
+                    <dd>@Model.InputCount</dd>
+
+                    <dt>Outputs</dt>
+                    <dd>@ViewHelper.Beautify(Model.OutputsBTC) (฿)</dd>
+
+                    <dt>Fee</dt>
+                    <dd>@ViewHelper.Beautify(Model.FeeBTC) (฿)</dd>
+
+                    <dt>Lock Time</dt>
+                    <dd>@Model.LockTime</dd>
+
+                    <dt>Version</dt>
+                    <dd>@Model.Version</dd>
+                </dl>
+            </div>
+
+            <style>
+                .viewScriptButton {
+                    vertical-align: middle;
+                    border: none;
+                    background-color: transparent;
+                    outline: none;
+                    cursor: pointer;
+                    margin-left: -5px;
+                    padding-left: 5px;
+                }
+            </style>
+
+
+
+            <div class="col-xs-12">
+                <h2>Inputs</h2>
+                @(Html.Awe()
+                      .Grid("TransactionInputGrid")
+                      .Height(0)
+                      .Mod(o => o.ColumnsSelector())
+                      .Url(Url.Action("TransactionInputs", "Grid", new {txid = BitcoinProtocolHelper.BytesToString(Model.TXID)}))
+                      .Groupable(false)
+                      .Selectable(SelectionType.None)
+                      .SingleColumnSort(true)
+                      .Columns(
+                          new Column {Name =  "", ClientFormat = "<div class='viewScriptButton'><span class='icon-ar icon-ar-sm icon-ar-round'><i class='fa fa-codepen'></i></span></div>", Width = 45, MinWidth = 45},
+                          new Column {Name = "Index",                   Header = "Index",       Sortable = false, Resizable = true, Width = 50, MinWidth = 50},
+                          new Column {Name = "FromAddressTypeDisplay",  Header = "Payer Type",  Sortable = true, Hidden = false, Resizable = true, Width = 120, MinWidth = 120},
+                          new Column {Name = "FromAddressDisplay",             Header = "Payer",       Sortable = true, Hidden = false, Resizable = true, Width = 200, MinWidth = 200 },
+                          new Column {Name = "OutpointDisplay",         Header = "Outpoint",    Sortable = false, Hidden = true, Resizable = true, Width = 500, MinWidth = 500},
+                          new Column {Name = "Value",                   Header = "Amount (฿)",  Sortable = true, Hidden = false, Resizable = true, Width = 110, MinWidth = 110 },
+                          new Column {Name = "Sequence",                Header = "Lock Time",   Hidden = true, Resizable = true, Width = 100, MinWidth = 100}
+                      )
+                      .CssClass(ViewHelper.RandomEntryAnimationClass())
+                      .ClientKey("Index")
+                      .Nests(new Nest {
+                          ButtonClass = "viewScriptButton",
+                          Url = Url.Action("ViewScript", "Explorer", new { txid = BitcoinProtocolHelper.BytesToString(Model.TXID), txItemType = TransactionItemType.Input })
+                      })
+                )
+            </div>
+
+            <div class="col-xs-12">
+                <h2>Outputs</h2>
+                @(Html.Awe()
+                      .Grid("TransactionOutputGrid")
+                      .Height(0)
+                      .PageSize(int.MaxValue)
+                      .Mod(o => o.ColumnsSelector())
+                      .Url(Url.Action("TransactionOutputs", "Grid", new {txid = BitcoinProtocolHelper.BytesToString(Model.TXID)}))
+                      .Groupable(false)
+                      .Selectable(SelectionType.None)
+                      .SingleColumnSort(true)
+                      .Columns(
+                          new Column { Name = "", ClientFormat = "<div class='viewScriptButton'><span class='icon-ar icon-ar-sm icon-ar-round'><i class='fa fa-codepen'></i></span></div>", Width = 45, MinWidth = 45 },
+                          new Column {Name = "Index",                Header = "Index", Sortable = true, Resizable = true, Width = 50, MinWidth = 50},
+                          new Column {Name = "ToAddressTypeDisplay", Header = "Payee Type", Sortable = false, Hidden = false, Resizable = true, Width = 120, MinWidth = 120},
+                          new Column {Name = "ToAddressDisplay",            Header = "Payee", Sortable = true, Resizable = true, Width = 200, MinWidth = 200},
+                          new Column {Name = "Value",                Header = "Amount (฿)", Sortable = true, Resizable = true, Width = 105, MinWidth = 105}
+                      )
+                      .CssClass(ViewHelper.RandomEntryAnimationClass())
+                      .ClientKey("Index")
+                      .Nests(new Nest {
+                          ButtonClass = "viewScriptButton",
+                          Url = Url.Action("ViewScript", "Explorer", new { txid = BitcoinProtocolHelper.BytesToString(Model.TXID), txItemType = TransactionItemType.Output })
+                      })
+                    )
+                
+            </div>
+        </div>
+    </div>
+</section>

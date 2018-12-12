@@ -1,0 +1,372 @@
+﻿<SqlScript Location="((1,1), (12,16))">
+  <!--SELECT
+	O.[Name] Name,
+	SI.[DataLE] Data,
+	OT.[en] Txt
+FROM
+	ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name
+WHERE
+	SI.ScriptID = 1  - - Enter script ID here
+ORDER BY
+	SI.[Index] ASC-->
+  <Errors />
+  <SqlBatch Location="((1,1), (12,16))">
+    <!--SELECT
+	O.[Name] Name,
+	SI.[DataLE] Data,
+	OT.[en] Txt
+FROM
+	ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name
+WHERE
+	SI.ScriptID = 1  - - Enter script ID here
+ORDER BY
+	SI.[Index] ASC-->
+    <SqlSelectStatement Location="((1,1),(12,16))">
+      <!--SELECT
+	O.[Name] Name,
+	SI.[DataLE] Data,
+	OT.[en] Txt
+FROM
+	ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name
+WHERE
+	SI.ScriptID = 1  - - Enter script ID here
+ORDER BY
+	SI.[Index] ASC-->
+      <SqlSelectSpecification Location="((1,1),(12,16))">
+        <!--SELECT
+	O.[Name] Name,
+	SI.[DataLE] Data,
+	OT.[en] Txt
+FROM
+	ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name
+WHERE
+	SI.ScriptID = 1  - - Enter script ID here
+ORDER BY
+	SI.[Index] ASC-->
+        <SqlQuerySpecification Location="((1,1),(10,17))">
+          <!--SELECT
+	O.[Name] Name,
+	SI.[DataLE] Data,
+	OT.[en] Txt
+FROM
+	ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name
+WHERE
+	SI.ScriptID = 1-->
+          <SqlSelectClause Location="((1,1),(4,13))" IsDistinct="False">
+            <!--SELECT
+	O.[Name] Name,
+	SI.[DataLE] Data,
+	OT.[en] Txt-->
+            <SqlSelectScalarExpression Location="((2,2),(2,15))" Alias="Name">
+              <!--O.[Name] Name-->
+              <SqlScalarRefExpression Location="((2,2),(2,10))" ColumnOrPropertyName="Name" MultipartIdentifier="O.Name">
+                <!--O.[Name]-->
+                <SqlObjectIdentifier Location="((2,2),(2,10))" SchemaName="O" ObjectName="Name">
+                  <!--O.[Name]-->
+                  <SqlIdentifier Location="((2,2),(2,3))" Value="O">
+                    <!--O-->
+                  </SqlIdentifier>
+                  <SqlIdentifier Location="((2,4),(2,10))" Value="Name">
+                    <!--[Name]-->
+                  </SqlIdentifier>
+                </SqlObjectIdentifier>
+              </SqlScalarRefExpression>
+              <SqlIdentifier Location="((2,11),(2,15))" Value="Name">
+                <!--Name-->
+              </SqlIdentifier>
+            </SqlSelectScalarExpression>
+            <SqlSelectScalarExpression Location="((3,2),(3,18))" Alias="Data">
+              <!--SI.[DataLE] Data-->
+              <SqlScalarRefExpression Location="((3,2),(3,13))" ColumnOrPropertyName="DataLE" MultipartIdentifier="SI.DataLE">
+                <!--SI.[DataLE]-->
+                <SqlObjectIdentifier Location="((3,2),(3,13))" SchemaName="SI" ObjectName="DataLE">
+                  <!--SI.[DataLE]-->
+                  <SqlIdentifier Location="((3,2),(3,4))" Value="SI">
+                    <!--SI-->
+                  </SqlIdentifier>
+                  <SqlIdentifier Location="((3,5),(3,13))" Value="DataLE">
+                    <!--[DataLE]-->
+                  </SqlIdentifier>
+                </SqlObjectIdentifier>
+              </SqlScalarRefExpression>
+              <SqlIdentifier Location="((3,14),(3,18))" Value="Data">
+                <!--Data-->
+              </SqlIdentifier>
+            </SqlSelectScalarExpression>
+            <SqlSelectScalarExpression Location="((4,2),(4,13))" Alias="Txt">
+              <!--OT.[en] Txt-->
+              <SqlScalarRefExpression Location="((4,2),(4,9))" ColumnOrPropertyName="en" MultipartIdentifier="OT.en">
+                <!--OT.[en]-->
+                <SqlObjectIdentifier Location="((4,2),(4,9))" SchemaName="OT" ObjectName="en">
+                  <!--OT.[en]-->
+                  <SqlIdentifier Location="((4,2),(4,4))" Value="OT">
+                    <!--OT-->
+                  </SqlIdentifier>
+                  <SqlIdentifier Location="((4,5),(4,9))" Value="en">
+                    <!--[en]-->
+                  </SqlIdentifier>
+                </SqlObjectIdentifier>
+              </SqlScalarRefExpression>
+              <SqlIdentifier Location="((4,10),(4,13))" Value="Txt">
+                <!--Txt-->
+              </SqlIdentifier>
+            </SqlSelectScalarExpression>
+          </SqlSelectClause>
+          <SqlFromClause Location="((5,1),(8,40))">
+            <!--FROM
+	ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name-->
+            <SqlQualifiedJoinTableExpression Location="((6,2),(8,40))" JoinOperator="InnerJoin">
+              <!--ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID INNER JOIN
+	[Text] OT ON O.[Description] = OT.Name-->
+              <SqlQualifiedJoinTableExpression Location="((6,2),(7,30))" JoinOperator="InnerJoin">
+                <!--ScriptInstruction SI INNER JOIN
+	OpCode O ON SI.OpCode = O.ID-->
+                <SqlTableRefExpression Location="((6,2),(6,22))" ObjectIdentifier="ScriptInstruction" Alias="SI">
+                  <!--ScriptInstruction SI-->
+                  <SqlObjectIdentifier Location="((6,2),(6,19))" ObjectName="ScriptInstruction">
+                    <!--ScriptInstruction-->
+                    <SqlIdentifier Location="((6,2),(6,19))" Value="ScriptInstruction">
+                      <!--ScriptInstruction-->
+                    </SqlIdentifier>
+                  </SqlObjectIdentifier>
+                  <SqlIdentifier Location="((6,20),(6,22))" Value="SI">
+                    <!--SI-->
+                  </SqlIdentifier>
+                </SqlTableRefExpression>
+                <SqlTableRefExpression Location="((7,2),(7,10))" ObjectIdentifier="OpCode" Alias="O">
+                  <!--OpCode O-->
+                  <SqlObjectIdentifier Location="((7,2),(7,8))" ObjectName="OpCode">
+                    <!--OpCode-->
+                    <SqlIdentifier Location="((7,2),(7,8))" Value="OpCode">
+                      <!--OpCode-->
+                    </SqlIdentifier>
+                  </SqlObjectIdentifier>
+                  <SqlIdentifier Location="((7,9),(7,10))" Value="O">
+                    <!--O-->
+                  </SqlIdentifier>
+                </SqlTableRefExpression>
+                <SqlConditionClause Location="((7,11),(7,30))">
+                  <!--ON SI.OpCode = O.ID-->
+                  <SqlComparisonBooleanExpression Location="((7,14),(7,30))" ComparisonOperator="Equals">
+                    <!--SI.OpCode = O.ID-->
+                    <SqlScalarRefExpression Location="((7,14),(7,23))" ColumnOrPropertyName="OpCode" MultipartIdentifier="SI.OpCode">
+                      <!--SI.OpCode-->
+                      <SqlObjectIdentifier Location="((7,14),(7,23))" SchemaName="SI" ObjectName="OpCode">
+                        <!--SI.OpCode-->
+                        <SqlIdentifier Location="((7,14),(7,16))" Value="SI">
+                          <!--SI-->
+                        </SqlIdentifier>
+                        <SqlIdentifier Location="((7,17),(7,23))" Value="OpCode">
+                          <!--OpCode-->
+                        </SqlIdentifier>
+                      </SqlObjectIdentifier>
+                    </SqlScalarRefExpression>
+                    <SqlScalarRefExpression Location="((7,26),(7,30))" ColumnOrPropertyName="ID" MultipartIdentifier="O.ID">
+                      <!--O.ID-->
+                      <SqlObjectIdentifier Location="((7,26),(7,30))" SchemaName="O" ObjectName="ID">
+                        <!--O.ID-->
+                        <SqlIdentifier Location="((7,26),(7,27))" Value="O">
+                          <!--O-->
+                        </SqlIdentifier>
+                        <SqlIdentifier Location="((7,28),(7,30))" Value="ID">
+                          <!--ID-->
+                        </SqlIdentifier>
+                      </SqlObjectIdentifier>
+                    </SqlScalarRefExpression>
+                  </SqlComparisonBooleanExpression>
+                </SqlConditionClause>
+              </SqlQualifiedJoinTableExpression>
+              <SqlTableRefExpression Location="((8,2),(8,11))" ObjectIdentifier="Text" Alias="OT">
+                <!--[Text] OT-->
+                <SqlObjectIdentifier Location="((8,2),(8,8))" ObjectName="Text">
+                  <!--[Text]-->
+                  <SqlIdentifier Location="((8,2),(8,8))" Value="Text">
+                    <!--[Text]-->
+                  </SqlIdentifier>
+                </SqlObjectIdentifier>
+                <SqlIdentifier Location="((8,9),(8,11))" Value="OT">
+                  <!--OT-->
+                </SqlIdentifier>
+              </SqlTableRefExpression>
+              <SqlConditionClause Location="((8,12),(8,40))">
+                <!--ON O.[Description] = OT.Name-->
+                <SqlComparisonBooleanExpression Location="((8,15),(8,40))" ComparisonOperator="Equals">
+                  <!--O.[Description] = OT.Name-->
+                  <SqlScalarRefExpression Location="((8,15),(8,30))" ColumnOrPropertyName="Description" MultipartIdentifier="O.Description">
+                    <!--O.[Description]-->
+                    <SqlObjectIdentifier Location="((8,15),(8,30))" SchemaName="O" ObjectName="Description">
+                      <!--O.[Description]-->
+                      <SqlIdentifier Location="((8,15),(8,16))" Value="O">
+                        <!--O-->
+                      </SqlIdentifier>
+                      <SqlIdentifier Location="((8,17),(8,30))" Value="Description">
+                        <!--[Description]-->
+                      </SqlIdentifier>
+                    </SqlObjectIdentifier>
+                  </SqlScalarRefExpression>
+                  <SqlScalarRefExpression Location="((8,33),(8,40))" ColumnOrPropertyName="Name" MultipartIdentifier="OT.Name">
+                    <!--OT.Name-->
+                    <SqlObjectIdentifier Location="((8,33),(8,40))" SchemaName="OT" ObjectName="Name">
+                      <!--OT.Name-->
+                      <SqlIdentifier Location="((8,33),(8,35))" Value="OT">
+                        <!--OT-->
+                      </SqlIdentifier>
+                      <SqlIdentifier Location="((8,36),(8,40))" Value="Name">
+                        <!--Name-->
+                      </SqlIdentifier>
+                    </SqlObjectIdentifier>
+                  </SqlScalarRefExpression>
+                </SqlComparisonBooleanExpression>
+              </SqlConditionClause>
+            </SqlQualifiedJoinTableExpression>
+          </SqlFromClause>
+          <SqlWhereClause Location="((9,1),(10,17))">
+            <!--WHERE
+	SI.ScriptID = 1-->
+            <SqlComparisonBooleanExpression Location="((10,2),(10,17))" ComparisonOperator="Equals">
+              <!--SI.ScriptID = 1-->
+              <SqlScalarRefExpression Location="((10,2),(10,13))" ColumnOrPropertyName="ScriptID" MultipartIdentifier="SI.ScriptID">
+                <!--SI.ScriptID-->
+                <SqlObjectIdentifier Location="((10,2),(10,13))" SchemaName="SI" ObjectName="ScriptID">
+                  <!--SI.ScriptID-->
+                  <SqlIdentifier Location="((10,2),(10,4))" Value="SI">
+                    <!--SI-->
+                  </SqlIdentifier>
+                  <SqlIdentifier Location="((10,5),(10,13))" Value="ScriptID">
+                    <!--ScriptID-->
+                  </SqlIdentifier>
+                </SqlObjectIdentifier>
+              </SqlScalarRefExpression>
+              <SqlLiteralExpression Location="((10,16),(10,17))" Value="1" Type="Integer">
+                <!--1-->
+              </SqlLiteralExpression>
+            </SqlComparisonBooleanExpression>
+          </SqlWhereClause>
+        </SqlQuerySpecification>
+        <SqlOrderByClause Location="((11,1),(12,16))">
+          <!--ORDER BY
+	SI.[Index] ASC-->
+          <SqlOrderByItem Location="((12,2),(12,16))" SortOrder="Ascending">
+            <!--SI.[Index] ASC-->
+            <SqlScalarRefExpression Location="((12,2),(12,12))" ColumnOrPropertyName="Index" MultipartIdentifier="SI.Index">
+              <!--SI.[Index]-->
+              <SqlObjectIdentifier Location="((12,2),(12,12))" SchemaName="SI" ObjectName="Index">
+                <!--SI.[Index]-->
+                <SqlIdentifier Location="((12,2),(12,4))" Value="SI">
+                  <!--SI-->
+                </SqlIdentifier>
+                <SqlIdentifier Location="((12,5),(12,12))" Value="Index">
+                  <!--[Index]-->
+                </SqlIdentifier>
+              </SqlObjectIdentifier>
+            </SqlScalarRefExpression>
+          </SqlOrderByItem>
+        </SqlOrderByClause>
+      </SqlSelectSpecification>
+    </SqlSelectStatement>
+    <Tokens>
+      <Token location="((1,1), (1,7))" id="288" type="TOKEN_SELECT">SELECT</Token>
+      <Token location="((1,7), (2,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((2,2), (2,3))" id="173" type="TOKEN_ID">O</Token>
+      <Token location="((2,3), (2,4))" id="46" type=".">.</Token>
+      <Token location="((2,4), (2,10))" id="173" type="TOKEN_ID">[Name]</Token>
+      <Token location="((2,10), (2,11))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((2,11), (2,15))" id="173" type="TOKEN_ID">Name</Token>
+      <Token location="((2,15), (2,16))" id="44" type=",">,</Token>
+      <Token location="((2,16), (3,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((3,2), (3,4))" id="173" type="TOKEN_ID">SI</Token>
+      <Token location="((3,4), (3,5))" id="46" type=".">.</Token>
+      <Token location="((3,5), (3,13))" id="173" type="TOKEN_ID">[DataLE]</Token>
+      <Token location="((3,13), (3,14))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((3,14), (3,18))" id="173" type="TOKEN_ID">Data</Token>
+      <Token location="((3,18), (3,19))" id="44" type=",">,</Token>
+      <Token location="((3,19), (4,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((4,2), (4,4))" id="173" type="TOKEN_ID">OT</Token>
+      <Token location="((4,4), (4,5))" id="46" type=".">.</Token>
+      <Token location="((4,5), (4,9))" id="173" type="TOKEN_ID">[en]</Token>
+      <Token location="((4,9), (4,10))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((4,10), (4,13))" id="173" type="TOKEN_ID">Txt</Token>
+      <Token location="((4,13), (5,1))" id="765" type="LEX_WHITE">\n</Token>
+      <Token location="((5,1), (5,5))" id="244" type="TOKEN_FROM">FROM</Token>
+      <Token location="((5,5), (6,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((6,2), (6,19))" id="173" type="TOKEN_ID">ScriptInstruction</Token>
+      <Token location="((6,19), (6,20))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((6,20), (6,22))" id="173" type="TOKEN_ID">SI</Token>
+      <Token location="((6,22), (6,23))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((6,23), (6,28))" id="153" type="TOKEN_INNER">INNER</Token>
+      <Token location="((6,28), (6,29))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((6,29), (6,33))" id="158" type="TOKEN_JOIN">JOIN</Token>
+      <Token location="((6,33), (7,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((7,2), (7,8))" id="173" type="TOKEN_ID">OpCode</Token>
+      <Token location="((7,8), (7,9))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,9), (7,10))" id="173" type="TOKEN_ID">O</Token>
+      <Token location="((7,10), (7,11))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,11), (7,13))" id="271" type="TOKEN_ON">ON</Token>
+      <Token location="((7,13), (7,14))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,14), (7,16))" id="173" type="TOKEN_ID">SI</Token>
+      <Token location="((7,16), (7,17))" id="46" type=".">.</Token>
+      <Token location="((7,17), (7,23))" id="173" type="TOKEN_ID">OpCode</Token>
+      <Token location="((7,23), (7,24))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,24), (7,25))" id="61" type="=">=</Token>
+      <Token location="((7,25), (7,26))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,26), (7,27))" id="173" type="TOKEN_ID">O</Token>
+      <Token location="((7,27), (7,28))" id="46" type=".">.</Token>
+      <Token location="((7,28), (7,30))" id="173" type="TOKEN_ID">ID</Token>
+      <Token location="((7,30), (7,31))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,31), (7,36))" id="153" type="TOKEN_INNER">INNER</Token>
+      <Token location="((7,36), (7,37))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((7,37), (7,41))" id="158" type="TOKEN_JOIN">JOIN</Token>
+      <Token location="((7,41), (8,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((8,2), (8,8))" id="173" type="TOKEN_ID">[Text]</Token>
+      <Token location="((8,8), (8,9))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((8,9), (8,11))" id="173" type="TOKEN_ID">OT</Token>
+      <Token location="((8,11), (8,12))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((8,12), (8,14))" id="271" type="TOKEN_ON">ON</Token>
+      <Token location="((8,14), (8,15))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((8,15), (8,16))" id="173" type="TOKEN_ID">O</Token>
+      <Token location="((8,16), (8,17))" id="46" type=".">.</Token>
+      <Token location="((8,17), (8,30))" id="173" type="TOKEN_ID">[Description]</Token>
+      <Token location="((8,30), (8,31))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((8,31), (8,32))" id="61" type="=">=</Token>
+      <Token location="((8,32), (8,33))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((8,33), (8,35))" id="173" type="TOKEN_ID">OT</Token>
+      <Token location="((8,35), (8,36))" id="46" type=".">.</Token>
+      <Token location="((8,36), (8,40))" id="173" type="TOKEN_ID">Name</Token>
+      <Token location="((8,40), (9,1))" id="765" type="LEX_WHITE">\n</Token>
+      <Token location="((9,1), (9,6))" id="308" type="TOKEN_WHERE">WHERE</Token>
+      <Token location="((9,6), (10,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((10,2), (10,4))" id="173" type="TOKEN_ID">SI</Token>
+      <Token location="((10,4), (10,5))" id="46" type=".">.</Token>
+      <Token location="((10,5), (10,13))" id="173" type="TOKEN_ID">ScriptID</Token>
+      <Token location="((10,13), (10,14))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((10,14), (10,15))" id="61" type="=">=</Token>
+      <Token location="((10,15), (10,16))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((10,16), (10,17))" id="182" type="TOKEN_INTEGER">1</Token>
+      <Token location="((10,17), (10,19))" id="765" type="LEX_WHITE">  </Token>
+      <Token location="((10,19), (10,42))" id="766" type="LEX_END_OF_LINE_COMMENT">-- Enter script ID here</Token>
+      <Token location="((10,42), (11,1))" id="765" type="LEX_WHITE">\n</Token>
+      <Token location="((11,1), (11,6))" id="274" type="TOKEN_ORDER">ORDER</Token>
+      <Token location="((11,6), (11,7))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((11,7), (11,9))" id="211" type="TOKEN_BY">BY</Token>
+      <Token location="((11,9), (12,2))" id="765" type="LEX_WHITE">\n\t</Token>
+      <Token location="((12,2), (12,4))" id="173" type="TOKEN_ID">SI</Token>
+      <Token location="((12,4), (12,5))" id="46" type=".">.</Token>
+      <Token location="((12,5), (12,12))" id="173" type="TOKEN_ID">[Index]</Token>
+      <Token location="((12,12), (12,13))" id="765" type="LEX_WHITE"> </Token>
+      <Token location="((12,13), (12,16))" id="205" type="TOKEN_ASC">ASC</Token>
+    </Tokens>
+  </SqlBatch>
+</SqlScript>

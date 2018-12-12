@@ -1,0 +1,140 @@
+﻿@model BlockchainSQL.Web.Models.QueryPanelModel
+@using BlockchainSQL.Web.Code
+@using Sphere10.Framework.Data
+@{
+    string mime;
+    // MIME types defined: text/x-sql, text/x-mysql, text/x-mariadb, text/x-cassandra, text/x-plsql, text/x-mssql, text/x-hive. text/x-pgsql.
+    switch ((DBMSType) ViewBag.SQLDialect) {
+        case DBMSType.SQLServer:
+            mime = "text/x-mssql";
+            break;
+        default:
+            mime = "text/x-sql";
+            break;
+    }
+}
+
+
+<div class="panel-group" id="accordion">
+    <div class="panel panel-primary no-margin">
+        <div class="panel-heading">
+            <span><b>SQL</b></span>
+            <button id="executeButton" class="button button-small button-plain button-border button-circle margin-left-10 tooltip-target" data-toggle="tooltip" data-placement="bottom" title="Execute SQL Query"><i class="fa fa-play no-margin"></i></button>
+            <button id="saveButton" class="button button-small button-plain button-border button-circle margin-left-10 tooltip-target" data-toggle="tooltip" data-placement="bottom" title="Save SQL Query"><i class="fa fa-save no-margin"></i></button>
+            <button id="loadButton" class="button button-small button-plain button-border margin-left-10" type="button" onclick='awe.open("templatePopup")'><i class="fa fa-code"></i>Load Query</button>
+            
+        </div>
+        <div class="panel">
+            <div class="panel-body no-padding">
+                <textarea id="sqlQuery">@Model.SQL</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary no-margin">
+        <div class="panel-heading panel-plus-link" style="padding: 10px 15px 10px 15px">
+            <span class="margin-left-10"> <a id="openCollapseLink" data-toggle="collapse" data-parent="#accordion" href="#resultsCollapseIcon" class="collapsed">Result</a></span>
+            <span id="executionStats" class="pull-right" style="visibility: hidden">
+                <span><b>Executed On</b></span>
+                <span id="executionDate" class="margin-left-5"></span>
+                <span class="margin-left-10" ><b>Duration</b></span>
+                <span id="executionDuration" class="margin-left-5"></span>
+            </span>
+        </div>
+        <div id="resultsCollapseIcon" class="panel-collapse collapse">
+            <div class="panel-body">
+                <div id="queryResults">
+                    <div class="alert alert-royal">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <p><strong><i class="fa fa-bullhorn"></i> BlockchainSQL.io</strong> runs your SQL queries over the Bitcoin blockchain.
+                        </p>
+                        <p><strong>Type</strong> your query above and click the Execute button.
+                        </p>
+                        <p><strong>Load</strong> template queries from the drop down list.
+                        </p>
+                        <p><strong>Save</strong> your query for future reference.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@(Html.Awe().InitPopup()
+        .Name("templatePopup")
+        .Url(Url.Action("LoadTemplate", "Query"))
+        .LoadOnce(true)
+        .Title("Select SQL Query Template")
+        .Width(500)
+        .Height(450))
+
+<script language="javascript">
+    var myCodeMirror = CodeMirror.fromTextArea(
+        sqlQuery,
+        {
+            mode: '@mime',
+            indentWithTabs: true,
+            smartIndent: true,
+            lineNumbers: true,
+            matchBrackets: true,
+            autofocus: true,
+            extraKeys: { "Ctrl-Space": "autocomplete" },
+            hintOptions: {
+                tables: {
+                    users: { name: null, score: null, birthDate: null },
+                    countries: { name: null, population: null, size: null }
+                }
+            }
+        }
+    );
+
+    $("#executeButton").click(function() {
+        ShowPage(0);
+        $("#queryResults").html("<img src='@ViewHelper.LoadingGifUrl' style='display: block; margin: auto;' class='animated flipInY'>");
+        if ($("#openCollapseLink").hasClass("collapsed")) {
+            $("#openCollapseLink").trigger("click");
+        }
+    });
+
+    $("#saveButton").click(function() {
+        var sql = myCodeMirror.getValue();
+        if (!isEmpty(sql)) {
+            SaveQuery();
+        } else {
+            alert('Cannot save empty query');
+        }
+    });
+
+
+    function ShowPage(page) {
+        var sql = myCodeMirror.getValue();
+        $.ajax({
+            url: '/Query/Execute',
+            data: { "sql": sql, "page": page, "pageSize": 10 },
+            type: 'POST',
+            success: function(data) {
+                $("#queryResults").html(data);
+            },
+            fail: function() {
+                alert('Error has occured');
+            }
+        });
+    }
+
+    function SaveQuery() {
+        var sql = myCodeMirror.getValue();
+        $.ajax({
+            url: '/Query/Save',
+            data: { "sql": sql },
+            type: 'POST',
+            success: function(data) {
+                window.location = "/" + data.WebID;
+            },
+            fail: function() {
+                alert('Unable to save query');
+            }
+        });
+    }
+
+</script>
+

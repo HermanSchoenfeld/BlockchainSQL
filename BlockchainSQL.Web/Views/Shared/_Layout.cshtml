@@ -1,0 +1,112 @@
+﻿@using System.Activities.Statements
+@using BlockchainSQL.Web.Code
+@using BlockchainSQL.Web.Models
+@using Sphere10.Framework.Data
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="/Content/images/favicon.png" />
+    <meta name="description" content="">
+
+    <!-- CSS -->
+    <link href="/Content/css/preload.css" rel="stylesheet">
+
+    <!-- Compiled in vendors.css -->
+    <!--
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/css/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="/Content/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/Content/css/animate.min.css" rel="stylesheet">
+    <link href="/Content/css/slidebars.min.css" rel="stylesheet">
+    <link href="/Content/css/lightbox.css" rel="stylesheet">
+    <link href="/Content/css/jquery.bxslider.css" rel="stylesheet" />
+    <link href="/Content/css/buttons.css" rel="stylesheet">
+    -->
+
+    <link href="@Url.Content("/Content/css/vendors.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/css/style-blue.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/css/width-full.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/css/app.css")" rel="stylesheet"/>
+    @if (ViewBag.EnableSyntaxHighlighting) {
+        <link href="@Url.Content("/Content/css/codemirror.css")" rel="stylesheet"/>
+    }
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="/Scripts/html5shiv.min.js"></script>
+        <script src="/Scripts/respond.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20140204/json2.min.js" type="text/javascript" async></script>
+    <![endif]-->
+
+   <link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/gui2/AwesomeMvc.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/themes/gui2/mods.css")" rel="stylesheet" type="text/css" />    
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/Scripts/app.js"></script>
+    @if (ViewBag.EnableSyntaxHighlighting) {
+        <script src="@Url.Content("~/Scripts/syntax/codemirror.js")"></script>
+        <script src="@Url.Content("~/Scripts/syntax/sql.js")"></script>
+    }
+</head>
+
+@if (ViewBag.ShowLoading) {
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+}
+
+<body>
+    @Html.Partial("_Analytics")
+    <div id="sb-site">
+        <div class="boxed">
+            @Html.Partial("_Header")
+            @Html.Partial("_Menu")
+            @if (ViewData.ContainsKey("PageMessages")) {
+                @Html.Partial("_PageMessages", (IEnumerable<PageMessage>)ViewBag.PageMessages)
+            }
+            @RenderBody()
+            @Html.Partial("_Footer")
+        </div> <!-- boxed -->
+    </div> <!-- sb-site -->
+    @Html.Partial("_SlideBarRight")
+    @Html.Partial("_BackTopButton")
+
+    <!-- Scripts -->
+    <!-- Compiled in vendors.js -->
+<!--
+<script src="/Scripts/jquery.min.js"></script>
+<script src="/Scripts/jquery.cookie.js"></script>
+<script src="/Scripts/imagesloaded.pkgd.min.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/bootstrap-switch.min.js"></script>
+<script src="/Scripts/wow.min.js"></script>
+<script src="/Scripts/slidebars.min.js"></script>
+<script src="/Scripts/jquery.bxslider.min.js"></script>
+<script src="/Scripts/holder.js"></script>
+<script src="/Scripts/buttons.js"></script>
+<script src="/Scripts/jquery.mixitup.min.js"></script>
+<script src="/Scripts/circles.min.js"></script>
+<script src="/Scripts/masonry.pkgd.min.js"></script>
+<script src="/Scripts/jquery.matchHeight-min.js"></script>
+<script src="/Scripts/DropdownHover.js"></script>
+<script src="/Scripts/holder.js"></script>
+<script src="/Scripts/index.js"></script>
+-->
+
+    <script src="@Url.Content("~/Scripts/vendors.js")"></script>
+    <script src="@Url.Content("~/Scripts/app_init.js")"></script>
+    <script src="@Url.Content("~/Scripts/AwesomeMvc.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/utils.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/awem.js")" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.1/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+
+</body>
+
+</html>

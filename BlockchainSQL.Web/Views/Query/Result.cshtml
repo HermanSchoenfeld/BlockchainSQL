@@ -1,0 +1,102 @@
+﻿@using System.Data
+@using BlockchainSQL.Processing
+@using BlockchainSQL.Web.Code
+@using Sphere10.Framework
+@model BlockchainSQL.Web.Models.QueryResultModel
+@{
+    var hasNext = Model.Result.PageSize > 0;
+    var hasPrev = Model.Result.Page > 0;
+
+    var prevPagerClass = hasPrev ? string.Empty : "hidden";
+    var nextPagerClass = hasNext ? string.Empty : "hidden";
+
+   
+}
+
+<script language="javascript">
+    $("#executionDate").html("<i>@Model.ExecutedOn.ToString("yyyy-MM-dd HH:mm:ss") UTC</i>");
+    $("#executionDuration").html("<i>@Model.ExecutionDuration.ToString("c")</i>");
+    $("#executionStats").css("visibility", "visible");
+</script>
+
+@if (Model.Messages.Any()) {
+    <div class="row padding-20">
+        <div class="col-xs-12">
+            @Html.Partial("_PageMessages", Model.Messages)
+        </div>
+    </div>
+}
+
+@if (Model.Result.Data != null) {
+    <div class="row no-padding">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        @foreach (DataColumn col in Model.Result.Data.Columns.Cast<DataColumn>()) {
+                            <th>@col.Caption</th>
+                        }
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (DataRow row in Model.Result.Data.Rows) {
+                        <tr>
+                            @foreach (DataColumn col in Model.Result.Data.Columns) {
+                                <td style="font-size: small">@Html.Raw(ViewHelper.PrintCell(col, row))</td>
+                            }
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row no-padding">
+        <div class="col-xs-12">
+            <ul class="pager pager-border pull-left">
+                <li class="@prevPagerClass"><a onclick="ShowPage(@(Model.Result.Page - 1))">« Previous 10</a></li>
+                <li class="@nextPagerClass"><a onclick="ShowPage(@(Model.Result.Page + 1))">Next 10 »</a></li>
+            </ul>
+        </div>
+    </div>
+
+}
+
+
+@*@(Html.Awe()
+                      .Grid("BlocksGrid")
+                      .Mod(o => o.PageInfo().PageSize().AutoMiniPager().ColumnsSelector())
+                      .Url(Url.Action("Blocks", "Grid"))
+                      .PageSize(20)
+                      .Groupable(false)
+                      .Persistence(Persistence.Session) // save collapsed groups and nodes when switching between grid pages
+                      .ColumnsPersistence(Persistence.Session) // save columns (width, visibility, etc..) for browser session lifetime
+                      .Selectable(SelectionType.Single).Columns(
+                          new Column { Name = "Height", Sortable = true, Resizable = true, Width = 100 },
+                          new Column { Name = "Hash", Sortable = false, Hidden = true, Resizable = true, Width = 570, MinWidth = 570 },
+                          new Column { Name = "PreviousBlockHash", Header = "Previous Block", Sortable = false, Hidden = true, Resizable = true, Width = 570, MinWidth = 570 },
+                          new Column { Name = "TimeStampUtc", Header = "Date (UTC)", Sortable = true, Resizable = true, Width = 170, MinWidth = 170 },
+                          new Column { Name = "Bits", Sortable = false, Hidden = true, Resizable = true, Width = 100 },
+                          new Column { Name = "Version", Sortable = false, Hidden = true, Resizable = true, Width = 80 },
+                          new Column { Name = "TransactionCount", Header = "Transactions", Sortable = true, Resizable = true, Width = 120 },
+                          new Column { Name = "Size", Header = "Size (b)", Sortable = true, PercentWidth = 8, Resizable = true, Width = 100 },
+                          new Column { Name = "MinerTag", Header = "Miner", Sortable = false, Hidden = true, Resizable = true, Width = 100 }
+                      )
+                      .CssClass(ViewHelper.RandomEntryAnimationClass())
+)
+
+<script>
+                    $(function() {
+                        $('#BlocksGrid')
+                            .on('aweselect', function() {
+                                var selectedItems = $('#BlocksGrid').data('api').getSelection();
+                                if (selectedItems.length > 0) {
+                                    var selectedItem = selectedItems[0];
+                                    window.location = "/Block/" + selectedItem.Hash;
+                                }
+                            });
+                    });
+</script>*@
+
+

@@ -1,0 +1,25 @@
+﻿@using BlockchainSQL.Web.Code
+@{
+    ViewBag.Title = "Configuration";
+}
+<header class="main-header">
+    <div class="container">
+        <h1 class="page-title">@ViewBag.Title</h1>
+    </div>
+</header>
+
+<section class="margin-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                @*<h2>Create Database</h2>*@
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Create Database</div>
+                    <div class="panel-body">
+                        @Html.Partial("~/Views/Form/CreateDatabase.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

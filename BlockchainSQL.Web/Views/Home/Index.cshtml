@@ -1,0 +1,57 @@
+﻿@using BlockchainSQL.Web.Code
+@{
+    ViewBag.Title = "Home Page";
+}
+@Html.Partial("_Carousel")
+<section class="margin-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="page-header">Latest Blocks</h1>
+                @(Html.Awe()
+                      .Grid("LatestBlocksGrid")
+                      .Mod(o => o.PageInfo().PageSize().AutoMiniPager().ColumnsSelector())
+                      .Url(Url.Action("Blocks", "Grid"))
+                      .Groupable(false)
+                      .Persistence(Persistence.Session) // save collapsed groups and nodes when switching between grid pages
+                      .ColumnsPersistence(Persistence.Session) // save columns (width, visibility, etc..) for browser session lifetime
+                      .Selectable(SelectionType.Single).Columns(
+                          new Column {Name = "Height",              Sortable = true, Hidden = false, Resizable = true, Width = 100},
+                          new Column {Name = "Hash",                Sortable = false, Hidden = true, Resizable = true, Width = 570, MinWidth = 570},
+                          new Column {Name = "PreviousBlockHash",   Sortable = false, Hidden = true, Resizable = true, Width = 570, MinWidth = 570, Header = "Previous Block" },
+                          new Column {Name = "TimeStampUtc",        Sortable = true, Hidden = false, Resizable = true, Width = 170, MinWidth = 170, Header = "Date (UTC)" },
+                          new Column {Name = "Size",                Sortable = true, Hidden = false, PercentWidth = 8, Resizable = true, Width = 100, Header = "Size (b)" },
+                          new Column {Name = "TransactionCount",    Sortable = true, Hidden = false, Resizable = true, Width = 120, Header = "Transactions" },
+                          new Column {Name = "OutputsBTC",          Sortable = true, Hidden = false, Resizable = true, Width = 120, Header = "Outputs (฿)" },
+                          new Column {Name = "RewardBTC",           Sortable = true, Hidden = true, Resizable = true, Width = 120, Header = "Reward (฿)" },
+                          new Column {Name = "FeesBTC",             Sortable = true, Hidden = false, Resizable = true, Width = 120, Header = "Fees (฿)" },
+                          new Column {Name = "Bits",                Sortable = false, Hidden = true, Resizable = true, Width = 100},
+                          new Column {Name = "Nonce",               Sortable = true, Hidden = true, PercentWidth = 8, Resizable = true, Width = 100, Header = "Nonce" },
+                          new Column {Name = "Version",             Sortable = false, Hidden = true, Resizable = true, Width = 80}
+                      )
+                      .CssClass(ViewHelper.RandomEntryAnimationClass())
+                      )
+
+                <div class="alert alert-warning">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4>Warning</h4>
+                    This BETA release only provides a partial subset of the Blockchain data. The full blockchain database will be available soon.
+                </div>
+
+                <script>
+                    $(function() {
+                        $('#LatestBlocksGrid')
+                            .on('aweselect', function() {
+                                var selectedItems = $('#LatestBlocksGrid').data('api').getSelection();
+                                if (selectedItems.length > 0) {
+                                    var selectedItem = selectedItems[0];
+                                    window.location = "/Block/" + selectedItem.Hash;
+                                }
+                            });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</section>
+@*@Html.Partial("_FooterWidgets")*@

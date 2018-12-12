@@ -1,0 +1,43 @@
+﻿@using BlockchainSQL.Web.Models
+<nav class="navbar navbar-default navbar-header-full navbar-dark yamm navbar-static-top" role="navigation" id="header">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+            <a id="ar-brand" class="navbar-brand hidden-lg hidden-md hidden-sm" href="">Blockchain<span>SQL</span> </a>
+        </div> <!-- navbar-header -->
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div id="navbar-collapse-1" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="dropdown"><a class="clearfix" href="/">Query</a></li>
+                <li class="dropdown"><a class="clearfix" href="/Explorer">Explorer</a></li>
+                @if (ViewBag.FunLinks.Length > 0) {
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Fun</a>
+                        <ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn">
+                            @foreach (FunLink link in ViewBag.FunLinks) {
+                                switch (link.LinkType) {
+                                    case FunLinkType.Link:
+                                        <li><a href="@link.Link">@link.Name @(!string.IsNullOrWhiteSpace(link.Badge) ? "<span class=\"label label-success pull-right\">" + link.Badge + "</span>" : string.Empty)</a></li>
+                                        break;
+                                    case FunLinkType.Divider:
+                                        <li class="divider"></li>
+                                        break;
+                                    case FunLinkType.HeaderDivider:
+                                    default:
+                                        throw new Exception("684D7CD88579429FA46FE9A09407CE70");
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+                <li class="dropdown"><a class="clearfix" href="/Server">Server</a></li>
+                <li class="dropdown"><a class="clearfix" href="/About">About</a></li>
+                @Html.Partial("_SearchBar")
+            </ul>
+        </div><!-- navbar-collapse -->
+    </div><!-- container -->
+</nav>

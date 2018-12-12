@@ -1,0 +1,20 @@
+﻿@using BlockchainSQL.Web.Code
+@model BlockchainSQL.Web.Models.ContactFormInput
+@using (Html.BeginFormEx(Model)) {    
+    <div class="form-group">
+        @Html.LabelFor(o => o.Name)
+        @Html.TextBoxFor(o => o.Name, new { @class = "form-control" })
+        @Html.ValidationMessageForEx(o => o.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(o => o.Email)
+        @Html.TextBoxFor(o => o.Email, new { @class = "form-control" })
+        @Html.ValidationMessageForEx(o => o.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(o => o.Message)
+        @Html.TextAreaFor(o => o.Message, new { @class = "form-control", rows = "8" })
+        @Html.ValidationMessageForEx(o => o.Message)
+    </div>
+    <input type="submit" value="Send" class="btn btn-ar btn-lg btn-default"/>
+}

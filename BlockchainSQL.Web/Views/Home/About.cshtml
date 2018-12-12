@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "About BlockchainSQL.io";
+}
+<header class="main-header">
+    <div class="container">
+        <h1 class="page-title">About</h1>
+
+        @*<ol class="breadcrumb pull-right">
+            <li><a href="#">Pages</a></li>
+            <li><a href="#">About us &amp; Team</a></li>
+            <li class="active">About us &amp; Team</li>
+        </ol>*@
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title-logo animated fadeInDown animation-delay-5"></div>
+        </div>
+        <div class="col-xs-12">
+            <p class="slogan text-center animated bounceInLeft animation-delay-12">Software that <span>just works</span>. <br> We <span>design</span>, <span>build</span> and <span>deliver</span> <span>quality</span> software <span>on-time</span> and <span>on-budget</span>.</p>
+        </div>
+        <div class="col-md-8 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <h2 class="right-line">About us</h2>
+            <p class="p-lg">Sphere 10 Software is an Australian-based software development firm specialising in Blockchain development and Fintech consulting. Whether it’s Ethereum blockchain apps or a multi-currency exchange, we build quality systems and deliver faster and cheaper than our competitors.</p>
+            <h4>Our History</h4>
+            <p class="p-lg">For over 10 years, Sphere 10 Software has provided premier software development consulting to small, medium, large and government clients. From mobile apps to enterprise systems, we have shipped two of our own award-winning products and developed countless others for clients. We're a debt-free, lean and mean organization with powerful in-house libraries allowing us to rapidly assemble quality solutions for clients across multiple verticals.</p>
+            <hr class="dotted">
+            <blockquote class="blockquote-color-bg-primary">
+                <p>With Ethereum, we now have the technology to disintermediate every aspect of the economy. Individuals can now economically interact with other individuals, collectives and even machines instantly, globally, pseudo-anonymously, arbitrarily and directly without any intermediaries!</p>
+                <footer>Herman Schoenfeld, Sphere 10 Software, Director</footer>
+            </blockquote>
+        </div>
+        <div class="col-md-4 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+            <h3 class="right-line">Technologies we use</h3>
+            <div class="row">
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/bitcoin.png" alt="" class="img-responsive"></div>
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/ethereum.png" alt="" class="img-responsive"></div>
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/ios.png" alt="" class="img-responsive"></div>
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/android.png" alt="" class="img-responsive"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/xamarin.png" alt="" class="img-responsive"></div>
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/dotnet.png" alt="" class="img-responsive"></div>                
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/sqlserver.png" alt="" class="img-responsive"></div>
+                <div class="col-md-6 col-sm-3 col-xs-6"><img src="/Content/images/logos/sqlite.png" alt="" class="img-responsive"></div>
+            </div>
+        </div>
+    </div> <!-- row -->
+
+    <div class="row animated fadeIn animation-delay-10">
+        <h3 class="section-title">Services</h3>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-link">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        Blockchain Development
+                    </a>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        We build front-end and infrastructure solutions for anything blockchain. From transaction analytics tools to multi-currency exchanges, our expert developers can build and deliver your IP on-time and on-budget.
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-link">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class="collapsed">
+                        Ethereum Development
+                    </a>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        We build blockchain apps, smart contracts and dapps using the Ethereum platform. Anything you can imagine, we can build. Ethereum offers a truly revolutionary, turing-complete, blockchain platform limited only by your imagination (and mathematics). Hundreds of Twitters, Facebooks and Google's will emerge from this space in due course. Is your idea one of the? Take Action Now and bring your concept to market, for the time has surely arrived!  
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading panel-heading-link">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class="collapsed">
+                        Fintech Consulting
+                    </a>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        As fintech experts, we can advise you on your blockchain strategy and technology roadmap to make sure you're on the right track. We also provide presentations and training to get you and your staff up-to-date with the most cutting-edge concepts and technology in this space.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <h3 class="section-title">Contact Us</h3>    
+        <div class="col-md-8 animated rotateIn animation-delay-4">
+            <section>
+                <p>Contact us with your enquiry and we will get back to you as soon as we can!</p>
+                @Html.Partial("~/Views/Form/Contact.cshtml")
+                <div class="clearfix"></div>
+                <br/>
+            </section>
+        </div>
+
+        <div class="col-md-4 animated slideInRight animation-delay-4">
+            <section>
+                @Html.Partial("_AdditionalInfoPanel")
+            </section>
+        </div>
+    </div>
+
+</div>

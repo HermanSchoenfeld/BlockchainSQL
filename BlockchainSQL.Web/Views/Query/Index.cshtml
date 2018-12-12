@@ -1,0 +1,26 @@
+﻿@using BlockchainSQL.Web.Code
+@using Sphere10.Framework
+@using Sphere10.Framework.Data
+@model BlockchainSQL.Web.Models.QueryPageModel
+@{
+    ViewBag.Title = "Bitcoin Blockchain SQL Query";
+    ViewBag.EnableSyntaxHighlighting = true;
+}
+<section>
+    <div class="vertical-tabs-left">
+        <div class="vertical-tab-list">
+            <ul class="nav">
+                <li class="active"><a href="#query" data-toggle="tab"><i class="fa fa-home"></i> Query</a></li>
+                <li><a href="#schema" data-toggle="tab"><i class="fa fa-user"></i> Schema</a></li>
+            </ul>
+        </div>
+        <div class="tab-content no-padding width-full max-width-500">
+            <div class="tab-pane active" id="query">
+                @Html.Partial("~/Views/Query/QueryPanel.cshtml", Model.QueryPanelModel)
+            </div>
+            <div class="tab-pane" id="schema">
+                @Html.Partial("~/Views/Query/Schema.cshtml", Model.Schema)
+            </div>
+        </div>
+    </div>
+</section>

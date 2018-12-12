@@ -1,0 +1,29 @@
+﻿@model string
+@{
+    var pageTitle = Model ?? "Under Construction";
+    ViewBag.Title = pageTitle;
+}
+
+<section class="carousel-section">
+    <div id="carousel-example-generic" class="carousel carousel-razon slide" data-ride="carousel" data-interval="5000">
+
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 carousel-img-wrap">
+                            <div class="carousel-img center">
+                                <img src="/Content/images/construction.png" class="img-responsive animated bounceInUp animation-delay-3" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+

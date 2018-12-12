@@ -1,0 +1,60 @@
+﻿using System;
+using System.CodeDom;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics.Eventing.Reader;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using BlockchainSQL.DataAccess;
+using BlockchainSQL.DataObjects;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
+
+namespace BlockchainSQL.Processing {
+    public sealed class TransactionCache : CacheBase<byte[], Transaction> {
+        private readonly ApplicationDAC _dac;
+        private readonly DACScope _scope;
+        public TransactionCache(uint capacity)
+            : base(CacheReapPolicy.ASAP, ExpirationPolicy.SinceLastAccessedTime, capacity, keyComparer: ByteArrayEqualityComparer.Instance) {
+            _dac = BizLogicScope.Current.CreateDAC();
+            _dac.UseScopeOsmosis = false;
+            _dac.DefaultIsolationLevel = IsolationLevel.ReadUncommitted;
+            _scope = _dac.BeginScope();            
+        }
+
+        public override void Dispose() {            
+            _scope.Dispose();
+        }
+
+        public override Transaction Get(byte[] key) {
+            var size = this.CurrentSize;
+            return base.Get(key);
+        }
+
+        protected override sealed uint EstimateSize(Transaction value) {
+            return (uint) SizeEstimator.Estimate(value);
+        }
+
+        protected override sealed Transaction Fetch(byte[] key) {
+            using (SystemLog.Logger.LogDuration("TransactionCache::Fetch")) {
+                // Search the pipeline first (since sought after txn might not be persisted yet)
+                var pipelineScope = WipPipelineScope.Current;
+                if (pipelineScope != null) {
+                    using (pipelineScope.PipelineTransactions.EnterReadScope()) {
+                        if (pipelineScope.PipelineTransactions.ContainsKey(key)) {
+                            return pipelineScope.PipelineTransactions[key];
+                        }
+                    }
+                }
+                _scope.BeginTransaction(IsolationLevel.ReadUncommitted);
+                var txn = _dac.GetTransactionByTXID(key);
+                txn.Outputs = _dac.GetTransactionOutputs(txn.ID).ToArray();
+                _scope.Commit();
+                return txn;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+﻿@using BlockchainSQL.Web.DataObjects
+@model BlockchainSQL.Web.Models.LoadTemplateModel
+<div class="panel-group" id="accordion">
+    @foreach (var category in Model.Categories) {
+        var catDivID = string.Format("cat{0}", category.ID);
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-link">
+                <a data-toggle="collapse" data-parent="#accordion" href="#@catDivID" aria-expanded="false" class="collapsed">
+                    @category.Title
+                </a>
+            </div>
+            <div id="@catDivID" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                    <div class="list-group">
+                        @foreach (var template in category.Templates) {
+                            <a href="/Query/Template/@template.ID" class="list-group-item">
+                                <h4 class="list-group-item-heading">@template.Title</h4>
+                                <p class="list-group-item-text">@template.Description</p>
+                                </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

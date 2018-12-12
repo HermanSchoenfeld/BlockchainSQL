@@ -1,0 +1,54 @@
+﻿@using BlockchainSQL.Web.Code
+@using BlockchainSQL.Web.Models
+@model AddressPageModel
+@{
+    ViewBag.Title = "Address " + Model.Address;
+    ViewBag.ShowLoading = false;
+}
+
+<section class="margin-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="jumbotron">
+                    <h2 class="page-header">Address <small>@Model.Address</small> <span class="label label-royal pull-right">฿ @Model.Balance</span> </h2>
+                </div>
+                <h5>Transactions</h5>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-striped ">
+                        <thead>
+                            <tr>
+                                <th>Date/Time</th>
+                                <th>Transaction</th>
+                                <th>Debit</th>
+                                <th>Credit</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var line in Model.LineItems.OrderByDescending(li => li.DateTime)) {
+                                <tr>
+                                    <td>@ViewHelper.Beautify(line.DateTime)</td>
+                                    <td><small><small>@Html.Raw(ViewHelper.AddressLineLink(line))</small></small></td>
+                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Debit ? ViewHelper.Beautify(line.AmountBTC) : string.Empty)</td>
+                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Credit ? ViewHelper.Beautify(line.AmountBTC) : string.Empty)</td>
+                                    <td>@ViewHelper.Beautify(line.TotalBTC)</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td><b>TOTAL</b></td>
+                                <td>&nbsp;</td>
+                                <td><b>@ViewHelper.Beautify(Model.TotalDebits)</b></td>
+                                <td><b>@ViewHelper.Beautify(Model.TotalCredits)</b></td>
+                                <td><b>@ViewHelper.Beautify(Model.Balance)</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
