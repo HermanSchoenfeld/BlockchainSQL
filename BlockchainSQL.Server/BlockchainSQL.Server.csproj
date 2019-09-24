@@ -187,34 +187,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Sphere10.Application.WinForms\Sphere10.Application.WinForms.csproj">
-      <Project>{2d74caf0-f9b0-4010-91cb-15578916bc1c}</Project>
-      <Name>Sphere10.Application.WinForms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Application\Sphere10.Application.csproj">
-      <Project>{5843d59f-c8e2-4ed7-ad4c-da55f968cb92}</Project>
-      <Name>Sphere10.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
-      <Project>{39e7adf8-c370-4018-bdf3-ac9e8b0abbed}</Project>
-      <Name>Sphere10.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework\Sphere10.Framework.csproj">
-      <Project>{1cdd0ffb-6e00-42c3-9d77-427ab3451c0f}</Project>
-      <Name>Sphere10.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Windows.WinForms.Sqlite\Sphere10.Windows.WinForms.Sqlite.csproj">
-      <Project>{bd8f6b59-e0db-4dee-a144-944bbc44fd9d}</Project>
-      <Name>Sphere10.Windows.WinForms.Sqlite</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Windows.WinForms\Sphere10.Windows.WinForms.csproj">
-      <Project>{1ea1a698-5a35-45c7-8e85-da3cc0d2882e}</Project>
-      <Name>Sphere10.Windows.WinForms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Windows\Sphere10.Windows.csproj">
-      <Project>{05D56A4B-6E13-4396-8B49-E2C55BC9B508}</Project>
-      <Name>Sphere10.Windows</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj">
       <Project>{11c589b3-6f79-4fd9-9e77-80f188f34242}</Project>
       <Name>BlockchainSQL.DataAccess.NHibernate</Name>

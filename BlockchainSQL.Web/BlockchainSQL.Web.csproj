@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -398,18 +399,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
-      <Project>{39e7adf8-c370-4018-bdf3-ac9e8b0abbed}</Project>
-      <Name>Sphere10.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework.Web\Sphere10.Framework.Web.csproj">
-      <Project>{E0CD802D-75FC-4E99-B65C-84E6C558BF46}</Project>
-      <Name>Sphere10.Framework.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework\Sphere10.Framework.csproj">
-      <Project>{1cdd0ffb-6e00-42c3-9d77-427ab3451c0f}</Project>
-      <Name>Sphere10.Framework</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj">
       <Project>{d7d8065c-bc79-4c87-980a-9f0e1e40a488}</Project>
       <Name>BlockchainSQL.DataAccess</Name>

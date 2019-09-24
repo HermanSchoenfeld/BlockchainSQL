@@ -153,18 +153,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
-      <Project>{39e7adf8-c370-4018-bdf3-ac9e8b0abbed}</Project>
-      <Name>Sphere10.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Framework\Sphere10.Framework.csproj">
-      <Project>{1cdd0ffb-6e00-42c3-9d77-427ab3451c0f}</Project>
-      <Name>Sphere10.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Sphere10.Windows.LevelDB\Sphere10.Windows.LevelDB.csproj">
-      <Project>{c1549308-26f7-49c3-b1aa-8ad986c90db8}</Project>
-      <Name>Sphere10.Windows.LevelDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj">
       <Project>{D7D8065C-BC79-4C87-980A-9F0E1E40A488}</Project>
       <Name>BlockchainSQL.DataAccess</Name>
