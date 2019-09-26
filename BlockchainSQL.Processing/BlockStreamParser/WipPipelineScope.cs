@@ -9,13 +9,13 @@ using Sphere10.Framework.Data;
 namespace BlockchainSQL.Processing {
     public sealed class WipPipelineScope : ScopeContext<WipPipelineScope> {
         private const string ContextID = "FDDBCCE3-37C0-422F-8FCA-1AD316D4F51B";
-        public readonly SyncronizedDictionary<byte[], WipBlock> PipelineBlocks;
-        public readonly SyncronizedDictionary<byte[], Transaction> PipelineTransactions;
+        public readonly SynchronizedDictionary<byte[], WipBlock> PipelineBlocks;
+        public readonly SynchronizedDictionary<byte[], Transaction> PipelineTransactions;
 
         public WipPipelineScope()
             : base(ContextID, ScopeContextPolicy.MustBeRoot) {
-            PipelineBlocks = new SyncronizedDictionary<byte[], WipBlock>(ByteArrayEqualityComparer.Instance);
-            PipelineTransactions = new SyncronizedDictionary<byte[], Transaction>(ByteArrayEqualityComparer.Instance);
+            PipelineBlocks = new SynchronizedDictionary<byte[], WipBlock>(ByteArrayEqualityComparer.Instance);
+            PipelineTransactions = new SynchronizedDictionary<byte[], Transaction>(ByteArrayEqualityComparer.Instance);
             ProcessingTaskShouldExpandScripts = false;
         }
 

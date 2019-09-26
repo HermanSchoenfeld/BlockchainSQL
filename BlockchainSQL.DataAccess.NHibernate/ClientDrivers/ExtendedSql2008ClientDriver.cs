@@ -5,9 +5,9 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.SqlTypes;
+
 
 namespace BlockchainSQL.DataAccessLayer.NHibernate {
     public class ExtendedSql2008ClientDriver : Sql2008ClientDriver {

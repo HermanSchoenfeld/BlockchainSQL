@@ -1,7 +1,6 @@
 ﻿using BlockchainSQL.Web.DataObjects;
 using FluentNHibernate.Mapping;
 using FluentNHibernate.MappingModel.Output;
-using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Web.DataAccess { 
     public class TemplateQueryMap : ClassMap<TemplateQuery> {

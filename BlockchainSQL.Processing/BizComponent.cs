@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataAccess;
 using Sphere10.Framework;
-using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Processing {
     public abstract class BizComponent : IBizComponent {

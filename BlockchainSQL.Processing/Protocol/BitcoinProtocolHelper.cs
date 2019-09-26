@@ -87,7 +87,7 @@ namespace BlockchainSQL.Processing {
         }
 
         public static byte[] StringToBytes(string textFormat) {
-            return textFormat.FromHexStringToByteArray();
+            return textFormat.ToHexByteArray();
         }
 
     }

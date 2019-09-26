@@ -8,8 +8,6 @@ using NHibernate.Cfg;
 using NHibernate.Event;
 using NHibernate.SqlCommand;
 using NHibernate.Tool.hbm2ddl;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
 using System.Threading.Tasks;
 using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataAccess.NHibernate.Mappings;

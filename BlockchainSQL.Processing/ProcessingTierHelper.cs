@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
-using Sphere10.Windows.LevelDB;
+using Sphere10.Framework.Windows.LevelDB;
 
 namespace BlockchainSQL.Processing {
     public static class ProcessingTierHelper {

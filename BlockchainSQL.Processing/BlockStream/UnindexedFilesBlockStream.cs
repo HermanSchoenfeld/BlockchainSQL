@@ -32,7 +32,7 @@ namespace BlockchainSQL.Processing {
             var lastMatchBlockFileIndex = -1;
             var lastMatchBlockFileOffset = -1L;
 
-            var locators = new SyncronizedList<byte[]>();
+            var locators = new SynchronizedList<byte[]>();
             locators.AddRange(blockLocators.Locations.Select(l => l.Hash));
             lastMatchBlockFileIndex = -1;
             lastMatchBlockFileOffset = -1L;
@@ -66,7 +66,7 @@ namespace BlockchainSQL.Processing {
             var lastMatchBlockFileIndex = -1;
             var lastMatchBlockFileOffset = -1L;
 
-            var locators = new SyncronizedList<byte[]>();
+            var locators = new SynchronizedList<byte[]>();
             locators.AddRange(blockLocators.Locations.Select(l => l.Hash));
             lastMatchBlockFileIndex = -1;
             lastMatchBlockFileOffset = -1L;
@@ -137,7 +137,7 @@ namespace BlockchainSQL.Processing {
             }
         }
 
-        private static void SearchTipInBlockFile(BlockFile blockFile, int blockFileIndex, SyncronizedList<byte[]> locators, ref bool foundTip, ref int lastMatchBlockFileIndex, ref long lastMatchBlockFileOffset, CancellationToken cancellationToken) {
+        private static void SearchTipInBlockFile(BlockFile blockFile, int blockFileIndex, SynchronizedList<byte[]> locators, ref bool foundTip, ref int lastMatchBlockFileIndex, ref long lastMatchBlockFileOffset, CancellationToken cancellationToken) {
             var blockFilePath = blockFile.Path;
             var reader = BizLogicFactory.NewBlockFileReader(blockFilePath);
             reader.SkipTransactions = true;

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BlockchainSQL.DataAccess</RootNamespace>
     <AssemblyName>BlockchainSQL.DataAccess</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,9 +71,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj">
+      <Project>{3955d8d5-8522-45cd-a157-5440ead27df6}</Project>
+      <Name>Sphere10.Framework.Data.MSSQL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj">
+      <Project>{2f5340ee-e6eb-4605-ac36-8853180df97a}</Project>
+      <Name>Sphere10.Framework.Data.Sqlite</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
+      <Project>{92fef1df-ba3a-4e76-8d91-8b8df5d3c148}</Project>
+      <Name>Sphere10.Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj">
+      <Project>{c7ff345b-c182-40ea-b5c8-0990bc475b68}</Project>
+      <Name>Sphere10.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj">
       <Project>{c8fb075f-f2f1-4663-a19c-f6f9bcc9030e}</Project>
       <Name>BlockchainSQL.DataObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj">
+      <Project>{00e389de-e9c4-416a-b9be-a35988e6a49d}</Project>
+      <Name>BlockchainSQL.Web.DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

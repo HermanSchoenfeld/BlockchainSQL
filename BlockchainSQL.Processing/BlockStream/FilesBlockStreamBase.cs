@@ -13,7 +13,6 @@ using BlockchainSQL.Processing.BusinessObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Collections;
 using Sphere10.Framework.Data;
-using Sphere10.Windows.LevelDB;
 using Tools;
 
 namespace BlockchainSQL.Processing {

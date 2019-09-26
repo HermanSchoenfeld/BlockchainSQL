@@ -19,16 +19,16 @@ namespace BlockchainSQL.Processing {
         private readonly BulkFetchActionCache<byte[], BlockPtr> _bulkLoadedBlockDbCache; 
         private readonly ICache<byte[], BlockPtr> _blockCache;
         private readonly ICache<int, int> _branchHeightCache;
-        private readonly SyncronizedDictionary<byte[], BlockPtr> _processedBlocks;
-        private readonly SyncronizedDictionary<int, Branch> _generatedBranches;
+        private readonly SynchronizedDictionary<byte[], BlockPtr> _processedBlocks;
+        private readonly SynchronizedDictionary<int, Branch> _generatedBranches;
         private readonly Branch _mainChain;
         private readonly Branch _invalidBranch;        
         
         public OptimizedBlockOrganizer(bool optimizeForBulkLoading) {
             _mainChain = new Branch { ID = (int) KnownBranches.MainChain, ForkHeight = 0 };
             _invalidBranch = new Branch { ID = (int)KnownBranches.Invalid };
-            _processedBlocks = new SyncronizedDictionary<byte[], BlockPtr>(ByteArrayEqualityComparer.Instance);
-            _generatedBranches = new SyncronizedDictionary<int, Branch>();
+            _processedBlocks = new SynchronizedDictionary<byte[], BlockPtr>(ByteArrayEqualityComparer.Instance);
+            _generatedBranches = new SynchronizedDictionary<int, Branch>();
             _bulkLoadedBlockDbCache = new BulkFetchActionCache<byte[], BlockPtr>(
                 () => optimizeForBulkLoading ? LoadAllDatabaseBlocks() : new Dictionary<byte[], BlockPtr>(),
                 fetchOnceOnly: true,

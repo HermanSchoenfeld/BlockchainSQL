@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BlockchainSQL.Processing</RootNamespace>
     <AssemblyName>BlockchainSQL.Processing</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -22,6 +22,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <NuGetPackageImportStamp>f8fb0579</NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -153,6 +154,22 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj">
+      <Project>{9D084836-BC7D-4593-9F7B-7385D765FFC0}</Project>
+      <Name>Sphere10.Framework.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
+      <Project>{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}</Project>
+      <Name>Sphere10.Framework.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj">
+      <Project>{C1549308-26F7-49C3-B1AA-8AD986C90DB8}</Project>
+      <Name>Sphere10.Framework.Windows.LevelDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj">
+      <Project>{C7FF345B-C182-40EA-B5C8-0990BC475B68}</Project>
+      <Name>Sphere10.Framework</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj">
       <Project>{D7D8065C-BC79-4C87-980A-9F0E1E40A488}</Project>
       <Name>BlockchainSQL.DataAccess</Name>

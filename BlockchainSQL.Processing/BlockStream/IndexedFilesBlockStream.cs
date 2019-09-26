@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing.BusinessObjects;
 using Sphere10.Framework;
-using Sphere10.Windows.LevelDB;
+using Sphere10.Framework.Windows.LevelDB;
 // ReSharper disable InconsistentNaming
 
 namespace BlockchainSQL.Processing {

@@ -3,6 +3,7 @@ using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
 using Sphere10.Framework;
 
+
 namespace BlockchainSQL.Web.DataAccess {
     internal class CoreConventions : IReferenceConvention, IHasManyConvention, IHasManyToManyConvention {
         public void Apply(IOneToManyCollectionInstance instance) {
