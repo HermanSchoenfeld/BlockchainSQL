@@ -252,7 +252,7 @@
         private System.Windows.Forms.TextBox _logBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private Sphere10.Windows.WinForms.DatabaseConnectionBar _dbConnectionBar;
+        private Sphere10.Framework.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
         private System.Windows.Forms.Button _startButton;
         private System.Windows.Forms.Button _testDatabaseButton;
         private Sphere10.Windows.WinForms.ValidationIndicator _BLKDataFolderValidator;
