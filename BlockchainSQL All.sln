@@ -38,37 +38,37 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Web.DataAcces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Server", "BlockchainSQL.Server\BlockchainSQL.Server.csproj", "{0D5F416A-DD59-49AE-BA6B-B04C09241B06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework", "..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj", "{C7FF345B-C182-40EA-B5C8-0990BC475B68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework", "..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj", "{C7FF345B-C182-40EA-B5C8-0990BC475B68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Application", "..\Framework-v3\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj", "{9D084836-BC7D-4593-9F7B-7385D765FFC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Application", "..\Framework\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj", "{9D084836-BC7D-4593-9F7B-7385D765FFC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data", "..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj", "{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data", "..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj", "{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Firebird", "..\Framework-v3\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj", "{1C677A80-4066-42E2-A899-8137CAF1E113}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Firebird", "..\Framework\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj", "{1C677A80-4066-42E2-A899-8137CAF1E113}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.MSSQL", "..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj", "{3955D8D5-8522-45CD-A157-5440EAD27DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.MSSQL", "..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj", "{3955D8D5-8522-45CD-A157-5440EAD27DF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj", "{2F5340EE-E6EB-4605-AC36-8853180DF97A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Sqlite", "..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj", "{2F5340EE-E6EB-4605-AC36-8853180DF97A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Drawing", "..\Framework-v3\src\Sphere10.Framework.Drawing\Sphere10.Framework.Drawing.csproj", "{3D35AB46-AB43-4464-839C-8304F980ABC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Drawing", "..\Framework\src\Sphere10.Framework.Drawing\Sphere10.Framework.Drawing.csproj", "{3D35AB46-AB43-4464-839C-8304F980ABC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.NUnit", "..\Framework-v3\src\Sphere10.Framework.NUnit\Sphere10.Framework.NUnit.csproj", "{72787D46-92CB-4391-AAB2-F815201A7CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.NUnit", "..\Framework\src\Sphere10.Framework.NUnit\Sphere10.Framework.NUnit.csproj", "{72787D46-92CB-4391-AAB2-F815201A7CDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Services", "..\Framework-v3\src\Sphere10.Framework.Services\Sphere10.Framework.Services.csproj", "{141DBCCA-E7C9-41D2-890D-4F34E97E765D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Services", "..\Framework\src\Sphere10.Framework.Services\Sphere10.Framework.Services.csproj", "{141DBCCA-E7C9-41D2-890D-4F34E97E765D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Web.AspNet", "..\Framework-v3\src\Sphere10.Framework.Web.AspNet\Sphere10.Framework.Web.AspNet.csproj", "{E0CD802D-75FC-4E99-B65C-84E6C558BF46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Web.AspNet", "..\Framework\src\Sphere10.Framework.Web.AspNet\Sphere10.Framework.Web.AspNet.csproj", "{E0CD802D-75FC-4E99-B65C-84E6C558BF46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows", "..\Framework-v3\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj", "{A09540B1-88C0-47E6-98D8-731C490DB869}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows", "..\Framework\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj", "{A09540B1-88C0-47E6-98D8-731C490DB869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj", "{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms", "..\Framework\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj", "{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.MSSQL", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj", "{97D707E8-38FF-4435-B7A6-7F777D255E3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.MSSQL", "..\Framework\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj", "{97D707E8-38FF-4435-B7A6-7F777D255E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.Firebird", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj", "{0AAE6912-CDE3-4D49-9AE5-63193105537C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.Firebird", "..\Framework\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj", "{0AAE6912-CDE3-4D49-9AE5-63193105537C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.Sqlite", "..\Framework\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.LevelDB", "..\Framework-v3\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.LevelDB", "..\Framework\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
