@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             this._trafficLightLabel = new System.Windows.Forms.Label();
-            this._trafficLight = new Sphere10.Windows.WinForms.PanelEx();
+            this._trafficLight = new Sphere10.Framework.Windows.Forms.PanelEx();
             this._serviceButton = new System.Windows.Forms.Button();
             this._serviceDetailLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -89,7 +89,7 @@
         #endregion
 
         private System.Windows.Forms.Label _trafficLightLabel;
-        private Sphere10.Windows.WinForms.PanelEx _trafficLight;
+        private Sphere10.Framework.Windows.Forms.PanelEx _trafficLight;
         private System.Windows.Forms.Button _serviceButton;
         private System.Windows.Forms.Label _serviceDetailLabel;
     }

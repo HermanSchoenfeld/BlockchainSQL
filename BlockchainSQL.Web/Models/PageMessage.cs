@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace BlockchainSQL.Web.Models {
+namespace BlockchainSQL.Web.Models
+{
     public class PageMessage {
         public PageMessageSeverity Severity { get; set; } = PageMessageSeverity.Info;
         public string Title { get; set; } = null;

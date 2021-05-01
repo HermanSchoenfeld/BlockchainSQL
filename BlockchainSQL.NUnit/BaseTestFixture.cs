@@ -12,8 +12,8 @@ using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
 using NUnit.Framework;
-using Sphere10.Framework;
 using Sphere10.Framework.Data;
+using Sphere10.Framework;
 
 namespace BlockchainSQL.NUnit
 {
@@ -29,12 +29,12 @@ namespace BlockchainSQL.NUnit
             _connectionStrings = new Dictionary<DBMSType, string>();
         }
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         protected virtual void Setup() {
             _connectionStrings.Add(DBMSType.SQLServer, CreateDatabase(DBMSType.SQLServer));            
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         protected virtual void Teardown() {
             foreach (var item in _connectionStrings) {
                 Tools.Exceptions.ExecuteIgnoringException(() => DropDatabase(item.Key, item.Value));

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using BlockchainSQL.Web.Models;
 
-namespace BlockchainSQL.Web.Controllers {
+namespace BlockchainSQL.Web.Controllers
+{
     public class HomeController : BaseController {
 
         public ActionResult Index(string errorMessage) {

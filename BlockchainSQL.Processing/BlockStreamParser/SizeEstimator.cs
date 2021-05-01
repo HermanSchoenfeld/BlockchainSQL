@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using BlockchainSQL.DataObjects;
-using BlockchainSQL.Processing.Scanning;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public static class SizeEstimator {
 
         public static long Estimate(Block block) {

@@ -1,4 +1,6 @@
-﻿namespace BlockchainSQL.Server {
+﻿using Sphere10.Framework.Windows.Forms;
+
+namespace BlockchainSQL.Server {
     partial class MainForm {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +38,7 @@
             this._blockFileScannerButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this._generateDatabaseButton = new System.Windows.Forms.Button();
-            this._appBanner = new Sphere10.Application.WinForms.ApplicationBanner();
+            this._appBanner = new ApplicationBanner();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -239,7 +241,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button _generateDatabaseButton;
-        private Sphere10.Application.WinForms.ApplicationBanner _appBanner;
+        private ApplicationBanner _appBanner;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button _blockFileScannerButton;
         private System.Windows.Forms.Button _installServiceButton;

@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using BlockchainSQL.Processing;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Web.Controllers {
+namespace BlockchainSQL.Web.Controllers
+{
     public class ExplorerController : BaseController {
         public ActionResult Index() {
             return View();

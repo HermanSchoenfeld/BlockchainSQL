@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using BlockchainSQL.Web.Models;
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
     public static class HtmlHelperExtensions {
 
         public static IDisposable BeginFormEx<T>(this HtmlHelper<T> htmlHelper, T formModel, string formClass = null) where T : FormModelBase, new() {

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
-using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
     public interface IBlockchainRepository {
 
         Task<IEnumerable<Block>> GetBlocks(int page, int pageSize, SortOption[] sortOptions);

@@ -1,7 +1,5 @@
-using System;
-using System.ComponentModel;
-
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
     // TBD
     public class Setting {
 

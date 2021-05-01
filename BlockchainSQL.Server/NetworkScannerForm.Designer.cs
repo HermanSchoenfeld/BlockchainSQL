@@ -29,16 +29,16 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this._nodePortBox = new Sphere10.Windows.WinForms.IntBox();
-            this._nodeIPTextBox = new Sphere10.Windows.WinForms.TextBoxEx();
+            this._nodePortBox = new Sphere10.Framework.Windows.Forms.IntBox();
+            this._nodeIPTextBox = new Sphere10.Framework.Windows.Forms.TextBoxEx();
             this._testNodeButton = new System.Windows.Forms.Button();
-            this._BLKDataFolderValidator = new Sphere10.Windows.WinForms.ValidationIndicator();
+            this._BLKDataFolderValidator = new Sphere10.Framework.Windows.Forms.ValidationIndicator();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this._testDatabaseButton = new System.Windows.Forms.Button();
-            this._dbConnectionBar = new Sphere10.Windows.WinForms.DatabaseConnectionBar();
+            this._dbConnectionBar = new Sphere10.Framework.Windows.Forms.DatabaseConnectionBar();
             this._startButton = new System.Windows.Forms.Button();
-            this._loadingCircle = new Sphere10.Windows.WinForms.LoadingCircle();
-            this._progressBar = new Sphere10.Windows.WinForms.ProgressBarEx();
+            this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
+            this._progressBar = new Sphere10.Framework.Windows.Forms.ProgressBarEx();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -145,7 +145,7 @@
             this._BLKDataFolderValidator.Name = "_BLKDataFolderValidator";
             this._BLKDataFolderValidator.RunValidatorWhenEnabled = false;
             this._BLKDataFolderValidator.Size = new System.Drawing.Size(20, 20);
-            this._BLKDataFolderValidator.State = Sphere10.Windows.WinForms.ValidationState.Error;
+            this._BLKDataFolderValidator.State = Sphere10.Framework.Windows.Forms.ValidationState.Error;
             this._BLKDataFolderValidator.TabIndex = 7;
             // 
             // groupBox3
@@ -217,7 +217,7 @@
             // 
             this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._progressBar.CustomText = null;
-            this._progressBar.DisplayStyle = Sphere10.Windows.WinForms.ProgressBarDisplayText.Percentage;
+            this._progressBar.DisplayStyle = Sphere10.Framework.Windows.Forms.ProgressBarDisplayText.Percentage;
             this._progressBar.Location = new System.Drawing.Point(18, 390);
             this._progressBar.Name = "_progressBar";
             this._progressBar.Size = new System.Drawing.Size(670, 23);
@@ -255,13 +255,13 @@
         private Sphere10.Framework.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
         private System.Windows.Forms.Button _startButton;
         private System.Windows.Forms.Button _testDatabaseButton;
-        private Sphere10.Windows.WinForms.ValidationIndicator _BLKDataFolderValidator;
-        private Sphere10.Windows.WinForms.LoadingCircle _loadingCircle;
-        private Sphere10.Windows.WinForms.TextBoxEx _nodeIPTextBox;
+        private Sphere10.Framework.Windows.Forms.ValidationIndicator _BLKDataFolderValidator;
+        private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
+        private Sphere10.Framework.Windows.Forms.TextBoxEx _nodeIPTextBox;
         private System.Windows.Forms.Button _testNodeButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private Sphere10.Windows.WinForms.IntBox _nodePortBox;
-        private Sphere10.Windows.WinForms.ProgressBarEx _progressBar;
+        private Sphere10.Framework.Windows.Forms.IntBox _nodePortBox;
+        private Sphere10.Framework.Windows.Forms.ProgressBarEx _progressBar;
     }
 }

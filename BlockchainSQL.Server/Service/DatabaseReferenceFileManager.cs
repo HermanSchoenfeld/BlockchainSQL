@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using Sphere10.Framework.Data;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Server.Service {
+namespace BlockchainSQL.Server.Service
+{
     public static class DatabaseReferenceFileManager {
         private const string ConnectFileName = "Database.connection";
         private const string Salt = "##KEdp0324kasdfl,fkn#^#$%^sfdsq23q45555555555";

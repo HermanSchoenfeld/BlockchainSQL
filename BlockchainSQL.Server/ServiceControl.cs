@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Sphere10.Framework;
 using Sphere10.Framework.Scheduler;
-using Sphere10.Windows.WinForms;
+using Sphere10.Framework.Windows.Forms;
 
-namespace BlockchainSQL.Server {
+namespace BlockchainSQL.Server
+{
     public partial class ServiceStatusControl : UserControlEx {
         private ServiceController _serviceController;
         private ServiceStatus _serviceStatus;

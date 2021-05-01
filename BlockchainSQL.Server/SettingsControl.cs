@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlockchainSQL.DataAccess;
@@ -14,7 +8,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Server {
+namespace BlockchainSQL.Server
+{
     public partial class SettingsControl : UserControl {
         public SettingsControl() {
             InitializeComponent();

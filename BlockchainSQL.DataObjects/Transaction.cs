@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
     public class Transaction {
         public Transaction() {
             RowState = 1;

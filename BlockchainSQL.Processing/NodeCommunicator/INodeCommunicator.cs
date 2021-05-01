@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
+﻿using System.Threading.Tasks;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public interface INodeCommunicator {
 
         Task<long> GetPeerChainHeight();

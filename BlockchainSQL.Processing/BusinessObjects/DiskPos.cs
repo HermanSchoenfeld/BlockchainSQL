@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BlockchainSQL.Processing.BusinessObjects {
+namespace BlockchainSQL.Processing.BusinessObjects
+{
     public class DiskPos : IEquatable<DiskPos> {
         public readonly int FileIndex;
         public readonly uint FileOffset;

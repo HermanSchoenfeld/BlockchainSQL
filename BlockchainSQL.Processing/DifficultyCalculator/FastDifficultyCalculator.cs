@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sphere10.Framework.Maths;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public class FastDifficultyCalculator : IDifficultyCalculator {
         static readonly float MaxBody = (float)Math.Log(0x00ffff);
         static readonly float Scaland = (float)Math.Log(256);

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public class BizLogicFactory {
 
         public static IBlockFileReader NewBlockFileReader(string blockFilePath) {

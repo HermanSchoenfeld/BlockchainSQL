@@ -26,18 +26,18 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this._nodePollRateIntBox = new Sphere10.Windows.WinForms.IntBox();
+            this._nodePollRateIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this._nodeCustomPortIntBox = new Sphere10.Windows.WinForms.IntBox();
+            this._nodeCustomPortIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this._node1TextBox = new Sphere10.Windows.WinForms.TextBoxEx();
+            this._node1TextBox = new Sphere10.Framework.Windows.Forms.TextBoxEx();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
-            this._maxMemoryIntBox = new Sphere10.Windows.WinForms.IntBox();
+            this._maxMemoryIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
             this.label4 = new System.Windows.Forms.Label();
-            this._optionsListBox = new Sphere10.Windows.WinForms.CheckedListBoxEx();
+            this._optionsListBox = new Sphere10.Framework.Windows.Forms.CheckedListBoxEx();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -230,17 +230,17 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private Sphere10.Windows.WinForms.IntBox _nodePollRateIntBox;
+        private Sphere10.Framework.Windows.Forms.IntBox _nodePollRateIntBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private Sphere10.Windows.WinForms.IntBox _nodeCustomPortIntBox;
+        private Sphere10.Framework.Windows.Forms.IntBox _nodeCustomPortIntBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label16;
-        private Sphere10.Windows.WinForms.TextBoxEx _node1TextBox;
+        private Sphere10.Framework.Windows.Forms.TextBoxEx _node1TextBox;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
-        private Sphere10.Windows.WinForms.IntBox _maxMemoryIntBox;
+        private Sphere10.Framework.Windows.Forms.IntBox _maxMemoryIntBox;
         private System.Windows.Forms.Label label4;
-        private Sphere10.Windows.WinForms.CheckedListBoxEx _optionsListBox;
+        private Sphere10.Framework.Windows.Forms.CheckedListBoxEx _optionsListBox;
     }
 }

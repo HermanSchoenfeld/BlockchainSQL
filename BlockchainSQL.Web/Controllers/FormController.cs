@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Configuration;
 using System.Web.Mvc;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
@@ -12,7 +8,8 @@ using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
 
-namespace BlockchainSQL.Web.Controllers {
+namespace BlockchainSQL.Web.Controllers
+{
     public class FormController : BaseController {
 
         [HttpPost]

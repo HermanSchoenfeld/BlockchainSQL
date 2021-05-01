@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel;
 // ReSharper disable InconsistentNaming
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
 
     public enum AnimationDelay {
         [Description("")]

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using BlockchainSQL.DataObjects;
+﻿using System.Text;
 using BlockchainSQL.Processing;
-using Sphere10.Framework;
 
-namespace BlockchainSQL.NUnit {
+namespace BlockchainSQL.NUnit
+{
     internal static class TestHelper {
 
         public static byte[] ToHashBytes(string hash) {

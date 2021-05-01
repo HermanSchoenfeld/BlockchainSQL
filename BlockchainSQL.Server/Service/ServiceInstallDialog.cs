@@ -1,23 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Configuration.Install;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BlockchainSQL.Server;
-using BlockchainSQL.DataAccess;
-using BlockchainSQL.DataObjects;
-using BlockchainSQL.Processing;
-using BlockchainSQL.Processing.Scanning;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
-using Sphere10.Windows.WinForms;
+using Sphere10.Framework.Windows.Forms;
+using Sphere10.Framework.Application;
 
-namespace BlockchainSQL.Server {
+namespace BlockchainSQL.Server
+{
     public partial class ServiceInstallDialog : FormEx {
 
         public ServiceInstallDialog() {

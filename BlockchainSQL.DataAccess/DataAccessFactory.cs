@@ -10,9 +10,6 @@ namespace BlockchainSQL.DataAccess {
 	public static class DataAccessFactory {
 
 	    public static ApplicationDAC NewDAC(DBMSType dbmsType, string connectionString, ILogger logger = null) {
-			if (DateTime.UtcNow >= DateTime.Parse("11/11/2018 00:00:00"))
-				throw new SoftwareException("Software trial period has expired. Please contact Sphere 10 Software (www.sphere10.com) to purchase.");
-
 			IDAC dbmsDAC;
 	        IVendorSpecificImplementation vendorSpecificImplementation;
             switch (dbmsType) {

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public abstract class BlockStreamBase : BizComponent, IBlockStream {
         private bool _isOpen;
 

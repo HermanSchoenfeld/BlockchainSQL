@@ -66,7 +66,6 @@
                 <h2>Transactions</h2>
                 @(Html.Awe()
                       .Grid("BlockTransactionsGrid")
-                      .Mod(o => o.PageInfo().PageSize().AutoMiniPager().ColumnsSelector())
                       .Height(0)                      
                       .Url(Url.Action("BlockTransactions", "Grid", new { hash = BitcoinProtocolHelper.BytesToString(Model.Hash) }))
                       .Groupable(false)

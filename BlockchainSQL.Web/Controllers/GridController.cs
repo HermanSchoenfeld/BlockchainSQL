@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
-using BlockchainSQL.DataObjects;
 using BlockchainSQL.Web.Code;
 using Omu.AwesomeMvc;
 using Sphere10.Framework;
-using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Web.Controllers {
+namespace BlockchainSQL.Web.Controllers
+{
     public class GridController : BaseController {
         // GET: LatestBlocksGrid
         public async Task<ActionResult> Blocks(GridParams gridParams) {

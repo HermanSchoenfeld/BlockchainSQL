@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
-using BlockchainSQL.DataAccess;
-using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing.BusinessObjects;
 using Sphere10.Framework;
-using Sphere10.Framework.Collections;
-using Sphere10.Framework.Data;
-using Tools;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public abstract class FilesBlockStreamBase : BlockStreamBase {
 
         private readonly string _directoryPath;

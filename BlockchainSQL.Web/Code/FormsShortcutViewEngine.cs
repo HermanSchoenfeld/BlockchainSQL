@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
     public class FormsShortcutViewEngine : RazorViewEngine {
 
         private static readonly string[] NEW_PARTIAL_VIEW_FORMATS = new[] {

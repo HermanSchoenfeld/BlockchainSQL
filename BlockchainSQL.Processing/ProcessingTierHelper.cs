@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.IO;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Sphere10.Framework.Windows.LevelDB;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public static class ProcessingTierHelper {
 
         public static void ExpandBlockScripts(Block[] blocks) {

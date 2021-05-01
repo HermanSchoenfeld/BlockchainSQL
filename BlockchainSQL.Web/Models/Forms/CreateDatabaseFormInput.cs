@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using BlockchainSQL.Web.DataAccess;
-using Sphere10.Framework.Web.Validators;
+using Sphere10.Framework.Web;
 
-namespace BlockchainSQL.Web.Models {
+namespace BlockchainSQL.Web.Models
+{
 
     public class CreateDatabaseFormInput : FormModelBase {
 

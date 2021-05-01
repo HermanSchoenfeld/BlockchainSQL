@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using BlockchainSQL.Web.DataObjects;
 using BlockchainSQL.Web.DataObjectss;
 
-namespace BlockchainSQL.Web.Models {
+namespace BlockchainSQL.Web.Models
+{
     public class LoadTemplateModel {
 
         public LoadTemplateModel(IEnumerable<QueryCategory> queryCategoriesWithTemplates) {

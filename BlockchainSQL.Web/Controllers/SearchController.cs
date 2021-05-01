@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using BlockchainSQL.Processing;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.Models;
-using Sphere10.Framework;
 
 namespace BlockchainSQL.Web.Controllers
 {

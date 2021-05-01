@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 // ReSharper disable InconsistentNaming
 
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
     public class Script {
         public Script() {
             RowState = 1;

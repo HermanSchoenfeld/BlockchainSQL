@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 // ReSharper disable InconsistentNaming
 
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
     public enum ScriptClass : byte {
         [Description("Null Data scripts are used to store data on the blockchain and cannot be spent")]
         NullData = 1,

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using BlockchainSQL.DataObjects;
+﻿using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
     public static class JSONMappers {
 
         public static object MapBlock(Block block) {

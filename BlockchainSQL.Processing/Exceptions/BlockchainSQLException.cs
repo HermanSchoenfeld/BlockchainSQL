@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public class BlockchainSQLException : SoftwareException {
         public BlockchainSQLException() : base() {
         }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Sphere10.Framework.Data;
+﻿namespace BlockchainSQL.Processing
+{
 
-namespace BlockchainSQL.Processing {
-    
     public class ConnectOutpointsTask : BizComponent, IPostProcessingTask {
         public void ExecuteAll() {
             DAC.ConnectOutpoints();

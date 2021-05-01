@@ -1,21 +1,14 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using BlockchainSQL.DataAccess;
-using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
-using Sphere10.Framework.Collections;
 using Sphere10.Framework.Data;
-using Tools;
 
-namespace BlockchainSQL.Processing {
-	public class SequentialBlockStreamParser : BizComponent, IBlockStreamParser {
+namespace BlockchainSQL.Processing
+{
+    public class SequentialBlockStreamParser : BizComponent, IBlockStreamParser {
 
 		public SequentialBlockStreamParser(IBlockStream stream, IBlockLocator locator, IPreProcessor preProcessor, IPostProcessor postProcessor, IBlockStreamPersistor persistor) {
 			Stream = stream;

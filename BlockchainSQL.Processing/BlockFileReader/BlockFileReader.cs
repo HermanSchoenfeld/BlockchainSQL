@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public class BlockFileReader : IBlockFileReader {
         private StreamProfiler _stream;
         private EndianBinaryReader _reader;

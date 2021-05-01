@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
     public enum ScriptType : byte {
         [Description("Coinbase script used in Transaction Inputs that pays newly minted coins")]
         Coinbase   = 1,

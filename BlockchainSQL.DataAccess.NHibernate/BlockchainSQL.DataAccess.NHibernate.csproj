@@ -1,135 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{11C589B3-6F79-4FD9-9E77-80F188F34242}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlockchainSQL.DataAccess.NHibernate</RootNamespace>
-    <AssemblyName>BlockchainSQL.DataAccess.NHibernate</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\..\3rdParty\NHibernate-Sphere10-4.0.0.4000\FluentNHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\3rdParty\NHibernate-Sphere10-4.0.0.4000\Iesi.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate">
-      <HintPath>..\..\3rdParty\NHibernate-Sphere10-4.0.0.4000\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\3rdParty\System.Data.SQLite.1.0.88.0\lib\net45\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientDrivers\ExtendedSql2008ClientDriver.cs" />
-    <Compile Include="Conventions\AnsiStringConvention.cs" />
-    <Compile Include="Conventions\BinaryColumnLengthConvention.cs" />
-    <Compile Include="Conventions\CoreConventions.cs" />
-    <Compile Include="Conventions\ForeignKeyConventions.cs" />
-    <Compile Include="Conventions\StringColumnLengthConvention.cs" />
-    <Compile Include="DataGenerators\BaseDataGenerator.cs" />
-    <Compile Include="DataGenerators\DemoDataGenerator.cs" />
-    <Compile Include="DataGenerators\EmptyDataGenerator.cs" />
-    <Compile Include="Dialects\ExtendedMssqlDialect.cs" />
-    <Compile Include="DatabaseGenerators\MSSQLDbGenerator.cs" />
-    <Compile Include="Listeners\NHibernateListener.cs" />
-    <Compile Include="DataGenerators\PrimingDataGenerator.cs" />
-    <Compile Include="Mappings\BranchMap.cs" />
-    <Compile Include="Mappings\SettingMap.cs" />
-    <Compile Include="Mappings\OutpointMap.cs" />
-    <Compile Include="Mappings\ScriptInstructionMap.cs" />
-    <Compile Include="Mappings\ScriptMap.cs" />
-    <Compile Include="Mappings\TypeTables\TableAddressTypeMap.cs" />
-    <Compile Include="Mappings\TypeTables\TableOpCodeMap.cs" />
-    <Compile Include="Mappings\TypeTables\TableScriptClassMap.cs" />
-    <Compile Include="Mappings\TransactionOutputMap.cs" />
-    <Compile Include="Mappings\TransactionInputMap.cs" />
-    <Compile Include="Mappings\TransactionMap.cs" />
-    <Compile Include="Mappings\BlockMap.cs" />
-    <Compile Include="Mappings\TextMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Mappings\TypeTables\TableAddressType.cs" />
-    <Compile Include="Mappings\TypeTables\TableOpCode.cs" />
-    <Compile Include="Mappings\TypeTables\TableScriptClass.cs" />
-    <Compile Include="Mappings\TypeTables\TableScriptType.cs" />
-    <Compile Include="Mappings\TypeTables\TableScriptTypeMap.cs" />
-    <Compile Include="Mappings\TypeTables\TypeTable.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseGenerators\DatabaseGeneratorBase.cs" />
-    <Compile Include="DatabaseGenerators\SqliteDatabaseGenerator.cs" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.1" />
+    <PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.1" />
+    <PackageReference Include="System.ServiceModel.Federation" Version="4.8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataGenerators\IDataGenerator.cs" />
+    <PackageReference Include="FluentNHibernate" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="NHibernate" Version="5.3.8" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj">
-      <Project>{3955D8D5-8522-45CD-A157-5440EAD27DF6}</Project>
-      <Name>Sphere10.Framework.Data.MSSQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj">
-      <Project>{2F5340EE-E6EB-4605-AC36-8853180DF97A}</Project>
-      <Name>Sphere10.Framework.Data.Sqlite</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
-      <Project>{92fef1df-ba3a-4e76-8d91-8b8df5d3c148}</Project>
-      <Name>Sphere10.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj">
-      <Project>{C7FF345B-C182-40EA-B5C8-0990BC475B68}</Project>
-      <Name>Sphere10.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj">
-      <Project>{D7D8065C-BC79-4C87-980A-9F0E1E40A488}</Project>
-      <Name>BlockchainSQL.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj">
-      <Project>{c8fb075f-f2f1-4663-a19c-f6f9bcc9030e}</Project>
-      <Name>BlockchainSQL.DataObjects</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
 </Project>

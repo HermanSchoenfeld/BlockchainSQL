@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Data;
-using System.Net;
 using System.Web;
-using System.Web.Optimization;
-using System.Web.UI;
 using BlockchainSQL.Web.DataAccess;
 using NHibernate;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Web {
+namespace BlockchainSQL.Web
+{
     public static class ApplicationSingletons {
         public const string WebConfigKey = "Config";
         public const string NHSessionFactoryKey = "NHSessionFactory";

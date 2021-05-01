@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 //using System.Diagnostics.Contracts;
-using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing.Domain;
-using NBitcoin;
 using System.Numerics;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
 
     public static class Base58Helper {
 

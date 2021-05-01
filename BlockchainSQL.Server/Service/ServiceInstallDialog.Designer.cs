@@ -27,13 +27,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this._passwordTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this._pathSelector = new Sphere10.Windows.WinForms.PathSelectorControl();
+            this._pathSelector = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
             this._installButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._generateNewDatabaseButton = new System.Windows.Forms.Button();
             this._testConnectionButon = new System.Windows.Forms.Button();
-            this._databaseConnectionPanel = new Sphere10.Windows.WinForms.DatabaseConnectionPanel();
-            this._loadingCircle = new Sphere10.Windows.WinForms.LoadingCircle();
+            this._databaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
+            this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
             this._installOptionsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._pathSelector.Location = new System.Drawing.Point(104, 19);
             this._pathSelector.Margin = new System.Windows.Forms.Padding(6);
-            this._pathSelector.Mode = Sphere10.Windows.WinForms.PathSelectionMode.Folder;
+            this._pathSelector.Mode = Sphere10.Framework.Windows.Forms.PathSelectionMode.Folder;
             this._pathSelector.Name = "_pathSelector";
             this._pathSelector.Path = "";
             this._pathSelector.PlaceHolderText = "Select destination folder to install BlockchainSQL service to";
@@ -192,13 +192,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox _passwordTextBox;
         private System.Windows.Forms.Label label1;
-        private Sphere10.Windows.WinForms.PathSelectorControl _pathSelector;
+        private Sphere10.Framework.Windows.Forms.PathSelectorControl _pathSelector;
         private System.Windows.Forms.Button _installButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button _generateNewDatabaseButton;
         private System.Windows.Forms.Button _testConnectionButon;
-        private Sphere10.Windows.WinForms.DatabaseConnectionPanel _databaseConnectionPanel;
-        private Sphere10.Windows.WinForms.LoadingCircle _loadingCircle;
+        private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _databaseConnectionPanel;
+        private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
 
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace BlockchainSQL.Server {
+﻿using Sphere10.Framework.Windows.Forms;
+using System.Windows.Forms;
+
+namespace BlockchainSQL.Server {
     partial class BlockFileScannerForm {
         /// <summary>
         /// Required designer variable.
@@ -27,15 +30,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this._logBox = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this._BLKDataFolderValidator = new Sphere10.Windows.WinForms.ValidationIndicator();
-            this._blkDataPathControl = new Sphere10.Windows.WinForms.PathSelectorControl();
+            this._BLKDataFolderValidator = new Sphere10.Framework.Windows.Forms.ValidationIndicator();
+            this._blkDataPathControl = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this._disableIndexCheckBox = new System.Windows.Forms.CheckBox();
             this._testDatabaseButton = new System.Windows.Forms.Button();
-            this._dbConnectionBar = new Sphere10.Windows.WinForms.DatabaseConnectionBar();
+            this._dbConnectionBar = new Sphere10.Framework.Windows.Forms.DatabaseConnectionBar();
             this._startButton = new System.Windows.Forms.Button();
-            this._loadingCircle = new Sphere10.Windows.WinForms.LoadingCircle();
-            this._progressBar = new Sphere10.Windows.WinForms.ProgressBarEx();
+            this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
+            this._progressBar = new Sphere10.Framework.Windows.Forms.ProgressBarEx();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -92,9 +95,9 @@
             this._BLKDataFolderValidator.Name = "_BLKDataFolderValidator";
             this._BLKDataFolderValidator.RunValidatorWhenEnabled = false;
             this._BLKDataFolderValidator.Size = new System.Drawing.Size(20, 20);
-            this._BLKDataFolderValidator.State = Sphere10.Windows.WinForms.ValidationState.Error;
+            this._BLKDataFolderValidator.State = Sphere10.Framework.Windows.Forms.ValidationState.Error;
             this._BLKDataFolderValidator.TabIndex = 7;
-            this._BLKDataFolderValidator.PerformValidation += new Sphere10.Framework.EventHandlerEx<Sphere10.Windows.WinForms.ValidationIndicator, Sphere10.Windows.WinForms.ValidationIndicatorEvent>(this._BLKDataFolderValidator_PerformValidation);
+            this._BLKDataFolderValidator.PerformValidation += new Sphere10.Framework.EventHandlerEx<Sphere10.Framework.Windows.Forms.ValidationIndicator, Sphere10.Framework.Windows.Forms.ValidationIndicatorEvent>(this._BLKDataFolderValidator_PerformValidation);
             // 
             // _blkDataPathControl
             // 
@@ -102,7 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this._blkDataPathControl.Location = new System.Drawing.Point(8, 19);
             this._blkDataPathControl.Margin = new System.Windows.Forms.Padding(0);
-            this._blkDataPathControl.Mode = Sphere10.Windows.WinForms.PathSelectionMode.Folder;
+            this._blkDataPathControl.Mode = Sphere10.Framework.Windows.Forms.PathSelectionMode.Folder;
             this._blkDataPathControl.Name = "_blkDataPathControl";
             this._blkDataPathControl.Path = "";
             this._blkDataPathControl.PlaceHolderText = "Select folder containing BLK data files";
@@ -193,7 +196,7 @@
             // 
             this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this._progressBar.CustomText = null;
-            this._progressBar.DisplayStyle = Sphere10.Windows.WinForms.ProgressBarDisplayText.Percentage;
+            this._progressBar.DisplayStyle = Sphere10.Framework.Windows.Forms.ProgressBarDisplayText.Percentage;
             this._progressBar.Location = new System.Drawing.Point(12, 415);
             this._progressBar.Name = "_progressBar";
             this._progressBar.Size = new System.Drawing.Size(670, 23);
@@ -236,18 +239,18 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox _logBox;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private Sphere10.Windows.WinForms.PathSelectorControl _blkDataPathControl;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private Sphere10.Windows.WinForms.DatabaseConnectionBar _dbConnectionBar;
-        private System.Windows.Forms.Button _startButton;
-        private System.Windows.Forms.Button _testDatabaseButton;
-        private Sphere10.Windows.WinForms.ValidationIndicator _BLKDataFolderValidator;
-        private Sphere10.Windows.WinForms.LoadingCircle _loadingCircle;
-        private Sphere10.Windows.WinForms.ProgressBarEx _progressBar;
-        private System.Windows.Forms.CheckBox _disableIndexCheckBox;
-        private System.Windows.Forms.Label label1;
+        private GroupBox groupBox1;
+        private TextBox _logBox;
+        private GroupBox groupBox2;
+        private PathSelectorControl _blkDataPathControl;
+        private GroupBox groupBox3;
+        private DatabaseConnectionBar _dbConnectionBar;
+        private Button _startButton;
+        private Button _testDatabaseButton;
+        private ValidationIndicator _BLKDataFolderValidator;
+        private LoadingCircle _loadingCircle;
+        private ProgressBarEx _progressBar;
+        private CheckBox _disableIndexCheckBox;
+        private Label label1;
     }
 }

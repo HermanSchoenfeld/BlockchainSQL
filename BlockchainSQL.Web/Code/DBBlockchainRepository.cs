@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Xml;
 using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
@@ -12,7 +11,8 @@ using NHibernate.Util;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
     public class DBBlockchainRepository : IBlockchainRepository {
         private readonly ApplicationDAC _dac;
 

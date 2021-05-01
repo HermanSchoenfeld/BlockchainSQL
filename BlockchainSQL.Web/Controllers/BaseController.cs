@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Configuration;
 using System.Web.Mvc;
 using BlockchainSQL.Web.Models;
 using NHibernate;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Web.Controllers {
+namespace BlockchainSQL.Web.Controllers
+{
     public abstract class BaseController : Controller {
 
         public void AddPageMessage(string message, string title = null, PageMessageSeverity severity = PageMessageSeverity.Info, bool dismissable = true) {

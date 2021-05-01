@@ -1,6 +1,5 @@
-using System;
-
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
 
     public struct AddressReference {
 

@@ -1,107 +1,20 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7D8065C-BC79-4C87-980A-9F0E1E40A488}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlockchainSQL.DataAccess</RootNamespace>
-    <AssemblyName>BlockchainSQL.DataAccess</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAC\PostProcessorDAC.cs" />
-    <Compile Include="DAC\BatchInsertDAC.cs" />
-    <Compile Include="DAC\ScriptDAC.cs" />
-    <Compile Include="DAC\BulkInsertResult.cs" />
-    <Compile Include="DAC\TransactionInputDAC.cs" />
-    <Compile Include="DAC\TransactionOutputDAC.cs" />
-    <Compile Include="DAC\TransactionOutpointDAC.cs" />
-    <Compile Include="DAC\TransactionDAC.cs" />
-    <Compile Include="DAC\BranchDAC.cs" />
-    <Compile Include="DAC\BlockDAC.cs" />
-    <Compile Include="DAC\SettingsDAC.cs" />
-    <Compile Include="DatabaseGenerationDataPolicy.cs" />
-    <Compile Include="DataAccessFactory.cs" />
-    <Compile Include="DatabaseIndex.cs" />
-    <Compile Include="Extensions\ApplicationDACExtensions.cs" />
-    <Compile Include="Hydrators\StatementLineHydrator.cs" />
-    <Compile Include="Hydrators\BlockLocationHydrator.cs" />
-    <Compile Include="Hydrators\ScriptInstructionSummaryHydrator.cs" />
-    <Compile Include="Hydrators\ScriptHydrator.cs" />
-    <Compile Include="Hydrators\TransactionInputHydrator.cs" />
-    <Compile Include="Hydrators\TransactionOutputHydrator.cs" />
-    <Compile Include="Hydrators\TransactionHydrator.cs" />
-    <Compile Include="Hydrators\BranchHydrator.cs" />
-    <Compile Include="Hydrators\BlockHydrator.cs" />
-    <Compile Include="Hydrators\SettingsHydrator.cs" />
-    <Compile Include="DAC\ApplicationDAC.cs" />
-    <Compile Include="IDatabaseGenerator.cs" />
-    <Compile Include="VendorSpecific\NoOpVendorSpecificImplementation.cs" />
-    <Compile Include="VendorSpecific\MSSQLVendorSpecificImplementation.cs" />
-    <Compile Include="VendorSpecific\IVendorSpecificImplementation.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.2.222702">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj">
-      <Project>{3955d8d5-8522-45cd-a157-5440ead27df6}</Project>
-      <Name>Sphere10.Framework.Data.MSSQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj">
-      <Project>{2f5340ee-e6eb-4605-ac36-8853180df97a}</Project>
-      <Name>Sphere10.Framework.Data.Sqlite</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
-      <Project>{92fef1df-ba3a-4e76-8d91-8b8df5d3c148}</Project>
-      <Name>Sphere10.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj">
-      <Project>{c7ff345b-c182-40ea-b5c8-0990bc475b68}</Project>
-      <Name>Sphere10.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj">
-      <Project>{c8fb075f-f2f1-4663-a19c-f6f9bcc9030e}</Project>
-      <Name>BlockchainSQL.DataObjects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj">
-      <Project>{00e389de-e9c4-416a-b9be-a35988e6a49d}</Project>
-      <Name>BlockchainSQL.Web.DataAccess</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

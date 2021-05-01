@@ -10,7 +10,6 @@
                 <h1 class="page-header">Blocks</h1>
                 @(Html.Awe()
                       .Grid("BlocksGrid")
-                      .Mod(o => o.PageInfo().PageSize().AutoMiniPager().ColumnsSelector())
                       .Url(Url.Action("Blocks", "Grid"))
                       .PageSize(25)
                       .Groupable(false)

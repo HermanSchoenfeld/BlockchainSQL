@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 // ReSharper disable InconsistentNaming
 
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
     public enum OpCode : byte {
 
         [Description("An empty array of bytes is pushed onto the stack. (This is not a no-op: an item is added to the stack.)")]

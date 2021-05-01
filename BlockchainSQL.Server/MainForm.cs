@@ -1,19 +1,9 @@
-﻿
-using Sphere10.Framework.Data;
-using Sphere10.Windows.WinForms;
+﻿using Sphere10.Framework.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BlockchainSQL.Server;
-using Sphere10.Application.WinForms;
 
-namespace BlockchainSQL.Server {
+namespace BlockchainSQL.Server
+{
     public partial class MainForm : LiteMainForm {
         public MainForm() {
             InitializeComponent();

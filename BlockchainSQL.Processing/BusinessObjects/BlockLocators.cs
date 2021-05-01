@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using BlockchainSQL.DataObjects;
-using NBitcoin.Crypto;
-using NBitcoin.Protocol;
-using Sphere10.Framework.Collections;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public class BlockLocators {
         public BlockLocation[] Locations { get; set; } // Database byte-order
 

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BlockchainSQL.DataObjects;
-using NBitcoin.Crypto;
-using NBitcoin.Protocol;
-
-namespace BlockchainSQL.Processing {
+﻿namespace BlockchainSQL.Processing
+{
     public class BlockStreamReadResult {
 
         public static BlockStreamReadResult EndOfStream => new BlockStreamReadResult {

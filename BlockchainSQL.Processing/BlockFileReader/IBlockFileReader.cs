@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public interface IBlockFileReader : IDisposable {
         bool SkipTransactions { get; set; }
         bool ReadMagicID { get; set; }

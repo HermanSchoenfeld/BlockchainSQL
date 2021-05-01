@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BlockchainSQL.Processing.BusinessObjects
+{
 
-namespace BlockchainSQL.Processing.BusinessObjects {
-    
     public class BlockIndex {
         public byte[] Hash;
         public int Version;

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using BlockchainSQL.DataAccess;
 using Sphere10.Framework;
+using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
-using Sphere10.Windows.WinForms;
+using Sphere10.Framework.Windows.Forms;
 
-namespace BlockchainSQL.Server {
+namespace BlockchainSQL.Server
+{
 
     public partial class DiagnosticForm : FormEx {
         

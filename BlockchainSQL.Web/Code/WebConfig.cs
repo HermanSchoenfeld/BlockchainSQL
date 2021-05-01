@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
 using System.Web.Configuration;
-using System.Web.Razor.Parser.SyntaxTree;
-using Sphere10.Framework;
 using Sphere10.Framework.Data;
+using Sphere10.Framework.Application;
 // ReSharper disable InconsistentNaming
 
-namespace BlockchainSQL.Web {
+namespace BlockchainSQL.Web
+{
     public class WebConfig {
 
         public WebConfig() {

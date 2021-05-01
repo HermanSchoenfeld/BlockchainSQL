@@ -1,19 +1,12 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
+﻿using System.Data;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public sealed class TransactionCache : CacheBase<byte[], Transaction> {
         private readonly ApplicationDAC _dac;
         private readonly DACScope _scope;

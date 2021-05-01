@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
 using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Web.Code {
+namespace BlockchainSQL.Web.Code
+{
     public static class ViewHelper {
 
         public static Animation[] EntryAnimationClasses = {

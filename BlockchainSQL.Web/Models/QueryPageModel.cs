@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
+﻿using System.Data;
 
-namespace BlockchainSQL.Web.Models {
+namespace BlockchainSQL.Web.Models
+{
     public class QueryPageModel {
 
         public QueryPageModel(string sql) {

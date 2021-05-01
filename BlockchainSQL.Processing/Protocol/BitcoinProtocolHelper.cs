@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using BlockchainSQL.DataObjects;
-using BlockchainSQL.Processing.Domain;
-using NBitcoin;
 using Sphere10.Framework;
-using Block = BlockchainSQL.DataObjects.Block;
-using Script = BlockchainSQL.DataObjects.Script;
-using Transaction = BlockchainSQL.DataObjects.Transaction;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
 
     /// <remarks>
     /// Current this parses the network protocol binary data into the domain model of BlockchainSQL.

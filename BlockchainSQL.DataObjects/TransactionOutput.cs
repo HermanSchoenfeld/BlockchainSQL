@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
 
     public partial class TransactionOutput : TransactionItem {
 

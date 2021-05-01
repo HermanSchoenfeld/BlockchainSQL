@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration.Install;
 using System.Diagnostics;
 using System.IO;
@@ -12,7 +11,8 @@ using BlockchainSQL.Server.Service;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace Tools {
+namespace Tools
+{
     public class BlockchainSQL {
         public const string ServiceName = "BlockchainSQL Server";
 

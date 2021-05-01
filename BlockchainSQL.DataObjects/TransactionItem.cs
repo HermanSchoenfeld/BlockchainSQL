@@ -1,7 +1,5 @@
-using System;
-using System.Collections.Generic;
-
-namespace BlockchainSQL.DataObjects {
+namespace BlockchainSQL.DataObjects
+{
 
     public abstract class TransactionItem {
 

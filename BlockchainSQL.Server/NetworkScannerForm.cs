@@ -1,20 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BlockchainSQL.DataAccess;
-using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
-using BlockchainSQL.Processing.Scanning;
 using Sphere10.Framework;
+using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
-using Sphere10.Windows;
-using Sphere10.Windows.WinForms;
+using Sphere10.Framework.Windows;
+using Sphere10.Framework.Windows.Forms;
 
-namespace BlockchainSQL.Server {
+namespace BlockchainSQL.Server
+{
     public partial class NetworkScannerForm : FormEx {        
         private CancellationTokenSource _cancellationTokenSource;
         private readonly ILogger _logger;

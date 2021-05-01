@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using NHibernate.Event;
 using NHibernate.Persister.Entity;
 
@@ -41,6 +43,11 @@ namespace BlockchainSQL.DataAccess.NHibernate {
             return false;
         }
 
+        public Task<bool> OnPreInsertAsync(PreInsertEvent @event, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(false);
+        }
+
         public bool OnPreUpdate(PreUpdateEvent @event) {
             //if (@event.Entity is BusinessEntity) {
             //    var entity = (BusinessEntity)@event.Entity;
@@ -52,6 +59,10 @@ namespace BlockchainSQL.DataAccess.NHibernate {
             return false;
         }
 
+        public Task<bool> OnPreUpdateAsync(PreUpdateEvent @event, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(false);
+        }
 
         private void Set(IEntityPersister persister, object[] state, string propertyName, object value) {
             int index = Array.IndexOf(persister.PropertyNames, propertyName);

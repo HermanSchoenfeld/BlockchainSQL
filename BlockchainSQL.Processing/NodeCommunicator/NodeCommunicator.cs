@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
@@ -11,7 +9,8 @@ using NBitcoin.Protocol;
 using Sphere10.Framework;
 using NB = NBitcoin;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public class NodeCommunicator : INodeCommunicator {
         public const int BitcoinPortNumber = 8333;
         private readonly NodeEndpoint nodeEndpoint;
@@ -119,9 +118,8 @@ namespace BlockchainSQL.Processing {
                 Advertize = false,
                 IsRelay = false,
                 Services = NB.Protocol.NodeServices.Nothing,
-                IsTrusted = true,
                 ReuseBuffer = true,
-                Version = NB.Protocol.ProtocolVersion.PROTOCOL_VERSION,
+                Version = NB.Network.Main.MaxP2PVersion,
                 ConnectCancellation = new CancellationToken(),
                 ReceiveBufferSize = 5000000,
                 SendBufferSize = 1000000,

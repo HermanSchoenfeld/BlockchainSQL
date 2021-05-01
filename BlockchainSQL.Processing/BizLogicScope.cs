@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BlockchainSQL.DataAccess;
-using BlockchainSQL.DataObjects;
+﻿using BlockchainSQL.DataAccess;
 using Sphere10.Framework;
 using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing {
+namespace BlockchainSQL.Processing
+{
     public sealed class BizLogicScope : ScopeContext<BizLogicScope> {
         private readonly bool _databaseFreeContext;
         private readonly DBMSType _dbmsType;

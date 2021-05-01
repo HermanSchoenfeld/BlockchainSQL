@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing.BusinessObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Windows.LevelDB;
 // ReSharper disable InconsistentNaming
 
-namespace BlockchainSQL.Processing {
-    
+namespace BlockchainSQL.Processing
+{
+
     public class IndexedFilesBlockStream : FilesBlockStreamBase {
         private readonly string _indexDBPath;
         private IDictionary<byte[], BlockIndex> _blockIndexByHash;
