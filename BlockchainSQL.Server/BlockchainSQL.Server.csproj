@@ -1,284 +1,70 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0D5F416A-DD59-49AE-BA6B-B04C09241B06}</ProjectGuid>
+    <TargetFramework>net472</TargetFramework>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlockchainSQL.Server</RootNamespace>
-    <AssemblyName>BlockchainSQL.Server</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <DebugSymbols>false</DebugSymbols>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
-  <PropertyGroup />
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Management" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiagnosticForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DiagnosticForm.Designer.cs">
-      <DependentUpon>DiagnosticForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NetworkScannerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NetworkScannerForm.Designer.cs">
-      <DependentUpon>NetworkScannerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BlockchainSQL.cs" />
-    <Compile Include="Service\ProjectInstaller.cs">
+    <Compile Update="Service\ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Service\ProjectInstaller.Designer.cs">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ServiceControl.cs">
+    <Compile Update="ServiceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ServiceControl.Designer.cs">
-      <DependentUpon>ServiceControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ServiceStatus.cs" />
-    <Compile Include="Service\DatabaseReferenceFileManager.cs" />
-    <Compile Include="Service\BlockchainSQLService.cs">
+    <Compile Update="Service\BlockchainSQLService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Service\BlockchainSQLService.Designer.cs">
-      <DependentUpon>BlockchainSQLService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Service\ServiceInstallDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Service\ServiceInstallDialog.Designer.cs">
-      <DependentUpon>ServiceInstallDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GenerateDatabaseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GenerateDatabaseForm.Designer.cs">
-      <DependentUpon>GenerateDatabaseForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SettingsControl.cs">
+    <Compile Update="SettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SettingsControl.Designer.cs">
-      <DependentUpon>SettingsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BlockFileScannerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BlockFileScannerForm.Designer.cs">
-      <DependentUpon>BlockFileScannerForm.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="DiagnosticForm.resx">
-      <DependentUpon>DiagnosticForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NetworkScannerForm.resx">
-      <DependentUpon>NetworkScannerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Service\ProjectInstaller.resx">
-      <DependentUpon>ProjectInstaller.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ServiceControl.resx">
-      <DependentUpon>ServiceControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Service\ServiceInstallDialog.resx">
-      <DependentUpon>ServiceInstallDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GenerateDatabaseForm.resx">
-      <DependentUpon>GenerateDatabaseForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsControl.resx">
-      <DependentUpon>SettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BlockFileScannerForm.resx">
-      <DependentUpon>BlockFileScannerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="app.manifest">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
+    <None Update="app.manifest">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj">
-      <Project>{9d084836-bc7d-4593-9f7b-7385d765ffc0}</Project>
-      <Name>Sphere10.Framework.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj">
-      <Project>{1c677a80-4066-42e2-a899-8137caf1e113}</Project>
-      <Name>Sphere10.Framework.Data.Firebird</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj">
-      <Project>{3955d8d5-8522-45cd-a157-5440ead27df6}</Project>
-      <Name>Sphere10.Framework.Data.MSSQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj">
-      <Project>{2f5340ee-e6eb-4605-ac36-8853180df97a}</Project>
-      <Name>Sphere10.Framework.Data.Sqlite</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj">
-      <Project>{92fef1df-ba3a-4e76-8d91-8b8df5d3c148}</Project>
-      <Name>Sphere10.Framework.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj">
-      <Project>{97d707e8-38ff-4435-b7a6-7f777d255e3a}</Project>
-      <Name>Sphere10.Framework.Windows.Forms.MSSQL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj">
-      <Project>{bd8f6b59-e0db-4dee-a144-944bbc44fd9d}</Project>
-      <Name>Sphere10.Framework.Windows.Forms.Sqlite</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj">
-      <Project>{239cc8da-c3dd-49fe-8ed5-58cf0061d8a0}</Project>
-      <Name>Sphere10.Framework.Windows.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj">
-      <Project>{a09540b1-88c0-47e6-98d8-731c490db869}</Project>
-      <Name>Sphere10.Framework.Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj">
-      <Project>{C7FF345B-C182-40EA-B5C8-0990BC475B68}</Project>
-      <Name>Sphere10.Framework</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj">
-      <Project>{11c589b3-6f79-4fd9-9e77-80f188f34242}</Project>
-      <Name>BlockchainSQL.DataAccess.NHibernate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj">
-      <Project>{D7D8065C-BC79-4C87-980A-9F0E1E40A488}</Project>
-      <Name>BlockchainSQL.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj">
-      <Project>{c8fb075f-f2f1-4663-a19c-f6f9bcc9030e}</Project>
-      <Name>BlockchainSQL.DataObjects</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj">
-      <Project>{2474624E-3339-460C-90AC-616041BDF3D4}</Project>
-      <Name>BlockchainSQL.Processing</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj" />
+    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="protobuf-net">
-      <Version>2.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="System.Configuration.ConfigurationManager">
-      <Version>5.0.0</Version>
-    </PackageReference>
     <PackageReference Include="System.Data.SqlClient">
       <Version>4.8.2</Version>
     </PackageReference>
-    <PackageReference Include="System.Data.SQLite">
-      <Version>1.0.113.7</Version>
-    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
+  <PropertyGroup />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
