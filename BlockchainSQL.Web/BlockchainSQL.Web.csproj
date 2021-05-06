@@ -6,15 +6,6 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Omu.Awem">
-      <HintPath>..\..\3rdParty\AwesomeMvc.5.3\libs\Omu.Awem.dll</HintPath>
-    </Reference>
-    <Reference Include="Omu.AwesomeMvc, Version=4.9.1.0, Culture=neutral, PublicKeyToken=9c6fbba722ea1caf, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\3rdParty\AwesomeMvc.5.3\libs\Omu.AwesomeMvc.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="wwwroot\bootstrap-grid.css" />
     <None Include="wwwroot\bootstrap-grid.css.map" />
     <None Include="wwwroot\bootstrap-grid.min.css" />
@@ -221,6 +212,14 @@
     <PackageReference Include="Respond" Version="1.4.2" />
     <PackageReference Include="Antlr4" Version="4.6.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Omu.Awem">
+      <HintPath>..\..\Framework\lib\AwesomeMvc.5.3\Omu.Awem.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.AwesomeMvc">
+      <HintPath>..\..\Framework\lib\AwesomeMvc.5.3\Omu.AwesomeMvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\Scripts\index.d.ts" />
