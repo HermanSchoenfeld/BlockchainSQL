@@ -1,7 +1,7 @@
 ﻿@model BlockchainSQL.Web.Models.QueryResultModel
 @{
     var hasNext = true;
-    var hasPrev = Model.Page > 0;
+    var hasPrev = Model.Result.Page > 0;
 
     var prevPagerClass = hasPrev ? string.Empty : "hidden";
     var nextPagerClass = hasNext ? string.Empty : "hidden";
@@ -15,19 +15,19 @@
         </div>
     }
 
-    @if (Model.Data != null) {
+    @if (Model.Result.Data != null) {
         <div class="row no-padding">
             <div class="col-xs-12">
                 <table class="table table-responsive">
                     <thead>
                     <tr>
-                        @foreach (System.Data.DataColumn col in Model.Data.Columns) {
+                        @foreach (System.Data.DataColumn col in Model.Result.Data.Columns) {
                             <th>@col.Caption</th>
                         }
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach (System.Data.DataRow row in Model.Data.Rows) {
+                    @foreach (System.Data.DataRow row in Model.Result.Data.Rows) {
                         <tr>
                             @foreach (var cell in row.ItemArray) {
                                 <td>@cell.ToString()</td>
@@ -41,8 +41,8 @@
         <div class="row no-padding">
             <div class="col-xs-12">
                 <ul class="pager pager-border pull-left">
-                    <li class="@prevPagerClass"><a onclick="ShowPage(@(Model.Page - 1))">« Previous 10</a></li>
-                    <li class="@nextPagerClass"><a onclick="ShowPage(@(Model.Page + 1))">Next 10 »</a></li>
+                    <li class="@prevPagerClass"><a onclick="ShowPage(@(Model.Result.Page - 1))">« Previous 10</a></li>
+                    <li class="@nextPagerClass"><a onclick="ShowPage(@(Model.Result.Page + 1))">Next 10 »</a></li>
                 </ul>
             </div>
         </div>

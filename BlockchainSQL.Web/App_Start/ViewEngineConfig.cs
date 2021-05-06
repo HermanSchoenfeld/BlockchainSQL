@@ -1,8 +1,0 @@
-﻿namespace BlockchainSQL.Web
-{
-    public class ViewEnginesConfig {
-        public static void Register() {
-            //ViewEngines.Engines.Add(new FormsShortcutViewEngine());
-        }
-    }
-}

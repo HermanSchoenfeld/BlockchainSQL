@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataObjects;
 using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
-using Sphere10.Framework.Data;
 using Sphere10.Framework.Scheduler;
-using Sphere10.Framework.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlockchainSQL.Web.Controllers
 {
@@ -24,7 +22,7 @@ namespace BlockchainSQL.Web.Controllers
             // validate SQL
             var result = new QueryResultModel();
             try {                
-                var repo = new DBBlockchainRepository(Config.BlockchainConnectionString);
+                var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
                 var start = DateTime.UtcNow;
                 try {
                     result.Result = await repo.Execute(sql, page, pageSize);
@@ -73,28 +71,26 @@ namespace BlockchainSQL.Web.Controllers
                 var savedQuery = session.Query<SavedQuery>().SingleOrDefault(q => q.WebID == queryID);
                 if (savedQuery == null)
                     return Redirect("/Query");
-                var job = JobBuilder
-                    .For(() => SaveQueryLoad(DateTime.Now, savedQuery.ID))
-                    .RunOnce(DateTime.Now)
-                    .Build();
-                WebScheduler.Instance.AddJob(job);
+
+                SaveQueryLoad(DateTime.Now, savedQuery.ID);
+                
                 return View("Index", new QueryPageModel(savedQuery.SQL));
             }
         }
 
         public ActionResult Template(int templateID) {
             using (var session = base.OpenSession()) {
-                if (!ApplicationSingletons.DataCache.Templates.ContainsKey(templateID)) {
+                if (!AppConfig.DataCache.Templates.ContainsKey(templateID)) {
                     base.AddPageMessage("Query template not found", "Error", PageMessageSeverity.Error);
                     return View("Index", QueryPageModel.Empty);
                 }
-                var template = ApplicationSingletons.DataCache.Templates[templateID];
+                var template = AppConfig.DataCache.Templates[templateID];
                 return View("Index", new QueryPageModel(template.MSSQL));
             }
         }
 
         public ActionResult LoadTemplate() {
-            return PartialView(new LoadTemplateModel(ApplicationSingletons.DataCache.QueryCategoriesWithTemplates));
+            return PartialView(new LoadTemplateModel(AppConfig.DataCache.QueryCategoriesWithTemplates));
         }
 
         private void SaveQueryLoad(DateTime dateTime, int savedQueryID) {

@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
 using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
-
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BlockchainSQL.Web.Controllers
 {
     public class FormController : BaseController {
-
-        [HttpPost]
+	    [HttpPost]
         [FormAction]
         public async Task<ActionResult> Contact(ContactFormInput model) {
             try {
@@ -21,15 +20,15 @@ namespace BlockchainSQL.Web.Controllers
                 }
                 await Task.Run(() =>
                     Tools.Mail.SendEmail(
-                        base.Config.SMTPServer,
+	                    AppConfig.Options.SMTPServer,
                         model.Email ?? "no-reply@sphere10.com",
                         "BlockchainSQL Enquiry",
                         "Name: {1}{0}Email: {2}{0}Subject: {3}".FormatWith(Environment.NewLine, model.Name, model.Email, model.Message),
-                        base.Config.ContactRecipientEmail,
+	                    AppConfig.Options.ContactRecipientEmail,
                         requiresSSL: true,
-                        username: base.Config.SMTPUsername,
-                        password: base.Config.SMTPPassword,
-                        port:  base.Config.SMTPPort
+                        username: AppConfig.Options.SMTPUsername,
+                        password: AppConfig.Options.SMTPPassword,
+                        port:  AppConfig.Options.SMTPPort
                         ));
             } catch (Exception error) {
                 // Log error
@@ -78,44 +77,45 @@ namespace BlockchainSQL.Web.Controllers
 
 
 
-        private async Task<bool> GenerateDatabase(DBMSType dbmsType, string connectionString, string databaseName, DatabaseGenerationAlreadyExistsPolicy existsPolicy) {
+        private async Task<bool> GenerateDatabase(DBMSType dbmsType, string connectionString, string databaseName,
+                                                  DatabaseGenerationAlreadyExistsPolicy existsPolicy) {
 
-                var dropExisting = false;
-                var createShell = false;
-                var createDatabase = false;
-                var schemaGenerator = WebDatabase.NewDatabaseGenerator(dbmsType);
-                if (await Task.Run(() => schemaGenerator.DatabaseExists(connectionString))) {
-                    switch (existsPolicy) { 
-                        case DatabaseGenerationAlreadyExistsPolicy.Error:
-                            return false;
-                        case DatabaseGenerationAlreadyExistsPolicy.Overwrite:
-                            dropExisting = true;
-                            createShell = true;
-                            createDatabase = true;
-                            break;
-                        case DatabaseGenerationAlreadyExistsPolicy.Append:
-                            createDatabase = true;
-                            break;
-                    }
-                } else {
-                    createShell = true;
-                    createDatabase = true;
-                }
+	        var dropExisting = false;
+	        var createShell = false;
+	        var createDatabase = false;
+	        var schemaGenerator = WebDatabase.NewDatabaseGenerator(dbmsType);
+	        if (await Task.Run(() => schemaGenerator.DatabaseExists(connectionString))) {
+		        switch (existsPolicy) {
+			        case DatabaseGenerationAlreadyExistsPolicy.Error:
+				        return false;
+			        case DatabaseGenerationAlreadyExistsPolicy.Overwrite:
+				        dropExisting = true;
+				        createShell = true;
+				        createDatabase = true;
+				        break;
+			        case DatabaseGenerationAlreadyExistsPolicy.Append:
+				        createDatabase = true;
+				        break;
+		        }
+	        } else {
+		        createShell = true;
+		        createDatabase = true;
+	        }
 
-                if (dropExisting)
-                    await Task.Run(() => schemaGenerator.DropDatabase(connectionString));
+	        if (dropExisting)
+		        await Task.Run(() => schemaGenerator.DropDatabase(connectionString));
 
-                if (createShell)
-                    await Task.Run(() => schemaGenerator.CreateEmptyDatabase(connectionString));
+	        if (createShell)
+		        await Task.Run(() => schemaGenerator.CreateEmptyDatabase(connectionString));
 
-                if (createDatabase)
-                    await Task.Run(() => schemaGenerator.CreateNewDatabase(connectionString, DatabaseGenerationDataPolicy.PrimingData, databaseName));
+	        if (createDatabase)
+		        await Task.Run(() =>
+			        schemaGenerator.CreateNewDatabase(connectionString, DatabaseGenerationDataPolicy.PrimingData, databaseName));
 
-                
 
-                return true;
-            
+
+	        return true;
+
         }
-
     }
 }

@@ -11,8 +11,8 @@ $(document).on('click','a.smooth', function(e){
 /* search button */
 $('#searchButton').click(function () {
     var text = $('#searchText').val();
-    if (text != undefined && text != null) {
-        window.location = '/Search/' + text;
+    if (text !== undefined && text != null) {
+        window.location = '/Search?term=' + text;
     }
 });
 

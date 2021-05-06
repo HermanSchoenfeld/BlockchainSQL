@@ -5408,7 +5408,7 @@ a.feature-icon:hover {
   right: 0;
 }
 .title-logo {
-  background-image: url("/Content/images/logos/SP10Quarter.png");
+  background-image: url("../images/logos/SP10Quarter.png");
   background-repeat: no-repeat;
   background-position: center top;
   font-size: 2.3em;
@@ -5859,7 +5859,7 @@ a.feature-icon:hover {
   float: left;
   overflow: hidden;
   padding-left: 75px;
-  background-image: url("/Content/images/logos/blockchainsql.png");
+  background-image: url("../images/logos/blockchainsql.png");
   background-repeat: no-repeat;
   background-position: left center;
 }

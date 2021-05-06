@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using BlockchainSQL.Web.Models;
 using NHibernate;
 using Sphere10.Framework;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace BlockchainSQL.Web.Controllers
 {
     public abstract class BaseController : Controller {
-
+	    
         public void AddPageMessage(string message, string title = null, PageMessageSeverity severity = PageMessageSeverity.Info, bool dismissable = true) {
             AddPageMessage(new PageMessage {Description = message, Title = title, Dismissable = dismissable, Severity = severity});
         }
@@ -24,13 +25,10 @@ namespace BlockchainSQL.Web.Controllers
             return Redirect("/{0}".FormatWith(!string.IsNullOrWhiteSpace(errorMessage) ? "?errorMessage=" +Uri.EscapeDataString(errorMessage) : string.Empty));
         }
 
-        public WebConfig Config => ApplicationSingletons.Config;
-
         public ISession OpenSession() {
-            if (!ApplicationSingletons.Config.HasWebDBMS)
+            if (!AppConfig.HasWebDBMS)
                 throw new SoftwareException("No Web DBMS is configured");
-
-            return ApplicationSingletons.NhSessionFactory.OpenSession();
+            return AppConfig.NhSessionFactory.OpenSession();
         }
 
     }

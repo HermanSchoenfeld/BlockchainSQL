@@ -6,7 +6,7 @@ namespace BlockchainSQL.Web.Models
 
         public QueryPageModel(string sql) {
             QueryPanelModel = new QueryPanelModel(sql);
-            Schema = ApplicationSingletons.BlockchainSchema;
+            Schema = AppConfig.BlockchainSchema;
         }
 
         public QueryPanelModel QueryPanelModel { get; set; }

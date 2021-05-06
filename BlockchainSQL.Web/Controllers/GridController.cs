@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using BlockchainSQL.Web.Code;
 using Omu.AwesomeMvc;
 using Sphere10.Framework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BlockchainSQL.Web.Controllers
 {
     public class GridController : BaseController {
         // GET: LatestBlocksGrid
         public async Task<ActionResult> Blocks(GridParams gridParams) {
-            var repo = new DBBlockchainRepository(base.Config.BlockchainConnectionString);
+            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
             var model = await BuildGridModel(
                 gridParams,
                 repo.GetBlocks,
@@ -27,7 +27,7 @@ namespace BlockchainSQL.Web.Controllers
 
         public async Task<ActionResult> BlockTransactions(string hash, GridParams gridParams) {
             //gridParams.Paging = false;
-            var repo = new DBBlockchainRepository(base.Config.BlockchainConnectionString);
+            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
             var model = await BuildGridModel(
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetBlockTransactions(hash, page, pageSize, sortOptions),
@@ -35,17 +35,13 @@ namespace BlockchainSQL.Web.Controllers
                 defaultSortOption: new SortOption("Index", SortDirection.Ascending),
                 map: JSONMappers.MapTransaction
             );
-            //gridParams.Paging = false;
-            //gridParams.Page = -1;
-            //gridParams.PageSize = null;
-            
             return Json(model);
         }
 
 
         public async Task<ActionResult> TransactionInputs(string txid, GridParams gridParams) {
             gridParams.Paging = false;
-            var repo = new DBBlockchainRepository(base.Config.BlockchainConnectionString);
+            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
             var model = await BuildGridModel(
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionInputs(txid),
@@ -60,7 +56,7 @@ namespace BlockchainSQL.Web.Controllers
 
         public async Task<ActionResult> TransactionOutputs(string txid, GridParams gridParams) {
             gridParams.Paging = false;
-            var repo = new DBBlockchainRepository(base.Config.BlockchainConnectionString);
+            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
             var model = await BuildGridModel(
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionOutputs(txid),

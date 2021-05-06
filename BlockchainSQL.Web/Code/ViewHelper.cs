@@ -200,7 +200,7 @@ namespace BlockchainSQL.Web.Code
         }
 
         public static string LoadingGifUrl {
-            get { return "/Content/images/preload.gif"; }
+            get { return "/images/preload.gif"; }
         }
 
         public static string AddressLineLink(AddressPageModel.LineItem line) {

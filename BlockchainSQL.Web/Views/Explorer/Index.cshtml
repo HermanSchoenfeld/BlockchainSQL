@@ -1,5 +1,4 @@
-﻿@using BlockchainSQL.Web.Code
-@{
+﻿@{
     ViewBag.Title = "Blocks";
 }
 
@@ -19,7 +18,7 @@
                       .Selectable(SelectionType.Single)
                       .Columns(
                           new Column { Name = "Height",             Sortable = true, Hidden = false, Resizable = true, Width = 100, Header = "Height" },
-                          new Column { Name = "Hash",               Sortable = false, Hidden = true, Resizable = true, Width = 570, MinWidth = 570 },
+                          new Column { Name = "Hash",               Sortable = false, Hidden = false, Resizable = true, Width = 570, MinWidth = 570 },
                           new Column { Name = "PreviousBlockHash",  Sortable = false, Hidden = true, Resizable = true, Width = 570, MinWidth = 570, Header = "Previous Block" },
                           new Column { Name = "TimeStampUtc",       Sortable = true, Hidden = false, Resizable = true, Width = 170, MinWidth = 170, Header = "Date (UTC)" },
                           new Column { Name = "Size",               Sortable = true, Hidden = false, PercentWidth = 8, Resizable = true, Width = 100, Header = "Size (b)" },
@@ -41,10 +40,11 @@
                                 var selectedItems = $('#BlocksGrid').data('api').getSelection();
                                 if (selectedItems.length > 0) {
                                     var selectedItem = selectedItems[0];
-                                    window.location = "/Block/" + selectedItem.Hash;
+                                    window.location = "/explorer/block/?height=" + selectedItem.height;
                                 }
                             });
                     });
+                                 
                 </script>
             </div>
         </div>

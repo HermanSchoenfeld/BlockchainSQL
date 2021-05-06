@@ -61,7 +61,7 @@ namespace BlockchainSQL.Web.Code
                 Index                   = transactionInput.Index.ToString(),
                 FromAddressType         = fromAddressType,
                 FromAddress             = transactionInput.TransactionOutput?.ToAddress,
-                FromAddressDisplay      = !coinbaseOutpoint ? ToAddressDisplay(transactionInput.TransactionOutput?.ToAddress) : "coinbase",
+                FromAddressDisplay      = !coinbaseOutpoint ? transactionInput.TransactionOutput?.ToAddress : "coinbase",
                 FromAddressTypeDisplay  = ToFriendlyAddressType(fromAddressType),
                 Outpoint                = MapOutpoint(transactionInput.Outpoint),
                 OutpointDisplay         = outpointText,
@@ -78,7 +78,7 @@ namespace BlockchainSQL.Web.Code
                 ToAddressType = transactionOutput.ToAddressType.ToString(),
                 ToAddressTypeDisplay = ToFriendlyAddressType(transactionOutput.ToAddressType),
                 ToAddress = transactionOutput.ToAddress,
-                ToAddressDisplay = ToAddressDisplay(transactionOutput.ToAddress),
+                ToAddressDisplay = transactionOutput.ToAddress,
                 Value = $"{SatoshiToBTC(transactionOutput.Value):0.#############################}"
             };
         }
@@ -101,13 +101,6 @@ namespace BlockchainSQL.Web.Code
             if (addressType == null)
                 return string.Empty;
             return addressType.Value.ToString();
-        }
-
-        public static string ToAddressDisplay(string toAddress) {
-            if (string.IsNullOrWhiteSpace(toAddress))
-                return string.Empty;
-
-            return string.Format("<a href=/Address/{0}>{0}</a>", toAddress);
         }
 
         public static decimal? SatoshiToBTC(long? satoshi) {

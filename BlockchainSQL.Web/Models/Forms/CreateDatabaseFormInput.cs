@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using BlockchainSQL.Web.DataAccess;
-using Sphere10.Framework.Web;
 
 namespace BlockchainSQL.Web.Models
 {
@@ -28,9 +27,7 @@ namespace BlockchainSQL.Web.Models
 
 
         [DisplayName("Port")]
-        [Integer]
         public int? Port { get; set; }
-
 
         [Required]
         [DisplayName("Overwrite Policy")]
@@ -41,6 +38,5 @@ namespace BlockchainSQL.Web.Models
         [DataType(DataType.Password)]
         [DisplayName("Config Password")]
         public string ConfigPassword { get; set; }
-        
     }
 }

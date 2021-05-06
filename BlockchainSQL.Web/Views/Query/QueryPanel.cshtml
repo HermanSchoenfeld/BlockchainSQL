@@ -128,7 +128,7 @@
             data: { "sql": sql },
             type: 'POST',
             success: function(data) {
-                window.location = "/" + data.WebID;
+                window.location = "/Query/Template/" + data.webID;
             },
             fail: function() {
                 alert('Unable to save query');

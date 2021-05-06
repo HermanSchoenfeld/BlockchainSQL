@@ -1,30 +1,29 @@
-﻿using System.Web.Mvc;
-using BlockchainSQL.Web.Models;
+﻿using BlockchainSQL.Web.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace BlockchainSQL.Web.Controllers
-{
-    public class HomeController : BaseController {
+namespace BlockchainSQL.Web.Controllers {
+	
+	public class HomeController : BaseController {
 
-        public ActionResult Index(string errorMessage) {
-            if (!Config.HasValidWebDBMS)
-                return Redirect("/Config");
+		[Route("/")]
+		public ActionResult Index(string errorMessage) {
+			if (!AppConfig.HasValidWebDBMS)
+				return Redirect("/Config");
 
-            if (!string.IsNullOrWhiteSpace(errorMessage))
-                AddPageMessage(errorMessage, null, PageMessageSeverity.Error, true);
+			if (!string.IsNullOrWhiteSpace(errorMessage))
+				AddPageMessage(errorMessage, null, PageMessageSeverity.Error);
 
-            return View("~/Views/Query/Index.cshtml", QueryPageModel.Default);
-        }
+			return View("~/Views/Query/Index.cshtml", QueryPageModel.Default);
+		}
 
+		[Route("/product")]
+		public ActionResult Product() {
+			return View();
+		}
 
-        // GET: Product
-        public ActionResult Product() {
-            return View();
-        }
-
-
-        public ActionResult About() {
-            return View();
-        }
-
-    }
+		[Route("/about")]
+		public ActionResult About() {
+			return View();
+		}
+	}
 }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Mvc.Html;
 using BlockchainSQL.Web.Models;
 using Omu.AwesomeMvc;
 using Sphere10.Framework;
-
+using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace BlockchainSQL.Web.Code
 {
@@ -43,10 +42,10 @@ namespace BlockchainSQL.Web.Code
         private readonly string _formName;
         private readonly string _formClass;
         private readonly string _formResultID;
-        private readonly HtmlHelper<T> _htmlHelper;
+        private readonly IHtmlHelper<T> _htmlHelper;
         //private readonly string _jsResultFunc;
 
-        public FormScope(HtmlHelper<T> htmlHelper, T formModel, string clientFormClass = null) {
+        public FormScope(IHtmlHelper<T> htmlHelper, T formModel, string clientFormClass = null) {
             _formID = "_"+formModel.ID.ToStrictAlphaString().ToLowerInvariant();
             _htmlHelper = htmlHelper;
             _formName = formModel.FormName;
@@ -67,7 +66,7 @@ namespace BlockchainSQL.Web.Code
             if (!_omitForm) {
                 _htmlHelper.EndForm();
                 Write(ResultDivHtml, _formResultID);
-                Write(Javascript.FormatWith(_formID, _formResultID, "/Content/images/bx_loader.gif"));
+                Write(Javascript.FormatWith(_formID, _formResultID, "/images/bx_loader.gif"));
                 Write(
                     _htmlHelper
                         .Awe()
@@ -84,14 +83,18 @@ namespace BlockchainSQL.Web.Code
         }
 
 
-        private void Write(IHtmlString text) {
-            Write(text.ToHtmlString());
+        private void Write(HtmlString text) {
+            Write(text.Value);
+        }
+
+        private void Write(IHtmlContent htmlContent) {
+	        Write(htmlContent.ToString());
         }
 
         private void Write(string text, params object[] formatArgs) {
             for (var i = 0; i < formatArgs.Length; i++) {
-                if (formatArgs[i] is IHtmlString)
-                    formatArgs[i] = ((IHtmlString) formatArgs[i]).ToHtmlString();
+                if (formatArgs[i] is HtmlString)
+                    formatArgs[i] = ((HtmlString) formatArgs[i]).Value;
             }
             if (formatArgs.Length == 0)
                 _htmlHelper.ViewContext.Writer.Write(text);

@@ -36,6 +36,20 @@
         return o.Content || o.content;
     }
 
+    function flashz(d, back) {
+        d.addClass('awe-ts');
+        if (back)
+            d.removeClass('awe-hl');
+        else
+            d.addClass('awe-hl');
+
+        setTimeout(function () {
+            d.removeClass('awe-ts');
+        }, 500);
+    }
+
+    var flash = awe.flash;
+
     var Sort = {
         None: 0,
         Asc: 1,
@@ -58,16 +72,15 @@
                 var $popup = this.p.d;
 
                 var key = $popup.find('[name="key"]').val();
-
                 var rows = $('#' + gridId).data('api').select(key);
-
+                
                 $.map(rows, function (row) {
-                    row.addClass('awe-changing', 1000, 'linear');
+                    flashz(row);
                 });
 
-                $popup.on('aweclose', function () {
+                $popup.on('aweclose', function () {                    
                     $.map(rows, function (row) {
-                        row.removeClass('awe-changing', 500);
+                        flashz(row, 1);
                     });
                 });
             };
@@ -85,29 +98,47 @@
 
         delRow: function (row) {
             var $grid = row.closest('.awe-grid');
+
+            row.nextUntil(':not(.awe-nest)').each(function () {
+                $(this).data('api').close(1);
+            });
+
             var next = row.next();
             if (!next.length || next.hasClass('awe-ghead')) {
                 row.prevUntil('.awe-row').fadeOut(500);
             }
+
             row.fadeOut(500, function () {
                 $(this).remove();
-                if (!$grid.find('.awe-row').length) api.load();
+                if (!$grid.find('.awe-row').length) $grid.data('api').load();
                 $grid.trigger('awerowch', -1);
             });
+
             $grid.data('o').lrso = 1;
         },
 
-        itemEdited: function (gridId) {
+        itemEdited: function (gridId, nof, noe) {
             return function (item) {
                 var $grid = $('#' + gridId);
                 var api = $grid.data('api');
                 var xhr = api.update(id(item));
                 $.when(xhr).done(function () {
-                    var $row = api.select(id(item))[0];
-                    var altcl = $row.hasClass("awe-alt") ? "awe-alt" : "";
-                    $row.switchClass(altcl, "awe-changing", 1).switchClass("awe-changing", altcl, 1000);
+                    var row = api.select(id(item))[0];
+
+                    row.nextUntil(':not(.awe-nest)').each(function () {
+                        $(this).data('api').close(1);
+                    });
+                    
+                    flash(row);
+
                     $grid.data('o').lrso = 1;
-                    $row.find('.editbtn').focus();
+                    if (!nof) {
+                        row.find('.editbtn').focus();
+                    }
+
+                    if (!noe) {
+                        row.trigger('itemedit');
+                    }
                 });
             };
         },
@@ -116,11 +147,11 @@
             return function (item) {
                 var $grid = $("#" + gridId);
                 var api = $grid.data('api');
-                var $row = api.renderRow(item);
+                var row = api.renderRow(item);
 
                 $grid.trigger('awerowch', 1);
-                $grid.find(".awe-content .awe-tbody").prepend($row);
-                $row.addClass("awe-changing").removeClass("awe-changing", 1000);
+                $grid.find(".awe-content .awe-tbody").prepend(row);
+                flash(row);
 
                 var data = $grid.data('o').lrs.dt;
                 if (data.it) {
@@ -146,24 +177,20 @@
         },
 
         nestCreate: function (gridId, popup) {
-            var $grid = $('#' + gridId).addClass('onstcreate');
+            var $grid = $('#' + gridId).addClass('o-nstcreate');
             var place = $grid.find('.awe-content:first');
             awe.open(popup, { tag: { cont: place } });
             $grid.one('aweclose', function () {
-                $grid.removeClass('onstcreate');
+                $grid.removeClass('o-nstcreate');
             });
         },
 
         // ajaxlist crud
         itemCreatedAlTbl: function (listId) {
             return function (o) {
-                var $row = $(content(o));
-                $('#' + listId).parent().find('tbody').prepend($row);
-
-                $row.css('line-height', $row.css('line-height'));
-                $row.switchClass("awe-li", "awe-changing", 1).switchClass("awe-changing", "awe-li", 1000, function () {
-                    $row.css('line-height', '');
-                });
+                var row = $(content(o));
+                $('#' + listId).parent().find('tbody').prepend(row);
+                flash(row);
             };
         },
 
@@ -173,11 +200,7 @@
                 var $newItem = $(content(o));
                 $item.after($newItem).remove();
 
-                $newItem.css('line-height', $newItem.css('line-height'));
-                $newItem.switchClass("awe-li", "awe-changing", 1).switchClass("awe-changing", "awe-li", 1000, function () {
-                    if (func) func();
-                    $newItem.css('line-height', '');
-                });
+                flash($newItem, func);
             };
         },
 
@@ -189,38 +212,9 @@
 
         itemCreatedAl: function (listId) {
             return function (o) {
-                var $newItem = $($.trim(content(o)));
-                $('#' + listId).prepend($newItem);
-
-                $newItem.css('line-height', $newItem.css('line-height'));
-                $newItem.switchClass("awe-li", "awe-changing", 1).switchClass("awe-changing", "awe-li", 1000, function () {
-                    $newItem.css('line-height', '');
-                });
-            };
-        },
-
-        // lookup crud, the InitPopupForm helpers must be called in the SearchForm view
-        lookupEdited: function (cid) {
-            return function (o) {
-                $('#' + cid + '-awepw').find('[data-val="' + id(o) + '"]').fadeOut(300, function () { $(this).after(content(o)).remove(); });
-            };
-        },
-
-        lookupDeleted: function (cid) {
-            return function (o) {
-                $('#' + cid + '-awepw').find('[data-val="' + id(o) + '"]').fadeOut(300, function () { $(this).remove(); });
-            };
-        },
-
-        lookupCreated: function (cid) {
-            return function (o) {
-                $('#' + cid + '-awepw').find('.awe-srl').prepend(content(o));
-            };
-        },
-
-        lookupTblCreated: function (cid) {
-            return function (o) {
-                $('#' + cid + '-awepw').find('tbody').prepend(content(o));
+                var it = $($.trim(content(o)));
+                $('#' + listId).prepend(it);
+                flash(it);
             };
         },
 
@@ -316,7 +310,7 @@
             });
         },
 
-        //http://stackoverflow.com/a/1186309/112100
+        // http://stackoverflow.com/a/1186309/112100
         serializeObj: function (a, arrays, singles) {
             var o = {};
             arrays = arrays || [];
@@ -345,9 +339,12 @@
 
             if (isMobileOrTablet) {
                 awe.ff = function (o) {
-                    o.p.d.find(':tabbable').blur(); // override jQueryUI dialog autofocus
+                    awe.tabbable(o.p.d).blur(); // override jQueryUI dialog autofocus
                 };
             }
+            
+            // checkbox
+            awe.chkmd = awem.ochk;
 
             // set tabs mod
             awe.tmd = [awem.tbtns];
@@ -357,6 +354,24 @@
 
             // set datepicker
             awe.dpw = awem.dtp;
+
+            awe.acw = awem.autocomplete;
+
+            awe.ggmd = function (o) {
+                var md = o.md = o.md || [];
+                var amp = awem.gridAutoMiniPager;
+
+                // grid loading anim, without no records msg
+                var gld = awem.gldng(0, 1); 
+
+                if (md.indexOf(amp) == -1 && md.indexOf(awem.gridMiniPager) == -1) {
+                    md.push(amp);
+                }
+
+                if (md.indexOf(gld) == -1) {
+                    md.unshift(gld);
+                }
+            }
 
             // by default jquery.validate doesn't validate hidden inputs
             if ($.validator) {
@@ -410,7 +425,7 @@
                 setFormLoadingAnim();
             });
 
-            // remove locaStorage keys from older versions of awesome; you can modify  ppk (awe.ppk = "myapp1_"), current value is "awe2_"
+            // remove locaStorage keys from older versions of awesome; you can modify  ppk (awe.ppk = "myapp1_"), current value is "awe17_"
             try {
                 for (var key in localStorage) {
                     if (key.indexOf("awe") == 0) {
@@ -428,7 +443,7 @@
                     msg = xhr.responseText || msg;
                 }
 
-                awem.notif(msg, 0, 'err');
+                awem.notif(msg, 0, 'o-err');
 
                 // close popup that got error
                 if (o.p && o.p.isOpen) {
@@ -491,7 +506,7 @@
                         };
                         var result = false;
                         try {
-                            $.datepicker.parseDate(format, value);
+                            awem.parseDate(format, value);
                             result = true;
                         } catch (err2) {
                             result = false;
@@ -512,6 +527,17 @@
                     $.validator.methods.number = function (value, element) {
                         return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
                     };
+                }
+            }
+        },
+
+        remLSPref: function (pref, newName) {
+            if(localStorage)
+            for (var key in localStorage) {
+                if (key.indexOf(pref) == 0) {
+                    if (key != newName) {
+                        localStorage.removeItem(key);
+                    }
                 }
             }
         },

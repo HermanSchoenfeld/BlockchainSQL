@@ -1,5 +1,4 @@
-﻿@using BlockchainSQL.Web.DataObjects
-@model BlockchainSQL.Web.Models.LoadTemplateModel
+﻿@model BlockchainSQL.Web.Models.LoadTemplateModel
 <div class="panel-group" id="accordion">
     @foreach (var category in Model.Categories) {
         var catDivID = string.Format("cat{0}", category.ID);
