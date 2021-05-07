@@ -7,7 +7,7 @@ namespace BlockchainSQL.Processing
         public BlockLocation[] Locations { get; set; } // Database byte-order
 
         public static BlockLocators Empty => new BlockLocators {
-            Locations = new BlockLocation[0]  //new [] { new BlockLocation { Hash = BitcoinProtocolHelper.EmptyHash, Height = -1 } }
+            Locations = new BlockLocation[]  { new BlockLocation { Hash = BitcoinProtocolHelper.EmptyHash, Height = -1 } }
         };
 
 	    public override bool Equals(object obj) {

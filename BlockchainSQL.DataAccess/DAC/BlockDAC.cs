@@ -67,7 +67,7 @@ namespace BlockchainSQL.DataAccess {
         } 
 
         public virtual long GetMaxBlockHeight() {
-            var height = this.ExecuteScalar<long?>(this.QuickString("SELECT MAX({0}) FROM {1}", SQLBuilderCommand.ColumnName("Height"), SQLBuilderCommand.TableName("Block")));
+            var height = this.ExecuteScalar<long?>(this.QuickString("SELECT MAX({0}) FROM {1} WHERE {2}={3}", SQLBuilderCommand.ColumnName("Height"), SQLBuilderCommand.TableName("Block"), SQLBuilderCommand.ColumnName("BranchID"), SQLBuilderCommand.Literal((int)KnownBranches.MainChain)));
             return height ?? -1;
         }
 

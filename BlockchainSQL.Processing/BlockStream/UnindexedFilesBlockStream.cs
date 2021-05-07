@@ -19,7 +19,7 @@ namespace BlockchainSQL.Processing
         }
         
 
-        public static DiskPos SearchTipSequentually(
+        public static DiskPos SearchTipSerially(
             BlockFile[] blockFiles,
             BlockLocators blockLocators,
             CancellationToken cancellationToken) {
@@ -32,7 +32,7 @@ namespace BlockchainSQL.Processing
             lastMatchBlockFileOffset = -1L;
             var foundTip = false;
 
-            // Search all the files simultaneously
+            // Search all the files serially
             for (var i = 0; i < blockFiles.Length; i++) {
                 SearchTipInBlockFile(
                     blockFiles[i], 
@@ -53,7 +53,7 @@ namespace BlockchainSQL.Processing
                 DiskPos.None;
         }
 
-        public static DiskPos SearchTipSimultaneously(
+        public static DiskPos SearchTipInParallel(
             BlockFile[] blockFiles,
             BlockLocators blockLocators,
             CancellationToken cancellationToken) {
@@ -95,7 +95,7 @@ namespace BlockchainSQL.Processing
             BlockLocators blockLocators,
             CancellationToken cancellationToken) {
             // TODO: detect if SSD, use simultaneously -- sequentually optimized for HDD
-            return SearchTipSequentually(blockFiles, blockLocators, cancellationToken);
+            return SearchTipSerially(blockFiles, blockLocators, cancellationToken);
         }
 
 
@@ -141,7 +141,7 @@ namespace BlockchainSQL.Processing
                     var peekResult = reader.PeekNextBlock();
                     bool matchedLocator;
                     using (locators.EnterReadScope())
-                        matchedLocator = locators.ContainsAny<byte[]>(comparer, peekResult.NextBlockPrevBlockHash);
+                        matchedLocator = locators.ContainsAny(comparer, peekResult.NextBlockPrevBlockHash);
                     if (matchedLocator) {
                         using (locators.EnterWriteScope()) {
                             var locatorIndex = locators.IndexOf(peekResult.NextBlockPrevBlockHash, comparer);
