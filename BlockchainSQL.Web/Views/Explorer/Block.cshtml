@@ -14,7 +14,7 @@
                 </h1>
 
                 <!-- Horizontal Description -->
-                <dl class="dl-horizontal @ViewHelper.RandomEntryAnimationClass()">
+                <dl class="dl-horizontal">
                     <dt>Hash</dt>
                     <dd>@BitcoinProtocolHelper.BytesToString(Model.Hash)</dd>
 
@@ -157,7 +157,6 @@
                             Width = 80
                         }
                     )
-                    .CssClass(ViewHelper.RandomEntryAnimationClass())
                     )
                 <script>
                     $(function () {
