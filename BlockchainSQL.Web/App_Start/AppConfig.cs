@@ -6,27 +6,29 @@ using Microsoft.Extensions.Configuration;
 using NHibernate;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Web
-{
-    public static class AppConfig {
-        public const string WebConfigKey = "Config";
-        public const string NHSessionFactoryKey = "NHSessionFactory";
-        public const string BlockchainSchemaKey = "SchemaKey";
-        public const string DataCacheKey = "DataCacheKey";
+namespace BlockchainSQL.Web {
+	public static class AppConfig {
+		public const string WebConfigKey = "Config";
+		public const string NHSessionFactoryKey = "NHSessionFactory";
+		public const string BlockchainSchemaKey = "SchemaKey";
+		public const string DataCacheKey = "DataCacheKey";
 
-        private static IMemoryCache _memoryCache = new MemoryCache(new MemoryCacheOptions());
-        public static SiteOptions Options { get; private set; }
-        
-        public static string BlockchainConnectionString { get; private set; }
-        public static string WebConnectionString { get; private set; }
+		private static IMemoryCache _memoryCache = new MemoryCache(new MemoryCacheOptions());
 
-        public static bool HasWebDBMS => !string.IsNullOrEmpty(WebConnectionString);
-        public static bool HasValidWebDBMS { get; private set; }
-        
-        public const string BlockchainSchemaQuery =
-        #region Query
+		private static IDatabaseGenerator Generator { get; } = WebDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
 
-            @"SELECT
+		public static SiteOptions Options { get; private set; }
+
+		public static string BlockchainConnectionString { get; private set; }
+		public static string WebConnectionString { get; private set; }
+
+		public static bool WebDbExists => Generator.DatabaseExists(WebConnectionString);
+
+		public const string BlockchainSchemaQuery =
+
+			#region Query
+
+			@"SELECT
     DISTINCT
 
     T.name AS[Table Name],
@@ -84,57 +86,47 @@ ORDER BY
 
     T.Name, C.column_id";
 
-        #endregion
+		#endregion
 
-        public static void Register(IConfiguration configuration) {
-	        Options = configuration.Get<SiteOptions>();
+		public static void Register(IConfiguration configuration) {
+			Options = configuration.Get<SiteOptions>();
 
-	        WebConnectionString = configuration.GetConnectionString("Web");
-	        BlockchainConnectionString = configuration.GetConnectionString("Blockchain");
+			WebConnectionString = configuration.GetConnectionString("Web");
+			BlockchainConnectionString = configuration.GetConnectionString("Blockchain");
 
-	        if (HasWebDBMS) {
-                try {
-                    NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
-                    DataCache = new DataCache();
-                    DataCache.Load(NhSessionFactory);
-                    HasValidWebDBMS = true;
-                } catch (Exception) {
-                    HasValidWebDBMS = false;
-                }
+			if (Generator.DatabaseExists(WebConnectionString)) {
+				NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
+				DataCache = new DataCache();
+				DataCache.Load(NhSessionFactory);
+			}
 
-            }
+			if (!string.IsNullOrEmpty(BlockchainConnectionString))
+				BlockchainSchema = new MSSQLDAC(BlockchainConnectionString).ExecuteQuery(BlockchainSchemaQuery);
+			else
+				throw new InvalidOperationException("Blockchain database connection string not configured");
+		}
 
-	        if (!string.IsNullOrEmpty(BlockchainConnectionString))
-		        BlockchainSchema = new MSSQLDAC(BlockchainConnectionString).ExecuteQuery(BlockchainSchemaQuery);
-	        else
-		        throw new InvalidOperationException("Blockchain database connection string not configured");
-        }
-        
-        public static ISessionFactory NhSessionFactory
-        {
-            get => GetVariable<ISessionFactory>(NHSessionFactoryKey);
-            private set => SetVariable(NHSessionFactoryKey, value);
-        }
+		public static ISessionFactory NhSessionFactory {
+			get => GetVariable<ISessionFactory>(NHSessionFactoryKey);
+			private set => SetVariable(NHSessionFactoryKey, value);
+		}
 
-        public static DataTable BlockchainSchema
-        {
-            get => GetVariable<DataTable>(BlockchainSchemaKey);
-            private set => SetVariable(BlockchainSchemaKey, value);
-        }
+		public static DataTable BlockchainSchema {
+			get => GetVariable<DataTable>(BlockchainSchemaKey);
+			private set => SetVariable(BlockchainSchemaKey, value);
+		}
 
-        public static DataCache DataCache
-        {
-            get => GetVariable<DataCache>(DataCacheKey);
-            private set => SetVariable(DataCacheKey, value);
-        }
+		public static DataCache DataCache {
+			get => GetVariable<DataCache>(DataCacheKey);
+			private set => SetVariable(DataCacheKey, value);
+		}
 
-        private static void SetVariable<T>(string key, T variable)
-        {
-            _memoryCache.Set(key, variable);
-        }
+		private static void SetVariable<T>(string key, T variable) {
+			_memoryCache.Set(key, variable);
+		}
 
-        private static T GetVariable<T>(string key) {
-            return _memoryCache.Get<T>(key);
-        }
-    }
+		private static T GetVariable<T>(string key) {
+			return _memoryCache.Get<T>(key);
+		}
+	}
 }

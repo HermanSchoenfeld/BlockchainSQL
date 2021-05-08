@@ -7,7 +7,7 @@ namespace BlockchainSQL.Web.Controllers {
 
 		[Route("/")]
 		public ActionResult Index(string errorMessage) {
-			if (!AppConfig.HasValidWebDBMS)
+			if (!AppConfig.WebDbExists)
 				return Redirect("/Config");
 
 			if (!string.IsNullOrWhiteSpace(errorMessage))

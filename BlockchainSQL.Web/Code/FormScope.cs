@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Encodings.Web;
 using BlockchainSQL.Web.Models;
 using Omu.AwesomeMvc;
 using Sphere10.Framework;
@@ -23,14 +24,13 @@ namespace BlockchainSQL.Web.Code
     }}
 
     function F{0}_Success(result) {{
-        //alert(JSON.stringify(result));
-        var alertType = result.Result ? ""success"" : ""danger"";
-        var alertHeader = result.Result ? ""Okay!"" : ""Apologies"";
-        var alertIcon = result.Result ? ""fa fa-check"" : ""fa fa-exclamation"";
+        var alertType = result.result ? ""success"" : ""danger"";
+        var alertHeader = result.result ? ""Okay!"" : ""Apologies"";
+        var alertIcon = result.result ? ""fa fa-check"" : ""fa fa-exclamation"";
         $('#{0} :input[type=""submit""]').prop('disabled', false);
         $('#{0} .formLoadingImage').remove();
-        $(""#{1}"").replaceWith('<br/><div class=""form-result alert alert-' + alertType+'""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">×</button><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.Message + '</div>');
-        if (result.Result) {{
+        $(""#{1}"").replaceWith('<br/><div class=""form-result alert alert-' + alertType+'""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">×</button><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');
+        if (result.result) {{
             $('#{0}')[0].reset();
             $('#{0}').closest('form').find('input[type=text], textarea').val('');
         }}
@@ -88,7 +88,11 @@ namespace BlockchainSQL.Web.Code
         }
 
         private void Write(IHtmlContent htmlContent) {
-	        Write(htmlContent.ToString());
+	        using (var writer = new System.IO.StringWriter())
+	        {        
+		        htmlContent.WriteTo(writer, HtmlEncoder.Default);
+		        Write(writer.ToString());
+	        } 
         }
 
         private void Write(string text, params object[] formatArgs) {

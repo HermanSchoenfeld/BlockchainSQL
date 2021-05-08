@@ -26,7 +26,7 @@ namespace BlockchainSQL.Web.Controllers
         }
 
         public ISession OpenSession() {
-            if (!AppConfig.HasWebDBMS)
+            if (!AppConfig.WebDbExists)
                 throw new SoftwareException("No Web DBMS is configured");
             return AppConfig.NhSessionFactory.OpenSession();
         }

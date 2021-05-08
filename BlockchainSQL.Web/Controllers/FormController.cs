@@ -6,11 +6,18 @@ using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace BlockchainSQL.Web.Controllers
 {
     public class FormController : BaseController {
+	    private IConfiguration Configuration { get; }
+
+	    public FormController(IConfiguration configuration) {
+		    Configuration = configuration;
+	    }
+	    
 	    [HttpPost]
         [FormAction]
         public async Task<ActionResult> Contact(ContactFormInput model) {
@@ -56,7 +63,10 @@ namespace BlockchainSQL.Web.Controllers
                 var connectionString = Tools.MSSQL.CreateConnectionString(model.Server, model.Database, model.Username, model.Password, port: model.Port); ;
                 var databaseName = model.Database;
                 if (await GenerateDatabase(dbmsType, connectionString, databaseName, model.OverwritePolicy)) {
-                    return Json(new {
+	             
+	                AppConfig.Register(Configuration);
+	                
+	                return Json(new {
                         Result = true,
                         Message = "Database has been created successfully. <br/>Connection String: <i>{0}</i>".FormatWith(connectionString)
                     });
