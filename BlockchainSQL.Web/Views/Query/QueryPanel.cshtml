@@ -63,7 +63,6 @@
 @(Html.Awe().InitPopup()
         .Name("templatePopup")
         .Url(Url.Action("LoadTemplate", "Query"))
-        .LoadOnce(true)
         .Title("Select SQL Query Template")
         .Width(500)
         .Height(450))
@@ -128,7 +127,7 @@
             data: { "sql": sql },
             type: 'POST',
             success: function(data) {
-                window.location = "/Query/Template/" + data.webID;
+                window.location = "/Query/Load?queryID=" + data.webID;
             },
             fail: function() {
                 alert('Unable to save query');

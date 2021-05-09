@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Omu.AwesomeMvc;
 
 namespace BlockchainSQL.Web
 {
@@ -28,6 +29,12 @@ namespace BlockchainSQL.Web
         {
 	        services.Configure<RazorViewEngineOptions>(options => {
 		        options.ViewLocationExpanders.Add(new ViewLocationExpander());
+	        });
+	        
+	        var provider = new AweMetaProvider();
+	        services.AddMvc(o =>
+	        {
+		        o.ModelMetadataDetailsProviders.Add(provider);
 	        });
 	        
             services.AddControllersWithViews(ConfigureMvcOptions);
