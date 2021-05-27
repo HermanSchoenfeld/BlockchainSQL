@@ -16,6 +16,7 @@ namespace BlockchainSQL.DataAccess {
             "TransactionID",
             "Index",
             "ScriptID",
+            "WitScriptID",
             "OutpointTXID",
             "OutpointIndex",
             "TransactionOutputID",

@@ -7,7 +7,7 @@ namespace BlockchainSQL.DataAccess.NHibernate.Mappings {
         public BlockMap() {
             Table("Block");
             Id(x => x.ID).Column("ID").GeneratedBy.Identity();
-            Map(x => x.Height).Column("Height").Nullable();
+            Map(x => x.Height).Column("Height").Nullable().Index(Tools.Enums.GetDescription(DatabaseIndex.Block_Height));
             Map(x => x.PreviousBlockHash).Column("PreviousBlockHash").Length(32).Not.Nullable().CustomSqlType("BINARY(32)");
             Map(x => x.Hash).Column("Hash").Length(32).Not.Nullable().Index(Tools.Enums.GetDescription(DatabaseIndex.Block_BlockHash)).CustomSqlType("BINARY(32)");
             References(x => x.Branch).Column("BranchID").ForeignKey("none"); // .Nullable().ForeignKey().No.Cascade.All().Index(Tools.Enums.GetDescription(DatabaseIndex.Block_Branch));

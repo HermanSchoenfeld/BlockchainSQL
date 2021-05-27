@@ -36,7 +36,13 @@ namespace BlockchainSQL.DataObjects
         None = 10,
 
         [Description("Unknown (or indeterminable) type of address")]
-        Unknown = 11
+        Unknown = 11,
+        
+        [Description("Address denotes the hash of the redeem script (witness program) used in P2WSH payments")]
+        WitnessScriptHash = 12,
+        
+        [Description("Address denotes the hash of the ")]
+        WitnessPublicKeyHash = 13
     }
 
 }

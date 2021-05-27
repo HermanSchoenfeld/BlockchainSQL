@@ -35,7 +35,6 @@ namespace BlockchainSQL.Processing
             const long maxBufferSizeMb = 64000;
             progressCallback = progressCallback ?? (x => Tools.Lambda.NoOp());
 
-
             // Determine how to allocate memory to the buffers
             var userPreferredMaxMemory = Settings.MaxMemoryBufferSize.ClipTo(minBufferSizeMb, maxBufferSizeMb);
             var bufferSize = Tools.Memory.ConvertMemoryMetric(userPreferredMaxMemory,MemoryMetric.Megabyte,MemoryMetric.Byte);

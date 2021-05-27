@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using BlockchainSQL.DataObjects;
+using NBitcoin;
+using NBitcoin.DataEncoders;
 using Sphere10.Framework;
+using ScriptType = BlockchainSQL.DataObjects.ScriptType;
 
 namespace BlockchainSQL.Processing
 {
@@ -46,7 +49,7 @@ namespace BlockchainSQL.Processing
             }
 
             // Multisig
-            if (MatchesMultiSig_Inputcript(instructions)) {                
+            if (MatchesMultiSig_InputScript(instructions)) {                
                 addressType = AddressType.MultiplePublicKeyHashes;
                 return ScriptClass.Multisig;
             }
@@ -82,9 +85,6 @@ namespace BlockchainSQL.Processing
             // P2S
             if (MatchesP2S_OutputScript(instructions)) {
                 throw new NotSupportedException();
-                addressType = AddressType.Script;
-                address = BitcoinProtocolHelper.ConvertToFriendlyString(instructions[-1].DataLE);
-                return ScriptClass.P2S;
             }
            
             // P2SH
@@ -92,6 +92,18 @@ namespace BlockchainSQL.Processing
                 addressType = AddressType.ScriptHash;
                 address = Base58Helper.Base58CheckEncode(instructions[1].DataLE, AddressType.ScriptHash);
                 return ScriptClass.P2SH;
+            }
+
+            if (MatchesP2WPKH_OutputScript(instructions)) {
+	            addressType = AddressType.WitnessPublicKeyHash;
+	            address = Base58Helper.Base58Encode(Tools.Array.ConcatArrays(instructions[0].DataLE, instructions[1].DataLE));
+	            return ScriptClass.P2WPKH;
+            }
+
+            if (MatchesP2WSH_OutputScript(instructions)) {
+	            addressType = AddressType.WitnessScriptHash;
+	            address = Base58Helper.Base58Encode(Tools.Array.ConcatArrays(instructions[0].DataLE, instructions[1].DataLE));
+	            return ScriptClass.P2WSH;
             }
 
             // Multisig
@@ -183,7 +195,7 @@ namespace BlockchainSQL.Processing
 
         }
 
-        protected virtual bool MatchesMultiSig_Inputcript(ScriptInstruction[] instructions) {
+        protected virtual bool MatchesMultiSig_InputScript(ScriptInstruction[] instructions) {
             return 
                 instructions.Length >= 2 && 
                 instructions.First().OpCode == OpCode.OP_0 && 
@@ -199,7 +211,14 @@ namespace BlockchainSQL.Processing
                 instructions.Last().OpCode == OpCode.OP_CHECKMULTISIG;
         }
 
+        protected virtual bool MatchesP2WPKH_OutputScript(ScriptInstruction[] instructions) {
+	        return instructions.Length == 2 && instructions[0].OpCode == OpCode.OP_0 &&
+	               instructions[1].DataLE?.Length == 20;
+        }
 
-
+        protected virtual bool MatchesP2WSH_OutputScript(ScriptInstruction[] instructions) {
+	        return instructions.Length == 2 && instructions[0].OpCode == OpCode.OP_0 &&
+	               instructions[1].DataLE?.Length == 32;
+        }
     }
 }

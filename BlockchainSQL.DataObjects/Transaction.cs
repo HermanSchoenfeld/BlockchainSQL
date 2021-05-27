@@ -9,6 +9,8 @@ namespace BlockchainSQL.DataObjects
         public virtual long ID { get; set; }
 
         public virtual byte[] TXID { get; set; }
+        
+        public virtual byte[] WTXID { get; set; }
 
         public virtual uint Size { get; set; }
 
@@ -25,16 +27,19 @@ namespace BlockchainSQL.DataObjects
         public virtual uint OutputCount { get; set; }
 
         public virtual decimal? InputsBTC { get; set; }
+        
         public virtual decimal? OutputsBTC { get; set; }
+        
         public virtual decimal? FeeBTC { get; set; }
 
         public virtual IList<TransactionInput> Inputs { get; set; }
 
         public virtual IList<TransactionOutput> Outputs { get; set; }
-
+        
+        public virtual byte[] Witness { get; set; }
+        
         public virtual byte RowState { get; set; }
-
-
+        
         public virtual void AddInput(TransactionInput input) {
             AddInputs(new[] { input });
         }

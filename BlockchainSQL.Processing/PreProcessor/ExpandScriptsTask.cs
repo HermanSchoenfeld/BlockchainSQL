@@ -14,12 +14,8 @@ namespace BlockchainSQL.Processing
             var blocksArr = blocks as WipBlock[] ?? blocks.ToArray();
             Parallel.ForEach(
                 blocks
-                    .SelectMany(b => b.Block.Transactions.SelectMany(t => t.Inputs))
-                    .Cast<TransactionItem>()
-                    .Concat(
-                        blocks.SelectMany(b => b.Block.Transactions.SelectMany(t => t.Outputs))
-                    ).ToArray(),
-                   BitcoinProtocolParser.ExpandTransactionItemScript
+                    .SelectMany(b => b.Block.Transactions),
+            BitcoinProtocolParser.ExpandTransactionItemScript
             );
             return blocksArr;
         }

@@ -18,6 +18,9 @@ namespace BlockchainSQL.DataObjects
         public virtual uint Sequence { get; set; }
 
         public virtual byte RowState { get; set; }
+        
+        public virtual byte[][] WitnessStackBytes { get; set; }
 
+        public virtual Script WitScript { get; set; }
     }
 }

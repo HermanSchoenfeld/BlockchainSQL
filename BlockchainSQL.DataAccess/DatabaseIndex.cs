@@ -19,6 +19,9 @@ namespace BlockchainSQL.DataAccess {
 
         [Description("IX_BLOCK_BLOCKHASH")]
         Block_BlockHash,
+        
+        [Description("IX_BLOCK_HEIGHT")]
+        Block_Height,
 
         [Description("IX_TRANSACTION_TXID")]
         Transaction_TXID,

@@ -13,23 +13,15 @@ namespace BlockchainSQL.Processing
 
         public static void ExpandBlockScripts(Block[] blocks) {
             Parallel.ForEach(
-                blocks
-                    .SelectMany(b => b.Transactions.SelectMany(t => t.Inputs))
-                    .Cast<TransactionItem>()
-                    .Concat(
-                        blocks.SelectMany(b => b.Transactions.SelectMany(t => t.Outputs))
-                    ).ToArray(),
+                blocks.SelectMany(b => b.Transactions),
                    BitcoinProtocolParser.ExpandTransactionItemScript
             );
         }
 
         public static void ExpandTransactionScripts(Transaction[] transactions) {
             Parallel.ForEach(
-                transactions
-                    .SelectMany(t => t.Inputs)
-                    .Concat(transactions.SelectMany(t => t.Outputs).Cast<TransactionItem>())
-                    .ToArray(),
-                    BitcoinProtocolParser.ExpandTransactionItemScript
+                transactions,
+            BitcoinProtocolParser.ExpandTransactionItemScript
                 );
         }
 
@@ -76,7 +68,7 @@ namespace BlockchainSQL.Processing
                 try {
                     // DO NOT OPEN index path since it changes it and might corrupt it for Bitcoin Core! 
                     //using (new DB(indexLevelDBPath, new Options {CreateIfMissing = false, ErrorIfExists = false})) ;
-                    if (!Tools.FileSystem.DirectoryContainsFiles(indexLevelDBPath, "CURRENT", "LOCK", "LOG"))
+                    if (!Tools.FileSystem.DirectoryContainsFiles(indexLevelDBPath, "CURRENT", "LOCK"))
                         result.AddError("Index path does not appear to be a level-db directory");
                 } catch (LevelDBException) {
                     result.AddError("LevelDB is missing");

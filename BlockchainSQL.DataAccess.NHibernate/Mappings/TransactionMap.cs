@@ -1,5 +1,4 @@
-﻿
-using BlockchainSQL.DataObjects;
+﻿using BlockchainSQL.DataObjects;
 using FluentNHibernate.Mapping;
 
 namespace BlockchainSQL.DataAccess.NHibernate.Mappings {
@@ -11,6 +10,7 @@ namespace BlockchainSQL.DataAccess.NHibernate.Mappings {
             References(x => x.Block).Column("BlockID").Not.Nullable().Index(Tools.Enums.GetDescription(DatabaseIndex.Transaction_BlockID));
             Map(x => x.Index).Column("Index").Not.Nullable();
             Map(x => x.TXID).Column("TXID").Not.Nullable().Length(32).Index(Tools.Enums.GetDescription(DatabaseIndex.Transaction_TXID)).CustomSqlType("BINARY(32)");
+            Map(x => x.WTXID).Column("WTXID").Not.Nullable().Length(32).CustomSqlType("BINARY(32)");
             Map(x => x.Size).Column("Size").Not.Nullable();                        
             Map(x => x.InputCount).Column("InputCount").Not.Nullable();
             Map(x => x.OutputCount).Column("OutputCount").Not.Nullable();

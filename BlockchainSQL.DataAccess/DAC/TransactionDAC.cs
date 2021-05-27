@@ -14,6 +14,7 @@ namespace BlockchainSQL.DataAccess {
         private readonly string[] TransactionColumns = new[] {
             "ID",
             "TXID",
+            "WTXID",
             "Size",
             "Version",
             "InputCount",

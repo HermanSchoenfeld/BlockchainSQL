@@ -26,8 +26,6 @@ namespace BlockchainSQL.DataAccess {
             entity.ScriptByteLength = sourceRow.Get<int>(colPreFix + "ScriptByteLength");
             entity.InstructionCount = sourceRow.Get<int>(colPreFix + "InstructionCount");
             entity.RowState = sourceRow.Get<byte>(colPreFix + "RowState");
-
         }
-
     }
 }

@@ -55,7 +55,6 @@ namespace BlockchainSQL.Server
         private void LoadInternal(IEnumerable<Setting> settings) {
             foreach(var setting in settings)
                 SetSettingDisplayValue((KnownSettings)setting.ID, setting.Value);
-            _optionsListBox.Enabled = false;
         }
 
         private bool ValidateSettingDisplayValue(KnownSettings setting, out string errorMessage) {

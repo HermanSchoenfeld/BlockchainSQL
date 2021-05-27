@@ -100,7 +100,11 @@ namespace BlockchainSQL.Server
                         }
                         try {
                             await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, true);
-                        } finally {
+                        } 
+                        catch(Exception e) {
+                        	logger.LogException(e);
+                        }
+                        finally {
                             if (disableIndexes) {
                                 logger.Warning("Enabling database indexes (this can take a very long time up to 24 hours)");
                                 await Task.Run(() => scope.DAC.EnableAllApplicationIndexes());

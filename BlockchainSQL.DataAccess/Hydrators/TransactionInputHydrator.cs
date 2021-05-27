@@ -24,6 +24,8 @@ namespace BlockchainSQL.DataAccess {
             entity.Index = sourceRow.Get<uint>(colPreFix + "Index");
             var scriptID = sourceRow.Get<long?>(colPreFix + "ScriptID");
             entity.Script = scriptID != null ? new Script {ID = scriptID.Value} : null;
+            var witScriptID = sourceRow.Get<long?>(colPreFix + "WitScriptID");
+            entity.WitScript = witScriptID != null ? new WitnessScript { ID = witScriptID.Value } : null;
             entity.Outpoint = new Outpoint {
                 TXID = sourceRow.Get<byte[]>(colPreFix + "OutpointTXID"),
                 OutputIndex = sourceRow.Get<uint>(colPreFix + "OutpointIndex"),                

@@ -9,6 +9,7 @@ namespace BlockchainSQL.DataAccess.NHibernate.Mappings {
             References(x => x.Transaction).Column("TransactionID").Not.Nullable().Index(Tools.Enums.GetDescription(DatabaseIndex.TransactionInput_TransactionID));
             Map(x => x.Index).Column("Index").Not.Nullable();            
             References(x => x.Script).Column("ScriptID").Nullable().ForeignKey().Cascade.Delete();
+            References(x => x.WitScript).Column("WitScriptID").Nullable().ForeignKey().Cascade.Delete();
             Component(x => x.Outpoint, o => {
                 o.Map(y => y.TXID).Column("OutpointTXID").Length(32).Not.Nullable().CustomType("AnsiString")/*.Index(Tools.Enums.GetDescription(DatabaseIndex.TransactionInput_Outpoint))*/.CustomSqlType("BINARY(32)");
                 o.Map(y => y.OutputIndex).Column("OutpointIndex").Not.Nullable()/*.Index(Tools.Enums.GetDescription(DatabaseIndex.TransactionInput_Outpoint))*/;
