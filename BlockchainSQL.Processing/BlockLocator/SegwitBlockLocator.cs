@@ -1,4 +1,6 @@
-﻿namespace BlockchainSQL.Processing {
+﻿using System.Linq;
+
+namespace BlockchainSQL.Processing {
     
 	/// <summary>
 	/// Used for segwit testing/diagnostics
@@ -8,7 +10,11 @@
 			const long SegwitStartBlock = 481824;
 			const long PreSegwitRange = 1000;
 			const long StartBlock = SegwitStartBlock - PreSegwitRange;
-			return DetermineBlockLocatorIndices(StartBlock);
+			long[] indices =  DetermineBlockLocatorIndices(StartBlock);
+			
+			return new BlockLocators {
+				Locations = base.DAC.GetBlockLocators(indices).ToArray()
+			};
 		}
 
 	}
