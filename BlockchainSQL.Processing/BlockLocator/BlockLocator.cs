@@ -13,6 +13,14 @@ namespace BlockchainSQL.Processing
                  Locations = base.DAC.GetBlockLocators(indices).ToArray()
             };
         }
+		// 1000    0
+		//  999    1
+		//  998    2
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="topDepth"></param>
+		/// <returns></returns>
 
         protected virtual long[] DetermineBlockLocatorIndices(long topDepth) {
             // Start at max_depth

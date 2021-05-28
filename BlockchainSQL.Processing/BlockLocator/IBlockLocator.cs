@@ -1,7 +1,8 @@
-﻿namespace BlockchainSQL.Processing
-{
+﻿namespace BlockchainSQL.Processing {
+
+
     public interface IBlockLocator {
 
-        BlockLocators GetBlockLocators();
-    }
+		BlockLocators GetBlockLocators();
+	}
 }

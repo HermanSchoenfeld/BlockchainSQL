@@ -1,0 +1,15 @@
+﻿namespace BlockchainSQL.Processing {
+    
+	/// <summary>
+	/// Used for segwit testing/diagnostics
+	/// </summary>
+	internal class SegwitBlockLocator : BlockLocator {
+		public override BlockLocators GetBlockLocators() {
+			const long SegwitStartBlock = 481824;
+			const long PreSegwitRange = 1000;
+			const long StartBlock = SegwitStartBlock - PreSegwitRange;
+			return DetermineBlockLocatorIndices(StartBlock);
+		}
+
+	}
+}
