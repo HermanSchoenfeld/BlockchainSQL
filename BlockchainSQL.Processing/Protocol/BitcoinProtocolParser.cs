@@ -147,7 +147,6 @@ namespace BlockchainSQL.Processing {
 					"Underlying stream is not a StreamProfiler. Please wrap the underlying Stream using a StreamProfiler");
 
 			ByteArrayBuilder txidBuilder = new ByteArrayBuilder();
-			ByteArrayBuilder wtxidBuilder = null;
 			
 			//full transaction profile for size calculation
 			profiler.StartListening();
@@ -165,18 +164,12 @@ namespace BlockchainSQL.Processing {
 			if (isSegWit) {
 				flag = reader.ReadByte();
 				Debug.Assert(flag > 0);
-				
-				wtxidBuilder = new ByteArrayBuilder();
-				wtxidBuilder.Append(EndianBitConverter.Little.GetBytes(transaction.Version));
-				wtxidBuilder.Append(markerBytes);
-				wtxidBuilder.Append(flag);
-				
+
 				profiler.StartListening();
 				transaction.InputCount = (uint)ParseVarInt(reader);
 				var inputCountBytes = profiler.StopListening();
 				
 				txidBuilder.Append(inputCountBytes);
-				wtxidBuilder.Append(inputCountBytes);
 			} else {
 				transaction.InputCount = marker;
 				txidBuilder.Append(markerBytes);
@@ -198,7 +191,6 @@ namespace BlockchainSQL.Processing {
 			txidBuilder.Append(inOutBytes);
 
 			if (isSegWit) {
-				wtxidBuilder.Append(inOutBytes);
 				profiler.StartListening();
 				for (int i = 0; i < transaction.InputCount; i++) {
 					List<byte[]> itemStack = new List<byte[]>();
@@ -214,7 +206,6 @@ namespace BlockchainSQL.Processing {
 
 				
 				transaction.Witness = profiler.StopListening();
-				wtxidBuilder.Append(transaction.Witness);
 			}
 
 			if (expandScriptBytes)
@@ -224,10 +215,11 @@ namespace BlockchainSQL.Processing {
 			byte[] lockTimeBytes = EndianBitConverter.Little.GetBytes(transaction.LockTime);
 			txidBuilder.Append(lockTimeBytes);
 
-			transaction.Size = (uint)profiler.StopListening().Length;
+			var txBytes = profiler.StopListening();
+			transaction.Size = (uint)txBytes.Length;
 			transaction.TXID = HashingFunctions.ComputeTransactionHash(txidBuilder.ToArray());
 			transaction.WTXID = isSegWit
-				? HashingFunctions.ComputeTransactionHash(wtxidBuilder.Append(lockTimeBytes).ToArray())
+				? HashingFunctions.ComputeTransactionHash(txBytes)
 				: transaction.TXID;
 
 			return transaction;

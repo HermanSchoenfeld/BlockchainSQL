@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
+using NBitcoin;
+using NBitcoin.DataEncoders;
 using Sphere10.Framework;
 
 namespace BlockchainSQL.Processing
@@ -63,8 +66,10 @@ namespace BlockchainSQL.Processing
         }
 
         public static bool IsValidAddress(string address) {
-            var base58Chars = Base58Helper.Digits.ToCharArray();
-            return address != null && address.All(base58Chars.Contains);
+	        Bech32Encoder encoder = new Bech32Encoder(Encoding.ASCII.GetBytes("bc"));
+	        var base58Chars = Base58Helper.Digits.ToCharArray();
+	        
+            return address != null && (address.All(base58Chars.Contains) || Bech32Helper.IsValidAddress(address));
         }
 
         public static bool IsValidP2PKHAddress(string address, bool assumeValidAddress = false) {

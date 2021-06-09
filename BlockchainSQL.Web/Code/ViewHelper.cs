@@ -205,7 +205,7 @@ namespace BlockchainSQL.Web.Code
 
         public static string AddressLineLink(AddressPageModel.LineItem line) {
             return string.Format(
-                "<a href='/Txn/{0}'><b>TX:</b>{0} <b>{1}X:</b>{2}</a>",
+                "<a href='/explorer/transaction?txid={0}'><b>TX:</b>{0} <b>{1}X:</b>{2}</a>",
                 line.TXID,
                 line.ItemType == AddressPageModel.LineItemType.Credit ? "O" : "I",
                 line.Index

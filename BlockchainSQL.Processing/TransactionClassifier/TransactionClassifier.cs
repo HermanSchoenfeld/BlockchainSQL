@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Linq;
 using BlockchainSQL.DataObjects;
-using NBitcoin;
 using NBitcoin.DataEncoders;
-using Sphere10.Framework;
 using ScriptType = BlockchainSQL.DataObjects.ScriptType;
 
 namespace BlockchainSQL.Processing
 {
 
     public class TransactionClassifier : ITransactionClassifier {
-
+	    
         public ScriptClass ClassifyInputScript(ScriptInstruction[] instructions, ScriptType scriptType, out AddressType addressType) {
             addressType = AddressType.Unknown;
 
@@ -96,13 +94,13 @@ namespace BlockchainSQL.Processing
 
             if (MatchesP2WPKH_OutputScript(instructions)) {
 	            addressType = AddressType.WitnessPublicKeyHash;
-	            address = Base58Helper.Base58Encode(Tools.Array.ConcatArrays(instructions[0].DataLE, instructions[1].DataLE));
+	            address = Encoders.Bech32("bc").Encode(0, instructions[1].DataLE);
 	            return ScriptClass.P2WPKH;
             }
 
             if (MatchesP2WSH_OutputScript(instructions)) {
 	            addressType = AddressType.WitnessScriptHash;
-	            address = Base58Helper.Base58Encode(Tools.Array.ConcatArrays(instructions[0].DataLE, instructions[1].DataLE));
+	            address = Encoders.Bech32("bc").Encode(0, instructions[1].DataLE);
 	            return ScriptClass.P2WSH;
             }
 
