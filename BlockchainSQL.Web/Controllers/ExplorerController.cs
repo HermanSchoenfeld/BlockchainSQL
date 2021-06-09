@@ -8,27 +8,29 @@ using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Sphere10.Framework;
+using Sphere10.Framework.Data.Exceptions;
 
 namespace BlockchainSQL.Web.Controllers {
-	
+
 	public class ExplorerController : BaseController {
 		public ActionResult Index() {
 			return View();
 		}
 
-		public async Task<ActionResult> Block([FromQuery]int height, [FromQuery]string hash) {
+		public async Task<ActionResult> Block([FromQuery] int height, [FromQuery] string hash) {
 
 			if (height > 0) {
 				var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
-				if (height > await repo.GetBlockCount()) {
+
+				try {
+					var block = await repo.GetBlockByHeight(height);
+					return View(block);
+				} catch (NoSingleRecordException e) {
 					AddPageMessage("No block with height {0} is known to this node".FormatWith(height),
 						"Block not found",
 						PageMessageSeverity.Error);
 					return View("Index");
 				}
-
-				var block = await repo.GetBlockByHeight(height);
-				return View(block);
 			}
 
 			if (!string.IsNullOrEmpty(hash)) {
@@ -51,71 +53,72 @@ namespace BlockchainSQL.Web.Controllers {
 				throw new Exception("Invalid TXID");
 			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
 			var txn = await repo.GetTransaction(txid);
-			
+
 			return View(txn);
 		}
-		
+
 		public async Task<ActionResult> Script(int key, string txid, TransactionItemType txItemType) {
 			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
 			var summary = await repo.GetScriptSummary(txid, key, txItemType);
-			
+
 			return View(summary);
 		}
-		
-		public async Task<ActionResult> Address([FromQuery]string address) {
-            if (!BitcoinProtocolHelper.IsValidAddress(address))
-                return HomePageRedirect();
 
-            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
-            var items = await repo.GetStatementLines(address);
+		public async Task<ActionResult> Address([FromQuery] string address) {
+			if (!BitcoinProtocolHelper.IsValidAddress(address))
+				return HomePageRedirect();
 
-            // If address was not a P2PKH address and it's empty, just re-direct (only show 0 balance for p2pkh addresses)
-            if (!items.Any() && !BitcoinProtocolHelper.IsValidP2PKHAddress(address, true))
-                return HomePageRedirect();
+			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var items = await repo.GetStatementLines(address);
 
-            var model = ConstructModel(address, items);
-            return View(model);
-        }
+			// If address was not a P2PKH address and it's empty, just re-direct (only show 0 balance for p2pkh addresses)
+			if (!items.Any() && !BitcoinProtocolHelper.IsValidP2PKHAddress(address, true))
+				return HomePageRedirect();
 
-        private static AddressPageModel ConstructModel(string address, IEnumerable<StatementLine> lines) {            
-            if (!lines.Any()) {
-                return AddressPageModel.EmptyFor(address);
-            }
+			var model = ConstructModel(address, items);
+			return View(model);
+		}
 
-            var model = new AddressPageModel();
-            model.Address = address;
-            model.Balance = model.TotalCredits = model.TotalDebits = 0M;            
-            model.LineItems = lines.Select(ConstructLineModel).ToArray();            
-            model.LineItems.Aggregate(0M, (s, li) => {
-                switch (li.ItemType) {
-                    case AddressPageModel.LineItemType.Debit:
-                        li.TotalBTC =  s - li.AmountBTC;
-                        model.TotalDebits += li.AmountBTC;
-                        break;
-                    case AddressPageModel.LineItemType.Credit:
-                        li.TotalBTC = s + li.AmountBTC;
-                        model.TotalCredits += li.AmountBTC;
-                        break;
-                    default:
-                        throw new NotSupportedException(li.ItemType.ToString());
-                }
-                model.Balance = model.TotalCredits - model.TotalDebits;
-                return li.TotalBTC;
-            });
-            return model;
-        }
+		private static AddressPageModel ConstructModel(string address, IEnumerable<StatementLine> lines) {
+			if (!lines.Any()) {
+				return AddressPageModel.EmptyFor(address);
+			}
 
-        private static AddressPageModel.LineItem ConstructLineModel(StatementLine line) {
-            if (!line.TXType.IsIn("C","D"))
-                throw new ArgumentException("Line TXType must be 'C' or 'D'", nameof(line));
-            return new AddressPageModel.LineItem {
-                DateTime   =  line.TXDate,
-                TXID = BitcoinProtocolHelper.BytesToString(line.TXID),
-                Index =  (int)line.TXID_IX,
-                AmountBTC = line.TXAmount,
-                ItemType = line.TXType == "C" ? AddressPageModel.LineItemType.Credit : AddressPageModel.LineItemType.Debit,
-                TotalBTC = -1
-            };
-        }
+			var model = new AddressPageModel();
+			model.Address = address;
+			model.Balance = model.TotalCredits = model.TotalDebits = 0M;
+			model.LineItems = lines.Select(ConstructLineModel).ToArray();
+			model.LineItems.Aggregate(0M,
+				(s, li) => {
+					switch (li.ItemType) {
+						case AddressPageModel.LineItemType.Debit:
+							li.TotalBTC = s - li.AmountBTC;
+							model.TotalDebits += li.AmountBTC;
+							break;
+						case AddressPageModel.LineItemType.Credit:
+							li.TotalBTC = s + li.AmountBTC;
+							model.TotalCredits += li.AmountBTC;
+							break;
+						default:
+							throw new NotSupportedException(li.ItemType.ToString());
+					}
+					model.Balance = model.TotalCredits - model.TotalDebits;
+					return li.TotalBTC;
+				});
+			return model;
+		}
+
+		private static AddressPageModel.LineItem ConstructLineModel(StatementLine line) {
+			if (!line.TXType.IsIn("C", "D"))
+				throw new ArgumentException("Line TXType must be 'C' or 'D'", nameof(line));
+			return new AddressPageModel.LineItem {
+				DateTime = line.TXDate,
+				TXID = BitcoinProtocolHelper.BytesToString(line.TXID),
+				Index = (int)line.TXID_IX,
+				AmountBTC = line.TXAmount,
+				ItemType = line.TXType == "C" ? AddressPageModel.LineItemType.Credit : AddressPageModel.LineItemType.Debit,
+				TotalBTC = -1
+			};
+		}
 	}
 }

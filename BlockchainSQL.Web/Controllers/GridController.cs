@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlockchainSQL.DataObjects;
 using BlockchainSQL.Web.Code;
 using Omu.AwesomeMvc;
 using Sphere10.Framework;
@@ -46,6 +47,7 @@ namespace BlockchainSQL.Web.Controllers
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionInputs(txid),
                 defaultSortOption: new SortOption("Index", SortDirection.Ascending),
+                key: "Index",
                 map: JSONMappers.MapTransactionInput
             );
             gridParams.Paging = false;
@@ -61,6 +63,7 @@ namespace BlockchainSQL.Web.Controllers
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionOutputs(txid),
                 defaultSortOption: new SortOption("Index", SortDirection.Ascending),
+                key: "Index",
                 map: JSONMappers.MapTransactionOutput
             );
             gridParams.Paging = false;
@@ -111,8 +114,6 @@ namespace BlockchainSQL.Web.Controllers
                     sortColumns = new[] {defaultSortOption};
 
                 var results = itemFetchFunc(page, pageSize, sortColumns).ToArray();
-                
-
 
                 if (gridParams.Paging) {
                     gridParams.Page = 1; // repo already offset data in query

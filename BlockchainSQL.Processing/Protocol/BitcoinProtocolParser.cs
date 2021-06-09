@@ -146,19 +146,43 @@ namespace BlockchainSQL.Processing {
 				throw new Exception(
 					"Underlying stream is not a StreamProfiler. Please wrap the underlying Stream using a StreamProfiler");
 
+			ByteArrayBuilder txidBuilder = new ByteArrayBuilder();
+			ByteArrayBuilder wtxidBuilder = null;
+			
+			//full transaction profile for size calculation
 			profiler.StartListening();
+			
 			var transaction = new Transaction();
 			transaction.Version = reader.ReadInt32();
+			txidBuilder.Append(EndianBitConverter.Little.GetBytes(transaction.Version));
+			
+			profiler.StartListening();
 			var marker = (uint)ParseVarInt(reader);
+			var markerBytes = profiler.StopListening();
+			byte flag;
 			bool isSegWit = marker == 0;
-
+			
 			if (isSegWit) {
-				var flag = reader.ReadByte();
+				flag = reader.ReadByte();
 				Debug.Assert(flag > 0);
+				
+				wtxidBuilder = new ByteArrayBuilder();
+				wtxidBuilder.Append(EndianBitConverter.Little.GetBytes(transaction.Version));
+				wtxidBuilder.Append(markerBytes);
+				wtxidBuilder.Append(flag);
+				
+				profiler.StartListening();
 				transaction.InputCount = (uint)ParseVarInt(reader);
-			} else
+				var inputCountBytes = profiler.StopListening();
+				
+				txidBuilder.Append(inputCountBytes);
+				wtxidBuilder.Append(inputCountBytes);
+			} else {
 				transaction.InputCount = marker;
+				txidBuilder.Append(markerBytes);
+			}
 
+			profiler.StartListening();
 			for (var i = 0; i < transaction.InputCount; i++) {
 				var input = ParseInput(reader);
 				transaction.AddInput(input);
@@ -170,9 +194,11 @@ namespace BlockchainSQL.Processing {
 				transaction.AddOutput(output);
 			}
 
-			var rawTxnBytes = profiler.StopListening();
+			var inOutBytes = profiler.StopListening();
+			txidBuilder.Append(inOutBytes);
 
 			if (isSegWit) {
+				wtxidBuilder.Append(inOutBytes);
 				profiler.StartListening();
 				for (int i = 0; i < transaction.InputCount; i++) {
 					List<byte[]> itemStack = new List<byte[]>();
@@ -186,7 +212,9 @@ namespace BlockchainSQL.Processing {
 					transaction.Inputs[i].WitnessStackBytes = itemStack.ToArray();
 				}
 
+				
 				transaction.Witness = profiler.StopListening();
+				wtxidBuilder.Append(transaction.Witness);
 			}
 
 			if (expandScriptBytes)
@@ -194,14 +222,13 @@ namespace BlockchainSQL.Processing {
 
 			transaction.LockTime = reader.ReadUInt32();
 			byte[] lockTimeBytes = EndianBitConverter.Little.GetBytes(transaction.LockTime);
-			rawTxnBytes = Tools.Array.ConcatArrays(rawTxnBytes, lockTimeBytes);
+			txidBuilder.Append(lockTimeBytes);
 
-			transaction.Size = (uint)rawTxnBytes.Length;
-			transaction.TXID = HashingFunctions.ComputeTransactionHash(rawTxnBytes);
-			transaction.WTXID = transaction.Witness is null
-				? transaction.TXID
-				: HashingFunctions.ComputeTransactionHash(
-					Tools.Array.ConcatArrays(rawTxnBytes, transaction.Witness));
+			transaction.Size = (uint)profiler.StopListening().Length;
+			transaction.TXID = HashingFunctions.ComputeTransactionHash(txidBuilder.ToArray());
+			transaction.WTXID = isSegWit
+				? HashingFunctions.ComputeTransactionHash(wtxidBuilder.Append(lockTimeBytes).ToArray())
+				: transaction.TXID;
 
 			return transaction;
 		}
