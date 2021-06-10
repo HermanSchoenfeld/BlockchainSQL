@@ -28,10 +28,13 @@ namespace BlockchainSQL.DataObjects
         [Description("Nonstandard scripts are not currently supported within Bitocoin")]
         NonStandard = 8,
         
-        [Description("Pay to Witness Public Key Hash (P2WPKH) payments can be redeemed by the bearer of the public key (public key known at redeem time). SegWit.")]
+        [Description("Pay to Witness Public Key Hash (P2WPKH) payments can be redeemed by the bearer of the public key (public key known at redeem time). V0 SegWit.")]
         P2WPKH = 9,
         
-        [Description("Pay to Witness Script Hash (P2WSH) payments can be redeemed by the bearer of a script that solves the witness script (redeem script known at redeem time)")]
-        P2WSH = 10
+        [Description("Pay to Witness Script Hash (P2WSH) payments can be redeemed by the bearer of a script that solves the witness script (redeem script known at redeem time). V0 SegWit.")]
+        P2WSH = 10,
+        
+        [Description("V1 SegWit output. Taproot script may be public key, aggregate public key or script hash.")]
+        V1Segwit
     }
 }

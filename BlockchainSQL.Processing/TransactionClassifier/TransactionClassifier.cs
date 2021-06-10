@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using BlockchainSQL.DataObjects;
 using NBitcoin.DataEncoders;
 using ScriptType = BlockchainSQL.DataObjects.ScriptType;
@@ -102,6 +103,12 @@ namespace BlockchainSQL.Processing
 	            addressType = AddressType.WitnessScriptHash;
 	            address = Encoders.Bech32("bc").Encode(0, instructions[1].DataLE);
 	            return ScriptClass.P2WSH;
+            }
+
+            if (MatchesV1SegWit_OutputScript(instructions)) {
+	            addressType = AddressType.V1Segwit;
+	            address = Encoders.Bech32("bc").Encode(1, instructions[1].DataLE);
+	            return ScriptClass.V1Segwit;
             }
 
             // Multisig
@@ -216,6 +223,11 @@ namespace BlockchainSQL.Processing
 
         protected virtual bool MatchesP2WSH_OutputScript(ScriptInstruction[] instructions) {
 	        return instructions.Length == 2 && instructions[0].OpCode == OpCode.OP_0 &&
+	               instructions[1].DataLE?.Length == 32;
+        }
+        
+        protected virtual bool MatchesV1SegWit_OutputScript(ScriptInstruction[] instructions) {
+	        return instructions.Length == 2 && instructions[0].OpCode == OpCode.OP_1 &&
 	               instructions[1].DataLE?.Length == 32;
         }
     }

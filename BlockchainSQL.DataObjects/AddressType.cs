@@ -42,7 +42,9 @@ namespace BlockchainSQL.DataObjects
         WitnessScriptHash = 12,
         
         [Description("Address denotes the hash of the ")]
-        WitnessPublicKeyHash = 13
+        WitnessPublicKeyHash = 13,
+        
+        [Description("Segwit V1 program, address is public key unhashed or the hash of a script.")]
+        V1Segwit = 14
     }
-
 }
