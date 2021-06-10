@@ -5,7 +5,7 @@ namespace BlockchainSQL.Processing {
 	public static class Bech32Helper {
 		public static bool IsValidAddress(string adr) {
 			try {
-				Encoders.Bech32("bc").Decode(adr, out var _);
+				Encoders.Bech32("bc").Decode(adr, out _);
 				return true;
 			} catch (Bech32FormatException e) {
 				return false;

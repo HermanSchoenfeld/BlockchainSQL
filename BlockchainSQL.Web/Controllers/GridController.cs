@@ -47,7 +47,7 @@ namespace BlockchainSQL.Web.Controllers
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionInputs(txid),
                 defaultSortOption: new SortOption("Index", SortDirection.Ascending),
-                key: "Index",
+                key: "ScriptId",
                 map: JSONMappers.MapTransactionInput
             );
             gridParams.Paging = false;
@@ -63,7 +63,7 @@ namespace BlockchainSQL.Web.Controllers
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionOutputs(txid),
                 defaultSortOption: new SortOption("Index", SortDirection.Ascending),
-                key: "Index",
+                key: "ScriptId",
                 map: JSONMappers.MapTransactionOutput
             );
             gridParams.Paging = false;

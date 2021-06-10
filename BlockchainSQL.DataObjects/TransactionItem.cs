@@ -7,6 +7,8 @@ namespace BlockchainSQL.DataObjects
 
         public virtual uint Index { get; set; }
 
+        public virtual long? ScriptId => Script.ID;
+
         public virtual Script Script { get; set; }
 
     }

@@ -66,7 +66,8 @@ namespace BlockchainSQL.Web.Code
                 Outpoint                = MapOutpoint(transactionInput.Outpoint),
                 OutpointDisplay         = outpointText,
                 Value                   = SatoshiToBTC(transactionInput.Value),
-                Sequence                = transactionInput.Sequence.ToString()
+                Sequence                = transactionInput.Sequence.ToString(),
+                ScriptId = transactionInput.ScriptId
             };
         }
 
@@ -79,7 +80,8 @@ namespace BlockchainSQL.Web.Code
                 ToAddressTypeDisplay = ToFriendlyAddressType(transactionOutput.ToAddressType),
                 ToAddress = transactionOutput.ToAddress,
                 ToAddressDisplay = transactionOutput.ToAddress,
-                Value = $"{SatoshiToBTC(transactionOutput.Value):0.#############################}"
+                Value = $"{SatoshiToBTC(transactionOutput.Value):0.#############################}",
+                ScriptId = transactionOutput.ScriptId
             };
         }
 

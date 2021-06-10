@@ -26,7 +26,7 @@ namespace BlockchainSQL.Web.Code
 
         Task<IEnumerable<StatementLine>> GetStatementLines(string address);
 
-        Task<ScriptSummary> GetScriptSummary(string txid, int index0, TransactionItemType itemType);
+        Task<ScriptSummary> GetScriptSummary(int scriptId);
 
         Task<SearchResult> SearchHash(string text);
 

@@ -57,9 +57,9 @@ namespace BlockchainSQL.Web.Controllers {
 			return View(txn);
 		}
 
-		public async Task<ActionResult> Script(int key, string txid, TransactionItemType txItemType) {
+		public async Task<ActionResult> Script(int key) {
 			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
-			var summary = await repo.GetScriptSummary(txid, key, txItemType);
+			var summary = await repo.GetScriptSummary(key);
 
 			return View(summary);
 		}
@@ -77,6 +77,7 @@ namespace BlockchainSQL.Web.Controllers {
 
 			var model = ConstructModel(address, items);
 			return View(model);
+			
 		}
 
 		private static AddressPageModel ConstructModel(string address, IEnumerable<StatementLine> lines) {

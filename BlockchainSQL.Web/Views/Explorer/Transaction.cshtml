@@ -79,10 +79,9 @@
                         new Column {Name = "Value",                   Header = "Amount (฿)",  Sortable = true, Hidden = false, Resizable = true, Width = 110, MinWidth = 110 },
                         new Column {Name = "Sequence",                Header = "Lock Time",   Hidden = true, Resizable = true, Width = 100, MinWidth = 100}
                     )
-                    .ClientKey("Index")
                     .Nests(new Nest {
                         ButtonClass = "viewScriptButton",
-                        Url = Url.Action("Script", "Explorer", new { txid = BitcoinProtocolHelper.BytesToString(Model.TXID), txItemType = TransactionItemType.Input })
+                        Url = Url.Action("Script", "Explorer")
                     }))
             </div>
 
@@ -103,10 +102,9 @@
                         new Column {Name = "ToAddressDisplay",            Header = "Payee", Sortable = true, Resizable = true, Width = 200, MinWidth = 200, ClientFormatFunc = "toAddressFormatFunction"},
                         new Column {Name = "Value",                Header = "Amount (฿)", Sortable = true, Resizable = true, Width = 105, MinWidth = 105}
                     )
-                    .ClientKey("Index")
                     .Nests(new Nest {
                         ButtonClass = "viewScriptButton",
-                        Url = Url.Action("Script", "Explorer", new { txid = BitcoinProtocolHelper.BytesToString(Model.TXID), txItemType = TransactionItemType.Output })
+                        Url = Url.Action("Script", "Explorer")
                     }))
             </div>
         </div>

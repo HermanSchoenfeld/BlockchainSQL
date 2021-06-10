@@ -67,21 +67,8 @@ namespace BlockchainSQL.Web.Code
             }
         }
 
-        public Task<ScriptSummary> GetScriptSummary(string txid, int index0, TransactionItemType itemType) {
-            return WithDirtyScope(() => {
-                TransactionItem txItem;
-                switch (itemType) {
-                    case TransactionItemType.Input:
-                        txItem = _dac.GetTransactionInputByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), (uint)index0);
-                        break;
-                    case TransactionItemType.Output:
-                        txItem = _dac.GetTransactionOutputByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), (uint)index0);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(itemType), itemType.ToString());
-                }
-                return txItem.Script != null ? _dac.GetScriptSummary(txItem.Script.ID) : null;
-            });
+        public Task<ScriptSummary> GetScriptSummary(int scriptId) {
+            return WithDirtyScope(() => _dac.GetScriptSummary(scriptId));
         }
 
         public async Task<SearchResult> SearchHash(string text) {
