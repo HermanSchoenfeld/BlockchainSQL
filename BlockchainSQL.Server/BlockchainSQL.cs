@@ -18,19 +18,24 @@ namespace Tools
 
 
         public static async Task LaunchInstallServiceProcess(string destPath, DBReference database) {
-            var info = new ProcessStartInfo {
+	        var location = Assembly.GetExecutingAssembly().Location;
+	        var fileName = location.EndsWith(".dll")
+		        ? location.TrimEnd(".dll") + ".exe"
+		        : location;
+	        
+	        var info = new ProcessStartInfo {
                 UseShellExecute = true, 
-                FileName = Assembly.GetExecutingAssembly().Location, 
+                FileName = fileName, 
                 Arguments = String.Format("-install \"{0}\" \"{1}\" \"{2}\"", destPath, database.DBMSType, database.ConnectionString), 
                 ErrorDialog = false, 
                 Verb = "runas",
-                RedirectStandardOutput = false
             };            
             var started = Process.Start(info);
             var output = new StringBuilder();
             started.OutputDataReceived += (sender, args) => {
                 output.Append(args.Data);
             };
+           
             await Task.Run(() => started.WaitForExit());
             if (started.ExitCode != 0) {
                //if (Directory.Exists(destPath)) // DO NOT DELETE SINCE INSTALLING TWICE WILL REMOVE FILES BUT KEEP SERVICE
@@ -41,25 +46,31 @@ namespace Tools
         }
 
         public static async Task InstallService(string destPath, DBReference database) {
-            var currentExePath = Assembly.GetExecutingAssembly().Location;
+	        var location = Assembly.GetExecutingAssembly().Location;
+	        var currentExePath = location.EndsWith(".dll")
+		        ? location.TrimEnd(".dll") + ".exe"
+		        : location;
+	        
             try {
                 if (Directory.Exists(destPath) && Directory.EnumerateFiles(destPath).Any()) {
                     throw new SoftwareException("Path '{0}' already contains files", destPath);
                 }
+                
                 await FileSystem.CopyDirectoryAsync(Path.GetDirectoryName(currentExePath), destPath, true, true, true);
-                var destExePath = Path.Combine(destPath, Path.GetFileName(Assembly.GetExecutingAssembly().Location));               
+                var destExePath = Path.Combine(destPath, currentExePath);               
                 Debug.Assert(File.Exists(destExePath));
                 await DatabaseReferenceFileManager.CreateDatabaseConnectionFile(destExePath, database);
-                await Task.Run(() => ManagedInstallerClass.InstallHelper(new string[] {destExePath }));
+                await Task.Run(() => ManagedInstallerClass.InstallHelper(new [] {destExePath }));
 
                 try {
                     var serviceController = GetServiceController();
                     serviceController?.Start();
-                } catch {                    
+                } catch {
+	                // ignored
                 }
             } catch {
                 if (Directory.Exists(destPath))
-                    FileSystem.DeleteDirectory(destPath, true);
+                    await FileSystem.DeleteDirectoryAsync(destPath, true);
                 throw;
             }
         }
@@ -69,7 +80,7 @@ namespace Tools
             if (String.IsNullOrWhiteSpace(destPath))
                 throw new ArgumentNullException("destPath", destPath);
             if (!Directory.Exists(destPath))
-                throw new ArgumentException("Service is not installed at '{0}'".FormatWith(destPath), "destPath");
+                throw new ArgumentException("Service is not installed at '{0}'".FormatWith(destPath), nameof(destPath));
 
             var files = Directory.GetFiles(destPath, "*.exe").Where(f => !f.ToUpperInvariant().EndsWith(".VSHOST.EXE")).ToArray();
             if (files.Length == 0) {
@@ -103,7 +114,7 @@ namespace Tools
 
         public static async Task UninstallService(string destPath) {
             if (String.IsNullOrWhiteSpace(destPath))
-                throw new ArgumentNullException("destPath", destPath);
+                throw new ArgumentNullException(nameof(destPath), destPath);
 
             var serviceController = GetServiceController();
             if (serviceController != null) {
@@ -114,7 +125,7 @@ namespace Tools
             }
 
             if (!Directory.Exists(destPath))
-                throw new ArgumentException("Service is not installed at '{0}'".FormatWith(destPath), "destPath");
+                throw new ArgumentException("Service is not installed at '{0}'".FormatWith(destPath), nameof(destPath));
 
             var files = Directory.GetFiles(destPath, "*.exe").Where(f => !f.ToUpperInvariant().EndsWith(".VSHOST.EXE")).ToArray();
             if (files.Length == 0) {

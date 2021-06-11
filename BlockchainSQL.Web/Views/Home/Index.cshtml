@@ -44,7 +44,7 @@ ee@using BlockchainSQL.Web.Code
                                 var selectedItems = $('#LatestBlocksGrid').data('api').getSelection();
                                 if (selectedItems.length > 0) {
                                     var selectedItem = selectedItems[0];
-                                    window.location = "/explorer/block/?hash=" + selectedItem.Hash;
+                                    window.location = "/explorer/block?hash=" + selectedItem.Hash;
                                 }
                             });
                     });

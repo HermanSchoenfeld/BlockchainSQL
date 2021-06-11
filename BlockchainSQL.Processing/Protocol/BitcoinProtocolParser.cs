@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing.Domain;
+using FluentNHibernate.Utils;
 using NBitcoin;
 using Sphere10.Framework;
 using Block = BlockchainSQL.DataObjects.Block;
@@ -255,15 +257,16 @@ namespace BlockchainSQL.Processing {
 		}
 
 		public static void ExpandTransactionItemScript(Transaction transaction) {
+			var txnClassifier = new TransactionClassifier();
 
 			foreach (var input in transaction.Inputs) {
 				ExpandScript(input);
 
-				if (input.WitnessStackBytes != null) 
+				if (input.WitnessStackBytes?.Length > 0) {
 					ExpandWitnessScript(input);
+				}
 			}
 
-			var txnClassifier = new TransactionClassifier();
 			foreach (var output in transaction.Outputs) {
 				ExpandScript(output);
 
