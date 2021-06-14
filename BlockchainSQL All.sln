@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29209.152
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.DataAccess", "BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj", "{D7D8065C-BC79-4C87-980A-9F0E1E40A488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.DataAccess", "BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj", "{D7D8065C-BC79-4C87-980A-9F0E1E40A488}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Processing", "BlockchainSQL.Processing\BlockchainSQL.Processing.csproj", "{2474624E-3339-460C-90AC-616041BDF3D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Processing", "BlockchainSQL.Processing\BlockchainSQL.Processing.csproj", "{2474624E-3339-460C-90AC-616041BDF3D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.DataAccess.NHibernate", "BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj", "{11C589B3-6F79-4FD9-9E77-80F188F34242}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.DataAccess.NHibernate", "BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj", "{11C589B3-6F79-4FD9-9E77-80F188F34242}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - System", "4 - System", "{24285B43-F6E2-4320-BFA1-9B5C2E2DC626}"
 EndProject
@@ -18,11 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1A8EC3
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.DataObjects", "BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj", "{C8FB075F-F2F1-4663-A19C-F6F9BCC9030E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.DataObjects", "BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj", "{C8FB075F-F2F1-4663-A19C-F6F9BCC9030E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.NUnit", "BlockchainSQL.NUnit\BlockchainSQL.NUnit.csproj", "{3ECEBE06-88DB-4D5A-A8B8-7B7A5AE9B7B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.NUnit", "BlockchainSQL.NUnit\BlockchainSQL.NUnit.csproj", "{3ECEBE06-88DB-4D5A-A8B8-7B7A5AE9B7B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Web", "BlockchainSQL.Web\BlockchainSQL.Web.csproj", "{03242453-EEBA-48DD-836C-47CB7EF57D80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Web", "BlockchainSQL.Web\BlockchainSQL.Web.csproj", "{03242453-EEBA-48DD-836C-47CB7EF57D80}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - UI", "1 - UI", "{AD6B54C3-BA61-4B27-9F50-BE8122511F0E}"
 EndProject
@@ -32,43 +32,41 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Data", "3 - Data", "{59
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Unit Tests", "5 - Unit Tests", "{24EE882B-0DA1-4872-8C97-D9C99A5F244A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Web.DataObjects", "BlockchainSQL.Web.DataObjects\BlockchainSQL.Web.DataObjects.csproj", "{D1A7689D-0EAB-4A09-BEA4-FC7A5C170CBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Web.DataObjects", "BlockchainSQL.Web.DataObjects\BlockchainSQL.Web.DataObjects.csproj", "{D1A7689D-0EAB-4A09-BEA4-FC7A5C170CBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Web.DataAccess", "BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj", "{00E389DE-E9C4-416A-B9BE-A35988E6A49D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Web.DataAccess", "BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj", "{00E389DE-E9C4-416A-B9BE-A35988E6A49D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockchainSQL.Server", "BlockchainSQL.Server\BlockchainSQL.Server.csproj", "{0D5F416A-DD59-49AE-BA6B-B04C09241B06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Server", "BlockchainSQL.Server\BlockchainSQL.Server.csproj", "{0D5F416A-DD59-49AE-BA6B-B04C09241B06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework", "..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj", "{C7FF345B-C182-40EA-B5C8-0990BC475B68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework", "..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj", "{C7FF345B-C182-40EA-B5C8-0990BC475B68}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Application", "..\Framework\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj", "{9D084836-BC7D-4593-9F7B-7385D765FFC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Application", "..\Framework-v3\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj", "{9D084836-BC7D-4593-9F7B-7385D765FFC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data", "..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj", "{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data", "..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj", "{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Firebird", "..\Framework\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj", "{1C677A80-4066-42E2-A899-8137CAF1E113}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Firebird", "..\Framework-v3\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj", "{1C677A80-4066-42E2-A899-8137CAF1E113}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.MSSQL", "..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj", "{3955D8D5-8522-45CD-A157-5440EAD27DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.MSSQL", "..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj", "{3955D8D5-8522-45CD-A157-5440EAD27DF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Sqlite", "..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj", "{2F5340EE-E6EB-4605-AC36-8853180DF97A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj", "{2F5340EE-E6EB-4605-AC36-8853180DF97A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Drawing", "..\Framework\src\Sphere10.Framework.Drawing\Sphere10.Framework.Drawing.csproj", "{3D35AB46-AB43-4464-839C-8304F980ABC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Drawing", "..\Framework-v3\src\Sphere10.Framework.Drawing\Sphere10.Framework.Drawing.csproj", "{3D35AB46-AB43-4464-839C-8304F980ABC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.NUnit", "..\Framework\src\Sphere10.Framework.NUnit\Sphere10.Framework.NUnit.csproj", "{72787D46-92CB-4391-AAB2-F815201A7CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.NUnit", "..\Framework-v3\src\Sphere10.Framework.NUnit\Sphere10.Framework.NUnit.csproj", "{72787D46-92CB-4391-AAB2-F815201A7CDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Services", "..\Framework\src\Sphere10.Framework.Services\Sphere10.Framework.Services.csproj", "{141DBCCA-E7C9-41D2-890D-4F34E97E765D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Services", "..\Framework-v3\src\Sphere10.Framework.Services\Sphere10.Framework.Services.csproj", "{141DBCCA-E7C9-41D2-890D-4F34E97E765D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Web.AspNet", "..\Framework\src\Sphere10.Framework.Web.AspNet\Sphere10.Framework.Web.AspNet.csproj", "{E0CD802D-75FC-4E99-B65C-84E6C558BF46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows", "..\Framework-v3\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj", "{A09540B1-88C0-47E6-98D8-731C490DB869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows", "..\Framework\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj", "{A09540B1-88C0-47E6-98D8-731C490DB869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj", "{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms", "..\Framework\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj", "{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.MSSQL", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj", "{97D707E8-38FF-4435-B7A6-7F777D255E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.MSSQL", "..\Framework\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj", "{97D707E8-38FF-4435-B7A6-7F777D255E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.Firebird", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj", "{0AAE6912-CDE3-4D49-9AE5-63193105537C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.Firebird", "..\Framework\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj", "{0AAE6912-CDE3-4D49-9AE5-63193105537C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.Forms.Sqlite", "..\Framework\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Windows.LevelDB", "..\Framework\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.LevelDB", "..\Framework-v3\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -212,14 +210,6 @@ Global
 		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|x86.ActiveCfg = Release|Any CPU
 		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|x86.Build.0 = Release|Any CPU
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Debug|x86.ActiveCfg = Debug|x86
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Debug|x86.Build.0 = Debug|x86
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Release|x86.ActiveCfg = Release|x86
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46}.Release|x86.Build.0 = Release|x86
 		{A09540B1-88C0-47E6-98D8-731C490DB869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A09540B1-88C0-47E6-98D8-731C490DB869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A09540B1-88C0-47E6-98D8-731C490DB869}.Debug|x86.ActiveCfg = Debug|x86
@@ -291,7 +281,6 @@ Global
 		{3D35AB46-AB43-4464-839C-8304F980ABC5} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{72787D46-92CB-4391-AAB2-F815201A7CDA} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{141DBCCA-E7C9-41D2-890D-4F34E97E765D} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
-		{E0CD802D-75FC-4E99-B65C-84E6C558BF46} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{A09540B1-88C0-47E6-98D8-731C490DB869} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{97D707E8-38FF-4435-B7A6-7F777D255E3A} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}

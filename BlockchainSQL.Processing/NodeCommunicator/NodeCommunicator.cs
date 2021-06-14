@@ -74,8 +74,11 @@ namespace BlockchainSQL.Processing
                 }
 				// special case: also fetch genesis block (nodes seem to assume you have this)
 	            if (blockLocators == BlockLocators.Empty) {
-		            nextBlocks = Tools.Array.ConcatArrays( new [] { new NB.uint256(BitcoinProtocolHelper.ConvertHashToInternalOrderBytes(BitcoinProtocolHelper.GenesisHash)) }, nextBlocks);
+					nextBlocks =Tools.Array.Concat<NB.uint256>(
+						new[] { new NB.uint256(BitcoinProtocolHelper.ConvertHashToInternalOrderBytes(BitcoinProtocolHelper.GenesisHash)) },
+						nextBlocks);
 	            }
+
                 var nbBlocks = await Task.Run(() =>
                     node.GetBlocks(
                         nextBlocks

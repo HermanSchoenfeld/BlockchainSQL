@@ -32,7 +32,7 @@ namespace BlockchainSQL.Server
             {
                 if (_logger == null) return;
                 var exception = args.ExceptionObject as Exception;
-                _logger.Error("FATAL ERROR: {0}", (exception.ToDiagnosticString() ?? (args.ExceptionObject?.ToString() ?? "NULL")));
+                _logger.Error(string.Format("FATAL ERROR: {0}", (exception.ToDiagnosticString() ?? (args.ExceptionObject?.ToString() ?? "NULL"))));
             };
         }
 

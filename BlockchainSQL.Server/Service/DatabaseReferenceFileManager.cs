@@ -20,7 +20,7 @@ namespace BlockchainSQL.Server.Service
                 File.WriteAllText(
                     connectionFilePath,
                     Tools.Crypto.EncryptStringAES(
-                        XmlProvider.WriteToString(dbReference),
+                        Tools.Xml.WriteToString(dbReference),
                         password,
                         Salt
                     )
@@ -38,7 +38,7 @@ namespace BlockchainSQL.Server.Service
                 throw new FileNotFoundException("Database connection file not found", connectionFilePath);
 
             return await Task.Run(() =>
-                XmlProvider.ReadFromString<DBReference>(
+                Tools.Xml.ReadFromString<DBReference>(
                     Tools.Crypto.DecryptStringAES(
                         File.ReadAllText(connectionFilePath),
                         password,

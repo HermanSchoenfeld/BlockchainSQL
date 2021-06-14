@@ -23,7 +23,7 @@ namespace BlockchainSQL.Processing
         public OptimizedBlockOrganizer(bool optimizeForBulkLoading) {
             _mainChain = new Branch { ID = (int) KnownBranches.MainChain, ForkHeight = 0 };
             _invalidBranch = new Branch { ID = (int)KnownBranches.Invalid };
-            _processedBlocks = new SynchronizedDictionary<byte[], BlockPtr>(ByteArrayEqualityComparer.Instance);
+            _processedBlocks = new SynchronizedDictionary<byte[], BlockPtr>(new Dictionary<byte[], BlockPtr>(ByteArrayEqualityComparer.Instance));
             _generatedBranches = new SynchronizedDictionary<int, Branch>();
             _bulkLoadedBlockDbCache = new BulkFetchActionCache<byte[], BlockPtr>(
                 () => optimizeForBulkLoading ? LoadAllDatabaseBlocks() : new Dictionary<byte[], BlockPtr>(),

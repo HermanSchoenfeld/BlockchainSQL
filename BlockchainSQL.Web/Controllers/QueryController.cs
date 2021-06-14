@@ -7,6 +7,7 @@ using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
 using Sphere10.Framework.Scheduler;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace BlockchainSQL.Web.Controllers
 {
@@ -44,8 +45,9 @@ namespace BlockchainSQL.Web.Controllers
             }
             sql = sql.Trim();
             using (var session = base.OpenSession()) {
-                // Don't save query if already saved
-                var queryHash = Tools.Crypto.Hash(sql, SupportedHashAlgorithm.SHA1, addSalt: false);
+                
+				// Don't save query if already saved
+                var queryHash = Convert.ToBase64String(Hashers.Hash(CHF.SHA1_160, Encoding.UTF8.GetBytes(sql)));
                 var query = session.Query<SavedQuery>().SingleOrDefault(q => q.ContentHash == queryHash);
                 if (query != null)
                     return Json(new { WebID = query.WebID });

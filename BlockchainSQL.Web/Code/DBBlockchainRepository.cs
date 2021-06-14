@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using BlockchainSQL.DataAccess;
@@ -99,19 +98,19 @@ namespace BlockchainSQL.Web.Code
         public async Task<QueryResult> Execute(string sql, int page, int pageSize) {
             int newPageCount=0;
 
-
             string orderByHint = null;
             #region Extract order by clause for mssql CTE
             var queryXml =
                 Microsoft.SqlServer.Management.SqlParser.Parser.Parser.Parse(sql)
-                    .GetPrivatePropertyValue<object>("Script")
-                    .GetPropertyValue("Xml")
+                    .Script
+					.Xml
                     .ToString();
 
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(queryXml);
             var orderBys = xmlDoc.SelectNodes("/SqlScript/SqlBatch/SqlSelectStatement/SqlSelectSpecification/SqlOrderByClause");
-            if (orderBys.Any()) {
+            
+			if (orderBys.Count > 0) {
                 var last = orderBys.Item(orderBys.Count - 1);
                 orderByHint = last.FirstChild?.Value;
                 if (!string.IsNullOrWhiteSpace(orderByHint)) {

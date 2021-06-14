@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration.Install;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -36,7 +35,7 @@ namespace Tools
                 output.Append(args.Data);
             };
            
-            await Task.Run(() => started.WaitForExit());
+            await started.WaitForExitAsync();
             if (started.ExitCode != 0) {
                //if (Directory.Exists(destPath)) // DO NOT DELETE SINCE INSTALLING TWICE WILL REMOVE FILES BUT KEEP SERVICE
                 //    await FileSystem.DeleteAllFilesAsync(destPath, true, true); // cleans up locked files
@@ -46,12 +45,13 @@ namespace Tools
         }
 
         public static async Task InstallService(string destPath, DBReference database) {
-	        var location = Assembly.GetExecutingAssembly().Location;
-	        var currentExePath = location.EndsWith(".dll")
-		        ? location.TrimEnd(".dll") + ".exe"
-		        : location;
-	        
-            try {
+			var location = Assembly.GetExecutingAssembly().Location;
+			var currentExePath = location.EndsWith(".dll")
+				? location.TrimEnd(".dll") + ".exe"
+				: location;
+
+
+			try {
                 if (Directory.Exists(destPath) && Directory.EnumerateFiles(destPath).Any()) {
                     throw new SoftwareException("Path '{0}' already contains files", destPath);
                 }
@@ -60,9 +60,30 @@ namespace Tools
                 var destExePath = Path.Combine(destPath, currentExePath);               
                 Debug.Assert(File.Exists(destExePath));
                 await DatabaseReferenceFileManager.CreateDatabaseConnectionFile(destExePath, database);
-                await Task.Run(() => ManagedInstallerClass.InstallHelper(new [] {destExePath }));
+                
 
-                try {
+				ProcessStartInfo info = new ProcessStartInfo() {
+					UseShellExecute = true,
+					FileName = "sc.exe",
+					Arguments = $"create \"BlockchainSQL Server\" binPath=\"{destExePath}\"",
+					Verb = "runas",
+					ErrorDialog = false
+				};
+
+				var output = new StringBuilder();
+				var started = Process.Start(info);
+				started.OutputDataReceived += (sender, args) => {
+					output.Append(args.Data);
+				};
+
+				await started.WaitForExitAsync();
+
+				if (started.ExitCode != 0) {		
+					var outputMessage = output.ToString();
+					throw new SoftwareException(!string.IsNullOrWhiteSpace(outputMessage) ? outputMessage : "Error during service install.");
+				}
+
+				try {
                     var serviceController = GetServiceController();
                     serviceController?.Start();
                 } catch {
@@ -135,9 +156,29 @@ namespace Tools
             if (files.Length != 1) {
                 throw new SoftwareException("Conflicting executables found at '{0}'. Remove foreign files ending with '-Service.exe'.", destPath);
             }
-            await Task.Run(() => ManagedInstallerClass.InstallHelper(new[] { "/u", files[0] }));
-            await FileSystem.DeleteDirectoryAsync(destPath, true);
 
+			ProcessStartInfo info = new ProcessStartInfo() {
+				UseShellExecute = true,
+				FileName = "sc.exe",
+				Arguments = $"delete \"BlockchainSQL Server\"",
+				Verb = "runas",
+				ErrorDialog = false
+			};
+
+			var output = new StringBuilder();
+			var started = Process.Start(info);
+			started.OutputDataReceived += (sender, args) => {
+				output.Append(args.Data);
+			};
+
+			await started.WaitForExitAsync();
+
+			if (started.ExitCode != 0) {
+				var outputMessage = output.ToString();
+				throw new SoftwareException(!string.IsNullOrWhiteSpace(outputMessage) ? outputMessage : "Error during service uninstall.");
+			}
+
+			await FileSystem.DeleteDirectoryAsync(destPath, true);
         }
 
 

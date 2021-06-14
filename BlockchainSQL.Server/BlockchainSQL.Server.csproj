@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
@@ -19,47 +19,36 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Service\ProjectInstaller.cs">
-      <SubType>Component</SubType>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="ServiceControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="Service\BlockchainSQLService.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Update="ServiceControl.cs" />
+    <Compile Update="Service\BlockchainSQLService.cs" />
     <Compile Update="SettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <None Update="app.manifest">
       <SubType>Designer</SubType>
     </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
     <ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
   </ItemGroup>
   <ItemGroup>
+	<PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0" />
     <PackageReference Include="System.Data.SqlClient">
       <Version>4.8.2</Version>
     </PackageReference>

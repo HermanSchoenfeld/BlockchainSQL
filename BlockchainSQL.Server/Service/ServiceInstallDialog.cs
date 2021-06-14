@@ -28,7 +28,7 @@ namespace BlockchainSQL.Server
         public async Task<Result> ValidateDestinationPath() {
             var result = Result.Default;
             var path = _pathSelector.Path;
-            if (!Tools.Paths.IsWellFormedDirectoryPath(path)) {
+            if (!Tools.FileSystem.IsWellFormedDirectoryPath(path)) {
                 result.AddError("Malfomed destination path '{0}'", path);
             } else if (Directory.Exists(path)) {
                 var files = Directory.GetFiles(path);

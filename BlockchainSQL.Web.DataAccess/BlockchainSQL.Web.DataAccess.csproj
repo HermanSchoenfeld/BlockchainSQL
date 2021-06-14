@@ -1,15 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj" />
     <ProjectReference Include="..\BlockchainSQL.Web.DataObjects\BlockchainSQL.Web.DataObjects.csproj" />
   </ItemGroup>
   <ItemGroup>

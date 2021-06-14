@@ -27,7 +27,7 @@ namespace BlockchainSQL.Processing
             var lastMatchBlockFileOffset = -1L;
 
             var locators = new SynchronizedList<byte[]>();
-            locators.AddRange(blockLocators.Locations.Select(l => l.Hash));
+            locators.AddRangeSequentially(blockLocators.Locations.Select(l => l.Hash));
             lastMatchBlockFileIndex = -1;
             lastMatchBlockFileOffset = -1L;
             var foundTip = false;
@@ -61,7 +61,7 @@ namespace BlockchainSQL.Processing
             var lastMatchBlockFileOffset = -1L;
 
             var locators = new SynchronizedList<byte[]>();
-            locators.AddRange(blockLocators.Locations.Select(l => l.Hash));
+            locators.AddRangeSequentially(blockLocators.Locations.Select(l => l.Hash));
             lastMatchBlockFileIndex = -1;
             lastMatchBlockFileOffset = -1L;
             var foundTip = false;
@@ -144,7 +144,7 @@ namespace BlockchainSQL.Processing
                         matchedLocator = locators.ContainsAny(comparer, peekResult.NextBlockPrevBlockHash);
                     if (matchedLocator) {
                         using (locators.EnterWriteScope()) {
-                            var locatorIndex = locators.IndexOf(peekResult.NextBlockPrevBlockHash, comparer);
+                            var locatorIndex = locators.IndexOf(peekResult.NextBlockPrevBlockHash);
                             if (locatorIndex >= 0) {
                                 lastMatchBlockFileIndex = blockFileIndex;
                                 lastMatchBlockFileOffset = reader.TotalBytesProcessed;
@@ -154,7 +154,7 @@ namespace BlockchainSQL.Processing
                                 }
                                 // Found something near the tip, trim everything after from locators
                                 Debug.Assert(locatorIndex < locators.Count);
-                                locators.RemoveRange(locatorIndex, locators.Count - locatorIndex);
+                                locators.RemoveRangeSequentially(locatorIndex, locators.Count - locatorIndex);
                             }
                         }
                     }

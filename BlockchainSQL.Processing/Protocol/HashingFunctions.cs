@@ -19,9 +19,8 @@ namespace BlockchainSQL.Processing.Domain {
         }
 
         public static byte[] RIPEMD160(IEnumerable<byte> source) {
-            var hasher = new RIPEMD160Managed();
             var sourceArr = source as byte[] ?? source.ToArray();
-            return hasher.ComputeHash(sourceArr);            
+            return NBitcoin.Crypto.Hashes.RIPEMD160(sourceArr);            
         }
 
         public static byte[] Hash160(byte[] source) {

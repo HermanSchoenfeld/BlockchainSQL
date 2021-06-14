@@ -1,6 +1,5 @@
 ﻿using System;
-using Sphere10.Framework.Maths;
-
+using Sphere10.Framework;
 namespace BlockchainSQL.Processing
 {
     public class FastDifficultyCalculator : IDifficultyCalculator {

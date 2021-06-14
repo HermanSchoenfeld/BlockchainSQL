@@ -11,8 +11,8 @@ namespace BlockchainSQL.Processing
 
         public WipPipelineScope()
             : base(ContextID, ScopeContextPolicy.MustBeRoot) {
-            PipelineBlocks = new SynchronizedDictionary<byte[], WipBlock>(ByteArrayEqualityComparer.Instance);
-            PipelineTransactions = new SynchronizedDictionary<byte[], Transaction>(ByteArrayEqualityComparer.Instance);
+            PipelineBlocks = new SynchronizedDictionary<byte[], WipBlock>(new Dictionary<byte[], WipBlock>(ByteArrayEqualityComparer.Instance));
+            PipelineTransactions = new SynchronizedDictionary<byte[], Transaction>(new Dictionary<byte[], Transaction>(ByteArrayEqualityComparer.Instance));
             ProcessingTaskShouldExpandScripts = false;
         }
 

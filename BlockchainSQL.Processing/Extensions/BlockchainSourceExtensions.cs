@@ -2,27 +2,24 @@
 using System.Threading.Tasks;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public static class BlockchainSourceExtensions {
+namespace BlockchainSQL.Processing {
+	public static class BlockchainSourceExtensions {
 
-        public static async Task<IDisposable> EnterOpenScope(this IBlockStream source) {
-            var shouldClose = true;
-            if (!source.IsOpen) {
-                await Task.Run(() => source.Open());
-                shouldClose = true;
-            } else {
-                shouldClose = false;
-            }
-            return new ActionScope(
-                Tools.Lambda.NoOp,
-                () => {
-                    if (shouldClose && source.IsOpen) {
-                        Tools.Exceptions.ExecuteIgnoringException(source.Close);
-                    }
-                }
-            );
-        }
+		public static async Task<IDisposable> EnterOpenScope(this IBlockStream source) {
+			var shouldClose = true;
+			if (!source.IsOpen) {
+				await Task.Run(() => source.Open());
+				shouldClose = true;
+			} else {
+				shouldClose = false;
+			}
+			return new ActionScope(() => {
+				if (shouldClose && source.IsOpen) {
+					Tools.Exceptions.ExecuteIgnoringException(source.Close);
+				}
+			}
+			);
+		}
 
-    }
+	}
 }

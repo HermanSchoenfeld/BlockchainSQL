@@ -62,7 +62,7 @@ namespace BlockchainSQL.Server
         }
 
         public void Start() {
-            Scheduler.Global.AddJob(
+            Scheduler.Synchronous.AddJob(
                 JobBuilder
                     .For(MonitorService)                    
                     .Repeat.OnInterval(DateTime.Now, TimeSpan.FromSeconds(2))

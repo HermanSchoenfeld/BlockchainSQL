@@ -96,7 +96,7 @@ namespace BlockchainSQL.Processing
 							progressCallback(blocks.PercentageSourceRead);
 
 							// Log details
-							Log.Info("Processed {0:##########} blocks ({1:#} MB, TP: {2:0.00} MB/sec)\t Pipeline: (Scan: {3:0.00} sec, Process: {4:0.00} sec, Persist: {5:0.00} sec, Post-Process: {6:0.00})",
+							Log.Info(string.Format("Processed {0:##########} blocks ({1:#} MB, TP: {2:0.00} MB/sec)\t Pipeline: (Scan: {3:0.00} sec, Process: {4:0.00} sec, Persist: {5:0.00} sec, Post-Process: {6:0.00})",
 								processed.Count(),
 								Tools.Memory.ConvertMemoryMetric(blockPersistedSize, MemoryMetric.Byte, MemoryMetric.Megabyte),
 								Tools.Memory.ConvertMemoryMetric(blockPersistedSize, MemoryMetric.Byte, MemoryMetric.Megabyte) / pipelineDuration.TotalSeconds.ClipTo(Tools.Maths.EPSILON_D, double.MaxValue),
@@ -104,7 +104,7 @@ namespace BlockchainSQL.Processing
 								processingDuration.TotalSeconds,
 								savingDuration.TotalSeconds,
 								postProcessDuration.TotalSeconds
-								);
+								));
 
 							GC.Collect();
 							GC.WaitForPendingFinalizers();

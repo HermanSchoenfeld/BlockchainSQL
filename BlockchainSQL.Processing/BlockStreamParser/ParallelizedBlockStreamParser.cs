@@ -140,14 +140,14 @@ namespace BlockchainSQL.Processing
                                     progressCallback(itemsToPersist.Last().BlockchainSourcePercentage);
 
                                     // Log details
-                                    Log.Info("Processed {0:##########} blocks ({1:#} MB, TP: {2:0.00} MB/sec)\t Pipeline: (Scan: {3:0.00} sec, Process: {4:0.00} sec, Persist: {5:0.00} sec)",
+                                    Log.Info(string.Format("Processed {0:##########} blocks ({1:#} MB, TP: {2:0.00} MB/sec)\t Pipeline: (Scan: {3:0.00} sec, Process: {4:0.00} sec, Persist: {5:0.00} sec)",
                                         itemsToPersist.Count(),
                                         Tools.Memory.ConvertMemoryMetric(blockPersistedSize, MemoryMetric.Byte, MemoryMetric.Megabyte),
                                         Tools.Memory.ConvertMemoryMetric(blockPersistedSize, MemoryMetric.Byte, MemoryMetric.Megabyte)/pipelineDuration.TotalSeconds.ClipTo(Tools.Maths.EPSILON_D, double.MaxValue),
                                         scanDuration.TotalSeconds,
                                         processingDuration.TotalSeconds,
                                         savingDuration.TotalSeconds
-                                    );
+                                    ));
 
                                     // Cleanup heap regularly
                                     GC.Collect();
@@ -169,7 +169,7 @@ namespace BlockchainSQL.Processing
                     processTask.Start();
                     persistTask.Start();
                     await Task.WhenAll(scanTask, processTask, persistTask).WithAggregateException();
-                    Log.Info("Completed {0} blocks", totalBlocksPersisted);
+                    Log.Info(string.Format("Completed {0} blocks", totalBlocksPersisted));
                 }
             }
         }
