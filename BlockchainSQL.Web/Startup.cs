@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Omu.AwesomeMvc;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Web
 {
@@ -56,8 +57,8 @@ namespace BlockchainSQL.Web
 		            name: "default",
 		            pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-            
-            AppConfig.Register(Configuration);
+
+            GlobalSettings.Provider = GlobalSettings.CreateDefaultProvider();
         }
 
         private void ConfigureMvcOptions(MvcOptions mvcOptions)

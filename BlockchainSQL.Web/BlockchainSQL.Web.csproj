@@ -19,24 +19,12 @@
     <None Include="wwwroot\bootstrap.min.css" />
     <None Include="wwwroot\bootstrap.min.css.map" />
     <None Include="wwwroot\css\app.css" />
-    <None Include="wwwroot\css\bootstrap-theme.css" />
-    <None Include="wwwroot\css\bootstrap-theme.css.map" />
-    <None Include="wwwroot\css\bootstrap-theme.min.css" />
-    <None Include="wwwroot\css\bootstrap-theme.min.css.map" />
-    <None Include="wwwroot\css\bootstrap.css" />
-    <None Include="wwwroot\css\bootstrap.css.map" />
-    <None Include="wwwroot\css\bootstrap.min.css" />
-    <None Include="wwwroot\css\bootstrap.min.css.map" />
     <None Include="wwwroot\css\codemirror.css" />
-    <None Include="wwwroot\css\leadpage.css" />
-    <None Include="wwwroot\css\leadpage.css.map" />
     <None Include="wwwroot\css\preload.css" />
     <None Include="wwwroot\css\preload.css.map" />
     <None Include="wwwroot\css\style-blue.css" />
     <None Include="wwwroot\css\style-blue.css.map" />
     <None Include="wwwroot\css\vendors.css" />
-    <None Include="wwwroot\css\width-boxed.css" />
-    <None Include="wwwroot\css\width-boxed.css.map" />
     <None Include="wwwroot\css\width-full.css" />
     <None Include="wwwroot\css\width-full.css.map" />
     <None Include="wwwroot\fonts\fontawesome-webfont.eot" />
@@ -96,90 +84,6 @@
     <None Include="wwwroot\images\sql-256.png" />
     <None Include="wwwroot\images\sql-512.png" />
     <None Include="wwwroot\images\utility.png" />
-    <None Include="wwwroot\Scripts\app.js" />
-    <None Include="wwwroot\Scripts\app_init.js" />
-    <None Include="wwwroot\Scripts\awem.js" />
-    <None Include="wwwroot\Scripts\AwesomeMvc.js" />
-    <None Include="wwwroot\Scripts\bootstrap.bundle.js" />
-    <None Include="wwwroot\Scripts\bootstrap.bundle.js.map" />
-    <None Include="wwwroot\Scripts\bootstrap.bundle.min.js" />
-    <None Include="wwwroot\Scripts\bootstrap.bundle.min.js.map" />
-    <None Include="wwwroot\Scripts\bootstrap.js" />
-    <None Include="wwwroot\Scripts\bootstrap.js.map" />
-    <None Include="wwwroot\Scripts\bootstrap.min.js" />
-    <None Include="wwwroot\Scripts\bootstrap.min.js.map" />
-    <None Include="wwwroot\Scripts\carousels.js" />
-    <None Include="wwwroot\Scripts\coming.js" />
-    <None Include="wwwroot\Scripts\coming2.js" />
-    <None Include="wwwroot\Scripts\commerce.js" />
-    <None Include="wwwroot\Scripts\DropdownHover.js" />
-    <None Include="wwwroot\Scripts\e-commerce_product.js" />
-    <None Include="wwwroot\Scripts\esm\popper-utils.js" />
-    <None Include="wwwroot\Scripts\esm\popper-utils.js.map" />
-    <None Include="wwwroot\Scripts\esm\popper-utils.min.js" />
-    <None Include="wwwroot\Scripts\esm\popper-utils.min.js.map" />
-    <None Include="wwwroot\Scripts\esm\popper.js" />
-    <None Include="wwwroot\Scripts\esm\popper.js.map" />
-    <None Include="wwwroot\Scripts\esm\popper.min.js" />
-    <None Include="wwwroot\Scripts\esm\popper.min.js.map" />
-    <None Include="wwwroot\Scripts\holder.js" />
-    <None Include="wwwroot\Scripts\home_full.js" />
-    <None Include="wwwroot\Scripts\home_inverse_navbar.js" />
-    <None Include="wwwroot\Scripts\home_lead.js" />
-    <None Include="wwwroot\Scripts\home_login_full.js" />
-    <None Include="wwwroot\Scripts\home_plan.js" />
-    <None Include="wwwroot\Scripts\home_product.js" />
-    <None Include="wwwroot\Scripts\home_profile.js" />
-    <None Include="wwwroot\Scripts\home_services.js" />
-    <None Include="wwwroot\Scripts\html5shiv.min.js" />
-    <None Include="wwwroot\Scripts\index.js" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.intellisense.js" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.js" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.min.js" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.min.map" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.slim.js" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="wwwroot\Scripts\jquery-3.4.1.slim.min.map" />
-    <None Include="wwwroot\Scripts\jquery.min.map" />
-    <None Include="wwwroot\Scripts\jquery.signalR-2.2.2.js" />
-    <None Include="wwwroot\Scripts\jquery.signalR-2.2.2.min.js" />
-    <None Include="wwwroot\Scripts\jquery.validate-vsdoc.js" />
-    <None Include="wwwroot\Scripts\jquery.validate.js" />
-    <None Include="wwwroot\Scripts\jquery.validate.min.js" />
-    <None Include="wwwroot\Scripts\jquery.validate.unobtrusive.js" />
-    <None Include="wwwroot\Scripts\jquery.validate.unobtrusive.min.js" />
-    <None Include="wwwroot\Scripts\modernizr-2.8.3.js" />
-    <None Include="wwwroot\Scripts\page_charts.js" />
-    <None Include="wwwroot\Scripts\popper-utils.js" />
-    <None Include="wwwroot\Scripts\popper-utils.js.map" />
-    <None Include="wwwroot\Scripts\popper-utils.min.js" />
-    <None Include="wwwroot\Scripts\popper-utils.min.js.map" />
-    <None Include="wwwroot\Scripts\popper.js" />
-    <None Include="wwwroot\Scripts\popper.js.map" />
-    <None Include="wwwroot\Scripts\popper.min.js" />
-    <None Include="wwwroot\Scripts\popper.min.js.map" />
-    <None Include="wwwroot\Scripts\portfolio.js" />
-    <None Include="wwwroot\Scripts\README.md" />
-    <None Include="wwwroot\Scripts\respond.js" />
-    <None Include="wwwroot\Scripts\respond.matchmedia.addListener.js" />
-    <None Include="wwwroot\Scripts\respond.matchmedia.addListener.min.js" />
-    <None Include="wwwroot\Scripts\respond.min.js" />
-    <None Include="wwwroot\Scripts\slidebars.js" />
-    <None Include="wwwroot\Scripts\styleswitcher.js" />
-    <None Include="wwwroot\Scripts\styleswitcher_leadpage.js" />
-    <None Include="wwwroot\Scripts\syntax\codemirror.js" />
-    <None Include="wwwroot\Scripts\syntax\sql.js" />
-    <None Include="wwwroot\Scripts\umd\popper-utils.js" />
-    <None Include="wwwroot\Scripts\umd\popper-utils.js.map" />
-    <None Include="wwwroot\Scripts\umd\popper-utils.min.js" />
-    <None Include="wwwroot\Scripts\umd\popper-utils.min.js.map" />
-    <None Include="wwwroot\Scripts\umd\popper.js" />
-    <None Include="wwwroot\Scripts\umd\popper.js.map" />
-    <None Include="wwwroot\Scripts\umd\popper.min.js" />
-    <None Include="wwwroot\Scripts\umd\popper.min.js.map" />
-    <None Include="wwwroot\Scripts\utils.js" />
-    <None Include="wwwroot\Scripts\vendors.js" />
-    <None Include="wwwroot\Scripts\_references.js" />
     <None Include="wwwroot\themes\gui2\AwesomeMvc.css" />
     <None Include="wwwroot\themes\gui2\awe_icons.png" />
     <None Include="wwwroot\themes\gui2\editdel.png" />
@@ -198,16 +102,9 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="bootstrap" Version="4.3.1" />
-    <PackageReference Include="jQuery" Version="3.4.1" />
-    <PackageReference Include="jQuery.Validation" Version="1.17.0" />
-    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.11" />
+    <PackageReference Include="LigerShark.WebOptimizer.Core" Version="3.0.311" />
     <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="160.21099.39" />
-    <PackageReference Include="Modernizr" Version="2.8.3" />
-    <PackageReference Include="popper.js" Version="1.14.3" />
-    <PackageReference Include="Respond" Version="1.4.2" />
-    <PackageReference Include="Antlr4" Version="4.6.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.5" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Omu.Awem">
@@ -218,7 +115,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="wwwroot\Scripts\index.d.ts" />
+    <_ContentIncludedByDefault Remove="wwwroot\Scripts\jquery-validate\jquery.validate.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\Scripts\jqueryui\jquery-ui.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

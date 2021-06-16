@@ -19,7 +19,7 @@ namespace BlockchainSQL.Web.Code
 
         private const string Javascript =
 @"<script type=""text/javascript"">
-    function F{0}_BeforeSubmit(o) {{        
+    function F{0}_BeforeSubmit(o) {{      
         $('#{0} :input[type=""submit""]').prop('disabled', true).after('<img class=""formLoadingImage animated fadeIn margin-left-10"" src=""{2}""/>');
     }}
 
@@ -29,7 +29,7 @@ namespace BlockchainSQL.Web.Code
         var alertIcon = result.result ? ""fa fa-check"" : ""fa fa-exclamation"";
         $('#{0} :input[type=""submit""]').prop('disabled', false);
         $('#{0} .formLoadingImage').remove();
-        $(""#{1}"").replaceWith('<br/><div class=""form-result alert alert-' + alertType+'""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">×</button><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');
+        $(""#{1}"").replaceWith('<div id={1} class=""form-result alert alert-' + alertType+'""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">×</button><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');
         if (result.result) {{
             $('#{0}')[0].reset();
             $('#{0}').closest('form').find('input[type=text], textarea').val('');
@@ -76,8 +76,6 @@ namespace BlockchainSQL.Web.Code
                         .Success("F" + _formID + "_Success")
                         .FillFormOnContent(true)
                         .BeforeSubmit("F" + _formID + "_BeforeSubmit")
-                        
-                        
                 );
             }
         }

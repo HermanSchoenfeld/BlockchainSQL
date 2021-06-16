@@ -4,57 +4,58 @@
 @using (Html.BeginFormEx(Model, "form-horizontal")) {
     <div class="form-group">
         @Html.LabelFor(o => o.Server, new {
-            @class = "col-sm-2 control-label"
-        })
+       @class = "col-sm-2 control-label",
+   })
         <div class="col-sm-8">
             @Html.TextBoxFor(o => o.Server, new {
-                @class = "form-control"
-            })
+           @class = "form-control"
+       })
             @Html.ValidationMessageForEx(o => o.Server)
         </div>
         @Html.LabelFor(o => o.Port, new {
-            @class = "col-sm-1 control-label"
-        })
+       @class = "col-sm-1 control-label"
+   })
         <div class="col-sm-1">
             @Html.TextBoxFor(o => o.Port, new {
-                @class = "form-control",
-                rows = "8"
-            })
+           @class = "form-control",
+           rows = "8"
+       })
+
             @Html.ValidationMessageForEx(o => o.Port)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(o => o.Database, new {
-            @class = "col-sm-2 control-label"
-        })
+       @class = "col-sm-2 control-label"
+   })
         <div class="col-sm-10">
             @Html.TextBoxFor(o => o.Database, new {
-                @class = "form-control"
-            })
+           @class = "form-control"
+       })
             @Html.ValidationMessageForEx(o => o.Database)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(o => o.Username, new {
-            @class = "col-sm-2 control-label"
-        })
+       @class = "col-sm-2 control-label"
+   })
         <div class="col-sm-10">
             @Html.TextBoxFor(o => o.Username, new {
-                @class = "form-control",
-                rows = "8"
-            })
+           @class = "form-control",
+           rows = "8"
+       })
             @Html.ValidationMessageForEx(o => o.Username)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(o => o.Password, new {
-            @class = "col-sm-2 control-label"
-        })
+       @class = "col-sm-2 control-label"
+   })
         <div class="col-sm-10">
-            @Html.TextBoxFor(o => o.Password, new {
-                @class = "form-control",
-                rows = "8"
-            })
+            @Html.PasswordFor(o => o.Password, new {
+           @class = "form-control",
+           rows = "8"
+       })
             @Html.ValidationMessageForEx(o => o.Password)
         </div>
     </div>
@@ -69,23 +70,44 @@
             <input type="submit" value="Create Database" class="btn btn-ar btn-lg btn-default"/>
         </div>
         @Html.LabelFor(o => o.OverwritePolicy, new {
-            @class = "col-sm-2 control-label"
-        })
+       @class = "col-sm-6 control-label"
+   })
         <div class="col-sm-2">
             @Html.DropDownListFor(o => o.OverwritePolicy, DatabaseGenerationAlreadyExistsPolicy.Error.ToSelectList(), new {
-                @class = "form-control",
-                rows = "8"
-            })
+           @class = "form-control",
+           rows = "8"
+       })
         </div>
-        @Html.LabelFor(o => o.ConfigPassword, new {
-            @class = "col-sm-2 control-label"
-        })
-        <div class="col-sm-2">
-            @Html.TextBoxFor(o => o.ConfigPassword, new {
-                @class = "form-control",
-                rows = "8"
-            })
-            @Html.ValidationMessageForEx(o => o.ConfigPassword)
+        <div hidden>
+            @Html.LabelFor(o => o.ConfigPassword, new {
+           @class = "col-sm-2 control-label"
+       })
+            <div class="col-sm-2">
+                @Html.TextBoxFor(o => o.ConfigPassword, new {
+               @class = "form-control",
+               rows = "8"
+           })
+                @Html.ValidationMessageForEx(o => o.ConfigPassword)
+            </div>
         </div>
+
     </div>
+
+    <script>
+        function disableInputs() {       
+            var nodes = document.getElementsByTagName('input');
+            for (var i = 0; i < nodes.length; i++) {
+
+                var node = nodes[i];
+                if (node.type != "submit") {
+                    nodes[i].disabled = true;
+                }
+            }
+        }
+        var editable = '@Html.Raw(Model.Editable)'
+      
+        if (!editable) {
+            $(document).ready(disableInputs)
+            }
+    </script>
 }

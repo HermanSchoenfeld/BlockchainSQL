@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Data;
+using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using NHibernate;
+using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Web {
 	public static class AppConfig {
-		public const string WebConfigKey = "Config";
 		public const string NHSessionFactoryKey = "NHSessionFactory";
 		public const string BlockchainSchemaKey = "SchemaKey";
 		public const string DataCacheKey = "DataCacheKey";
@@ -18,11 +19,21 @@ namespace BlockchainSQL.Web {
 		private static IDatabaseGenerator Generator { get; } = WebDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
 
 		public static SiteOptions Options { get; private set; }
+		
+		private static BSqlDatabaseSettings BSqlDatabaseSettings { get; }
 
-		public static string BlockchainConnectionString { get; private set; }
-		public static string WebConnectionString { get; private set; }
+		public static string BlockchainConnectionString => BSqlDatabaseSettings.BlockchainDatabaseConnectionString;
 
-		public static bool WebDbExists => Generator.DatabaseExists(WebConnectionString);
+		public static string WebConnectionString => BSqlDatabaseSettings.WebDatabaseConnectionString;
+
+		public static bool WebDbExists => !string.IsNullOrEmpty(WebConnectionString) && Generator.DatabaseExists(WebConnectionString);
+		
+		static AppConfig() {
+			BSqlDatabaseSettings = GlobalSettings.Get<BSqlDatabaseSettings>("databaseSettings");
+			InitializeDatabases();
+			
+			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
+		}
 
 		public const string BlockchainSchemaQuery =
 
@@ -88,22 +99,11 @@ ORDER BY
 
 		#endregion
 
-		public static void Register(IConfiguration configuration) {
-			Options = configuration.Get<SiteOptions>();
-
-			WebConnectionString = configuration.GetConnectionString("Web");
-			BlockchainConnectionString = configuration.GetConnectionString("Blockchain");
-
-			if (Generator.DatabaseExists(WebConnectionString)) {
-				NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
-				DataCache = new DataCache();
-				DataCache.Load(NhSessionFactory);
-			}
-
-			if (!string.IsNullOrEmpty(BlockchainConnectionString))
-				BlockchainSchema = new MSSQLDAC(BlockchainConnectionString).ExecuteQuery(BlockchainSchemaQuery);
-			else
-				throw new InvalidOperationException("Blockchain database connection string not configured");
+		public static void SetWebDatabaseConnectionString(
+			string webConnectionString) {
+			
+			BSqlDatabaseSettings.WebDatabaseConnectionString = webConnectionString;
+			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
 		}
 
 		public static ISessionFactory NhSessionFactory {
@@ -127,6 +127,19 @@ ORDER BY
 
 		private static T GetVariable<T>(string key) {
 			return _memoryCache.Get<T>(key);
+		}
+
+		private static void InitializeDatabases() {
+			if (WebDbExists) {
+				NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
+				DataCache = new DataCache();
+				DataCache.Load(NhSessionFactory);
+			}
+
+			if (!string.IsNullOrEmpty(BlockchainConnectionString))
+				BlockchainSchema = new MSSQLDAC(BlockchainConnectionString).ExecuteQuery(BlockchainSchemaQuery);
+			else
+				throw new InvalidOperationException("Blockchain database connection string not configured");
 		}
 	}
 }

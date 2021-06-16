@@ -148,7 +148,7 @@ namespace BlockchainSQL.Web.Code
 
             var val = string.Empty;
             if (obj != null) {
-                TypeSwitch.Do(obj,
+                TypeSwitch.For(obj,
                     TypeSwitch.Case<string>(s => val = s),
                     TypeSwitch.Case<DateTime?>(dt => val = string.Format("{0:yyyy-MM-dd HH:mm:ss}", dt)),
                     TypeSwitch.Case<DateTime>(dt => val = string.Format("{0:yyyy-MM-dd HH:mm:ss}", dt)),
@@ -178,7 +178,7 @@ namespace BlockchainSQL.Web.Code
                 if ((cellDataByteArray != null && BitcoinProtocolHelper.IsValidHashByteArray(cellDataByteArray) && !colName.Contains("merkle")) ||
                     (cellDataAsString != null && BitcoinProtocolHelper.IsValidAddress(cellDataAsString))) {
 	                if (cellString != BitcoinProtocolHelper.EmptyHashString) {
-		                cellString = string.Format("<small><a href='/Search/{0}'>{0}</a></small>", cellString);
+		                cellString = string.Format("<small><a href='/Search?term={0}'>{0}</a></small>", cellString);
 	                } else {
 						cellString = string.Format("<small>{0}</small>", cellString);
 					}

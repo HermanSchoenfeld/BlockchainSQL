@@ -38,7 +38,7 @@ namespace BlockchainSQL.Processing
 
         private void SetSettingValue(KnownSettings setting, object value) {
             if (value != null) {
-                TypeSwitch.Do(value,
+                TypeSwitch.For(value,
                     TypeSwitch.Case<string>(() => Tools.Lambda.NoOp()),
                     TypeSwitch.Case<bool>((b) => value = b ? "1" : "0"),
                     TypeSwitch.Case<Mode>((m) => value = (int) m),

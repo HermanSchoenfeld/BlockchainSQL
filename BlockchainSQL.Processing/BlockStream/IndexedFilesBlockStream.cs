@@ -112,7 +112,8 @@ namespace BlockchainSQL.Processing {
 		private IEnumerable<BlockIndex> GetAllBlockLocations(string indexDB) {
 			// The LevelDB is never openend directly in order to avoid corrupting it. A copy is made and discarded.
 			var clonedIndexDB = Tools.FileSystem.GetTempEmptyDirectory(true);
-			using (new ActionScope(() => Tools.FileSystem.CopyDirectory(indexDB, clonedIndexDB, true, false, true)))
+			Tools.FileSystem.CopyDirectory(indexDB, clonedIndexDB, true, false, true);
+			
 			using (new ActionScope(() => Tools.FileSystem.DeleteDirectory(clonedIndexDB, true)))
 			using (var db = new DB(clonedIndexDB, new Options { CreateIfMissing = false })) {
 				using (var iter = db.CreateIterator(new ReadOptions { FillCache = false, VerifyCheckSums = false })) {

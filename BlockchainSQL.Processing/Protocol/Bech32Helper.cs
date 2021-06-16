@@ -7,7 +7,7 @@ namespace BlockchainSQL.Processing {
 			try {
 				Encoders.Bech32("bc").Decode(adr, out _);
 				return true;
-			} catch (Bech32FormatException e) {
+			} catch (FormatException) {
 				return false;
 			}
 		}

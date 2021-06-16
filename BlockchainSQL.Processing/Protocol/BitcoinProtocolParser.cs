@@ -310,7 +310,7 @@ namespace BlockchainSQL.Processing {
 		private static ScriptType DetermineScriptType(TransactionItem transactionItem) {
 			var result = ScriptType.Coinbase;
 
-			TypeSwitch.Do(transactionItem,
+			TypeSwitch.For(transactionItem,
 				TypeSwitch.Case<TransactionInput>(input => {
 						var isCoinbase = input.Index == 0 && input.Outpoint.TXID.All(c => c == '0');
 						result = isCoinbase ? ScriptType.Coinbase : ScriptType.Unlock;

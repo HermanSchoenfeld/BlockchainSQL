@@ -79,7 +79,7 @@ namespace BlockchainSQL.Server
             var dbmsType = _dbConnectionBar.SelectedDBMSType;
             var connectionString = _dbConnectionBar.ConnectionString;
             var disableIndexes = _disableIndexCheckBox.Checked;
-            ILogger logger = new AsyncLogger(new MulticastLogger(new TextBoxLogger(_logBox), new ConsoleLogger())) {
+            ILogger logger = new MulticastLogger(new TextBoxLogger(_logBox), new ConsoleLogger()) {
                 Options = LogOptions.InfoEnabled | LogOptions.WarningEnabled | LogOptions.ErrorEnabled
             };
 

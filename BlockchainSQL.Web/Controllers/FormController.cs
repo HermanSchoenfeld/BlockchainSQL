@@ -62,9 +62,10 @@ namespace BlockchainSQL.Web.Controllers
                 
                 var connectionString = Tools.MSSQL.CreateConnectionString(model.Server, model.Database, model.Username, model.Password, port: model.Port); ;
                 var databaseName = model.Database;
+
                 if (await GenerateDatabase(dbmsType, connectionString, databaseName, model.OverwritePolicy)) {
-	             
-	                AppConfig.Register(Configuration);
+
+	                AppConfig.SetWebDatabaseConnectionString(connectionString);
 	                
 	                return Json(new {
                         Result = true,
@@ -89,7 +90,6 @@ namespace BlockchainSQL.Web.Controllers
 
         private async Task<bool> GenerateDatabase(DBMSType dbmsType, string connectionString, string databaseName,
                                                   DatabaseGenerationAlreadyExistsPolicy existsPolicy) {
-
 	        var dropExisting = false;
 	        var createShell = false;
 	        var createDatabase = false;
@@ -122,10 +122,7 @@ namespace BlockchainSQL.Web.Controllers
 		        await Task.Run(() =>
 			        schemaGenerator.CreateNewDatabase(connectionString, DatabaseGenerationDataPolicy.PrimingData, databaseName));
 
-
-
 	        return true;
-
         }
     }
 }
