@@ -39,7 +39,7 @@ namespace BlockchainSQL.Web.Models {
 		[DisplayName("Password")]
 		public string Password { get; set; }
 
-		[DisplayName("Port")] public int Port { get; set; }
+		[DisplayName("Port")] public int Port { get; set; } = 1433;
 
 		[DisplayName("Generate if does not exist")]
 		public bool GenerateIfNotExists {get;set;}

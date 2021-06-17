@@ -29,7 +29,7 @@ namespace BlockchainSQL.Web {
 		public static bool WebDbExists => !string.IsNullOrEmpty(WebConnectionString) && Generator.DatabaseExists(WebConnectionString);
 		
 		static AppConfig() {
-			BSqlDatabaseSettings = GlobalSettings.Get<BSqlDatabaseSettings>("databaseSettings");
+			BSqlDatabaseSettings = GlobalSettings.Get<BSqlDatabaseSettings>();
 			InitializeDatabases();
 			
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
@@ -145,8 +145,6 @@ ORDER BY
 
 			if (!string.IsNullOrEmpty(BlockchainConnectionString))
 				BlockchainSchema = new MSSQLDAC(BlockchainConnectionString).ExecuteQuery(BlockchainSchemaQuery);
-			else
-				throw new InvalidOperationException("Blockchain database connection string not configured");
 		}
 	}
 }

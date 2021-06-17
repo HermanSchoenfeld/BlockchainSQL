@@ -74,6 +74,10 @@
                 @(Html.Awe()
                     .Grid("BlockTransactionsGrid")
                     .Height(0)
+                    .Mod(x => x.MiniPager())
+                    .Mod(x => x.PageInfo())
+                    .Mod(x => x.PageSize())
+                    .Mod(x => x.ColumnsSelector())
                     .Url(Url.Action("BlockTransactions", "Grid", new {
                         hash = BitcoinProtocolHelper.BytesToString(Model.Hash)
                     }))

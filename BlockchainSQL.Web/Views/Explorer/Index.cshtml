@@ -12,6 +12,10 @@
                       .Url(Url.Action("Blocks", "Grid"))
                       .PageSize(25)
                       .Groupable(false)
+                    .Mod(x => x.MiniPager())
+                    .Mod(x => x.PageInfo())
+                    .Mod(x => x.PageSize())
+                    .Mod(x => x.ColumnsSelector())
                       .Persistence(Persistence.Session) // save collapsed groups and nodes when switching between grid pages
                       .ColumnsPersistence(Persistence.Session) // save columns (width, visibility, etc..) for browser session lifetime
                       .SingleColumnSort(true)

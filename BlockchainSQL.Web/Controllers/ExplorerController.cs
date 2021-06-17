@@ -14,6 +14,9 @@ namespace BlockchainSQL.Web.Controllers {
 
 	public class ExplorerController : BaseController {
 		public ActionResult Index() {
+			if (!AppConfig.WebDbExists)
+				return Redirect("/Config");
+			
 			return View();
 		}
 

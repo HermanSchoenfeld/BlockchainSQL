@@ -81,6 +81,9 @@ namespace BlockchainSQL.Web.Controllers {
 				} else {
 					if (model.GenerateIfNotExists) {
 						if (await GenerateDatabase(dbmsType, builder.ConnectionString, builder.InitialCatalog)) {
+						
+							AppConfig.SetWebDatabaseConnectionString(builder.ConnectionString);
+							
 							return Json(new {
 								Result = true,
 								Message = "Database has been created successfully."

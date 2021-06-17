@@ -38,18 +38,17 @@ namespace BlockchainSQL.Web
 		        o.ModelMetadataDetailsProviders.Add(provider);
 	        });
 	        
-            services.AddControllersWithViews(ConfigureMvcOptions);
+	        services.AddControllersWithViews(ConfigureMvcOptions);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+	        if (env.IsDevelopment()) {
+		        app.UseDeveloperExceptionPage();
+	        }
 
-            app.UseStaticFiles();
+	        app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
