@@ -1,29 +1,27 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
-using System.Diagnostics;
-using System.IO;
-using BlockchainSQL.Web.DataAccess;
 
 namespace BlockchainSQL.Web.Models {
 
-	public class CreateDatabaseFormInput : FormModelBase {
+	public class ConfigureWebDatabaseFormInput : FormModelBase {
 
-		public CreateDatabaseFormInput() {
+		public ConfigureWebDatabaseFormInput() {
 			string webAppConfig = AppConfig.WebConnectionString;
 
 			if (!string.IsNullOrEmpty(webAppConfig)) {
-
 				var connString = new SqlConnectionStringBuilder(webAppConfig);
-				Server = connString.DataSource;
+				var source = connString.DataSource.Split(',');
+				
+				Server = source[0];
 				Database = connString.InitialCatalog;
 				Username = connString.UserID;
 				Password = connString.Password;
-				Port = 1433;
+				Port = source.Length > 1 ? int.Parse(source[1]) : 1433;
 			}
 		}
 
-		public override string FormName => "CreateDatabase";
+		public override string FormName => "ConfigureWebDatabase";
 
 		[Required]
 		[DisplayName("Server")]
@@ -41,18 +39,9 @@ namespace BlockchainSQL.Web.Models {
 		[DisplayName("Password")]
 		public string Password { get; set; }
 
-		[DisplayName("Port")]
-		public int? Port { get; set; }
+		[DisplayName("Port")] public int Port { get; set; }
 
-		[Required]
-		[DisplayName("Overwrite Policy")]
-
-		public DatabaseGenerationAlreadyExistsPolicy OverwritePolicy { get; set; }
-
-		[DataType(DataType.Password)]
-		[DisplayName("Config Password")]
-		public string ConfigPassword { get; set; }
-
-		public bool Editable { get; private set; }
+		[DisplayName("Generate if does not exist")]
+		public bool GenerateIfNotExists {get;set;}
 	}
 }

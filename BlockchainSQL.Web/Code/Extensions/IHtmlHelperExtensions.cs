@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace BlockchainSQL.Web.Code {
 	public static class HtmlHelperExtensions {
 
-		public static IDisposable BeginFormEx<T>(this IHtmlHelper<T> htmlHelper, T formModel, string formClass = null)
+		public static IDisposable BeginFormEx<T>(this IHtmlHelper<T> htmlHelper, T formModel, string formClass = null, bool resetOnSuccess = true)
 			where T : FormModelBase, new() {
-			return new FormScope<T>(htmlHelper, formModel ?? new T(), formClass);
+			return new FormScope<T>(htmlHelper, formModel ?? new T(), formClass, resetOnSuccess);
 		}
 		
 		public static IHtmlContent ValidationMessageForEx<TModel, TProperty>(this IHtmlHelper<TModel> helper,

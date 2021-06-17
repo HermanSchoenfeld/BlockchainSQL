@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
@@ -7,122 +8,149 @@ using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+using Tools;
 
-namespace BlockchainSQL.Web.Controllers
-{
-    public class FormController : BaseController {
-	    private IConfiguration Configuration { get; }
+namespace BlockchainSQL.Web.Controllers {
+	public class FormController : BaseController {
+		private IConfiguration Configuration { get; }
 
-	    public FormController(IConfiguration configuration) {
-		    Configuration = configuration;
-	    }
-	    
-	    [HttpPost]
-        [FormAction]
-        public async Task<ActionResult> Contact(ContactFormInput model) {
-            try {
-                if (!ModelState.IsValid) {
-                    return PartialView(model);
-                }
-                await Task.Run(() =>
-                    Tools.Mail.SendEmail(
-	                    AppConfig.Options.SMTPServer,
-                        model.Email ?? "no-reply@sphere10.com",
-                        "BlockchainSQL Enquiry",
-                        "Name: {1}{0}Email: {2}{0}Subject: {3}".FormatWith(Environment.NewLine, model.Name, model.Email, model.Message),
-	                    AppConfig.Options.ContactRecipientEmail,
-                        requiresSSL: true,
-                        username: AppConfig.Options.SMTPUsername,
-                        password: AppConfig.Options.SMTPPassword,
-                        port:  AppConfig.Options.SMTPPort
-                        ));
-            } catch (Exception error) {
-                // Log error
-                return Json(new {
-                    Result = false,
-                    Message = "We are experiencing technical difficulties. Please try later or contact us by another method."
-                });
-            }
-            return Json(new {
-                Result = true,
-                Message = "Thank you for contacting us, {0}. We will get back to you as soon as we can!".FormatWith(model.Name)
-            });
+		private IDatabaseGenerator DatabaseGenerator { get; }
 
-        }
+		public FormController(IConfiguration configuration) {
+			Configuration = configuration;
+			DatabaseGenerator = WebDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
+		}
 
-        [HttpPost]
-        [FormAction]
-        public async Task<ActionResult> CreateDatabase(CreateDatabaseFormInput model) {
-            if (!ModelState.IsValid) {
-                return PartialView(model);
-            }
-            try {
-                var dbmsType = DBMSType.SQLServer;
-                
-                var connectionString = Tools.MSSQL.CreateConnectionString(model.Server, model.Database, model.Username, model.Password, port: model.Port); ;
-                var databaseName = model.Database;
+		[HttpPost]
+		[FormAction]
+		public async Task<ActionResult> Contact(ContactFormInput model) {
+			try {
+				if (!ModelState.IsValid) {
+					return PartialView(model);
+				}
+				await Task.Run(() =>
+					Tools.Mail.SendEmail(
+						AppConfig.Options.SMTPServer,
+						model.Email ?? "no-reply@sphere10.com",
+						"BlockchainSQL Enquiry",
+						"Name: {1}{0}Email: {2}{0}Subject: {3}".FormatWith(Environment.NewLine, model.Name, model.Email, model.Message),
+						AppConfig.Options.ContactRecipientEmail,
+						requiresSSL: true,
+						username: AppConfig.Options.SMTPUsername,
+						password: AppConfig.Options.SMTPPassword,
+						port: AppConfig.Options.SMTPPort
+					));
+			} catch (Exception) {
+				// Log error
+				return Json(new {
+					Result = false,
+					Message = "We are experiencing technical difficulties. Please try later or contact us by another method."
+				});
+			}
+			return Json(new {
+				Result = true,
+				Message = "Thank you for contacting us, {0}. We will get back to you as soon as we can!".FormatWith(model.Name)
+			});
 
-                if (await GenerateDatabase(dbmsType, connectionString, databaseName, model.OverwritePolicy)) {
+		}
 
-	                AppConfig.SetWebDatabaseConnectionString(connectionString);
-	                
-	                return Json(new {
-                        Result = true,
-                        Message = "Database has been created successfully. <br/>Connection String: <i>{0}</i>".FormatWith(connectionString)
-                    });
-                } else {
-                    return Json(new {
-                        Result = false,
-                        Message = "Unable to create database. If already exists, please select appropriate overwrite policy."
-                    });
-                }
-            } catch (Exception error) {
-                // Log error
-                return Json(new {
-                    Result = false,
-                    Message = error.ToDisplayString()
-                });
-            }
-        }
+		[HttpPost]
+		[FormAction]
+		public async Task<ActionResult> ConfigureWebDatabase(ConfigureWebDatabaseFormInput model) {
+			if (!ModelState.IsValid) {
+				return PartialView(model);
+			}
 
+			try {
+				var dbmsType = DBMSType.SQLServer;
 
+				var builder = new SqlConnectionStringBuilder {
+					DataSource = model.Server + "," + model.Port,
+					InitialCatalog = model.Database,
+					Password = model.Password,
+					UserID = model.Username,
+				};
 
-        private async Task<bool> GenerateDatabase(DBMSType dbmsType, string connectionString, string databaseName,
-                                                  DatabaseGenerationAlreadyExistsPolicy existsPolicy) {
-	        var dropExisting = false;
-	        var createShell = false;
-	        var createDatabase = false;
-	        var schemaGenerator = WebDatabase.NewDatabaseGenerator(dbmsType);
-	        if (await Task.Run(() => schemaGenerator.DatabaseExists(connectionString))) {
-		        switch (existsPolicy) {
-			        case DatabaseGenerationAlreadyExistsPolicy.Error:
-				        return false;
-			        case DatabaseGenerationAlreadyExistsPolicy.Overwrite:
-				        dropExisting = true;
-				        createShell = true;
-				        createDatabase = true;
-				        break;
-			        case DatabaseGenerationAlreadyExistsPolicy.Append:
-				        createDatabase = true;
-				        break;
-		        }
-	        } else {
-		        createShell = true;
-		        createDatabase = true;
-	        }
+				if (DatabaseGenerator.DatabaseExists(builder.ConnectionString)) {
+					AppConfig.SetWebDatabaseConnectionString(builder.ConnectionString);
+					return Json(new {
+						Result = true,
+						Message =
+							"Web database connection details updated."
+					});
+				} else {
+					if (model.GenerateIfNotExists) {
+						if (await GenerateDatabase(dbmsType, builder.ConnectionString, builder.InitialCatalog)) {
+							return Json(new {
+								Result = true,
+								Message = "Database has been created successfully."
+							});
+						} else {
+							return Json(new {
+								Result = false,
+								Message = "Unable to create database."
+							});
+						}
+					} else {
+						return Json(new {
+							Result = false,
+							Message = "Could not connect to database, check connection details."
+						});
+					}
+				}
+			} catch (Exception error) {
+				// Log error
+				return Json(new {
+					Result = false,
+					Message = error.ToDisplayString()
+				});
+			}
+		}
 
-	        if (dropExisting)
-		        await Task.Run(() => schemaGenerator.DropDatabase(connectionString));
+		public async Task<ActionResult> ConfigureBlockchainDb(ConfigureBlockchainDbFormInput model) {
+			if (!ModelState.IsValid) {
+				return PartialView(model);
+			}
+			var builder = new SqlConnectionStringBuilder {
+				DataSource = model.Server + "," + model.Port,
+				InitialCatalog = model.Database,
+				Password = model.Password,
+				UserID = model.Username,
+			};
 
-	        if (createShell)
-		        await Task.Run(() => schemaGenerator.CreateEmptyDatabase(connectionString));
+			try {
+				if (DatabaseGenerator.DatabaseExists(builder.ConnectionString)) {
+					AppConfig.SetBlockchainDatabaseConnectionString(builder.ConnectionString);
 
-	        if (createDatabase)
-		        await Task.Run(() =>
-			        schemaGenerator.CreateNewDatabase(connectionString, DatabaseGenerationDataPolicy.PrimingData, databaseName));
+					return Json(new {
+						Result = true,
+						Message = "Blockchain database connection details updated."
+					});
+				} else {
+					return Json(new {
+						Result = false,
+						Message = "Could not connect to database, check connection details."
+					});
+				}
+			} catch (Exception error) {
+				// Log error
+				return Json(new {
+					Result = false,
+					Message = error.ToDisplayString()
+				});
+			}
+		}
 
-	        return true;
-        }
-    }
+		private async Task<bool> GenerateDatabase(DBMSType dbmsType, string connectionString, string databaseName) {
+			if (await Task.Run(() => DatabaseGenerator.DatabaseExists(connectionString)))
+				return false;
+			else {
+				await Task.Run(() => DatabaseGenerator.CreateEmptyDatabase(connectionString));
+				await Task.Run(() =>
+					DatabaseGenerator.CreateNewDatabase(connectionString, DatabaseGenerationDataPolicy.PrimingData, databaseName));
+			}
+
+			return true;
+		}
+	}
 }

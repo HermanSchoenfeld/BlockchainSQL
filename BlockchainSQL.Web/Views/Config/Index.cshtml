@@ -13,9 +13,15 @@
             <div class="col-xs-12">
                 @*<h2>Create Database</h2>*@
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Create Web Database</div>
+                    <div class="panel-heading">Web App Database</div>
                     <div class="panel-body">
-                        @Html.Partial("~/Views/Form/CreateDatabase.cshtml", new CreateDatabaseFormInput())
+                        @Html.Partial("~/Views/Form/ConfigureWebDatabase.cshtml", new ConfigureWebDatabaseFormInput())
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Blockchain Database</div>
+                    <div class="panel-body">
+                        @Html.Partial("~/Views/Form/ConfigureBlockchainDb.cshtml", new ConfigureBlockchainDbFormInput())
                     </div>
                 </div>
             </div>

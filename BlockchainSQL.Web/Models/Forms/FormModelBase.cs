@@ -12,6 +12,4 @@ namespace BlockchainSQL.Web.Models
 
         public abstract string FormName { get; }
     }
-
-   
 }

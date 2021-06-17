@@ -29,10 +29,12 @@ namespace BlockchainSQL.Web.Code
         var alertIcon = result.result ? ""fa fa-check"" : ""fa fa-exclamation"";
         $('#{0} :input[type=""submit""]').prop('disabled', false);
         $('#{0} .formLoadingImage').remove();
-        $(""#{1}"").replaceWith('<div id={1} class=""form-result alert alert-' + alertType+'""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">×</button><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');
+        $(""#{1}"").replaceWith('<div id={1} class=""form-result alert alert-' + alertType+'""><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');
         if (result.result) {{
-            $('#{0}')[0].reset();
-            $('#{0}').closest('form').find('input[type=text], textarea').val('');
+            if (""{3}"" === ""True""){{
+				$('#{0}')[0].reset();
+				$('#{0}').closest('form').find('input[type=text], textarea').val('');
+			}}          
         }}
     }}
 </script>";
@@ -43,15 +45,19 @@ namespace BlockchainSQL.Web.Code
         private readonly string _formClass;
         private readonly string _formResultID;
         private readonly IHtmlHelper<T> _htmlHelper;
+
+        private bool _resetOnSuccess;
         //private readonly string _jsResultFunc;
 
-        public FormScope(IHtmlHelper<T> htmlHelper, T formModel, string clientFormClass = null) {
+        public FormScope(IHtmlHelper<T> htmlHelper, T formModel, string clientFormClass = null, bool resetOnSuccess = true) {
             _formID = "_"+formModel.ID.ToStrictAlphaString().ToLowerInvariant();
             _htmlHelper = htmlHelper;
             _formName = formModel.FormName;
             _formClass = (_formName + "Form");
             _formResultID = _formID + "_Result";
             _omitForm = _htmlHelper.ViewData.ContainsKey(FormActionAttribute.OmitFormTag);
+            _resetOnSuccess = resetOnSuccess;
+            
             if (!_omitForm) {
                 htmlHelper.BeginForm(_formName, FormControllerName, FormMethod.Post, new {id = _formID, @class = _formClass + (!string.IsNullOrWhiteSpace(clientFormClass) ? (" " + clientFormClass) : string.Empty) });
                 Write(htmlHelper.HiddenFor(o => o.ID, new { @Value = formModel.ID.ToString()}));
@@ -66,7 +72,7 @@ namespace BlockchainSQL.Web.Code
             if (!_omitForm) {
                 _htmlHelper.EndForm();
                 Write(ResultDivHtml, _formResultID);
-                Write(Javascript.FormatWith(_formID, _formResultID, "/images/bx_loader.gif"));
+                Write(Javascript.FormatWith(_formID, _formResultID, "/images/bx_loader.gif", _resetOnSuccess));
                 Write(
                     _htmlHelper
                         .Awe()

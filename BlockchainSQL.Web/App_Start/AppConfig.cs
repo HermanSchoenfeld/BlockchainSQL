@@ -101,9 +101,16 @@ ORDER BY
 
 		public static void SetWebDatabaseConnectionString(
 			string webConnectionString) {
-			
+		
 			BSqlDatabaseSettings.WebDatabaseConnectionString = webConnectionString;
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
+			InitializeDatabases();
+		}
+
+		public static void SetBlockchainDatabaseConnectionString(string connectionString) {
+			BSqlDatabaseSettings.BlockchainDatabaseConnectionString = connectionString;
+			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
+			InitializeDatabases();
 		}
 
 		public static ISessionFactory NhSessionFactory {

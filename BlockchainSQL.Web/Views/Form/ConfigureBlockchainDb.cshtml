@@ -1,7 +1,6 @@
-﻿@using BlockchainSQL.Web.DataAccess
-@model BlockchainSQL.Web.Models.CreateDatabaseFormInput
+﻿@model BlockchainSQL.Web.Models.ConfigureBlockchainDbFormInput;
 
-@using (Html.BeginFormEx(Model, "form-horizontal")) {
+@using (Html.BeginFormEx(Model, "form-horizontal", false)) {
     <div class="form-group">
         @Html.LabelFor(o => o.Server, new {
        @class = "col-sm-2 control-label",
@@ -67,47 +66,7 @@
 
     <div class="form-group">
         <div class="col-sm-4">
-            <input type="submit" value="Create Database" class="btn btn-ar btn-lg btn-default"/>
+            <input type="submit" value="Save" class="btn btn-ar btn-lg btn-default"/>
         </div>
-        @Html.LabelFor(o => o.OverwritePolicy, new {
-       @class = "col-sm-6 control-label"
-   })
-        <div class="col-sm-2">
-            @Html.DropDownListFor(o => o.OverwritePolicy, DatabaseGenerationAlreadyExistsPolicy.Error.ToSelectList(), new {
-           @class = "form-control",
-           rows = "8"
-       })
-        </div>
-        <div hidden>
-            @Html.LabelFor(o => o.ConfigPassword, new {
-           @class = "col-sm-2 control-label"
-       })
-            <div class="col-sm-2">
-                @Html.TextBoxFor(o => o.ConfigPassword, new {
-               @class = "form-control",
-               rows = "8"
-           })
-                @Html.ValidationMessageForEx(o => o.ConfigPassword)
-            </div>
-        </div>
-
     </div>
-
-    <script>
-        function disableInputs() {       
-            var nodes = document.getElementsByTagName('input');
-            for (var i = 0; i < nodes.length; i++) {
-
-                var node = nodes[i];
-                if (node.type != "submit") {
-                    nodes[i].disabled = true;
-                }
-            }
-        }
-        var editable = '@Html.Raw(Model.Editable)'
-      
-        if (!editable) {
-            $(document).ready(disableInputs)
-            }
-    </script>
 }
