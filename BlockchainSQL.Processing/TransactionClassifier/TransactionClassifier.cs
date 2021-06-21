@@ -15,7 +15,7 @@ namespace BlockchainSQL.Processing {
 				return ScriptClass.P2WSH;
 		}
 
-		public ScriptClass ClassifyInputScript(ScriptInstruction[] instructions, ScriptType scriptType, out AddressType addressType) {
+		public ScriptClass ClassifyInputScript(ScriptInstruction[] instructions, ScriptType scriptType, bool hasWitness, out AddressType addressType) {
 			addressType = AddressType.Unknown;
 
 			if (scriptType == ScriptType.Coinbase) {
@@ -27,6 +27,11 @@ namespace BlockchainSQL.Processing {
 			if (MatchNullData_InputScript(instructions)) {
 				addressType = AddressType.None;
 				return ScriptClass.NullData;
+			}
+			
+			if (MatchesP2SH_Witness_InputScript(instructions, hasWitness)) {
+				addressType = AddressType.ScriptHash;
+				return ScriptClass.P2SH;
 			}
 
 			// P2PK (or Coinbase)
@@ -47,7 +52,7 @@ namespace BlockchainSQL.Processing {
 			}
 
 			// P2SH
-			if (MatchesP2SH_Inputcript(instructions)) {
+			if (MatchesP2SH_InputScript(instructions)) {
 				addressType = AddressType.ScriptHash;
 				return ScriptClass.P2SH;
 			}
@@ -71,7 +76,6 @@ namespace BlockchainSQL.Processing {
 				address = null;
 				return ScriptClass.NullData;
 			}
-
 			// P2PK
 			if (MatchesP2PK_OutputScript(instructions)) {
 				addressType = AddressType.PublicKey;
@@ -185,7 +189,7 @@ namespace BlockchainSQL.Processing {
 			return false;
 		}
 
-		protected virtual bool MatchesP2SH_Inputcript(ScriptInstruction[] instructions) {
+		protected virtual bool MatchesP2SH_InputScript(ScriptInstruction[] instructions) {
 			return
 				instructions.Length >= 2 &&
 				IsPushDataOpCode(instructions.Last().OpCode) &&
@@ -194,6 +198,12 @@ namespace BlockchainSQL.Processing {
 					.Reverse()
 					.Skip(1)
 					.All(IsPushByteOpCode);
+		}
+
+		protected virtual bool MatchesP2SH_Witness_InputScript(ScriptInstruction[] instructions, bool hasWitness) {
+			return instructions.Length == 1 
+			       && instructions[0].DataLE.Length == 23
+			       && hasWitness;
 		}
 
 		protected virtual bool MatchesP2SH_OutputScript(ScriptInstruction[] instructions) {

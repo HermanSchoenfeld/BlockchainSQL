@@ -276,7 +276,7 @@ namespace BlockchainSQL.Processing {
 				if (input.Script?.ScriptByteLength > 0) {
 					ExpandScript(input);
 					input.Script.ScriptClass =
-						txnClassifier.ClassifyInputScript(input.Script.Instructions.ToArray(), input.Script.ScriptType, out _);
+						txnClassifier.ClassifyInputScript(input.Script.Instructions.ToArray(), input.Script.ScriptType, input.WitnessStackBytes?.Length > 0, out _);
 				}
 
 				// if txin has witness, expand and classify wit script.
