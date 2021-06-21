@@ -1,0 +1,72 @@
+﻿@model TransactionInputScriptModel
+@{
+    Layout = "";
+}
+
+<div style="margin: 20px">
+    @if (Model.ScriptSig != null) {
+        <h5>ScriptSig</h5>
+        <table class="table table-striped animated fadeIn">
+            <tr>
+                <td>Class</td>
+                <td style="width: 80%">@Model.ScriptSig.Class (@Model.ScriptSig.Type)</td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>@Model.ScriptSig.Size bytes</td>
+            </tr>
+        </table>
+        <h6>Instructions</h6>
+        <table class="table table-condensed animated fadeIn">
+            <thead>
+            <tr>
+                <th>OpCode</th>
+                <th style="width: 80%">Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var instruction in Model.ScriptSig.Instructions) {
+                <tr>
+                    <td><span class="opcode" data-toggle="tooltip" data-placement="right" title="@instruction.Description">@instruction.OpCode</span></td>
+                    <td><small>@(instruction.DataLE ?? string.Empty)</small></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    } 
+</div>
+<div style="margin: 20px">
+    @if (Model.Witness != null) {
+        <h5>Witness</h5>
+        <table class="table table-striped animated fadeIn">
+            <tr>
+                <td>Class</td>
+                <td style="width: 80%">@Model.Witness.Class (@Model.Witness.Type)</td>
+            </tr>
+            <tr>
+                <td>Size</td>
+                <td>@Model.Witness.Size bytes</td>
+            </tr>
+        </table>
+        <h6>Instructions</h6>
+        <table class="table table-condensed animated fadeIn">
+            <thead>
+            <tr>
+                <th>OpCode</th>
+                <th style="width: 80%">Data</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var instruction in Model.Witness.Instructions) {
+                <tr>
+                    <td><span class="opcode" data-toggle="tooltip" data-placement="right" title="@instruction.Description">@instruction.OpCode</span></td>
+                    <td><small>@(instruction.DataLE ?? string.Empty)</small></td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+<script type="text/javascript">
+    $(".opcode").tooltip();
+</script>

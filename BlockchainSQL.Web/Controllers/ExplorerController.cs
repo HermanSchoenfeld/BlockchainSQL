@@ -60,10 +60,25 @@ namespace BlockchainSQL.Web.Controllers {
 			return View(txn);
 		}
 
+		public async Task<ActionResult> TransactionInputScripts(int key) {
+			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+
+			var txin = await repo.GetTransactionInputById(key);
+
+			var model = new TransactionInputScriptModel();
+			
+			if (txin.Script is not null)
+				model.ScriptSig = await repo.GetScriptSummary(txin.Script.ID);
+
+			if (txin.WitScript is not null)
+				model.Witness = await repo.GetScriptSummary(txin.WitScript.ID);
+			
+			return View(model);
+		}
+		
 		public async Task<ActionResult> Script(int key) {
 			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
 			var summary = await repo.GetScriptSummary(key);
-
 			return View(summary);
 		}
 

@@ -117,6 +117,31 @@ WHERE
                 .Cast<DataRow>()
                 .Select(Hydrators.HydrateTransactionInput);
         }
+
+        public virtual TransactionInput GetTransactionInputById(uint id) {
+	        const string query =
+		        @"SELECT TOP(1)
+    {0}
+FROM
+    TransactionInput
+    WHERE ID = {1}";
+
+
+	        var results = this.ExecuteQuery(
+			        this.QuickString(
+				        query,
+				        TransactionInputColumns.Select(c => this.QuickString("{0}", SQLBuilderCommand.ColumnName(c))).ToDelimittedString(", "),
+				        SQLBuilderCommand.Literal(id))
+		        )
+		        .Rows
+		        .Cast<DataRow>()
+		        .ToArray();
+
+	        if (results.Length != 1)
+		        throw new NoSingleRecordException("TransactionInput", results.Length);
+
+	        return Hydrators.HydrateTransactionInput(results[0]);
+        }
     }
 }
 

@@ -191,8 +191,7 @@ namespace BlockchainSQL.Server
     }
 
     public class FileScannerFormSettings : SettingsObject {
-
-        public string BlockFilePath { get; set; }
+	    public string BlockFilePath { get; set; }
 
         [DefaultValue(DBMSType.SQLServer)]
         public DBMSType DBMS { get; set; }
@@ -202,6 +201,4 @@ namespace BlockchainSQL.Server
         [DefaultValue(true)]
         public bool DisableIndexes { get; set; }
     }
-
-
 }

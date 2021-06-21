@@ -27,7 +27,8 @@ namespace BlockchainSQL.DataAccess {
             var script = results[0];
             return script;
         }
-
+        
+        
         public ScriptSummary GetScriptSummary(long scriptID) {
             const string instructionSummaryQuery =
 @"SELECT

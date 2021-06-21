@@ -30,7 +30,11 @@ namespace BlockchainSQL.Server.Service
 
 
         public static async Task<DBReference> LoadDatabaseConnectionFile(string serviceExePath) {
-            var path = Path.GetDirectoryName(serviceExePath);
+	        serviceExePath = serviceExePath.EndsWith(".dll")
+		        ? serviceExePath.TrimEnd(".dll") + ".exe"
+		        : serviceExePath;
+	        
+	        var path = Path.GetDirectoryName(serviceExePath);
             var connectionFilePath = Path.Combine(path, ConnectFileName);
             var password = serviceExePath.ToLowerInvariant();
 

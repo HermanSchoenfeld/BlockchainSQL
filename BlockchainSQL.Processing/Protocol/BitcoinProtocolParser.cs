@@ -147,20 +147,20 @@ namespace BlockchainSQL.Processing {
 					"Underlying stream is not a StreamProfiler. Please wrap the underlying Stream using a StreamProfiler");
 
 			ByteArrayBuilder txidBuilder = new ByteArrayBuilder();
-			
+
 			//full transaction profile for size calculation
 			profiler.StartListening();
-			
+
 			var transaction = new Transaction();
 			transaction.Version = reader.ReadInt32();
 			txidBuilder.Append(EndianBitConverter.Little.GetBytes(transaction.Version));
-			
+
 			profiler.StartListening();
 			var marker = (uint)ParseVarInt(reader);
 			var markerBytes = profiler.StopListening();
 			byte flag;
 			bool isSegWit = marker == 0;
-			
+
 			if (isSegWit) {
 				flag = reader.ReadByte();
 				Debug.Assert(flag > 0);
@@ -168,7 +168,7 @@ namespace BlockchainSQL.Processing {
 				profiler.StartListening();
 				transaction.InputCount = (uint)ParseVarInt(reader);
 				var inputCountBytes = profiler.StopListening();
-				
+
 				txidBuilder.Append(inputCountBytes);
 			} else {
 				transaction.InputCount = marker;
@@ -204,7 +204,7 @@ namespace BlockchainSQL.Processing {
 					transaction.Inputs[i].WitnessStackBytes = itemStack.ToArray();
 				}
 
-				
+
 				transaction.Witness = profiler.StopListening();
 			}
 
@@ -226,9 +226,19 @@ namespace BlockchainSQL.Processing {
 		}
 
 		public static TransactionInput ParseInput(EndianBinaryReader reader) {
-			var input = new TransactionInput();
-			input.Outpoint = ParseOutpoint(reader);
-			input.Script = ParseScriptBytes(reader);
+			var input = new TransactionInput {
+				Outpoint = ParseOutpoint(reader)
+			};
+
+			byte[] scriptBytes = ParseScriptBytes(reader);
+
+			if (scriptBytes.Length > 0) {
+				input.Script = new Script {
+					ScriptBytesLE = scriptBytes,
+					ScriptByteLength = scriptBytes.Length
+				};
+			}
+			
 			input.Sequence = reader.ReadUInt32();
 			return input;
 		}
@@ -243,25 +253,36 @@ namespace BlockchainSQL.Processing {
 		public static TransactionOutput ParseOutput(EndianBinaryReader reader) {
 			var output = new TransactionOutput();
 			output.Value = reader.ReadInt64();
-			output.Script = ParseScriptBytes(reader);
+			byte[] bytes = ParseScriptBytes(reader);
+
+			output.Script = new Script {
+				ScriptBytesLE = bytes,
+				ScriptByteLength = bytes.Length
+			};
+			
 			return output;
 		}
 
-		public static Script ParseScriptBytes(EndianBinaryReader reader) {
+		public static byte[] ParseScriptBytes(EndianBinaryReader reader) {
 			var script = new Script();
-			script.ScriptBytesLE = ParseStringAsBytes(reader);
-			script.ScriptByteLength = script.ScriptBytesLE.Length;
-			return script;
+			return  ParseStringAsBytes(reader);
 		}
 
 		public static void ExpandTransactionItemScript(Transaction transaction) {
 			var txnClassifier = new TransactionClassifier();
 
 			foreach (var input in transaction.Inputs) {
-				ExpandScript(input);
+				// if txin has scriptSig (P2PKH, P2SH), expand and classify
+				if (input.Script?.ScriptByteLength > 0) {
+					ExpandScript(input);
+					input.Script.ScriptClass =
+						txnClassifier.ClassifyInputScript(input.Script.Instructions.ToArray(), input.Script.ScriptType, out _);
+				}
 
+				// if txin has witness, expand and classify wit script.
 				if (input.WitnessStackBytes?.Length > 0) {
 					ExpandWitnessScript(input);
+					input.WitScript.ScriptClass = txnClassifier.ClassifyWitnessScript(input.WitScript.Instructions.ToArray());
 				}
 			}
 
@@ -292,7 +313,9 @@ namespace BlockchainSQL.Processing {
 				var instructions = ops.Select(ConvertToScriptInstruction).ToArray();
 
 				input.WitScript = new Script {
-					ScriptType = DetermineScriptType(input)
+					ScriptType = DetermineScriptType(input),
+					ScriptByteLength = input.WitnessStackBytes.Sum(x => x.Length)
+					
 				};
 
 				input.WitScript.AddInstructions(instructions);

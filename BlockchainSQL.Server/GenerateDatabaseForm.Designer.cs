@@ -68,8 +68,8 @@ namespace BlockchainSQL.Server {
             this._settingsControl.Location = new System.Drawing.Point(2, 17);
             this._settingsControl.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this._settingsControl.Name = "_settingsControl";
-            this._settingsControl.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this._settingsControl.Size = new System.Drawing.Size(761, 273);
+            this._settingsControl.Padding = new System.Windows.Forms.Padding(6);
+            this._settingsControl.Size = new System.Drawing.Size(761, 226);
             this._settingsControl.TabIndex = 0;
             // 
             // _databaseGroupBox
@@ -92,7 +92,7 @@ namespace BlockchainSQL.Server {
             this._databaseConnectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._databaseConnectionPanel.Location = new System.Drawing.Point(9, 24);
-            this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(7);
             this._databaseConnectionPanel.Name = "_databaseConnectionPanel";
             this._databaseConnectionPanel.Size = new System.Drawing.Size(744, 183);
             this._databaseConnectionPanel.TabIndex = 0;

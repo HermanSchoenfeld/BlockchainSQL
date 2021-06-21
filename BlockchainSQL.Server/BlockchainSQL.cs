@@ -57,15 +57,14 @@ namespace Tools
                 }
                 
                 await FileSystem.CopyDirectoryAsync(Path.GetDirectoryName(currentExePath), destPath, true, true, true);
-                var destExePath = Path.Combine(destPath, currentExePath);               
+                var destExePath = Path.Combine(destPath, Path.GetFileName(currentExePath));               
                 Debug.Assert(File.Exists(destExePath));
                 await DatabaseReferenceFileManager.CreateDatabaseConnectionFile(destExePath, database);
                 
-
-				ProcessStartInfo info = new ProcessStartInfo() {
+				ProcessStartInfo info = new ProcessStartInfo {
 					UseShellExecute = true,
 					FileName = "sc.exe",
-					Arguments = $"create \"BlockchainSQL Server\" binPath=\"{destExePath}\"",
+					Arguments = $"create \"BlockchainSQL Server\" binPath=\"{destExePath}\" start=auto",
 					Verb = "runas",
 					ErrorDialog = false
 				};

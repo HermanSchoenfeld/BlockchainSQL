@@ -1,5 +1,7 @@
 ﻿using Sphere10.Framework.Windows.Forms;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlockchainSQL.Server
@@ -29,7 +31,7 @@ namespace BlockchainSQL.Server
                 if (dirPicker.ShowDialog(this) == DialogResult.OK) {
                     var dir = dirPicker.SelectedPath;
                     using (LoadingCircle.EnterAnimationScope(this)) {
-                        await Tools.BlockchainSQL.LaunchUninstallServiceProcess(dir);
+                       await Tools.BlockchainSQL.LaunchUninstallServiceProcess(dir);
                     }
                     MessageBox.Show(this, "Success", "Service was stopped and uninstalled", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

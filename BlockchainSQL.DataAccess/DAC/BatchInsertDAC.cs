@@ -90,6 +90,7 @@ namespace BlockchainSQL.DataAccess {
 			var transactionScripts = transactionsArr
 				.SelectMany(t => t.Inputs)
 				.Concat(transactionsArr.SelectMany(t => t.Outputs).Cast<TransactionItem>())
+				.Where(ti => ti.Script != null)
 				.Select(ti => ti.Script);
 
 			transactionScripts = transactionScripts.Concat(

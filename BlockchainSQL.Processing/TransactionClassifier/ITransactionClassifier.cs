@@ -7,7 +7,8 @@ namespace BlockchainSQL.Processing
 
         ScriptClass ClassifyInputScript(ScriptInstruction[] inputScriptInstructions, ScriptType scriptType, out AddressType addressType);
 
-        ScriptClass ClassifyOutputScript(ScriptInstruction[] outputScriptInstructions, out AddressType addressType, out string base58CheckAddress);
+        ScriptClass ClassifyOutputScript(ScriptInstruction[] outputScriptInstructions, out AddressType addressType, out string address);
 
+        ScriptClass ClassifyWitnessScript(ScriptInstruction[] instructions);
     }
 }

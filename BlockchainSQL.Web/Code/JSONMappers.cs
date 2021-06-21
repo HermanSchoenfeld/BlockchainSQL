@@ -51,23 +51,22 @@ namespace BlockchainSQL.Web.Code
             var coinbaseOutpoint = ByteArrayEqualityComparer.Instance.Equals(transactionInput.Outpoint.TXID, BitcoinProtocolHelper.EmptyHash);
             var outpointText =
                 !coinbaseOutpoint ?
-                    string.Format("<a href='/Txn/{0}'><b>IX:</b><small>{1}</small> <b>TX:</b><small>{0}</small></a>", BitcoinProtocolHelper.BytesToString(transactionInput.Outpoint.TXID), transactionInput.Outpoint.OutputIndex) :
+                    string.Format("<a href='/explorer/transaction?txid={0}'><b>IX:</b><small>{1}</small> <b>TX:</b><small>{0}</small></a>", BitcoinProtocolHelper.BytesToString(transactionInput.Outpoint.TXID), transactionInput.Outpoint.OutputIndex) :
                     "<small><i>This payment is financed by the coinbase reward and the blocks transaction fees</i></small>";
 
             var fromAddressType = !coinbaseOutpoint ? transactionInput.TransactionOutput?.ToAddressType : AddressType.None;
 
             return new {
-                ID                      = transactionInput.ID.ToString(),
-                Index                   = transactionInput.Index.ToString(),
+	            Index                   = transactionInput.Index.ToString(),
                 FromAddressType         = fromAddressType,
                 FromAddress             = transactionInput.TransactionOutput?.ToAddress,
-                FromAddressDisplay      = !coinbaseOutpoint ? transactionInput.TransactionOutput?.ToAddress : "coinbase",
+                FromAddressDisplay      = !coinbaseOutpoint ? transactionInput.TransactionOutput?.ToAddress ?? "Missing from Database" : "coinbase",
                 FromAddressTypeDisplay  = ToFriendlyAddressType(fromAddressType),
                 Outpoint                = MapOutpoint(transactionInput.Outpoint),
                 OutpointDisplay         = outpointText,
                 Value                   = SatoshiToBTC(transactionInput.Value),
                 Sequence                = transactionInput.Sequence.ToString(),
-                ScriptId = transactionInput.ScriptId
+                ScriptId = transactionInput.ID
             };
         }
 
