@@ -20,8 +20,15 @@ namespace BlockchainSQL.Web.Code
         private const string Javascript =
 @"<script type=""text/javascript"">
     function F{0}_BeforeSubmit(o) {{      
-        $('#{0} :input[type=""submit""]').prop('disabled', true).after('<img class=""formLoadingImage animated fadeIn margin-left-10"" src=""{2}""/>');
-    }}
+
+		if (!$('#{0} :input[type=""submit""]')
+				.prop('disabled'))
+		{{
+		 $('#{0} :input[type=""submit""]')
+						.prop('disabled', true)
+						.after('<img class=""formLoadingImage animated fadeIn margin-left-10"" src=""{2}""/>');
+		}}     
+		}}
 
     function F{0}_Success(result) {{
         var alertType = result.result ? ""success"" : ""danger"";
