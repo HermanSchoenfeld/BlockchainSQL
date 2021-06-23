@@ -19,7 +19,9 @@ namespace BlockchainSQL.Web.Controllers {
 
 		[Authorize]
 		public ActionResult Index() {
-			AddPageMessage("Please confirm database connection config.", "Config required", PageMessageSeverity.Info);
+			if(!AppConfig.IsValid)
+				AddPageMessage("Please confirm database connection config.", "Config required", PageMessageSeverity.Info);
+			
 			return View();
 		}
 
