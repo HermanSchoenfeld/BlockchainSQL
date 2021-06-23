@@ -1,0 +1,31 @@
+﻿@model AuthForm
+
+@{
+    ViewBag.Title = "Authenticate";
+    Layout = "_Layout";
+}
+<div class="container">
+    @using (Html.BeginForm("Auth", "Config", true))
+    {
+        @Html.AntiForgeryToken()    
+        <div class="form-horizontal text-center">
+            <h2>Config Password</h2>
+            <hr />
+            @Html.ValidationSummary(true)
+    
+            <div class="form-group">
+                <div class="col-md-12">
+                    @Html.PasswordFor(model => model.Password)
+                </div>
+                <div class="col-md-12">
+                       @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div> 
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
-using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Caching.Memory; 
 using NHibernate;
 using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
@@ -16,22 +14,22 @@ namespace BlockchainSQL.Web {
 
 		private static IMemoryCache _memoryCache = new MemoryCache(new MemoryCacheOptions());
 
-		private static IDatabaseGenerator Generator { get; } = WebDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
-
 		public static SiteOptions Options { get; private set; }
-		
+
 		private static BSqlDatabaseSettings BSqlDatabaseSettings { get; }
 
 		public static string BlockchainConnectionString => BSqlDatabaseSettings.BlockchainDatabaseConnectionString;
 
 		public static string WebConnectionString => BSqlDatabaseSettings.WebDatabaseConnectionString;
-
-		public static bool WebDbExists => !string.IsNullOrEmpty(WebConnectionString) && Generator.DatabaseExists(WebConnectionString);
 		
+		private static bool WebDbInitialized { get; set; }
+
+		private static bool BlockchainDbInitialized { get; set; }
+
+		public static bool IsValid => WebDbInitialized && BlockchainDbInitialized;
+
 		static AppConfig() {
 			BSqlDatabaseSettings = GlobalSettings.Get<BSqlDatabaseSettings>();
-			InitializeDatabases();
-			
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
 		}
 
@@ -101,32 +99,22 @@ ORDER BY
 
 		public static void SetWebDatabaseConnectionString(
 			string webConnectionString) {
-		
+			InitializeWebAppDb();
 			BSqlDatabaseSettings.WebDatabaseConnectionString = webConnectionString;
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
-			InitializeDatabases();
 		}
 
 		public static void SetBlockchainDatabaseConnectionString(string connectionString) {
+			InitializeBlockchainSqlDb();
 			BSqlDatabaseSettings.BlockchainDatabaseConnectionString = connectionString;
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
-			InitializeDatabases();
 		}
 
-		public static ISessionFactory NhSessionFactory {
-			get => GetVariable<ISessionFactory>(NHSessionFactoryKey);
-			private set => SetVariable(NHSessionFactoryKey, value);
-		}
+		public static ISessionFactory NhSessionFactory { get; private set; }
 
-		public static DataTable BlockchainSchema {
-			get => GetVariable<DataTable>(BlockchainSchemaKey);
-			private set => SetVariable(BlockchainSchemaKey, value);
-		}
+		public static DataTable BlockchainSchema { get; private set; }
 
-		public static DataCache DataCache {
-			get => GetVariable<DataCache>(DataCacheKey);
-			private set => SetVariable(DataCacheKey, value);
-		}
+		public static DataCache DataCache { get; set; }
 
 		private static void SetVariable<T>(string key, T variable) {
 			_memoryCache.Set(key, variable);
@@ -136,15 +124,29 @@ ORDER BY
 			return _memoryCache.Get<T>(key);
 		}
 
-		private static void InitializeDatabases() {
-			if (WebDbExists) {
-				NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
-				DataCache = new DataCache();
-				DataCache.Load(NhSessionFactory);
-			}
+		private static T GetOrCreateVariable<T>(string key, Func<T> valueFactory) {
+			return _memoryCache.GetOrCreate(key, _ => valueFactory());
+		}
 
-			if (!string.IsNullOrEmpty(BlockchainConnectionString))
-				BlockchainSchema = new MSSQLDAC(BlockchainConnectionString).ExecuteQuery(BlockchainSchemaQuery);
+		public static void InitializeDatabaseObjects() {
+			InitializeWebAppDb();
+			InitializeBlockchainSqlDb();
+		}
+		
+		private static void InitializeBlockchainSqlDb() {
+			var dac = new MSSQLDAC(BlockchainConnectionString)
+				.ExecuteQuery(BlockchainSchemaQuery);
+			BlockchainDbInitialized = true;
+			BlockchainSchema = dac;
+		}
+
+		private static void InitializeWebAppDb() {
+			NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
+			
+			var dataCache = new DataCache();
+			dataCache.Load(NhSessionFactory);
+			DataCache = dataCache;
+			WebDbInitialized = true;
 		}
 	}
 }

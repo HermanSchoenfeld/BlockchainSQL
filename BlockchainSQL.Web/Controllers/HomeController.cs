@@ -7,8 +7,8 @@ namespace BlockchainSQL.Web.Controllers {
 
 		[Route("/")]
 		public ActionResult Index(string errorMessage) {
-			if (!AppConfig.WebDbExists)
-				return Redirect("/Config");
+			if (!AppConfig.IsValid)
+				return RedirectToAction("Index", "Config");
 
 			if (!string.IsNullOrWhiteSpace(errorMessage))
 				AddPageMessage(errorMessage, null, PageMessageSeverity.Error);

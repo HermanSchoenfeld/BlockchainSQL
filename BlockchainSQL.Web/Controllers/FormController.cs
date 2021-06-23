@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
 using BlockchainSQL.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Microsoft.AspNetCore.Mvc;

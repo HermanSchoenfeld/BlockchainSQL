@@ -3,10 +3,11 @@
 // This file will need updated according to the specific scenario of the application being upgraded.
 // For more information on ASP.NET Core startup files, see https://docs.microsoft.com/aspnet/core/fundamentals/startup
 
+using System;
 using BlockchainSQL.Web.Code;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,9 +37,15 @@ namespace BlockchainSQL.Web
 	        services.AddMvc(o =>
 	        {
 		        o.ModelMetadataDetailsProviders.Add(provider);
+		        o.Filters.Add(typeof(ConfigValidationFilter));
 	        });
+
+	        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+		        .AddCookie(options => {
+			        options.LoginPath = "/config/auth";
+		        });
 	        
-	        services.AddControllersWithViews(ConfigureMvcOptions);
+	        services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +57,7 @@ namespace BlockchainSQL.Web
 
 	        app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => {
 	            endpoints.MapControllerRoute(
@@ -58,10 +66,15 @@ namespace BlockchainSQL.Web
             });
 
             GlobalSettings.Provider = GlobalSettings.CreateDefaultProvider();
+            
+            TryInitializeDatabaseClasses();
         }
 
-        private void ConfigureMvcOptions(MvcOptions mvcOptions)
-        { 
+        private void TryInitializeDatabaseClasses() {
+	        try {
+		        AppConfig.InitializeDatabaseObjects();
+	        } catch (Exception) {
+	        }
         }
     }
 }
