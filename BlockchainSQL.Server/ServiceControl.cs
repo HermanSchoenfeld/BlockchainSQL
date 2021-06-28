@@ -80,41 +80,49 @@ namespace BlockchainSQL.Server
 
 		        ServiceStatus newStatus = default;
 
-		        try {
-			        
-			        if (_serviceController == null) {
-				        newStatus = ServiceStatus.NotInstalled;
-				        return;
-			        }
+				try {
 
-			        switch (_serviceController.Status) {
-				        case ServiceControllerStatus.Stopped:
-					        newStatus = ServiceStatus.Stopped;
-					        break;
-				        case ServiceControllerStatus.StartPending:
-					        newStatus = ServiceStatus.Starting;
-					        break;
-				        case ServiceControllerStatus.StopPending:
-					        newStatus = ServiceStatus.Stopping;
-					        break;
-				        case ServiceControllerStatus.Running:
-					        newStatus = ServiceStatus.Started;
-					        break;
-				        case ServiceControllerStatus.ContinuePending:
-				        case ServiceControllerStatus.PausePending:
-				        case ServiceControllerStatus.Paused:
-				        default:
-					        newStatus = ServiceStatus.Error;
-					        break;
-			        }
-			        
-		        } finally {
-			        this.InvokeEx(() => Status = newStatus);
-		        }
+					if (_serviceController == null) {
+						newStatus = ServiceStatus.NotInstalled;
+						return;
+					}
 
+					switch (_serviceController.Status) {
+						case ServiceControllerStatus.Stopped:
+							newStatus = ServiceStatus.Stopped;
+							break;
+						case ServiceControllerStatus.StartPending:
+							newStatus = ServiceStatus.Starting;
+							break;
+						case ServiceControllerStatus.StopPending:
+							newStatus = ServiceStatus.Stopping;
+							break;
+						case ServiceControllerStatus.Running:
+							newStatus = ServiceStatus.Started;
+							break;
+						case ServiceControllerStatus.ContinuePending:
+						case ServiceControllerStatus.PausePending:
+						case ServiceControllerStatus.Paused:
+						default:
+							newStatus = ServiceStatus.Error;
+							break;
+					}
+
+				} finally {
+					this.InvokeEx(() => Status = newStatus);
+				}
 	        } catch (Exception error) {
 		        ExceptionDialog.Show(this, error);
 	        }
         }
-    }
+
+		private void _serviceButton_Click(object sender, EventArgs e) {
+			if (_serviceStatus is ServiceStatus.Started or ServiceStatus.Starting) {
+				_serviceController.Stop();
+			}
+			else {
+				_serviceController.Start();
+			}
+		}
+	}
 }
