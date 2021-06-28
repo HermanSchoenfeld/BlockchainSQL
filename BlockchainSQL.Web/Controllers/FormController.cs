@@ -1,27 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
 using BlockchainSQL.Web.Models;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Tools;
+using Microsoft.Extensions.Options;
 
 namespace BlockchainSQL.Web.Controllers {
 	public class FormController : BaseController {
 		private IConfiguration Configuration { get; }
+		
+		private IOptions<SiteOptions> SiteOptions { get; }
 
 		private IDatabaseGenerator DatabaseGenerator { get; }
 
-		public FormController(IConfiguration configuration) {
+		public FormController(IConfiguration configuration, IOptions<SiteOptions> siteOptions) {
 			Configuration = configuration;
+			SiteOptions = siteOptions;
 			DatabaseGenerator = WebDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
 		}
 
@@ -60,7 +60,7 @@ namespace BlockchainSQL.Web.Controllers {
 
 		[HttpPost]
 		[FormAction]
-		public async Task<ActionResult> ConfigureWebDatabase(ConfigureWebDatabaseFormInput model) {
+		public async Task<ActionResult> ConfigureDatabases(ConfigureDatabaseFormInput model) {
 			if (!ModelState.IsValid) {
 				return PartialView(model);
 			}
@@ -68,43 +68,56 @@ namespace BlockchainSQL.Web.Controllers {
 			try {
 				var dbmsType = DBMSType.SQLServer;
 
-				var builder = new SqlConnectionStringBuilder {
-					DataSource = model.Server + "," + model.Port,
-					InitialCatalog = model.Database,
-					Password = model.Password,
-					UserID = model.Username,
+				var webConnectionStringBuilder = new SqlConnectionStringBuilder {
+					DataSource = model.WebDbModel.Server + "," + model.WebDbModel.Port,
+					InitialCatalog = model.WebDbModel.Database,
+					Password = model.WebDbModel.Password,
+					UserID = model.WebDbModel.Username,
 				};
 
-				if (DatabaseGenerator.DatabaseExists(builder.ConnectionString)) {
-					AppConfig.SetWebDatabaseConnectionString(builder.ConnectionString);
-					return Json(new {
-						Result = true,
-						Message =
-							"Web database connection details updated."
-					});
-				} else {
-					if (model.GenerateIfNotExists) {
-						if (await GenerateDatabase(dbmsType, builder.ConnectionString, builder.InitialCatalog)) {
-						
-							AppConfig.SetWebDatabaseConnectionString(builder.ConnectionString);
-							
-							return Json(new {
-								Result = true,
-								Message = "Database has been created successfully."
-							});
-						} else {
+				if (DatabaseGenerator.DatabaseExists(webConnectionStringBuilder.ConnectionString))
+					AppConfig.SetWebDatabaseConnectionString(webConnectionStringBuilder.ConnectionString);
+				else {
+					if (model.WebDbModel.GenerateIfNotExists) {
+						if (await GenerateDatabase(dbmsType,
+							webConnectionStringBuilder.ConnectionString,
+							webConnectionStringBuilder.InitialCatalog))
+							AppConfig.SetWebDatabaseConnectionString(webConnectionStringBuilder.ConnectionString);
+						else {
 							return Json(new {
 								Result = false,
-								Message = "Unable to create database."
+								Message = "Unable to create web database."
 							});
 						}
 					} else {
 						return Json(new {
 							Result = false,
-							Message = "Could not connect to database, check connection details."
+							Message = "Could not connect to web database, check connection details."
 						});
 					}
 				}
+
+				var blockchainConnectionStringBuilder = new SqlConnectionStringBuilder {
+					DataSource = model.BlockchainDbModel.Server + "," + model.BlockchainDbModel.Port,
+					InitialCatalog = model.BlockchainDbModel.Database,
+					Password = model.BlockchainDbModel.Password,
+					UserID = model.BlockchainDbModel.Username,
+				};
+
+				if (DatabaseGenerator.DatabaseExists(blockchainConnectionStringBuilder.ConnectionString))
+					AppConfig.SetBlockchainDatabaseConnectionString(blockchainConnectionStringBuilder.ConnectionString);
+				else {
+					return Json(new FormResult {
+						Result = false,
+						Message = "Could not connect to database, check connection details."
+					});
+				}
+				return Json(new FormResult {
+					Result = true,
+					Message = "Database connection details configured successfully.",
+					ResultType = FormResultType.Redirect,
+					Location = Url.Action("Index", "Explorer")
+				});
 			} catch (Exception error) {
 				// Log error
 				return Json(new {
@@ -113,39 +126,37 @@ namespace BlockchainSQL.Web.Controllers {
 				});
 			}
 		}
+		
+		[HttpPost]
+		[FormAction]
+		public async Task<ActionResult> Login(LoginForm form) {
 
-		public async Task<ActionResult> ConfigureBlockchainDb(ConfigureBlockchainDbFormInput model) {
-			if (!ModelState.IsValid) {
-				return PartialView(model);
-			}
-			var builder = new SqlConnectionStringBuilder {
-				DataSource = model.Server + "," + model.Port,
-				InitialCatalog = model.Database,
-				Password = model.Password,
-				UserID = model.Username,
-			};
-
-			try {
-				if (DatabaseGenerator.DatabaseExists(builder.ConnectionString)) {
-					AppConfig.SetBlockchainDatabaseConnectionString(builder.ConnectionString);
-
-					return Json(new {
-						Result = true,
-						Message = "Blockchain database connection details updated."
-					});
-				} else {
-					return Json(new {
-						Result = false,
-						Message = "Could not connect to database, check connection details."
-					});
-				}
-			} catch (Exception error) {
-				// Log error
-				return Json(new {
+			if (form.Username == Configuration["ConfigUsername"] && form.Password == Configuration["ConfigPassword"]) {
+				await SignInAsync();
+				return Json(new FormResult {
+					Result = true,
+					ResultType = FormResultType.Redirect,
+					Location = Url.Action("Index", "Home")
+				});
+			} else {
+				return Json(new FormResult {
 					Result = false,
-					Message = error.ToDisplayString()
+					ResultType = FormResultType.ShowMessage,
+					Message = "Invalid Login Details"
 				});
 			}
+		}
+
+		[HttpPost]
+		[FormAction]
+		public async Task<ActionResult> Logout(LogoutForm _) {
+			await HttpContext.SignOutAsync();
+
+			return Json(new FormResult {
+				Result = true,
+				ResultType = FormResultType.Redirect,
+				Location = Url.Action("Index", "Home")
+			});
 		}
 
 		private async Task<bool> GenerateDatabase(DBMSType dbmsType, string connectionString, string databaseName) {

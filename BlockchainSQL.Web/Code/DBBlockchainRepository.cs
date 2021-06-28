@@ -6,7 +6,6 @@ using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
 using BlockchainSQL.Web.Models;
-using NHibernate.Util;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 

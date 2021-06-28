@@ -4,9 +4,9 @@ using System.Data.SqlClient;
 
 namespace BlockchainSQL.Web.Models {
 
-	public class ConfigureWebDatabaseFormInput : FormModelBase {
+	public class ConfigureWebDatabaseFormModel  {
 
-		public ConfigureWebDatabaseFormInput() {
+		public ConfigureWebDatabaseFormModel() {
 			string webAppConfig = AppConfig.WebConnectionString;
 
 			if (!string.IsNullOrEmpty(webAppConfig)) {
@@ -20,8 +20,6 @@ namespace BlockchainSQL.Web.Models {
 				Port = source.Length > 1 ? int.Parse(source[1]) : 1433;
 			}
 		}
-
-		public override string FormName => "ConfigureWebDatabase";
 
 		[Required]
 		[DisplayName("Server")]

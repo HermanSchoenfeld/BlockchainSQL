@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using BlockchainSQL.Web.DataAccess;
-using Microsoft.Extensions.Caching.Memory; 
+using Microsoft.Extensions.Caching.Memory;
 using NHibernate;
 using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
@@ -21,12 +21,15 @@ namespace BlockchainSQL.Web {
 		public static string BlockchainConnectionString => BSqlDatabaseSettings.BlockchainDatabaseConnectionString;
 
 		public static string WebConnectionString => BSqlDatabaseSettings.WebDatabaseConnectionString;
-		
+
 		private static bool WebDbInitialized { get; set; }
 
 		private static bool BlockchainDbInitialized { get; set; }
 
 		public static bool IsValid => WebDbInitialized && BlockchainDbInitialized;
+
+		public static bool IsConfigured =>
+			!string.IsNullOrEmpty(BlockchainConnectionString) && !string.IsNullOrEmpty(WebConnectionString);
 
 		static AppConfig() {
 			BSqlDatabaseSettings = GlobalSettings.Get<BSqlDatabaseSettings>();
@@ -99,14 +102,14 @@ ORDER BY
 
 		public static void SetWebDatabaseConnectionString(
 			string webConnectionString) {
-			InitializeWebAppDb();
 			BSqlDatabaseSettings.WebDatabaseConnectionString = webConnectionString;
+			InitializeWebAppDb();
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
 		}
 
 		public static void SetBlockchainDatabaseConnectionString(string connectionString) {
-			InitializeBlockchainSqlDb();
 			BSqlDatabaseSettings.BlockchainDatabaseConnectionString = connectionString;
+			InitializeBlockchainSqlDb();
 			GlobalSettings.Provider.SaveSetting(BSqlDatabaseSettings);
 		}
 
@@ -132,7 +135,7 @@ ORDER BY
 			InitializeWebAppDb();
 			InitializeBlockchainSqlDb();
 		}
-		
+
 		private static void InitializeBlockchainSqlDb() {
 			var dac = new MSSQLDAC(BlockchainConnectionString)
 				.ExecuteQuery(BlockchainSchemaQuery);
@@ -142,7 +145,7 @@ ORDER BY
 
 		private static void InitializeWebAppDb() {
 			NhSessionFactory = WebDatabase.CreateSessionFactory(DBMSType.SQLServer, WebConnectionString);
-			
+
 			var dataCache = new DataCache();
 			dataCache.Load(NhSessionFactory);
 			DataCache = dataCache;

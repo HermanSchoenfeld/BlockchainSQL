@@ -18,5 +18,9 @@ namespace BlockchainSQL.Web {
 		public string SMTPPassword { get; set; }
 
 		public string ContactRecipientEmail { get; set; }
+		
+		public string ConfigPassword { get; set; }
+
+		public bool HideServer { get; set; } = true;
 	}
 }

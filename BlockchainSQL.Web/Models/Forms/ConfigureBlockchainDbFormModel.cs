@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
 namespace BlockchainSQL.Web.Models {
-	public class ConfigureBlockchainDbFormInput : FormModelBase{
+	public class ConfigureBlockchainDbFormModel {
 
-		public ConfigureBlockchainDbFormInput() {
+		public ConfigureBlockchainDbFormModel() {
 			string blockchainDbConnectionString = AppConfig.BlockchainConnectionString;
 
 			if (!string.IsNullOrEmpty(blockchainDbConnectionString)) {
@@ -20,8 +20,6 @@ namespace BlockchainSQL.Web.Models {
 				Port = source.Length > 1 ? int.Parse(source[1]) : 1433;
 			}
 		}
-
-		public override string FormName => "ConfigureBlockchainDb";
 
 		[Required]
 		[DisplayName("Server")]

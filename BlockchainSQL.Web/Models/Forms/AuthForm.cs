@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace BlockchainSQL.Web.Models {
-	public class AuthForm {
-		
-		[Required]
-		public string Password { get; set; }
+	public class LoginForm : FormModelBase {
+
+		[Required] public string Username { get; set; }
+
+		[Required] public string Password { get; set; }
+
+		public override string FormName => "Login";
 	}
 }

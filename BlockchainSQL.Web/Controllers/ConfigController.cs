@@ -1,54 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using BlockchainSQL.Web.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace BlockchainSQL.Web.Controllers {
-	public class ConfigController : BaseController {
-		private IConfiguration Configuration { get; }
 
-		public ConfigController(IConfiguration configuration) {
-			Configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+	public class ConfigController : BaseController {
+
+		private IOptions<SiteOptions> SiteOptions { get; }
+
+		public ConfigController(IOptions<SiteOptions> options) {
+			SiteOptions = options ?? throw new ArgumentNullException(nameof(options));
 		}
 
 		[Authorize]
+		[HttpGet]
+		[Route("/config")]
 		public ActionResult Index() {
-			if(!AppConfig.IsValid)
-				AddPageMessage("Please confirm database connection config.", "Config required", PageMessageSeverity.Info);
-			
 			return View();
 		}
 
-		public ActionResult Auth() {
-			return View();
+		[HttpGet]
+		[Route("/initial-config")]
+		public ActionResult InitialConfig() {
+
+			if (AppConfig.IsConfigured)
+				return RedirectToAction("Index");
+
+			return View("Index");
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> Auth(AuthForm form) {
+		public async Task<ActionResult> Auth(LoginForm form) {
 			try {
-				if (Configuration["ConfigPassword"] == form.Password) {
+				if (SiteOptions.Value.ConfigPassword == form.Password) {
 
-					var claims = new List<Claim> {
-						new(ClaimTypes.Role, "Administrator"),
-					};
-
-					var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-					var authProperties = new AuthenticationProperties {
-						ExpiresUtc = DateTimeOffset.UtcNow.AddHours(1),
-						IsPersistent = true,
-						IssuedUtc = DateTimeOffset.UtcNow
-					};
-
-					await HttpContext.SignInAsync(
-						CookieAuthenticationDefaults.AuthenticationScheme,
-						new ClaimsPrincipal(claimsIdentity),
-						authProperties);
+					await SignInAsync();
 
 					return RedirectToAction("Index", "Config");
 				} else {
