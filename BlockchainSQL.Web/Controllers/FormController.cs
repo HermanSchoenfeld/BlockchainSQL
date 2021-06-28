@@ -109,14 +109,15 @@ namespace BlockchainSQL.Web.Controllers {
 				else {
 					return Json(new FormResult {
 						Result = false,
-						Message = "Could not connect to database, check connection details."
+						Message = "Could not connect to the BlockchainSQL database, check connection details."
 					});
 				}
+				
 				return Json(new FormResult {
 					Result = true,
 					Message = "Database connection details configured successfully.",
-					ResultType = FormResultType.Redirect,
-					Location = Url.Action("Index", "Explorer")
+					ResultType = FormResultType.ReplacePage,
+					Content = await RenderViewAsync("Home/About", null , false)
 				});
 			} catch (Exception error) {
 				// Log error
@@ -136,7 +137,7 @@ namespace BlockchainSQL.Web.Controllers {
 				return Json(new FormResult {
 					Result = true,
 					ResultType = FormResultType.Redirect,
-					Location = Url.Action("Index", "Home")
+					Location = Url.Action("Index", "Query")
 				});
 			} else {
 				return Json(new FormResult {
@@ -155,7 +156,7 @@ namespace BlockchainSQL.Web.Controllers {
 			return Json(new FormResult {
 				Result = true,
 				ResultType = FormResultType.Redirect,
-				Location = Url.Action("Index", "Home")
+				Location = Url.Action("Index", "Query")
 			});
 		}
 

@@ -2,7 +2,7 @@
 	public enum FormResultType {
 		ShowMessage,
 		Redirect,
-		ReplaceView,
-		ReplacePartialView
+		ReplacePage,
+		ReplaceFormWithPartial
 	}
 }

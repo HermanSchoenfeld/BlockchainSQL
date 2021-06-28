@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -55,9 +56,14 @@ namespace BlockchainSQL.Web {
 			app.UseAuthentication();
 			app.UseAuthorization();
 			app.UseEndpoints(endpoints => {
+				
 				endpoints.MapControllerRoute(
 					name: "default",
 					pattern: "{controller=Home}/{action=Index}/{id?}");
+
+				endpoints.MapControllerRoute("QuerySlug",
+					"/{queryId:regex([a-zA-Z0-9]{{6,}})}",
+					new { controller = "Query", action = "Load" });
 			});
 
 			GlobalSettings.Provider = GlobalSettings.CreateDefaultProvider();

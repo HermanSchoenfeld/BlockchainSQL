@@ -44,11 +44,14 @@ namespace BlockchainSQL.Web.Code {
 	        var alertIcon = ""fa fa-check""; 
 	        $(""#{1}"").replaceWith('<div id={1} class=""form-result alert alert-' + alertType+'""><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');				
 		  }}
-          if (result.resultType === ""ReplaceView""){{
-			$('html').html(result.content);
+          if (result.resultType === ""ReplacePage""){{
+var doc = document;			
+doc = doc.open(""text/html"");
+			doc.write(result.content);
+			doc.close();
 		  }}
 
-		if (result.resultType === ""ReplacePartialView""){{
+		if (result.resultType === ""ReplaceFormWithPartial""){{
 			$(""#{0}"").replaceWith(result.content)
 }}		
 	else

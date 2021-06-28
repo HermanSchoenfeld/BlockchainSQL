@@ -71,7 +71,7 @@ namespace BlockchainSQL.Web.Controllers
             using (var session = base.OpenSession()) {
                 var savedQuery = session.Query<SavedQuery>().SingleOrDefault(q => q.WebID == queryID);
                 if (savedQuery == null)
-                    return Redirect("/Query");
+                    return Redirect("/");
 
                 SaveQueryLoad(DateTime.Now, savedQuery.ID);
                 

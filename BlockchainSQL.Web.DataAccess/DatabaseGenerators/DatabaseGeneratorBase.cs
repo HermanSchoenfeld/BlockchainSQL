@@ -25,6 +25,7 @@ namespace BlockchainSQL.Web.DataAccess {
             using (var sessionFactory =  GetFluentConfig(connectionString, c => CreateDatabaseViaConfiguration(c, connectionString)).BuildSessionFactory()) {
                 OnDatabaseCreated(connectionString);
                 IDataGenerator dataPopulator = null;
+                
                 switch (dataPolicy) {
                     case DatabaseGenerationDataPolicy.NoData:
                         dataPopulator = new EmptyDataGenerator(sessionFactory);
