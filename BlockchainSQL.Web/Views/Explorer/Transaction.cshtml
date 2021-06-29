@@ -73,7 +73,7 @@
                     .Mod(x => x.ColumnsSelector())
                     .Groupable(false)
                     .Selectable(SelectionType.None)
-                    .SingleColumnSort(true)
+                    .SingleColumnSort()
                     .Columns(
                         new Column {Name =  "", ClientFormat = "<div class='viewScriptButton'><span class='icon-ar icon-ar-sm icon-ar-round'><i class='fa fa-codepen'></i></span></div>", Width = 45, MinWidth = 45},
                         new Column {Name = "Index",                   Header = "Index",       Sortable = false, Resizable = true, Width = 50, MinWidth = 50},
@@ -95,7 +95,10 @@
                 @(Html.Awe()
                     .Grid("TransactionOutputGrid")
                     .Height(0)
-                    .PageSize(int.MaxValue)
+                    .Mod(x => x.MiniPager())
+                    .Mod(x => x.PageInfo())
+                    .Mod(x => x.PageSize())
+                    .Mod(x => x.ColumnsSelector())
                     .Url(Url.Action("TransactionOutputs", "Grid", new {txid = BitcoinProtocolHelper.BytesToString(Model.TXID)}))
                     .Groupable(false)
                     .Selectable(SelectionType.None)

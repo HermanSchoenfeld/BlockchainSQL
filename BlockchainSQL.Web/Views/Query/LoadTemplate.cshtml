@@ -12,7 +12,7 @@
                 <div class="panel-body">
                     <div class="list-group">
                         @foreach (var template in category.Templates) {
-                            <a href="/Query/Template/@template.ID" class="list-group-item">
+                            <a href="/query?templateId=@template.ID" class="list-group-item">
                                 <h4 class="list-group-item-heading">@template.Title</h4>
                                 <p class="list-group-item-text">@template.Description</p>
                                 </a>

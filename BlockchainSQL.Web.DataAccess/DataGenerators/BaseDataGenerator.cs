@@ -18,11 +18,12 @@ namespace BlockchainSQL.Web.DataAccess {
             using (var session = SessionFactory.OpenSession()) {
                 using (var transaction = session.BeginTransaction()) {
                     var data = CreateData();
-                    data.Apply(session.SaveOrUpdate);
+                    foreach (var o in data) {
+	                    session.Save(o);
+                    }
                     transaction.Commit();
                 }
                 session.Flush();
-                session.Close();
             } 
         }
 

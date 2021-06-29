@@ -137,7 +137,7 @@ namespace BlockchainSQL.Web.Controllers {
 				return Json(new FormResult {
 					Result = true,
 					ResultType = FormResultType.Redirect,
-					Location = Url.Action("Index", "Query")
+					Location = Url.Action("Index", "Home")
 				});
 			} else {
 				return Json(new FormResult {
@@ -156,7 +156,7 @@ namespace BlockchainSQL.Web.Controllers {
 			return Json(new FormResult {
 				Result = true,
 				ResultType = FormResultType.Redirect,
-				Location = Url.Action("Index", "Query")
+				Location = Url.Action("Index", "Home")
 			});
 		}
 

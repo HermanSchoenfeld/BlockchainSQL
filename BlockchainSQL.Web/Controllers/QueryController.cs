@@ -8,100 +8,100 @@ using Sphere10.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 
-namespace BlockchainSQL.Web.Controllers
-{
-    public class QueryController : BaseController
-    {
-        // GET: Query
-        public ActionResult Index() {
-            return View("Index", QueryPageModel.Empty);
-        }
+namespace BlockchainSQL.Web.Controllers {
+	public class QueryController : BaseController {
+		
+		// GET: Query
+		public ActionResult Index(int? templateId) {
+			if (templateId > 0) {
+				if (!AppConfig.DataCache.Templates.ContainsKey(templateId.Value)) {
+					AddPageMessage("Query template not found", "Error", PageMessageSeverity.Error);
+					return View("Index", QueryPageModel.Default);
+				}
+				var template = AppConfig.DataCache.Templates[templateId.Value];
+			
+				return View("Index", new QueryPageModel(template.MSSQL));
+			}
+			
+			return View("Index", QueryPageModel.Default);
+		}
 
-        [HttpPost]
-        public async Task<ActionResult> Execute(string sql, int page, int pageSize) {
-            // validate SQL
-            var result = new QueryResultModel();
-            try {                
-                var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
-                var start = DateTime.UtcNow;
-                try {
-                    result.Result = await repo.Execute(sql, page, pageSize);
-                } finally {
-                    var end = DateTime.UtcNow;
-                    result.ExecutedOn = start;
-                    result.ExecutionDuration = end - start;
-                }
-            } catch (Exception error) {
-                result.Messages.Add(new PageMessage { Title ="Error", Description = error.ToDisplayString(), Dismissable = false, Severity = PageMessageSeverity.Error});
-            }
-            return PartialView("Result", result);
-        }
+		[HttpPost]
+		public async Task<ActionResult> Execute(string sql, int page, int pageSize) {
+			// validate SQL
+			var result = new QueryResultModel();
+			try {
+				var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+				var start = DateTime.UtcNow;
+				try {
+					result.Result = await repo.Execute(sql, page, pageSize);
+				} finally {
+					var end = DateTime.UtcNow;
+					result.ExecutedOn = start;
+					result.ExecutionDuration = end - start;
+				}
+			} catch (Exception error) {
+				result.Messages.Add(new PageMessage {
+					Title = "Error", Description = error.ToDisplayString(), Dismissable = false, Severity = PageMessageSeverity.Error
+				});
+			}
+			return PartialView("Result", result);
+		}
 
-        [HttpPost]
-        public async Task<ActionResult> Save(string sql) {
-            if (string.IsNullOrWhiteSpace(sql)) {
-                return Redirect("/Query");
-            }
-            sql = sql.Trim();
-            using (var session = base.OpenSession()) {
-                
+		[HttpPost]
+		public async Task<ActionResult> Save(string sql) {
+			if (string.IsNullOrWhiteSpace(sql)) {
+				return Redirect("/Query");
+			}
+			sql = sql.Trim();
+			using (var session = base.OpenSession()) {
+
 				// Don't save query if already saved
-                var queryHash = Convert.ToBase64String(Hashers.Hash(CHF.SHA1_160, Encoding.UTF8.GetBytes(sql)));
-                var query = session.Query<SavedQuery>().SingleOrDefault(q => q.ContentHash == queryHash);
-                if (query != null)
-                    return Json(new { WebID = query.WebID });
+				var queryHash = Convert.ToBase64String(Hashers.Hash(CHF.SHA1_160, Encoding.UTF8.GetBytes(sql)));
+				var query = session.Query<SavedQuery>().SingleOrDefault(q => q.ContentHash == queryHash);
+				if (query != null)
+					return Json(new { WebID = query.WebID });
 
-                // Save query
-                query = new SavedQuery {
-                    SQL = sql,
-                    DBMS = SupportedDBMS.SQLServer,
-                    DateTime = DateTime.UtcNow,
-                    ContentHash = queryHash,
-                    Result = string.Empty
-                };
-                await Task.Run(() => session.SaveOrUpdate(query));
-                query.WebID = UrlID.Generate((uint)query.ID);
-                session.Flush();
-                await Task.Run(() => session.SaveOrUpdate(query));
-                return Json(new { WebID = query.WebID });
-            }
-        }
+				// Save query
+				query = new SavedQuery {
+					SQL = sql,
+					DBMS = SupportedDBMS.SQLServer,
+					DateTime = DateTime.UtcNow,
+					ContentHash = queryHash,
+					Result = string.Empty
+				};
+				await Task.Run(() => session.SaveOrUpdate(query));
+				query.WebID = UrlID.Generate((uint)query.ID);
+				session.Flush();
+				await Task.Run(() => session.SaveOrUpdate(query));
+				return Json(new { WebID = query.WebID });
+			}
+		}
 
-        public async Task<ActionResult> Load(string queryID) {
-            using (var session = base.OpenSession()) {
-                var savedQuery = session.Query<SavedQuery>().SingleOrDefault(q => q.WebID == queryID);
-                if (savedQuery == null)
-                    return Redirect("/");
+		public async Task<ActionResult> Load(string queryID) {
+			using (var session = base.OpenSession()) {
+				var savedQuery = session.Query<SavedQuery>().SingleOrDefault(q => q.WebID == queryID);
+				if (savedQuery == null)
+					return Redirect("/");
 
-                SaveQueryLoad(DateTime.Now, savedQuery.ID);
-                
-                return View("Index", new QueryPageModel(savedQuery.SQL));
-            }
-        }
+				SaveQueryLoad(DateTime.Now, savedQuery.ID);
 
-        public ActionResult Template(int templateID) {
-            using (var session = base.OpenSession()) {
-                if (!AppConfig.DataCache.Templates.ContainsKey(templateID)) {
-                    base.AddPageMessage("Query template not found", "Error", PageMessageSeverity.Error);
-                    return View("Index", QueryPageModel.Empty);
-                }
-                var template = AppConfig.DataCache.Templates[templateID];
-                return View("Index", new QueryPageModel(template.MSSQL));
-            }
-        }
+				return View("Index", new QueryPageModel(savedQuery.SQL));
+			}
+		}
 
-        public ActionResult LoadTemplate() {
-            return PartialView(new LoadTemplateModel(AppConfig.DataCache.QueryCategoriesWithTemplates));
-        }
+		public ActionResult LoadTemplate() {
+			return PartialView(new LoadTemplateModel(AppConfig.DataCache.QueryCategoriesWithTemplates));
+		}
 
-        private void SaveQueryLoad(DateTime dateTime, int savedQueryID) {
-            using (var session = base.OpenSession()) {
-                var savedQueryLoad = new SavedQueryLoad {
-                    SavedQuery = session.Load<SavedQuery>(savedQueryID),
-                    LoadTimeUTC = DateTime.UtcNow
-                };
-                session.Save(savedQueryLoad);
-            }
-        }
-    }
+		private void SaveQueryLoad(DateTime dateTime, int savedQueryID) {
+			using (var session = base.OpenSession()) {
+				var savedQueryLoad = new SavedQueryLoad {
+					SavedQuery = session.Load<SavedQuery>(savedQueryID),
+					LoadTimeUTC = DateTime.UtcNow
+				};
+				session.Save(savedQueryLoad);
+			}
+		}
+	}
 }
