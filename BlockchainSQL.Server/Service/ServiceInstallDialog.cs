@@ -114,36 +114,34 @@ namespace BlockchainSQL.Server
 
         protected virtual void LoadFormSettings() {
             using (this.EnterUpdateScope()) {
-                var settings = UserSettings.Get<FormSettings>();
+                var settings = GlobalSettings.Get<FormSettings>();
                 _pathSelector.Path = settings.DestFolder;
-                _passwordTextBox.Text = settings.Password;
                 _databaseConnectionPanel.SelectedDBMSType = settings.DBMS;
                 _databaseConnectionPanel.ConnectionString = settings.ConnectionString;
+				_installWebUICheckbox.Checked = settings.IsWebUIEnabled;
             }
         }
 
         protected virtual void SaveFormSettings() {
-            var settings = UserSettings.Get<FormSettings>();
+            var settings = GlobalSettings.Get<FormSettings>();
             settings.DestFolder = _pathSelector.Path;
-            settings.Password = _passwordTextBox.Text;
             settings.DBMS = _databaseConnectionPanel.SelectedDBMSType;
             settings.ConnectionString = _databaseConnectionPanel.ConnectionString;
-#if DEBUG
+			settings.IsWebUIEnabled = _installWebUICheckbox.Checked;
+
 			settings.Save();
-#endif
         }
 
         public class FormSettings : SettingsObject {
             public string DestFolder { get; set; }
-
-            public string Password { get; set; }
 
             [DefaultValue(DBMSType.SQLServer)]
             public DBMSType DBMS { get; set; }
 
             public string ConnectionString { get; set; }
 
+			public bool IsWebUIEnabled { get; set; }
         }
-    }
+	}
 
 }

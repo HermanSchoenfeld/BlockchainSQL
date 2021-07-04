@@ -8,8 +8,6 @@ using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Sphere10.Framework.Windows.Forms;
 using Sphere10.Framework.Application;
-using Sphere10.Framework.Windows.Forms.WinForms;
-using Sphere10.Framework.Windows;
 
 namespace BlockchainSQL.Server
 {
@@ -19,7 +17,7 @@ namespace BlockchainSQL.Server
         /// </summary>
         [STAThread]
         private static void Main(string[] args) {
-            if (!Environment.UserInteractive || args.Any(a => a.ToUpperInvariant() == "-SERVICE")) {
+	        if (!Environment.UserInteractive || args.Any(a => a.ToUpperInvariant() == "-SERVICE")) {
                 RunAsService();
             } else if (args.Length == 0) {
                 RunAsGUI();
@@ -40,14 +38,14 @@ namespace BlockchainSQL.Server
                 PrintUsage();
             }
         }
-
-
+        
         private static void RunAsGUI() {
             try {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 AppDomain.CurrentDomain.UnhandledException += (s, e) => Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", (Exception) e.ExceptionObject));
                 Application.ThreadException += (s, e) => Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", e.Exception));
+                
                 SystemLog.RegisterLogger(new ConsoleLogger());
                 Sphere10Framework.Instance.StartWinFormsApplication<MainForm>();
             } catch (Exception error) {
@@ -79,6 +77,7 @@ namespace BlockchainSQL.Server
                 var path = arguments[1];
                 var dbType = arguments[2];
                 var dbConnString = arguments[3];
+
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 

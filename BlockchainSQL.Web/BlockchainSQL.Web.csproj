@@ -4,6 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	  <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	  <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <None Include="wwwroot\bootstrap-grid.css" />

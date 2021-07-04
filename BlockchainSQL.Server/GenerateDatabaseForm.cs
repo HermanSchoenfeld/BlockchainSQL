@@ -129,7 +129,7 @@ namespace BlockchainSQL.Server {
 
         private void LoadFormSettings() {
             try {
-                var settings = UserSettings.Get<FormSettings>();
+                var settings = GlobalSettings.Get<FormSettings>();
                 _databaseConnectionPanel.SelectedDBMSType = settings.DBMSType;
                 _databaseConnectionPanel.ConnectionString = settings.ConnectionString;
             } catch {
@@ -138,7 +138,7 @@ namespace BlockchainSQL.Server {
         }
 
         private void SaveFormSettings() {
-            var settings = UserSettings.Get<FormSettings>();
+            var settings = GlobalSettings.Get<FormSettings>();
             settings.DBMSType = _databaseConnectionPanel.SelectedDBMSType;
             settings.ConnectionString = _databaseConnectionPanel.ConnectionString;
             settings.Save();

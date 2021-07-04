@@ -1,14 +1,20 @@
 ﻿using Sphere10.Framework.Windows.Forms;
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Server
 {
     public partial class MainForm : LiteMainForm {
         public MainForm() {
             InitializeComponent();
+            
+            GlobalSettings.Provider =
+	            new DirectorySettingsProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
+		            "BlockchainSQL"));
         }
 
         private void _generateDatabaseButton_Click(object sender, EventArgs e) {
