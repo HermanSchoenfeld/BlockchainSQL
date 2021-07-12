@@ -130,10 +130,12 @@ namespace BlockchainSQL.Server {
 		private void StartWebUi() {
 			var dllPath = GetWebUIDllPath();
 
+			var url = $"http://*:{_settings.WebUIPort}";
+
 			if (File.Exists(dllPath)) {
 				ProcessStartInfo startInfo = new ProcessStartInfo() {
 					FileName = "dotnet",
-					ArgumentList = { $"{dllPath}" },
+					ArgumentList = { $"{dllPath}", "--urls", $"{url}"},
 					WorkingDirectory = Path.GetDirectoryName(dllPath)
 				};
 

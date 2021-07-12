@@ -24,6 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
             this._installOptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this._webUIPort = new System.Windows.Forms.NumericUpDown();
+            this.webUiPortLabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this._installWebUICheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this._pathSelector = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
             this._installButton = new System.Windows.Forms.Button();
@@ -32,9 +36,8 @@
             this._testConnectionButon = new System.Windows.Forms.Button();
             this._databaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
             this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
-            this._installWebUICheckbox = new System.Windows.Forms.CheckBox();
-            this.label3 = new System.Windows.Forms.Label();
             this._installOptionsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._webUIPort)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,6 +45,8 @@
             // 
             this._installOptionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._installOptionsGroupBox.Controls.Add(this._webUIPort);
+            this._installOptionsGroupBox.Controls.Add(this.webUiPortLabel);
             this._installOptionsGroupBox.Controls.Add(this.label3);
             this._installOptionsGroupBox.Controls.Add(this._installWebUICheckbox);
             this._installOptionsGroupBox.Controls.Add(this.label1);
@@ -50,10 +55,54 @@
             this._installOptionsGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._installOptionsGroupBox.Name = "_installOptionsGroupBox";
             this._installOptionsGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._installOptionsGroupBox.Size = new System.Drawing.Size(642, 88);
+            this._installOptionsGroupBox.Size = new System.Drawing.Size(642, 114);
             this._installOptionsGroupBox.TabIndex = 1;
             this._installOptionsGroupBox.TabStop = false;
             this._installOptionsGroupBox.Text = "Options";
+            // 
+            // _webUIPort
+            // 
+            this._webUIPort.Location = new System.Drawing.Point(121, 83);
+            this._webUIPort.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this._webUIPort.Name = "_webUIPort";
+            this._webUIPort.Size = new System.Drawing.Size(52, 23);
+            this._webUIPort.TabIndex = 9;
+            this._webUIPort.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            // 
+            // webUiPortLabel
+            // 
+            this.webUiPortLabel.AutoSize = true;
+            this.webUiPortLabel.Location = new System.Drawing.Point(40, 85);
+            this.webUiPortLabel.Name = "webUiPortLabel";
+            this.webUiPortLabel.Size = new System.Drawing.Size(70, 15);
+            this.webUiPortLabel.TabIndex = 8;
+            this.webUiPortLabel.Text = "Web UI Port";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Install Web UI";
+            // 
+            // _installWebUICheckbox
+            // 
+            this._installWebUICheckbox.AutoSize = true;
+            this._installWebUICheckbox.Location = new System.Drawing.Point(121, 56);
+            this._installWebUICheckbox.Name = "_installWebUICheckbox";
+            this._installWebUICheckbox.Size = new System.Drawing.Size(15, 14);
+            this._installWebUICheckbox.TabIndex = 5;
+            this._installWebUICheckbox.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -81,7 +130,7 @@
             // _installButton
             // 
             this._installButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._installButton.Location = new System.Drawing.Point(568, 366);
+            this._installButton.Location = new System.Drawing.Point(569, 372);
             this._installButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._installButton.Name = "_installButton";
             this._installButton.Size = new System.Drawing.Size(88, 27);
@@ -98,7 +147,7 @@
             this.groupBox1.Controls.Add(this._generateNewDatabaseButton);
             this.groupBox1.Controls.Add(this._testConnectionButon);
             this.groupBox1.Controls.Add(this._databaseConnectionPanel);
-            this.groupBox1.Location = new System.Drawing.Point(14, 120);
+            this.groupBox1.Location = new System.Drawing.Point(13, 129);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -147,7 +196,7 @@
             this._loadingCircle.BackColor = System.Drawing.Color.Transparent;
             this._loadingCircle.Color = System.Drawing.Color.DarkGray;
             this._loadingCircle.InnerCircleRadius = 8;
-            this._loadingCircle.Location = new System.Drawing.Point(531, 366);
+            this._loadingCircle.Location = new System.Drawing.Point(534, 372);
             this._loadingCircle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._loadingCircle.Name = "_loadingCircle";
             this._loadingCircle.NumberSpoke = 10;
@@ -158,24 +207,6 @@
             this._loadingCircle.TabIndex = 4;
             this._loadingCircle.Text = "loadingCircle1";
             this._loadingCircle.Visible = false;
-            // 
-            // _installWebUICheckbox
-            // 
-            this._installWebUICheckbox.AutoSize = true;
-            this._installWebUICheckbox.Location = new System.Drawing.Point(121, 56);
-            this._installWebUICheckbox.Name = "_installWebUICheckbox";
-            this._installWebUICheckbox.Size = new System.Drawing.Size(15, 14);
-            this._installWebUICheckbox.TabIndex = 5;
-            this._installWebUICheckbox.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Install Web UI";
             // 
             // ServiceInstallDialog
             // 
@@ -191,6 +222,7 @@
             this.Text = "Install BlockchainSQL Server";
             this._installOptionsGroupBox.ResumeLayout(false);
             this._installOptionsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._webUIPort)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -209,5 +241,7 @@
         private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.CheckBox _installWebUICheckbox;
+		private System.Windows.Forms.NumericUpDown _webUIPort;
+		private System.Windows.Forms.Label webUiPortLabel;
 	}
 }

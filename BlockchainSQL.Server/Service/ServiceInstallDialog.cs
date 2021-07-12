@@ -119,6 +119,7 @@ namespace BlockchainSQL.Server
                 _databaseConnectionPanel.SelectedDBMSType = settings.DBMS;
                 _databaseConnectionPanel.ConnectionString = settings.ConnectionString;
 				_installWebUICheckbox.Checked = settings.IsWebUIEnabled;
+				_webUIPort.Value = settings.WebUIPort > 0 ? settings.WebUIPort : 5000;
             }
         }
 
@@ -128,6 +129,7 @@ namespace BlockchainSQL.Server
             settings.DBMS = _databaseConnectionPanel.SelectedDBMSType;
             settings.ConnectionString = _databaseConnectionPanel.ConnectionString;
 			settings.IsWebUIEnabled = _installWebUICheckbox.Checked;
+			settings.WebUIPort = (int)_webUIPort.Value;
 
 			settings.Save();
         }
@@ -141,6 +143,8 @@ namespace BlockchainSQL.Server
             public string ConnectionString { get; set; }
 
 			public bool IsWebUIEnabled { get; set; }
+
+			public int WebUIPort { get; set; }
         }
 	}
 
