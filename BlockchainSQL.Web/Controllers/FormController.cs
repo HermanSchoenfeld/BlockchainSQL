@@ -116,8 +116,8 @@ namespace BlockchainSQL.Web.Controllers {
 				return Json(new FormResult {
 					Result = true,
 					Message = "Database connection details configured successfully.",
-					ResultType = FormResultType.ReplacePage,
-					Content = await RenderViewAsync("Home/About", null , false)
+					ResultType = FormResultType.Redirect,
+					Location = Url.Action("Index", "Explorer")
 				});
 			} catch (Exception error) {
 				// Log error

@@ -79,7 +79,7 @@ namespace BlockchainSQL.Web.Controllers {
 		}
 
 		public async Task<ActionResult> Load(string queryID) {
-			using (var session = base.OpenSession()) {
+			using (var session = OpenSession()) {
 				var savedQuery = session.Query<SavedQuery>().SingleOrDefault(q => q.WebID == queryID);
 				if (savedQuery == null)
 					return Redirect("/");

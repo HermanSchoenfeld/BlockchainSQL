@@ -23,5 +23,10 @@ namespace BlockchainSQL.Web.Controllers {
 		public ActionResult About() {
 			return View();
 		}
+
+		[Route("/error")]
+		public ActionResult Error() {
+			return View();
+		}
 	}
 }
