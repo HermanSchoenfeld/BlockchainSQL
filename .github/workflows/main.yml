@@ -11,8 +11,8 @@ jobs:
         with:
           dotnet-version: 5.0.101
           
-      - name: Build Hydrogen solution
-        run: dotnet build "./src/BlockchainSQL All.sln"
+      - name: Build BSQL Solution
+        run: dotnet build "BlockchainSQL All.sln"
   
   publish:
     runs-on: windows-latest
