@@ -12,7 +12,7 @@ jobs:
           dotnet-version: 5.0.101
           
       - name: Build Hydrogen solution
-        run: dotnet build ./src/BlockchainSQL All.sln
+        run: dotnet build "./src/BlockchainSQL All.sln"
   
   publish:
     runs-on: windows-latest
