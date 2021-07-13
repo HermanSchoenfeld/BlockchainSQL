@@ -153,7 +153,7 @@ namespace BlockchainSQL.Server {
 		}
 
 		private void StopWebApplication() {
-			_webAppProcess?.Kill(true);
+			_webAppProcess?.KillTree(TimeSpan.FromSeconds(10));
 		}
 
 		private void WebUIProcess_Exited(object sender, EventArgs e) {
