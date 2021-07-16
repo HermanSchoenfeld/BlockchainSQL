@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using BlockchainSQL.DataObjects;
 
-namespace BlockchainSQL.Processing
-{
-    public static class SizeEstimator {
+namespace BlockchainSQL.Processing {
+	public static class SizeEstimator {
 
         public static long Estimate(Block block) {
             if (block == null)

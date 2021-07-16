@@ -2,9 +2,8 @@
 using System.IO;
 using BlockchainSQL.DataObjects;
 
-namespace BlockchainSQL.Processing
-{
-    public interface IBlockFileReader : IDisposable {
+namespace BlockchainSQL.Processing {
+	public interface IBlockFileReader : IDisposable {
         bool SkipTransactions { get; set; }
         bool ReadMagicID { get; set; }
         bool ReadSize { get; set; }

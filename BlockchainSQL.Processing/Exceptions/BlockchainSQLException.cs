@@ -1,9 +1,8 @@
 ﻿using System;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public class BlockchainSQLException : SoftwareException {
+namespace BlockchainSQL.Processing {
+	public class BlockchainSQLException : SoftwareException {
         public BlockchainSQLException() : base() {
         }
 

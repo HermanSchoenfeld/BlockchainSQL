@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace BlockchainSQL.Web.Models
-{
-    public class PageMessage {
+namespace BlockchainSQL.Web.Models {
+	public class PageMessage {
         public PageMessageSeverity Severity { get; set; } = PageMessageSeverity.Info;
         public string Title { get; set; } = null;
         public string Description { get; set; } = "No text was provided for this page message";

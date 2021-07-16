@@ -1,9 +1,8 @@
 ﻿using BlockchainSQL.DataAccess;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public abstract class BizComponent : IBizComponent {
+namespace BlockchainSQL.Processing {
+	public abstract class BizComponent : IBizComponent {
         private readonly BizLogicScope _scope;
 
         protected BizComponent() {

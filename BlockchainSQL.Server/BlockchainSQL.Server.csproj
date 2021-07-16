@@ -6,9 +6,9 @@
 		<RestorePackages>true</RestorePackages>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
-		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<!--<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>-->
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
 		<UseVSHostingProcess>false</UseVSHostingProcess>
@@ -40,6 +40,8 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />

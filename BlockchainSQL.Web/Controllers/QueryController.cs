@@ -14,11 +14,11 @@ namespace BlockchainSQL.Web.Controllers {
 		// GET: Query
 		public ActionResult Index(int? templateId) {
 			if (templateId > 0) {
-				if (!AppConfig.DataCache.Templates.ContainsKey(templateId.Value)) {
+				if (!DatabaseManager.DataCache.Templates.ContainsKey(templateId.Value)) {
 					AddPageMessage("Query template not found", "Error", PageMessageSeverity.Error);
 					return View("Index", QueryPageModel.Default);
 				}
-				var template = AppConfig.DataCache.Templates[templateId.Value];
+				var template = DatabaseManager.DataCache.Templates[templateId.Value];
 			
 				return View("Index", new QueryPageModel(template.MSSQL));
 			}
@@ -31,7 +31,7 @@ namespace BlockchainSQL.Web.Controllers {
 			// validate SQL
 			var result = new QueryResultModel();
 			try {
-				var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+				var repo = DatabaseManager.GetBlockchainRepository();
 				var start = DateTime.UtcNow;
 				try {
 					result.Result = await repo.Execute(sql, page, pageSize);
@@ -91,7 +91,7 @@ namespace BlockchainSQL.Web.Controllers {
 		}
 
 		public ActionResult LoadTemplate() {
-			return PartialView(new LoadTemplateModel(AppConfig.DataCache.QueryCategoriesWithTemplates));
+			return PartialView(new LoadTemplateModel(DatabaseManager.DataCache.QueryCategoriesWithTemplates));
 		}
 
 		private void SaveQueryLoad(DateTime dateTime, int savedQueryID) {

@@ -7,7 +7,7 @@ using Sphere10.Framework.Data;
 using Tools;
 
 namespace BlockchainSQL.DataAccess {
-	public static class DataAccessFactory {
+	public static class BlockchainDatabase {
 
 	    public static ApplicationDAC NewDAC(DBMSType dbmsType, string connectionString, ILogger logger = null) {
 			IDAC dbmsDAC;
@@ -30,9 +30,9 @@ namespace BlockchainSQL.DataAccess {
         public static IDatabaseGenerator NewDatabaseGenerator(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.MssqlDatabaseGenerator");
+                    return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockhainSQLDatabaseGeneratorMSSQL");
                 case DBMSType.Sqlite:
-                    return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.SqliteDatabaseGenerator");
+                    return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseGeneratorSqlite");
                 default:
                     throw new ApplicationException(string.Format("Unsupported DBMS '{0}'", dbmsType));
             }

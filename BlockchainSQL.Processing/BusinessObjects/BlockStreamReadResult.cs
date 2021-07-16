@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Processing
-{
-    public class BlockStreamReadResult {
+﻿namespace BlockchainSQL.Processing {
+	public class BlockStreamReadResult {
 
         public static BlockStreamReadResult EndOfStream => new BlockStreamReadResult {
             BlocksRead = new WipBlock[0],

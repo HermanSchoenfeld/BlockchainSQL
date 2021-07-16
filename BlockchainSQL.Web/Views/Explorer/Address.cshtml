@@ -27,19 +27,19 @@
                         <tbody>
                             @foreach (var line in Model.LineItems.OrderByDescending(li => li.DateTime)) {
                                 <tr>
-                                    <td>@ViewHelper.Beautify(line.DateTime)</td>
+                                    <td>@Tools.Html.Beautify(line.DateTime)</td>
                                     <td><small><small>@Html.Raw(ViewHelper.AddressLineLink(line))</small></small></td>
-                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Debit ? ViewHelper.Beautify(line.AmountBTC) : string.Empty)</td>
-                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Credit ? ViewHelper.Beautify(line.AmountBTC) : string.Empty)</td>
-                                    <td>@ViewHelper.Beautify(line.TotalBTC)</td>
+                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Debit ? Tools.Html.Beautify(line.AmountBTC) : string.Empty)</td>
+                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Credit ? Tools.Html.Beautify(line.AmountBTC) : string.Empty)</td>
+                                    <td>@Tools.Html.Beautify(line.TotalBTC)</td>
                                 </tr>
                             }
                             <tr>
                                 <td><b>TOTAL</b></td>
                                 <td>&nbsp;</td>
-                                <td><b>@ViewHelper.Beautify(Model.TotalDebits)</b></td>
-                                <td><b>@ViewHelper.Beautify(Model.TotalCredits)</b></td>
-                                <td><b>@ViewHelper.Beautify(Model.Balance)</b></td>
+                                <td><b>@Tools.Html.Beautify(Model.TotalDebits)</b></td>
+                                <td><b>@Tools.Html.Beautify(Model.TotalCredits)</b></td>
+                                <td><b>@Tools.Html.Beautify(Model.Balance)</b></td>
                             </tr>
                         </tbody>
                     </table>

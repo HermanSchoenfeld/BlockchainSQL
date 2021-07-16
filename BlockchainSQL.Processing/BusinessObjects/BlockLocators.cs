@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using BlockchainSQL.DataObjects;
 
-namespace BlockchainSQL.Processing
-{
-    public class BlockLocators {
+namespace BlockchainSQL.Processing {
+	public class BlockLocators {
         public BlockLocation[] Locations { get; set; } // Database byte-order
 
         public static BlockLocators Empty => new BlockLocators {

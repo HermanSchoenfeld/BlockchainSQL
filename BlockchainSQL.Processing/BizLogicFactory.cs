@@ -1,9 +1,8 @@
 ﻿using System;
 using System.IO;
 
-namespace BlockchainSQL.Processing
-{
-    public class BizLogicFactory {
+namespace BlockchainSQL.Processing {
+	public class BizLogicFactory {
 
         public static IBlockFileReader NewBlockFileReader(string blockFilePath) {
             return new BlockFileReader(blockFilePath);

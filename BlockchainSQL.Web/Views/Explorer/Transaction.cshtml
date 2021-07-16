@@ -2,7 +2,7 @@
 @using BlockchainSQL.Web.Controllers
 @model BlockchainSQL.DataObjects.Transaction
 @{
-    ViewBag.Title = "Transaction #" + ViewHelper.Beautify(Model.TXID);
+    ViewBag.Title = "Transaction #" + Tools.Html.Beautify(Model.TXID);
 }
 
 <section class="margin-bottom">
@@ -13,7 +13,7 @@
 
                 <dl class="dl-horizontal">
                     <dt>TXID</dt>
-                    <dd>@ViewHelper.Beautify(Model.TXID)</dd>
+                    <dd>@Tools.Html.Beautify(Model.TXID)</dd>
 
                     <dt>Size</dt>
                     <dd>@Model.Size bytes</dd>
@@ -30,16 +30,16 @@
                     <dd>@Model.InputCount</dd>
 
                     <dt>Inputs</dt>
-                    <dd>@ViewHelper.Beautify(Model.InputsBTC) (฿)</dd>
+                    <dd>@Tools.Html.Beautify(Model.InputsBTC) (฿)</dd>
 
                     <dt>Output Count</dt>
                     <dd>@Model.OutputCount</dd>
 
                     <dt>Outputs</dt>
-                    <dd>@ViewHelper.Beautify(Model.OutputsBTC) (฿)</dd>
+                    <dd>@Tools.Html.Beautify(Model.OutputsBTC) (฿)</dd>
 
                     <dt>Fee</dt>
-                    <dd>@ViewHelper.Beautify(Model.FeeBTC) (฿)</dd>
+                    <dd>@Tools.Html.Beautify(Model.FeeBTC) (฿)</dd>
 
                     <dt>Lock Time</dt>
                     <dd>@Model.LockTime</dd>

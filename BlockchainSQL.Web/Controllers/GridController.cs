@@ -7,12 +7,11 @@ using Omu.AwesomeMvc;
 using Sphere10.Framework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlockchainSQL.Web.Controllers
-{
-    public class GridController : BaseController {
+namespace BlockchainSQL.Web.Controllers {
+	public class GridController : BaseController {
         // GET: LatestBlocksGrid
         public async Task<ActionResult> Blocks(GridParams gridParams) {
-            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var repo = DatabaseManager.GetBlockchainRepository();
             var model = await BuildGridModel(
                 gridParams,
                 repo.GetBlocks,
@@ -27,7 +26,7 @@ namespace BlockchainSQL.Web.Controllers
 
         public async Task<ActionResult> BlockTransactions(string hash, GridParams gridParams) {
             //gridParams.Paging = false;
-            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+            var repo = DatabaseManager.GetBlockchainRepository();
             var model = await BuildGridModel(
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetBlockTransactions(hash, page, pageSize, sortOptions),
@@ -41,7 +40,7 @@ namespace BlockchainSQL.Web.Controllers
 
         public async Task<ActionResult> TransactionInputs(string txid, GridParams gridParams) {
             gridParams.Paging = false;
-            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+            var repo = DatabaseManager.GetBlockchainRepository();
             var model = await BuildGridModel(
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionInputs(txid),
@@ -57,7 +56,7 @@ namespace BlockchainSQL.Web.Controllers
 
         public async Task<ActionResult> TransactionOutputs(string txid, GridParams gridParams) {
             gridParams.Paging = false;
-            var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+            var repo = DatabaseManager.GetBlockchainRepository();
             var model = await BuildGridModel(
                 gridParams,
                 (page, pageSize, sortOptions) => repo.GetTransactionOutputs(txid),

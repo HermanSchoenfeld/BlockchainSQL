@@ -3,9 +3,8 @@ using Sphere10.Framework;
 using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public sealed class BizLogicScope : ScopeContext<BizLogicScope> {
+namespace BlockchainSQL.Processing {
+	public sealed class BizLogicScope : ScopeContext<BizLogicScope> {
         private readonly bool _databaseFreeContext;
         private readonly DBMSType _dbmsType;
         private readonly string _connectionString;
@@ -78,7 +77,7 @@ namespace BlockchainSQL.Processing
 
         public ApplicationDAC CreateDAC() {
             CheckSet();
-            var dac = DataAccessFactory.NewDAC(this.DBMSType, ConnectionString, Log);
+            var dac = BlockchainDatabase.NewDAC(this.DBMSType, ConnectionString, Log);
             //dac.Log = new ConsoleLogger();
             return dac;
         }

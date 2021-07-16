@@ -2,9 +2,8 @@
 using System.Linq;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class BlockLocator : BizComponent, IBlockLocator {
+namespace BlockchainSQL.Processing {
+	public class BlockLocator : BizComponent, IBlockLocator {
         public virtual BlockLocators GetBlockLocators() {
             var indices = DetermineBlockLocatorIndices(DAC.GetMaxBlockHeight());
             if (!indices.Any())

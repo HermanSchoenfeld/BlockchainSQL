@@ -2,16 +2,15 @@
 using System.Linq;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
+namespace BlockchainSQL.Processing {
 
-    /// <remarks>
-    /// Current this parses the network protocol binary data into the domain model of BlockchainSQL.
-    /// This should be refactored to parse into an object model that mirrors the actual protocol, which can then
-    /// be converted into the domain model of BlockchainSQL.
-    /// </remarks>
+	/// <remarks>
+	/// Current this parses the network protocol binary data into the domain model of BlockchainSQL.
+	/// This should be refactored to parse into an object model that mirrors the actual protocol, which can then
+	/// be converted into the domain model of BlockchainSQL.
+	/// </remarks>
 #warning Proper checks need to be made before reading.
-    public class BitcoinProtocolHelper {
+	public class BitcoinProtocolHelper {
         public const string EmptyHashString = "0000000000000000000000000000000000000000000000000000000000000000";
         public const string GenesisHashString = "000000000019D6689C085AE165831E934FF763AE46A2A6C172B3F1B60A8CE26F";
         public static readonly byte[] EmptyHash = ConvertHashStringToDatabaseBytes(EmptyHashString);

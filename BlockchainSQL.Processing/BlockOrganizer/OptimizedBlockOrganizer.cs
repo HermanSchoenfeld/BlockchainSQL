@@ -8,9 +8,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class OptimizedBlockOrganizer : BizComponent, IBlockOrganizer {
+namespace BlockchainSQL.Processing {
+	public class OptimizedBlockOrganizer : BizComponent, IBlockOrganizer {
         private const int OutOfSequenceTolerance = 2000000;
         private readonly BulkFetchActionCache<byte[], BlockPtr> _bulkLoadedBlockDbCache; 
         private readonly ICache<byte[], BlockPtr> _blockCache;

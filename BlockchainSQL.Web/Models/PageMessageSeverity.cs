@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Web.Models
-{
-    public enum PageMessageSeverity {
+﻿namespace BlockchainSQL.Web.Models {
+	public enum PageMessageSeverity {
         Info,
         Success,
         Warning,

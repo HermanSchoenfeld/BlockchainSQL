@@ -83,7 +83,7 @@ namespace BlockchainSQL.Server {
                 var dropExisting = false;
                 var createShell = false;
                 var createDatabase = false;
-                var schemaGenerator = DataAccessFactory.NewDatabaseGenerator(dbmsType);
+                var schemaGenerator = BlockchainDatabase.NewDatabaseGenerator(dbmsType);
                 if (await Task.Run(() => schemaGenerator.DatabaseExists(connectionString))) {
                     switch (
                         QuestionDialog.Show(
@@ -116,7 +116,7 @@ namespace BlockchainSQL.Server {
                     await Task.Run(() => schemaGenerator.CreateEmptyDatabase(connectionString));
 
                 if (createDatabase)
-                    await Task.Run(() => schemaGenerator.CreateNewDatabase(connectionString, dataPolicy, databaseName));
+                    await Task.Run(() => schemaGenerator.CreateApplicationDatabase(connectionString, dataPolicy, databaseName));
 
                 await _settingsControl.SaveTo(dbmsType, connectionString);
 

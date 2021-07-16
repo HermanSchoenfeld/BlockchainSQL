@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading;
 
-namespace BlockchainSQL.Processing
-{
-    public interface IBlockStream : IBizComponent, IDisposable {
+namespace BlockchainSQL.Processing {
+	public interface IBlockStream : IBizComponent, IDisposable {
 
         bool IsOpen { get; }
 

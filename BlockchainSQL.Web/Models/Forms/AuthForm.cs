@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Sphere10.Framework.Web.AspNetCore;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlockchainSQL.Web.Models {
 	public class LoginForm : FormModelBase {

@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Processing
-{
-    public class NoOpPostProcessor : BizComponent, IPostProcessor {
+﻿namespace BlockchainSQL.Processing {
+	public class NoOpPostProcessor : BizComponent, IPostProcessor {
 
         public NoOpPostProcessor() {
             Tasks = new IPostProcessingTask[0];

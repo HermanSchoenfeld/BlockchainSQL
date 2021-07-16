@@ -1,12 +1,12 @@
-﻿using System.Data;
+﻿using BlockchainSQL.Web.Code;
+using System.Data;
 
-namespace BlockchainSQL.Web.Models
-{
-    public class QueryPageModel {
+namespace BlockchainSQL.Web.Models {
+	public class QueryPageModel {
 
         public QueryPageModel(string sql) {
             QueryPanelModel = new QueryPanelModel(sql);
-            Schema = AppConfig.BlockchainSchema;
+            Schema = DatabaseManager.BlockchainSchema;
         }
 
         public QueryPanelModel QueryPanelModel { get; set; }

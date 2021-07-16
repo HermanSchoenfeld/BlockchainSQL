@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class StandardPreProcessor : BizComponent, IPreProcessor {
+namespace BlockchainSQL.Processing {
+	public class StandardPreProcessor : BizComponent, IPreProcessor {
         
         public StandardPreProcessor(bool optimizeForBulkLoading, bool expandScripts) {
             // TODO: load tasks from config

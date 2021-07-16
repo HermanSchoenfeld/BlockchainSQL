@@ -18,9 +18,10 @@ using System.Threading.Tasks;
 using System.Transactions;
 using BlockchainSQL.DataAccess.NHibernate.Mappings;
 using BlockchainSQL.DataObjects;
+using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
-    public class PrimingDataGenerator : BaseDataGenerator {
+    public class PrimingDataGenerator : NHibernateDataGeneratorBase {
         protected readonly string DatabaseName;
 
         public PrimingDataGenerator(
@@ -48,7 +49,7 @@ namespace BlockchainSQL.DataAccess.NHibernate {
         }
 
         protected virtual IEnumerable<Setting> CreateBlockchainSqlConfiguration() {
-            return DataAccessFactory.GenerateDefaultSettings();
+            return BlockchainDatabase.GenerateDefaultSettings();
         }
 
         protected virtual IEnumerable<Branch> CreateDefaultBranches() {

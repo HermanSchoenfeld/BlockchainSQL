@@ -1,8 +1,7 @@
 ﻿using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public static class EndianReaderExtensions {
+namespace BlockchainSQL.Processing {
+	public static class EndianReaderExtensions {
         public static ulong ReadCompactVarInt(this EndianBinaryReader reader) {
             return BitcoinProtocolParser.ParseCompactVarInt(reader);
         }

@@ -7,9 +7,8 @@ using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Sphere10.Framework.Windows.LevelDB;
 
-namespace BlockchainSQL.Processing
-{
-    public static class ProcessingTierHelper {
+namespace BlockchainSQL.Processing {
+	public static class ProcessingTierHelper {
 
         public static void ExpandBlockScripts(Block[] blocks) {
             Parallel.ForEach(

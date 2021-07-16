@@ -3,9 +3,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class SettingsCache {
+namespace BlockchainSQL.Processing {
+	public class SettingsCache {
 
         private readonly ICache<KnownSettings, string> _valueCache;
 

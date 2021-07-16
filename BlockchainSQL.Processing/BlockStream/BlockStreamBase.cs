@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading;
 
-namespace BlockchainSQL.Processing
-{
-    public abstract class BlockStreamBase : BizComponent, IBlockStream {
+namespace BlockchainSQL.Processing {
+	public abstract class BlockStreamBase : BizComponent, IBlockStream {
         private bool _isOpen;
 
         protected BlockStreamBase() {

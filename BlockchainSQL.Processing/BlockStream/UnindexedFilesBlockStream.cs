@@ -9,9 +9,8 @@ using BlockchainSQL.Processing.BusinessObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class UnindexedFilesBlockStream : FilesBlockStreamBase {
+namespace BlockchainSQL.Processing {
+	public class UnindexedFilesBlockStream : FilesBlockStreamBase {
         public event EventHandlerEx FinishedFile;
         public event EventHandlerEx FinishedAll;
 

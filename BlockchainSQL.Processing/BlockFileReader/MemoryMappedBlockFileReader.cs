@@ -2,7 +2,7 @@
 using System.IO.MemoryMappedFiles;
 
 namespace BlockchainSQL.Processing.Scanning {
-     public class MemoryMappedBlockFileReader : BlockFileReader {
+	public class MemoryMappedBlockFileReader : BlockFileReader {
          private MemoryMappedFile _mmf;
 
          public MemoryMappedBlockFileReader(string blockFilePath) : base(blockFilePath) {             

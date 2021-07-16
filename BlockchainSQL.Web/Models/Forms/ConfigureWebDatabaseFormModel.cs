@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BlockchainSQL.Web.Code;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
@@ -7,7 +8,7 @@ namespace BlockchainSQL.Web.Models {
 	public class ConfigureWebDatabaseFormModel  {
 
 		public ConfigureWebDatabaseFormModel() {
-			string webAppConfig = AppConfig.WebConnectionString;
+			string webAppConfig = DatabaseManager.Settings.WebDatabaseConnectionString;
 
 			if (!string.IsNullOrEmpty(webAppConfig)) {
 				var connString = new SqlConnectionStringBuilder(webAppConfig);
@@ -37,7 +38,7 @@ namespace BlockchainSQL.Web.Models {
 		[DisplayName("Password")]
 		public string Password { get; set; }
 
-		[DisplayName("Port")] public int Port { get; set; } = 1433;
+		[DisplayName("Port")] public int? Port { get; set; } = 1433;
 
 		[DisplayName("Generate if does not exist")]
 		public bool GenerateIfNotExists {get;set;}

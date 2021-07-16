@@ -1,8 +1,7 @@
-﻿namespace BlockchainSQL.Processing
-{
+﻿namespace BlockchainSQL.Processing {
 
 
-    public class TotalizeTransactionsTask : BizComponent, IPostProcessingTask {
+	public class TotalizeTransactionsTask : BizComponent, IPostProcessingTask {
         public void ExecuteAll() {
             DAC.TotalizeTransactions();
         }

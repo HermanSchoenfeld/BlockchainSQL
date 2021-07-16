@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Net;
 
-namespace BlockchainSQL.Processing
-{
-    public class NodeEndpoint {
+namespace BlockchainSQL.Processing {
+	public class NodeEndpoint {
         public const int DefaultBitcoinPort = 8333;
         private NodeEndpoint(IPAddress ip, int port) {
             IP = ip;

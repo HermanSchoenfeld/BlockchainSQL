@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using BlockchainSQL.Web.Code;
 
-namespace BlockchainSQL.Web.Models
-{
-    public class QueryResultModel {
+namespace BlockchainSQL.Web.Models {
+	public class QueryResultModel {
 
         public QueryResultModel() {
             Messages = new List<PageMessage>();

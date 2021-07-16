@@ -4,9 +4,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 
 
-namespace BlockchainSQL.Processing
-{
-    public class BlockFileReader : IBlockFileReader {
+namespace BlockchainSQL.Processing {
+	public class BlockFileReader : IBlockFileReader {
         private StreamProfiler _stream;
         private EndianBinaryReader _reader;
         protected int BlocksRead;

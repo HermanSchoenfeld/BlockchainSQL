@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class CalculateDifficultyTask : BizComponent, IPreProcessingTask {
+namespace BlockchainSQL.Processing {
+	public class CalculateDifficultyTask : BizComponent, IPreProcessingTask {
         public CalculateDifficultyTask(IDifficultyCalculator difficultyCalculator) {
             Calculator = difficultyCalculator;
         }

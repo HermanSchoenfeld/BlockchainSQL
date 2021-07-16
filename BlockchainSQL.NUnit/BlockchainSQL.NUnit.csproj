@@ -1,20 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
-    <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
-    <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
-    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
-    <ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="NUnit" Version="3.11.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+		<ProjectReference Include="..\..\Framework\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+		<ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
+		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
+		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
+		<ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="NUnit" Version="3.13.2" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+	</ItemGroup>
 </Project>

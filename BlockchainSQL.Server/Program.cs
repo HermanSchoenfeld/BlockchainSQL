@@ -47,7 +47,8 @@ namespace BlockchainSQL.Server
                 Application.ThreadException += (s, e) => Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", e.Exception));
                 
                 SystemLog.RegisterLogger(new ConsoleLogger());
-                Sphere10Framework.Instance.StartWinFormsApplication<MainForm>();
+				SystemLog.RegisterLogger(new FileAppendLogger(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlockchainSQL", "log", "GUI.log")));
+				Sphere10Framework.Instance.StartWinFormsApplication<MainForm>();
             } catch (Exception error) {
                 Console.WriteLine(error.ToDisplayString());
                 ExceptionDialog.Show(error);
@@ -57,7 +58,9 @@ namespace BlockchainSQL.Server
 
         private static void RunAsService() {
             try {
-                // load first-run tim
+				// load first-run time
+				SystemLog.RegisterLogger(new FileAppendLogger(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlockchainSQL", "log", "Service.log")));
+				Sphere10Framework.Instance.StartFramework();
                 ServiceBase.Run(new BlockchainSQLService());
             } catch (Exception error) {
                 Console.WriteLine(error.ToDisplayString());

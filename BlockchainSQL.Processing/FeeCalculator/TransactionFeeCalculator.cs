@@ -9,9 +9,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class TransactionFeeCalculator : BizComponent, ITransactionFeeCalculator {
+namespace BlockchainSQL.Processing {
+	public class TransactionFeeCalculator : BizComponent, ITransactionFeeCalculator {
         private readonly TransactionCache _transactionCache;
 
         public TransactionFeeCalculator() : this(new TransactionCache(100000)) {

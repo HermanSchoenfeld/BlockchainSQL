@@ -85,11 +85,8 @@ namespace BlockchainSQL.Server
 		    if (!databaseValidation.Success)
 			    throw new ApplicationException(databaseValidation.ErrorMessages.ToParagraphCase());
 
-
 		    var dbmsType = _dbConnectionBar.SelectedDBMSType;
 		    var connectionString = _dbConnectionBar.ConnectionString;
-
-
 		    using (var scope = new BizLogicScope(dbmsType, connectionString, _logger)) {
 			    using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(_nodeIPTextBox.Text, _nodePortBox.Value))) {
 				    var blockStreamParser = BizLogicFactory.NewNodeStreamParser(nodeStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(false, true), BizLogicFactory.NewPostProcessor(), BizLogicFactory.NewBlockStreamPersistor());
@@ -110,7 +107,6 @@ namespace BlockchainSQL.Server
             } else {
                 GC.Collect();
             }
-
             base.OnClosing(e);
         }
 
@@ -131,9 +127,8 @@ namespace BlockchainSQL.Server
             try {
                 if (!IsScanning) {
                     try {
-                        using (new AlwaysOnScope(true, false)) {
+                        using (new AlwaysOnScope(true, false))
                             await StartScanning();
-                        }
                     } finally {
                         _progressBar.Value = 0;
                         _progressBar.Visible = false;

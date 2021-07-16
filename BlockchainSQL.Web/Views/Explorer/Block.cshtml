@@ -30,7 +30,7 @@
 
                     <dt>Timestamp</dt>
                     <dd>
-                        @ViewHelper.Beautify(Model.TimeStampUtc) <span class="badge badge-round margin-left-10">Unix: @Model.TimeStampUnix</span>
+                        @Tools.Html.Beautify(Model.TimeStampUtc) <span class="badge badge-round margin-left-10">Unix: @Model.TimeStampUnix</span>
                     </dd>
 
                     <dt>Branch</dt>
@@ -40,19 +40,19 @@
                     <dd>@Model.Size bytes</dd>
 
                     <dt>Total Outputs</dt>
-                    <dd>@ViewHelper.Beautify(Model.OutputsBTC) ฿</dd>
+                    <dd>@Tools.Html.Beautify(Model.OutputsBTC) ฿</dd>
 
                     <dt>Reward</dt>
-                    <dd>@ViewHelper.Beautify(Model.RewardBTC) ฿</dd>
+                    <dd>@Tools.Html.Beautify(Model.RewardBTC) ฿</dd>
 
                     <dt>Total Fees</dt>
-                    <dd>@ViewHelper.Beautify(Model.FeesBTC) ฿</dd>
+                    <dd>@Tools.Html.Beautify(Model.FeesBTC) ฿</dd>
 
                     <dt>Transaction Count</dt>
                     <dd>@Model.TransactionCount</dd>
 
                     <dt>Merkle Root</dt>
-                    <dd>@ViewHelper.Beautify(Model.MerkleRoot)</dd>
+                    <dd>@Tools.Html.Beautify(Model.MerkleRoot)</dd>
 
                     <dt>Bits</dt>
                     <dd>@Model.Bits</dd>

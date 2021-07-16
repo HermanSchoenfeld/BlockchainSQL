@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class SequentialBlockStreamParser : BizComponent, IBlockStreamParser {
+namespace BlockchainSQL.Processing {
+	public class SequentialBlockStreamParser : BizComponent, IBlockStreamParser {
 
 		public SequentialBlockStreamParser(IBlockStream stream, IBlockLocator locator, IPreProcessor preProcessor, IPostProcessor postProcessor, IBlockStreamPersistor persistor) {
 			Stream = stream;

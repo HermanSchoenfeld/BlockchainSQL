@@ -27,12 +27,12 @@ namespace BlockchainSQL.Server
         }
 
         public void LoadDefaults() {
-            LoadInternal(DataAccessFactory.GenerateDefaultSettings());
+            LoadInternal(BlockchainDatabase.GenerateDefaultSettings());
         }
 
         public async Task LoadFrom(DBMSType dbmsType, string connectionString) {
             LoadInternal(
-                await Task.Run(() => DataAccessFactory.NewDAC(dbmsType, connectionString).GetSettings())
+                await Task.Run(() => BlockchainDatabase.NewDAC(dbmsType, connectionString).GetSettings())
             );
         }
 
@@ -41,7 +41,7 @@ namespace BlockchainSQL.Server
             if (validation.Failure)
                 throw new SoftwareException(validation.ErrorMessages.ToParagraphCase());
 
-            var dac = DataAccessFactory.NewDAC(dbmsType, connectionString);
+            var dac = BlockchainDatabase.NewDAC(dbmsType, connectionString);
             using (var scope = dac.BeginScope()) {
                 scope.BeginTransaction();
                 foreach (KnownSettings setting in Enum.GetValues(typeof(KnownSettings))) {

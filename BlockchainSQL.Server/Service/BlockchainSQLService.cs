@@ -35,13 +35,10 @@ namespace BlockchainSQL.Server {
 				var exception = args.ExceptionObject as Exception;
 				_logger.Error(string.Format("FATAL ERROR: {0}", (exception.ToDiagnosticString() ?? (args.ExceptionObject?.ToString() ?? "NULL"))));
 			};
-			
-			GlobalSettings.Provider =
-				new DirectorySettingsProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData),
-					"BlockchainSQL"));
 		}
 
 		protected override async void OnStart(string[] args) {
+			_logger.Info("Starting");
 			_settings = GlobalSettings.Get<FormSettings>();
 			
 			while (!_cancellationTokenSource.IsCancellationRequested) {
@@ -50,7 +47,7 @@ namespace BlockchainSQL.Server {
 					var database = await DatabaseReferenceFileManager.LoadDatabaseConnectionFile(serviceExePath);
 
 					if (IsWebAppEnabled())
-						StartWebUi();
+						StartWebUI();
 
 					await StartScanning(database, _logger, _cancellationTokenSource.Token);
 				} catch (OperationCanceledException) {
@@ -68,6 +65,7 @@ namespace BlockchainSQL.Server {
 		}
 
 		protected override async void OnStop() {
+			_logger.Info("Stopping");
 			try {
 				StopWebApplication();
 				_cancellationTokenSource.Cancel();
@@ -127,7 +125,7 @@ namespace BlockchainSQL.Server {
 			return result;
 		}
 
-		private void StartWebUi() {
+		private void StartWebUI() {
 			var dllPath = GetWebUIDllPath();
 
 			var url = $"http://*:{_settings.WebUIPort}";
@@ -153,7 +151,7 @@ namespace BlockchainSQL.Server {
 		}
 
 		private void StopWebApplication() {
-			_webAppProcess?.KillTree(TimeSpan.FromSeconds(10));
+			_webAppProcess?.Kill(true);
 		}
 
 		private void WebUIProcess_Exited(object sender, EventArgs e) {

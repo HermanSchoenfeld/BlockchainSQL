@@ -1,7 +1,6 @@
-﻿namespace BlockchainSQL.Processing.BusinessObjects
-{
+﻿namespace BlockchainSQL.Processing.BusinessObjects {
 
-    public class BlockIndex {
+	public class BlockIndex {
         public byte[] Hash;
         public int Version;
         public uint Height;

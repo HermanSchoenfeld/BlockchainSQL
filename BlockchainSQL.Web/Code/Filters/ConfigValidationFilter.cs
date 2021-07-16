@@ -10,7 +10,7 @@ namespace BlockchainSQL.Web.Code {
 		public void OnActionExecuting(ActionExecutingContext context) {
 			try {
 				if (context.Controller is not ConfigController and not FormController and not GridController and not QueryController) {
-					if (!AppConfig.IsConfigured)
+					if (!DatabaseManager.IsConfigured)
 						context.Result = new RedirectToActionResult(nameof(ConfigController.InitialConfig), "Config", null);
 				}
 			} catch (Exception) {

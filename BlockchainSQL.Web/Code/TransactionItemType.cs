@@ -1,7 +1,6 @@
-﻿namespace BlockchainSQL.Web.Code
-{
-    public enum TransactionItemType {
-        Input = 1,
-        Output = 2
-    }
+﻿namespace BlockchainSQL.Web.Code {
+	public enum TransactionItemType {
+		Input = 1,
+		Output = 2
+	}
 }

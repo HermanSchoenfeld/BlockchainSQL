@@ -10,12 +10,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Sphere10.Framework;
 using Omu.AwesomeMvc;
-using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Web {
 	public class Startup {
@@ -47,7 +45,6 @@ namespace BlockchainSQL.Web {
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
-		
 			app.UseExceptionHandler("/error");
 			app.UseStaticFiles();
 			app.UseRouting();
@@ -65,16 +62,12 @@ namespace BlockchainSQL.Web {
 					new { controller = "Query", action = "Load" });
 			});
 
-			GlobalSettings.Provider = GlobalSettings.CreateDefaultProvider();
-
 			TryInitializeDatabaseClasses();
 		}
 
 		private void TryInitializeDatabaseClasses() {
-			try {
-				AppConfig.InitializeDatabaseObjects();
-			} catch (Exception) {
-			}
+			if (DatabaseManager.IsConfigured)
+				DatabaseManager.InitializeDatabases();
 		}
 	}
 }

@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace BlockchainSQL.Processing
-{
-    [Flags]
+namespace BlockchainSQL.Processing {
+	[Flags]
     public enum BlockStatus : uint {
         //! Unused.
         BLOCK_VALID_UNKNOWN = 0,

@@ -2,9 +2,8 @@
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public sealed class WipPipelineScope : ScopeContext<WipPipelineScope> {
+namespace BlockchainSQL.Processing {
+	public sealed class WipPipelineScope : ScopeContext<WipPipelineScope> {
         private const string ContextID = "FDDBCCE3-37C0-422F-8FCA-1AD316D4F51B";
         public readonly SynchronizedDictionary<byte[], WipBlock> PipelineBlocks;
         public readonly SynchronizedDictionary<byte[], Transaction> PipelineTransactions;

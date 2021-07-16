@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace BlockchainSQL.Processing
-{
-    public class PersistResult {
+namespace BlockchainSQL.Processing {
+	public class PersistResult {
         public PersistResult() {
             Block = Range.Empty;
             Transaction = Range.Empty;

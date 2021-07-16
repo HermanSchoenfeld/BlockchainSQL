@@ -11,13 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.DataAccess.NH
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - System", "4 - System", "{24285B43-F6E2-4320-BFA1-9B5C2E2DC626}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{1A8EC3A1-412E-47CE-BD50-BA3F387C979B}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.DataObjects", "BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj", "{C8FB075F-F2F1-4663-A19C-F6F9BCC9030E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.NUnit", "BlockchainSQL.NUnit\BlockchainSQL.NUnit.csproj", "{3ECEBE06-88DB-4D5A-A8B8-7B7A5AE9B7B1}"
@@ -67,6 +60,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.LevelDB", "..\Framework-v3\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Web.AspNetCore", "..\Framework-v3\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj", "{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Data.NHibernate", "..\Framework-v3\src\Sphere10.Framework.Data.NHibernate\Sphere10.Framework.Data.NHibernate.csproj", "{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -258,6 +255,22 @@ Global
 		{C1549308-26F7-49C3-B1AA-8AD986C90DB8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1549308-26F7-49C3-B1AA-8AD986C90DB8}.Release|x86.ActiveCfg = Release|Any CPU
 		{C1549308-26F7-49C3-B1AA-8AD986C90DB8}.Release|x86.Build.0 = Release|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Debug|x86.Build.0 = Debug|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Release|x86.ActiveCfg = Release|Any CPU
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}.Release|x86.Build.0 = Release|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Debug|x86.Build.0 = Debug|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|x86.ActiveCfg = Release|Any CPU
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -287,6 +300,8 @@ Global
 		{0AAE6912-CDE3-4D49-9AE5-63193105537C} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{C1549308-26F7-49C3-B1AA-8AD986C90DB8} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
+		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
+		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {397BE48B-9758-4106-90CD-B7FF8C8AA782}

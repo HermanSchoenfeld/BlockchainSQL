@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Processing
-{
-    public enum ExecutionContext {
+﻿namespace BlockchainSQL.Processing {
+	public enum ExecutionContext {
         Sequential,
         Parallel
     }

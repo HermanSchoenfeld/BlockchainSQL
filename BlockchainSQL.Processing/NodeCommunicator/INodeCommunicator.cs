@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 
-namespace BlockchainSQL.Processing
-{
-    public interface INodeCommunicator {
+namespace BlockchainSQL.Processing {
+	public interface INodeCommunicator {
 
         Task<long> GetPeerChainHeight();
 

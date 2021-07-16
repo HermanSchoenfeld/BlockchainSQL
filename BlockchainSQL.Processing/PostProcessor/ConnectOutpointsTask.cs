@@ -1,7 +1,6 @@
-﻿namespace BlockchainSQL.Processing
-{
+﻿namespace BlockchainSQL.Processing {
 
-    public class ConnectOutpointsTask : BizComponent, IPostProcessingTask {
+	public class ConnectOutpointsTask : BizComponent, IPostProcessingTask {
         public void ExecuteAll() {
             DAC.ConnectOutpoints();
         }

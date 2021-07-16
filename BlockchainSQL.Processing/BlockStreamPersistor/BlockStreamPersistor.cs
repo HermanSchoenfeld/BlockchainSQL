@@ -6,9 +6,8 @@ using System.Threading;
 using BlockchainSQL.DataAccess;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class BlockStreamPersistor : BizComponent, IBlockStreamPersistor {
+namespace BlockchainSQL.Processing {
+	public class BlockStreamPersistor : BizComponent, IBlockStreamPersistor {
         public PersistResult Persist(IEnumerable<WipBlock> processedBlocks, bool saveScriptData, bool enforceFK, CancellationToken cancellationToken) {
             var blockArr = processedBlocks as WipBlock[] ?? processedBlocks.ToArray();
             using (WipPipelineScope.Current?.PipelineBlocks.EnterWriteScope()) {

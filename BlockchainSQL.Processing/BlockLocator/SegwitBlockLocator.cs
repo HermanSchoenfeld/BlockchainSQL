@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 
 namespace BlockchainSQL.Processing {
-    
+
 	/// <summary>
 	/// Used for segwit testing/diagnostics
 	/// </summary>

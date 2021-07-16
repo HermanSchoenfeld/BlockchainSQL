@@ -5,21 +5,22 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Sphere10.Framework;
+using Sphere10.Framework.Application;
+using System;
+using System.IO;
 
-namespace BlockchainSQL.Web
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+namespace BlockchainSQL.Web {
+	public class Program {
+		public static void Main(string[] args) {
+			SystemLog.RegisterLogger(new FileAppendLogger(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlockchainSQL", "log", "Web.log")));
+			Sphere10Framework.Instance.StartFramework();
+			CreateHostBuilder(args).Build().Run();
+		}
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+		public static IHostBuilder CreateHostBuilder(string[] args) =>
+			Host
+			.CreateDefaultBuilder(args)
+			.ConfigureWebHostDefaults(webBuilder =>	webBuilder.UseStartup<Startup>());
+	}
 }

@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Processing
-{
-    public interface IPostProcessor : IBizComponent {
+﻿namespace BlockchainSQL.Processing {
+	public interface IPostProcessor : IBizComponent {
 
         void PostProcessAll();
         void PostProcessPartial(PersistResult newPersistSet);

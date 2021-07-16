@@ -8,10 +8,10 @@ using Sphere10.Framework;
 
 namespace BlockchainSQL.Processing.Domain {
 
-    /// <remarks>
-    /// Written as static methods for performance (heavy-duty use)
-    /// </remarks>
-    public static class HashingFunctions {
+	/// <remarks>
+	/// Written as static methods for performance (heavy-duty use)
+	/// </remarks>
+	public static class HashingFunctions {
         public static byte[] SHA256(IEnumerable<byte> source) {
             var hasher =  new SHA256Managed();
             var sourceArr = source as byte[] ?? source.ToArray();

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BlockchainSQL.Web.Code;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 
@@ -6,7 +7,7 @@ namespace BlockchainSQL.Web.Models {
 	public class ConfigureBlockchainDbFormModel {
 
 		public ConfigureBlockchainDbFormModel() {
-			string blockchainDbConnectionString = AppConfig.BlockchainConnectionString;
+			string blockchainDbConnectionString = DatabaseManager.Settings.BlockchainDatabaseConnectionString;
 
 			if (!string.IsNullOrEmpty(blockchainDbConnectionString)) {
 				var connString = new SqlConnectionStringBuilder(blockchainDbConnectionString);
@@ -37,6 +38,6 @@ namespace BlockchainSQL.Web.Models {
 		[DisplayName("Password")]
 		public string Password { get; set; }
 
-		[DisplayName("Port")] public int Port { get; set; } = 1433;
+		[DisplayName("Port")] public int? Port { get; set; } = 1433;
 	}
 }

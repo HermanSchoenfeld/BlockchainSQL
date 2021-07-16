@@ -1,9 +1,8 @@
 ﻿using System;
 using BlockchainSQL.DataObjects;
 
-namespace BlockchainSQL.Processing
-{
-    public class WipBlock {
+namespace BlockchainSQL.Processing {
+	public class WipBlock {
         public Block Block;
         public DateTime StartScanTime;
         public DateTime FinishScanTime;

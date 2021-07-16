@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Web.Models
-{
-    public class FunLink {
+﻿namespace BlockchainSQL.Web.Models {
+	public class FunLink {
         public FunLinkType LinkType { get; set; }
         public string Name { get; set; }
 

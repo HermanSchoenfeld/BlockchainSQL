@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
-    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj" />
-    <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
-    <ProjectReference Include="..\BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
+		<ProjectReference Include="..\BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj" />
+	</ItemGroup>
 </Project>

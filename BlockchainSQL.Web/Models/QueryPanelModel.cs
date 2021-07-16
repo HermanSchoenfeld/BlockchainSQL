@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Web.Models
-{
-    public class QueryPanelModel {
+﻿namespace BlockchainSQL.Web.Models {
+	public class QueryPanelModel {
 
         public QueryPanelModel(string sql) {
             SQL = sql;

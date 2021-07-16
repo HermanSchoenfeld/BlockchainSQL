@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class CalculateRewardTask : BizComponent, IPreProcessingTask {
+namespace BlockchainSQL.Processing {
+	public class CalculateRewardTask : BizComponent, IPreProcessingTask {
         public IEnumerable<WipBlock> Process(IEnumerable<WipBlock> blocks, CancellationToken cancellationToken) {
             var blocksArr = blocks as WipBlock[] ?? blocks.ToArray();
             Parallel.ForEach(blocksArr.Select(b => b.Block), SetBlockReward);

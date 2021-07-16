@@ -3,9 +3,8 @@ using System.Linq;
 using System.Threading;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public class NodeBlockStream : BlockStreamBase {
+namespace BlockchainSQL.Processing {
+	public class NodeBlockStream : BlockStreamBase {
         public const int DefaultFetchBatchSize = 10;
         private readonly INodeCommunicator _nodeCommunicator;
         private long _blocksReceived;

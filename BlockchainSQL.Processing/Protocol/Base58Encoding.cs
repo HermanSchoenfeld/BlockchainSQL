@@ -7,10 +7,9 @@ using BlockchainSQL.Processing.Domain;
 using System.Numerics;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
+namespace BlockchainSQL.Processing {
 
-    public static class Base58Helper {
+	public static class Base58Helper {
 
         public static string Base58CheckEncode(IEnumerable<byte> payload, AddressType addressType) {
             ValidateAddressType(addressType);

@@ -5,9 +5,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public sealed class TransactionCache : CacheBase<byte[], Transaction> {
+namespace BlockchainSQL.Processing {
+	public sealed class TransactionCache : CacheBase<byte[], Transaction> {
         private readonly ApplicationDAC _dac;
         private readonly DACScope _scope;
         public TransactionCache(uint capacity)

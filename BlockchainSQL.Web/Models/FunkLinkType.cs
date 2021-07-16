@@ -1,6 +1,5 @@
-﻿namespace BlockchainSQL.Web.Models
-{
-    public enum FunLinkType {
+﻿namespace BlockchainSQL.Web.Models {
+	public enum FunLinkType {
         Link,
         Divider,
         HeaderDivider

@@ -7,9 +7,8 @@ using System.Threading;
 using BlockchainSQL.Processing.BusinessObjects;
 using Sphere10.Framework;
 
-namespace BlockchainSQL.Processing
-{
-    public abstract class FilesBlockStreamBase : BlockStreamBase {
+namespace BlockchainSQL.Processing {
+	public abstract class FilesBlockStreamBase : BlockStreamBase {
 
         private readonly string _directoryPath;
         protected IBlockFileReader CurrentBlockFileReader;

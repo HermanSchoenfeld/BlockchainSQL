@@ -94,6 +94,7 @@
     <None Include="wwwroot\themes\gui2\pm.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
     <ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BlockchainSQL.Web.Models
-{
-    public class AddressPageModel {
+namespace BlockchainSQL.Web.Models {
+	public class AddressPageModel {
 
         public string Address { get; set; }
         public IList<LineItem> LineItems { get; set; }

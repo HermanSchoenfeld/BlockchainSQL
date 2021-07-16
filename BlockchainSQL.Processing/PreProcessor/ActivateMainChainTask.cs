@@ -5,9 +5,8 @@ using System.Threading;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace BlockchainSQL.Processing
-{
-    public class ActivateMainChainTask : BizComponent, IPreProcessingTask {
+namespace BlockchainSQL.Processing {
+	public class ActivateMainChainTask : BizComponent, IPreProcessingTask {
         private readonly List<WipBlock> _leftOverBlocks;
         public ActivateMainChainTask(IBlockOrganizer blockOrganizer) {
             Organizer = blockOrganizer;

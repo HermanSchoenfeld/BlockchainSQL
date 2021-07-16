@@ -20,7 +20,7 @@ namespace BlockchainSQL.Web.Controllers {
 		public async Task<ActionResult> Block([FromQuery] int height, [FromQuery] string hash) {
 
 			if (height > 0) {
-				var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+				var repo = DatabaseManager.GetBlockchainRepository();
 
 				try {
 					var block = await repo.GetBlockByHeight(height);
@@ -40,7 +40,7 @@ namespace BlockchainSQL.Web.Controllers {
 
 				}
 
-				var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+				var repo = DatabaseManager.GetBlockchainRepository();
 				var block = await repo.GetBlock(hash);
 				return View(block);
 			}
@@ -51,14 +51,14 @@ namespace BlockchainSQL.Web.Controllers {
 		public async Task<ActionResult> Transaction(string txid) {
 			if (!BitcoinProtocolHelper.IsValidHashString(txid))
 				throw new Exception("Invalid TXID");
-			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var repo = DatabaseManager.GetBlockchainRepository();
 			var txn = await repo.GetTransaction(txid);
 
 			return View(txn);
 		}
 
 		public async Task<ActionResult> TransactionInputScripts(int key) {
-			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var repo = DatabaseManager.GetBlockchainRepository();
 
 			var txin = await repo.GetTransactionInputById(key);
 
@@ -74,7 +74,7 @@ namespace BlockchainSQL.Web.Controllers {
 		}
 		
 		public async Task<ActionResult> Script(int key) {
-			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var repo = DatabaseManager.GetBlockchainRepository();
 			var summary = await repo.GetScriptSummary(key);
 			return View(summary);
 		}
@@ -83,7 +83,7 @@ namespace BlockchainSQL.Web.Controllers {
 			if (!BitcoinProtocolHelper.IsValidAddress(address))
 				return HomePageRedirect();
 
-			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var repo = DatabaseManager.GetBlockchainRepository();
 			var items = await repo.GetStatementLines(address);
 
 			// If address was not a P2PKH address and it's empty, just re-direct (only show 0 balance for p2pkh addresses)

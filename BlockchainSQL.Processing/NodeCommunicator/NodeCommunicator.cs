@@ -9,9 +9,8 @@ using NBitcoin.Protocol;
 using Sphere10.Framework;
 using NB = NBitcoin;
 
-namespace BlockchainSQL.Processing
-{
-    public class NodeCommunicator : INodeCommunicator {
+namespace BlockchainSQL.Processing {
+	public class NodeCommunicator : INodeCommunicator {
         public const int BitcoinPortNumber = 8333;
         private readonly NodeEndpoint nodeEndpoint;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlockchainSQL.DataAccess.NHibernate;
 using NHibernate;
 using Sphere10.Framework.Data;
 
@@ -12,9 +13,9 @@ namespace BlockchainSQL.Web.DataAccess {
         public static IDatabaseGenerator NewDatabaseGenerator(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return  new MssqlDatabaseGenerator();
+                    return  new WebDatabaseGeneratorMSSQL();
                 case DBMSType.Sqlite:
-                    return new SqliteDatabaseGenerator();
+                    return new  WebDatabaseGeneratorSqlite();
                 case DBMSType.Firebird:
                     break;
                 case DBMSType.FirebirdFile:
@@ -26,8 +27,8 @@ namespace BlockchainSQL.Web.DataAccess {
         }
 
         public static ISessionFactory CreateSessionFactory(DBMSType dbmsType, string connectionString) {
-            var dbGen = (DatabaseGeneratorBase)NewDatabaseGenerator(dbmsType);
-            return dbGen.CreateSessionFactory(connectionString);
+            var dbGen = (NHibernateDatabaseGeneratorBase)NewDatabaseGenerator(dbmsType);
+            return dbGen.OpenDatabase(connectionString);
         }
     }
 }

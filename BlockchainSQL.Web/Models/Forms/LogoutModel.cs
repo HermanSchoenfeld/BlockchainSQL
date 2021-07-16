@@ -1,4 +1,6 @@
-﻿namespace BlockchainSQL.Web.Models {
+﻿using Sphere10.Framework.Web.AspNetCore;
+
+namespace BlockchainSQL.Web.Models {
 	public class LogoutForm : FormModelBase {
 
 		public override string FormName => "Logout";

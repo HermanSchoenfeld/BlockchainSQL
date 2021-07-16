@@ -18,7 +18,7 @@ namespace BlockchainSQL.Web.Controllers {
 			if (!(BitcoinProtocolHelper.IsValidHashString(term) || BitcoinProtocolHelper.IsValidAddress(term))) {
 				return HomePageRedirect("Invalid search pattern");
 			}
-			var repo = new DBBlockchainRepository(AppConfig.BlockchainConnectionString);
+			var repo = DatabaseManager.GetBlockchainRepository();
 			var result = await repo.SearchHash(term);
 			switch (result.ResultType) {
 				case SearchResultType.Block:

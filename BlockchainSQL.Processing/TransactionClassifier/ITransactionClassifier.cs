@@ -1,9 +1,8 @@
 ﻿using BlockchainSQL.DataObjects;
 
-namespace BlockchainSQL.Processing
-{
+namespace BlockchainSQL.Processing {
 
-    public interface ITransactionClassifier {
+	public interface ITransactionClassifier {
 
         ScriptClass ClassifyInputScript(ScriptInstruction[] inputScriptInstructions, ScriptType scriptType, bool hasWitness, out AddressType addressType);
 

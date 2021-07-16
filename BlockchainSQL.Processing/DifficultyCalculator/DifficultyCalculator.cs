@@ -1,8 +1,7 @@
 ﻿using System;
 
-namespace BlockchainSQL.Processing
-{
-    public class DifficultyCalculator : IDifficultyCalculator {
+namespace BlockchainSQL.Processing {
+	public class DifficultyCalculator : IDifficultyCalculator {
         static readonly float MaxBody = (float)Math.Log(0x00ffff);
         static readonly float Scaland = (float)Math.Log(256);
 
