@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sphere10.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,5 +14,10 @@ namespace BlockchainSQL.Server {
 		public WebSettingsScreen() {
 			InitializeComponent();
 		}
+
+		public override async Task<Result> Validate() {
+			return Result.Default;
+		}
+
 	}
 }

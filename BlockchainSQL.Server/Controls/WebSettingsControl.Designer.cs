@@ -60,7 +60,7 @@ namespace BlockchainSQL.Server.Controls {
             this._databaseConnectionPanel.Location = new System.Drawing.Point(14, 33);
             this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(14);
             this._databaseConnectionPanel.Name = "_databaseConnectionPanel";
-            this._databaseConnectionPanel.Size = new System.Drawing.Size(536, 150);
+            this._databaseConnectionPanel.Size = new System.Drawing.Size(534, 150);
             this._databaseConnectionPanel.TabIndex = 16;
             // 
             // _loadingCircle

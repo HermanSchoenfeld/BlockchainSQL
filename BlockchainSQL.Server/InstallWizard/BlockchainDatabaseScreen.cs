@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sphere10.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,14 @@ namespace BlockchainSQL.Server {
 	public partial class BlockchainDatabaseScreen : InstallWizardScreenBase {
 		public BlockchainDatabaseScreen() {
 			InitializeComponent();
+		}
+
+		public override async Task<Result> Validate() {
+			return ValidateDatabase();
+		}
+
+		public Task<Result> ValidateDatabase() {
+			return _blockchainDatabaseSettingsControl.DatabasePanel.TestConnection();
 		}
 	}
 }

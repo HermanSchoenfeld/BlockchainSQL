@@ -25,26 +25,39 @@ namespace BlockchainSQL.Server {
 		/// </summary>
 		private void InitializeComponent() {
             this._scannerSettingsControl = new BlockchainSQL.Server.Controls.ScannerSettingsControl();
+            this._groupBox = new System.Windows.Forms.GroupBox();
+            this._groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _scannerSettingsControl
             // 
-            this._scannerSettingsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this._scannerSettingsControl.AutoDetectChildStateChanges = false;
-            this._scannerSettingsControl.Location = new System.Drawing.Point(3, 3);
+            this._scannerSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._scannerSettingsControl.Location = new System.Drawing.Point(3, 19);
             this._scannerSettingsControl.Model = null;
             this._scannerSettingsControl.Name = "_scannerSettingsControl";
-            this._scannerSettingsControl.Size = new System.Drawing.Size(680, 86);
+            this._scannerSettingsControl.Size = new System.Drawing.Size(626, 125);
             this._scannerSettingsControl.TabIndex = 0;
             // 
-            // ScannerStep
+            // _groupBox
+            // 
+            this._groupBox.Controls.Add(this._scannerSettingsControl);
+            this._groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._groupBox.Location = new System.Drawing.Point(0, 0);
+            this._groupBox.Name = "_groupBox";
+            this._groupBox.Size = new System.Drawing.Size(632, 147);
+            this._groupBox.TabIndex = 1;
+            this._groupBox.TabStop = false;
+            this._groupBox.Text = "Blockchain Scanner Settings";
+            // 
+            // ScannerScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._scannerSettingsControl);
-            this.Name = "ScannerStep";
-            this.Size = new System.Drawing.Size(686, 87);
+            this.Controls.Add(this._groupBox);
+            this.Name = "ScannerScreen";
+            this.Size = new System.Drawing.Size(632, 147);
+            this._groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -52,5 +65,6 @@ namespace BlockchainSQL.Server {
 		#endregion
 
 		private Controls.ScannerSettingsControl _scannerSettingsControl;
+		private System.Windows.Forms.GroupBox _groupBox;
 	}
 }

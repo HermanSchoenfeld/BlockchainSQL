@@ -25,25 +25,38 @@ namespace BlockchainSQL.Server {
 		/// </summary>
 		private void InitializeComponent() {
             this._blockchainDatabaseSettingsControl = new BlockchainSQL.Server.BlockchainDatabaseSettingsControl();
+            this._groupBox = new System.Windows.Forms.GroupBox();
+            this._groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // _blockchainDatabaseSettingsControl
             // 
-            this._blockchainDatabaseSettingsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._blockchainDatabaseSettingsControl.Location = new System.Drawing.Point(0, 3);
+            this._blockchainDatabaseSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._blockchainDatabaseSettingsControl.Location = new System.Drawing.Point(3, 19);
             this._blockchainDatabaseSettingsControl.Model = null;
             this._blockchainDatabaseSettingsControl.Name = "_blockchainDatabaseSettingsControl";
-            this._blockchainDatabaseSettingsControl.Size = new System.Drawing.Size(518, 200);
+            this._blockchainDatabaseSettingsControl.Size = new System.Drawing.Size(585, 196);
             this._blockchainDatabaseSettingsControl.TabIndex = 0;
             // 
-            // BlockchainDatabaseStep
+            // _groupBox
+            // 
+            this._groupBox.Controls.Add(this._blockchainDatabaseSettingsControl);
+            this._groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._groupBox.Location = new System.Drawing.Point(0, 0);
+            this._groupBox.Name = "_groupBox";
+            this._groupBox.Size = new System.Drawing.Size(591, 218);
+            this._groupBox.TabIndex = 1;
+            this._groupBox.TabStop = false;
+            this._groupBox.Text = "Blockchain Database";
+            // 
+            // BlockchainDatabaseScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._blockchainDatabaseSettingsControl);
-            this.Name = "BlockchainDatabaseStep";
-            this.Size = new System.Drawing.Size(521, 202);
+            this.Controls.Add(this._groupBox);
+            this.Name = "BlockchainDatabaseScreen";
+            this.Size = new System.Drawing.Size(591, 218);
+            this._groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -51,5 +64,6 @@ namespace BlockchainSQL.Server {
 		#endregion
 
 		private BlockchainDatabaseSettingsControl _blockchainDatabaseSettingsControl;
+		private System.Windows.Forms.GroupBox _groupBox;
 	}
 }

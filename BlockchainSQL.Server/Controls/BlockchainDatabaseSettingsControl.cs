@@ -33,6 +33,8 @@ namespace BlockchainSQL.Server {
 			}
 		}
 
+		public DatabaseConnectionPanel DatabasePanel => _databaseConnectionPanel;
+
 		private void CopyModelToUI() {
 			Guard.Ensure(_model != null, "Model not set");
 			_databaseConnectionPanel.SelectedDBMSType = _model.DBMSType;

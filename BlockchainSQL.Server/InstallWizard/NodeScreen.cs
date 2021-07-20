@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sphere10.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,10 @@ namespace BlockchainSQL.Server {
 	public partial class NodeScreen : InstallWizardScreenBase {
 		public NodeScreen() {
 			InitializeComponent();
+		}
+
+		public override async Task<Result> Validate() {
+			return Result.Default;
 		}
 	}
 }

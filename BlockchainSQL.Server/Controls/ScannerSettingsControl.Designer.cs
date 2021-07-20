@@ -73,7 +73,7 @@ namespace BlockchainSQL.Server.Controls {
             this._optionsListBox.Items.AddRange(new object[] {
             "Save Script Instructions (warning: results in much larger database and has very s" +
                 "low initial build)"});
-            this._optionsListBox.Location = new System.Drawing.Point(91, 0);
+            this._optionsListBox.Location = new System.Drawing.Point(91, 8);
             this._optionsListBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._optionsListBox.Name = "_optionsListBox";
             this._optionsListBox.Size = new System.Drawing.Size(548, 18);
