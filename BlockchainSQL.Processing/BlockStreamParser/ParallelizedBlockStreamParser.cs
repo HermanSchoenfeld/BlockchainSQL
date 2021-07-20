@@ -25,19 +25,18 @@ namespace BlockchainSQL.Processing {
 
         public IBlockStreamPersistor Persistor { get; }
 
-
         public async Task Parse( CancellationToken cancellationToken, Action<int> progressCallback = null, bool deferPostProcessing = true, TimeSpan? pollSleepDuration = null) {
             if (pollSleepDuration != null)
                 throw new ArgumentException("This implementation of '{0}' does not support polling of stream, make sure argument is null".FormatWith(nameof(IBlockStreamParser)), nameof(pollSleepDuration));
 
-            const long minBufferSizeMb = 128;
-            const long maxBufferSizeMb = 64000;
+            const int minBufferSizeMB = 128;
+            const int maxBufferSizeMB = 64000;
             progressCallback = progressCallback ?? (x => Tools.Lambda.NoOp());
 
             // Determine how to allocate memory to the buffers
-            var userPreferredMaxMemory = Settings.MaxMemoryBufferSize.ClipTo(minBufferSizeMb, maxBufferSizeMb);
+            var userPreferredMaxMemory = Settings.Get<ScannerSettings>().MaxMemoryBufferSizeMB.ClipTo(minBufferSizeMB, maxBufferSizeMB);
             var bufferSize = Tools.Memory.ConvertMemoryMetric(userPreferredMaxMemory,MemoryMetric.Megabyte,MemoryMetric.Byte);
-            var saveScriptData = Settings.StoreScriptData;
+            var saveScriptData = Settings.Get<ScannerSettings>().StoreScriptData;
             var scannedQueueBufferPortion = 0.5;
             var processQueueBufferPortion = 0.5;
 

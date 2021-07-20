@@ -76,11 +76,7 @@ namespace BlockchainSQL.Server {
 
         private async Task<bool> GenerateDatabase(DatabaseGenerationDataPolicy dataPolicy, DBMSType dbmsType, string connectionString, string databaseName) {
             using (_loadingCircle.BeginAnimationScope()) {
-                var settingsValidation = _settingsControl.ValidateInputs(); 
-                if (settingsValidation.Failure)
-                    throw new SoftwareException(settingsValidation.ErrorMessages.ToParagraphCase(true));    
-                
-                var dropExisting = false;
+				var dropExisting = false;
                 var createShell = false;
                 var createDatabase = false;
                 var schemaGenerator = BlockchainDatabase.NewDatabaseGenerator(dbmsType);
@@ -118,7 +114,7 @@ namespace BlockchainSQL.Server {
                 if (createDatabase)
                     await Task.Run(() => schemaGenerator.CreateApplicationDatabase(connectionString, dataPolicy, databaseName));
 
-                await _settingsControl.SaveTo(dbmsType, connectionString);
+
 
                 MessageBox.Show(this, "Success", "Database Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -150,15 +146,15 @@ namespace BlockchainSQL.Server {
         #region Internal types
         public class FormSettings : SettingsObject {
 
-            [DefaultValue(DBMSType.SQLServer)]
-            public DBMSType DBMSType { get; set; }
+			public DBMSType DBMSType { get; set; } = DBMSType.SQLServer;
 
-            public string ConnectionString { get; set; }
 
-            [DefaultValue("_primingRadioButton")]
-            public string DataGenRadioBox { get; set; }
+			public string ConnectionString { get; set; }
 
-        }
+			public string DataGenRadioBox { get; set; } = "_primingRadioButton";
+
+
+		}
 
         #endregion
 

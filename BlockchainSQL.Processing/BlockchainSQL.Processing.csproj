@@ -2,14 +2,6 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<OutputType>Library</OutputType>
-		<SccProjectName>
-		</SccProjectName>
-		<SccLocalPath>
-		</SccLocalPath>
-		<SccAuxPath>
-		</SccAuxPath>
-		<SccProvider>
-		</SccProvider>
 		<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
 		<RestorePackages>true</RestorePackages>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -17,6 +9,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj" />
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
 	</ItemGroup>

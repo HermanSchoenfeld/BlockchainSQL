@@ -11,6 +11,7 @@ using Sphere10.Framework.Application;
 [assembly: AssemblyCompany("Sphere 10 Software Pty Ltd")]
 [assembly: AssemblyProduct("BlockchainSQL Server")]
 [assembly: AssemblyProductCode("A49ECEC9-1E83-436c-B432-BBF7B26055E7")]
+[assembly: AssemblyProductSecret("d7dd4d108cf489557f3645370f70c53a1166f582a13989ab45dc305df6b30a28")]
 [assembly: AssemblyDefaultProductKey("6ES3-YJAD-7N4P-3V7B")]    // full version product key
 [assembly: AssemblyCopyright("Copyright © 2015 - {CurrentYear}")]
 [assembly: AssemblyCompanyLink("www.blockchainsql.io")]

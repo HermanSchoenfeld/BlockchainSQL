@@ -65,7 +65,7 @@ namespace BlockchainSQL.NUnit
         }
 
         private static string CreateMSSQLDatabase() {
-            var x = typeof(BlockchainSQL.DataAccess.NHibernate.IDataGenerator);
+            var x = typeof(IDataGenerator);
             var dbName = Guid.NewGuid().ToStrictAlphaString().ToUpperInvariant();
             var connStringBuilder = new SqlConnectionStringBuilder();
             connStringBuilder.DataSource = LocalServer;
@@ -74,7 +74,7 @@ namespace BlockchainSQL.NUnit
             connStringBuilder.InitialCatalog = dbName;
             var dbCreator = BlockchainDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
             Task.Run(() => dbCreator.CreateEmptyDatabase(connStringBuilder.ToString())).Wait();
-            Task.Run(() => dbCreator.CreateNewDatabase(connStringBuilder.ToString(), DatabaseGenerationDataPolicy.PrimingData, dbName)).Wait();
+            Task.Run(() => dbCreator.CreateApplicationDatabase(connStringBuilder.ToString(), DatabaseGenerationDataPolicy.PrimingData, dbName)).Wait();
             return connStringBuilder.ToString();
         }
 

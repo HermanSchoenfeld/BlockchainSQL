@@ -9,30 +9,30 @@ namespace BlockchainSQL.Processing {
         private readonly DBMSType _dbmsType;
         private readonly string _connectionString;
         private readonly ApplicationDAC _dac;
-        private readonly SettingsCache _settings;
+
         public BizLogicScope(ApplicationDAC dac)
             : this(dac.DBMSType, dac.ConnectionString, dac.Log) {
         }
 
         public BizLogicScope(ILogger logger = null)
-            : this(GlobalSettings.Get<BizLogicSettings>().DBMSType, GlobalSettings.Get<BizLogicSettings>().ConnectionString, logger, false) {
+            : this(GlobalSettings.Get<BlockchainDatabaseSettings>().DBMSType, GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString, logger, GlobalSettings.Provider, false) {
         }
 
         public BizLogicScope(DBMSType dbmsType, string connectionString, ILogger logger = null)
-            : this(dbmsType, connectionString, logger, false) {
+            : this(dbmsType, connectionString, logger, GlobalSettings.Provider, false) {
         }
 
-        private BizLogicScope(DBMSType? dbmsType, string connectionString, ILogger logger, bool databaseFree)
+        private BizLogicScope(DBMSType? dbmsType, string connectionString, ILogger logger, ISettingsProvider settings, bool databaseFree)
             : base(typeof (BizLogicScope).FullName, ScopeContextPolicy.MustBeRoot) {
             _databaseFreeContext = databaseFree;
             if (dbmsType.HasValue)
                 _dbmsType = dbmsType.Value;
             _connectionString = connectionString;
             Log = logger ?? new NoOpLogger();
+			Settings = settings ?? GlobalSettings.Provider;
             _databaseFreeContext = databaseFree;
             if (!_databaseFreeContext)
                 _dac = CreateDAC();
-            _settings = new SettingsCache();
         }
 
         public static BizLogicScope Current {
@@ -64,6 +64,8 @@ namespace BlockchainSQL.Processing {
 
         public ILogger Log { get; private set; }
 
+		public ISettingsProvider Settings { get; init; }
+
         public ApplicationDAC DAC {
             get {
                 CheckSet();
@@ -71,9 +73,6 @@ namespace BlockchainSQL.Processing {
             }
         }
 
-        public SettingsCache Settings {
-            get { return _settings; }
-        }
 
         public ApplicationDAC CreateDAC() {
             CheckSet();
@@ -82,7 +81,7 @@ namespace BlockchainSQL.Processing {
             return dac;
         }
         public static BizLogicScope EnterDatabaseFreeScope(ILogger logger = null) {
-            return new BizLogicScope(null, null, logger, true);
+            return new BizLogicScope(null, null, logger, GlobalSettings.Provider, true);
         }
 
         protected override void OnScopeEnd(BizLogicScope rootScope, bool inException) {

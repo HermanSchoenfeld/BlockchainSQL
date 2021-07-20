@@ -26,7 +26,6 @@ namespace BlockchainSQL.Server {
         /// </summary>
         private void InitializeComponent() {
             this._optionsGroupBox = new System.Windows.Forms.GroupBox();
-            this._settingsControl = new BlockchainSQL.Server.SettingsControl();
             this._serviceStatusGroupBox = new System.Windows.Forms.GroupBox();
             this._serviceStatusControl = new BlockchainSQL.Server.ServiceStatusControl();
             this._dbConnectionBar = new Sphere10.Framework.Windows.Forms.DatabaseConnectionBar();
@@ -51,7 +50,6 @@ namespace BlockchainSQL.Server {
             this._optionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._optionsGroupBox.Controls.Add(this._settingsControl);
             this._optionsGroupBox.Location = new System.Drawing.Point(7, 181);
             this._optionsGroupBox.Margin = new System.Windows.Forms.Padding(2);
             this._optionsGroupBox.Name = "_optionsGroupBox";
@@ -60,17 +58,6 @@ namespace BlockchainSQL.Server {
             this._optionsGroupBox.TabIndex = 5;
             this._optionsGroupBox.TabStop = false;
             this._optionsGroupBox.Text = "Options";
-            // 
-            // _settingsControl
-            // 
-            this._settingsControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._settingsControl.Location = new System.Drawing.Point(2, 17);
-            this._settingsControl.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this._settingsControl.Name = "_settingsControl";
-            this._settingsControl.Padding = new System.Windows.Forms.Padding(6);
-            this._settingsControl.Size = new System.Drawing.Size(845, 227);
-            this._settingsControl.TabIndex = 0;
             // 
             // _serviceStatusGroupBox
             // 
@@ -268,7 +255,6 @@ namespace BlockchainSQL.Server {
 
         #endregion
         private System.Windows.Forms.GroupBox _optionsGroupBox;
-        private SettingsControl _settingsControl;
         private System.Windows.Forms.GroupBox _serviceStatusGroupBox;
         private Sphere10.Framework.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
         private System.Windows.Forms.Button _connectButton;

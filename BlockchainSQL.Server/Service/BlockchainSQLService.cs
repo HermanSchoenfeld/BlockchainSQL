@@ -6,7 +6,6 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.Processing;
-using BlockchainSQL.Server.Service;
 using Sphere10.Framework;
 using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
@@ -44,7 +43,11 @@ namespace BlockchainSQL.Server {
 			while (!_cancellationTokenSource.IsCancellationRequested) {
 				try {
 					var serviceExePath = Assembly.GetEntryAssembly().Location;
-					var database = await DatabaseReferenceFileManager.LoadDatabaseConnectionFile(serviceExePath);
+					var dbSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+					if (dbSettings.DBMSType != DBMSType.SQLServer)
+						throw new NotSupportedException($"Database type not supported {dbSettings.DBMSType}");
+
+					var database = new DBReference() { DBMSType = dbSettings.DBMSType, ConnectionString = dbSettings.ConnectionString };
 
 					if (IsWebAppEnabled())
 						StartWebUI();
@@ -86,7 +89,7 @@ namespace BlockchainSQL.Server {
 			var connectionString = database.ConnectionString;
 
 			using (var scope = new BizLogicScope(dbmsType, connectionString, _logger)) {
-				var nodeIP = scope.Settings.NetworkPeer1;
+				var nodeIP = scope.Settings.Get<NodeSettings>().IP;
 				int? nodePort = null; // TODO add port setting
 				var nodeValidation = await ValidateNode(nodeIP, nodePort);
 				if (!nodeValidation.Success)
@@ -95,7 +98,7 @@ namespace BlockchainSQL.Server {
 				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(nodeIP, nodePort))) {
 					var blockStreamParser = BizLogicFactory.NewNodeStreamParser(nodeStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(false, true), BizLogicFactory.NewPostProcessor(), BizLogicFactory.NewBlockStreamPersistor());
 					Action<int> progressHandler = i => Tools.Lambda.NoOp();
-					await blockStreamParser.Parse(cancelToken, progressHandler, false, scope.Settings.NetworkPeerPollRate);
+					await blockStreamParser.Parse(cancelToken, progressHandler, false,  TimeSpan.FromSeconds(scope.Settings.Get<NodeSettings>().PollRateSEC));
 				}
 			}
 		}

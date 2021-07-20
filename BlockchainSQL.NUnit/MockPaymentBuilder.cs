@@ -58,7 +58,7 @@ namespace BlockchainSQL.NUnit {
         private Outpoint FindUTXO(string from, long satoshi) {
             var allInputs = _transactionHistory.SelectMany(tx => tx.Inputs).ToArray();
             var matchingOutputs = _transactionHistory.SelectMany(tx => tx.Outputs).Where(txo => txo.ToAddress == from && txo.Value == satoshi);
-            var unspentOutputs = matchingOutputs.Where(txo => !allInputs.Any(txi => txi.Outpoint.TXID.SequenceEquals(txo.Transaction.TXID))).ToArray();
+            var unspentOutputs = matchingOutputs.Where(txo => !allInputs.Any(txi => txi.Outpoint.TXID.SequenceEqual(txo.Transaction.TXID))).ToArray();
             if (unspentOutputs.Length == 0)
                 throw new SoftwareException("No UTXO found for '{0}' with quantity '{1}", from, satoshi);
 
@@ -89,7 +89,7 @@ namespace BlockchainSQL.NUnit {
                 ScriptClass = ScriptClass.CoinBase,
                 RowState = 1
             };
-            script.AddInstructions(Enumerable.Range(1, Tools.Maths.RandomNumberGenerator.Next(1, 10)).Select(i => GenScriptInstruction()));
+            script.AddInstructions(Enumerable.Range(1, Tools.Maths.RNG.Next(1, 10)).Select(i => GenScriptInstruction()));
             script.InstructionCount = script.Instructions.Count;
             return script;
         }

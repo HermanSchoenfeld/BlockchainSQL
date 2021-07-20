@@ -29,9 +29,9 @@ namespace BlockchainSQL.NUnit {
 				throw new ArgumentException("Hash cannot be all zero's as it's reserved", nameof(hash));
             MockPaymentBuilder payments = new MockPaymentBuilder();
 
-            var total = Tools.Maths.RandomNumberGenerator.Next(1, 10);
+            var total = Tools.Maths.RNG.Next(1, 10);
             for (var i = 0; i < total; i++) {
-                payments.Pay(null, Tools.Maths.RandomNumberGenerator.Next().ToString(), Tools.Maths.RandomNumberGenerator.Next());
+                payments.Pay(null, Tools.Maths.RNG.Next().ToString(), Tools.Maths.RNG.Next());
             }
             return GenBlock(hash, prevHash, unixTime, payments.History.ToArray());
         }

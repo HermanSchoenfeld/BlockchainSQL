@@ -74,7 +74,7 @@ namespace BlockchainSQL.Server
 
         private async void _saveSettingsButton_Click(object sender, EventArgs e) {
             try {
-                await _settingsControl.SaveTo(_dbConnectionBar.SelectedDBMSType, _dbConnectionBar.ConnectionString);
+                //await _settingsControl.SaveTo(_dbConnectionBar.SelectedDBMSType, _dbConnectionBar.ConnectionString);
             } catch (Exception error) {
                 ExceptionDialog.Show(this, error);
             }
@@ -105,7 +105,7 @@ namespace BlockchainSQL.Server
             _toolsGroupBox.Enabled = true;
             _dbConnectionBar.Enabled = false;            
             SaveFormSettings();
-            await _settingsControl.LoadFrom(_dbConnectionBar.SelectedDBMSType, _dbConnectionBar.ConnectionString);
+            //await _settingsControl.LoadFrom(_dbConnectionBar.SelectedDBMSType, _dbConnectionBar.ConnectionString);
         }
 
         private void Disconnect() {
@@ -138,15 +138,15 @@ namespace BlockchainSQL.Server
         #region Internal types
         public class FormSettings : SettingsObject {
 
-            [DefaultValue(DBMSType.SQLServer)]
-            public DBMSType DBMSType { get; set; }
+			public DBMSType DBMSType { get; set; } = DBMSType.SQLServer;
 
-            public string ConnectionString { get; set; }
 
-            [DefaultValue("_primingRadioButton")]
-            public string DataGenRadioBox { get; set; }
+			public string ConnectionString { get; set; }
 
-        }
+			public string DataGenRadioBox { get; set; } = "_primingRadioButton";
+
+
+		}
 
         #endregion
 

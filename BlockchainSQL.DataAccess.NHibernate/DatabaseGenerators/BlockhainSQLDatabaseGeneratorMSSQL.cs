@@ -19,6 +19,7 @@ namespace BlockchainSQL.DataAccess.NHibernate {
 		protected override IDataGenerator CreateDataGenerator(ISessionFactory sessionFactory, string databaseName, DatabaseGenerationDataPolicy policy)
 			=> policy switch {
 				DatabaseGenerationDataPolicy.NoData => new EmptyDataGenerator(),
+				DatabaseGenerationDataPolicy.PrimingData => new PrimingDataGenerator(sessionFactory, databaseName),
 				_ => throw new NotSupportedException()
 			};
 

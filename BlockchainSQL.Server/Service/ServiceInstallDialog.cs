@@ -16,8 +16,9 @@ namespace BlockchainSQL.Server
 
         public ServiceInstallDialog() {
             InitializeComponent();
-            _databaseConnectionPanel.IgnoreDBMS = new[] { DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile };
-        }
+            _blockchainDatabaseConnectionPanel.IgnoreDBMS = new[] { DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile };
+			_webDatabaseConnectionPanel.IgnoreDBMS = new[] { DBMSType.Firebird, DBMSType.FirebirdFile };
+		}
 
         protected override void PopulatePrimingData() {
             base.PopulatePrimingData();
@@ -48,7 +49,7 @@ namespace BlockchainSQL.Server
 
 
         public Task<Result> ValidateDatabase() {
-            return _databaseConnectionPanel.TestConnection();
+            return _blockchainDatabaseConnectionPanel.TestConnection();
         }
 
         public async Task Validate() {
@@ -65,7 +66,7 @@ namespace BlockchainSQL.Server
         public Task Install() {
             return Tools.BlockchainSQL.LaunchInstallServiceProcess(
                 _pathSelector.Path,
-                _databaseConnectionPanel.Database
+                _blockchainDatabaseConnectionPanel.Database
             );
         }
         
@@ -83,7 +84,7 @@ namespace BlockchainSQL.Server
             }
         }
 
-        private async void _testConnectionButon_Click(object sender, EventArgs e) {
+        private async void _testBlockchainConnectionButon_Click(object sender, EventArgs e) {
             try {
                 using (_loadingCircle.BeginAnimationScope(this)) {
                     var result = await ValidateDatabase();
@@ -97,14 +98,19 @@ namespace BlockchainSQL.Server
             }
         }
 
-        private async void _generateNewDatabaseButton_Click(object sender, EventArgs e) {
+		private void _testWebConnectionButon_Click(object sender, EventArgs e) {
+			throw new NotImplementedException();
+		}
+
+
+		private async void _generateBlockchainDatabaseButton_Click(object sender, EventArgs e) {
             try {
                 var dialog = new GenerateDatabaseForm();
                 dialog.ShowDialog(this);
                 if (dialog.DialogResult == DialogResult.OK) {
                     if (dialog.GeneratedDatabase != null) {
-                        this._databaseConnectionPanel.SelectedDBMSType = dialog.GeneratedDatabase.Value.DBMSType;
-                        this._databaseConnectionPanel.ConnectionString = dialog.GeneratedDatabase.Value.ConnectionString;
+                        this._blockchainDatabaseConnectionPanel.SelectedDBMSType = dialog.GeneratedDatabase.Value.DBMSType;
+                        this._blockchainDatabaseConnectionPanel.ConnectionString = dialog.GeneratedDatabase.Value.ConnectionString;
                     }
                 }
             } catch (Exception error) {
@@ -112,12 +118,16 @@ namespace BlockchainSQL.Server
             }
         }
 
-        protected virtual void LoadFormSettings() {
+		private void _generateWebDatabaseButton_Click(object sender, EventArgs e) {
+			throw new NotImplementedException();
+		}
+
+		protected virtual void LoadFormSettings() {
             using (this.EnterUpdateScope()) {
                 var settings = GlobalSettings.Get<FormSettings>();
                 _pathSelector.Path = settings.DestFolder;
-                _databaseConnectionPanel.SelectedDBMSType = settings.DBMS;
-                _databaseConnectionPanel.ConnectionString = settings.ConnectionString;
+                _blockchainDatabaseConnectionPanel.SelectedDBMSType = settings.DBMS;
+                _blockchainDatabaseConnectionPanel.ConnectionString = settings.ConnectionString;
 				_installWebUICheckbox.Checked = settings.IsWebUIEnabled;
 				_webUIPort.Value = settings.WebUIPort;
             }
@@ -126,8 +136,8 @@ namespace BlockchainSQL.Server
         protected virtual void SaveFormSettings() {
             var settings = GlobalSettings.Get<FormSettings>();
             settings.DestFolder = _pathSelector.Path;
-            settings.DBMS = _databaseConnectionPanel.SelectedDBMSType;
-            settings.ConnectionString = _databaseConnectionPanel.ConnectionString;
+            settings.DBMS = _blockchainDatabaseConnectionPanel.SelectedDBMSType;
+            settings.ConnectionString = _blockchainDatabaseConnectionPanel.ConnectionString;
 			settings.IsWebUIEnabled = _installWebUICheckbox.Checked;
 			settings.WebUIPort = (int)_webUIPort.Value;
 
@@ -137,16 +147,18 @@ namespace BlockchainSQL.Server
         public class FormSettings : SettingsObject {
             public string DestFolder { get; set; }
 
-            [DefaultValue(DBMSType.SQLServer)]
-            public DBMSType DBMS { get; set; }
+			public DBMSType DBMS { get; set; } = DBMSType.SQLServer;
 
-            public string ConnectionString { get; set; }
+
+			public string ConnectionString { get; set; }
 
 			public bool IsWebUIEnabled { get; set; }
 
-			[DefaultValue(5000)]
-			public int WebUIPort { get; set; }
-        }
+			public int WebUIPort { get; set; } = 5000;
+
+		}
+
+
 	}
 
 }

@@ -4,11 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
-using System.Text;
 using System.Threading.Tasks;
-using BlockchainSQL.Server.Service;
 using Sphere10.Framework;
-using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 
 namespace Tools {
@@ -24,7 +21,7 @@ namespace Tools {
 
 			var info = new ProcessStartInfo {
 				FileName = fileName,
-				Arguments = String.Format("-install \"{0}\" \"{1}\" \"{2}\"", destPath, database.DBMSType, database.ConnectionString),
+				Arguments = String.Format("-install \"{0}\"", destPath),  // database and other settings are shared via PresenationTierSettings
 				ErrorDialog = false,
 				UseShellExecute = false,
 				RedirectStandardOutput = true,
@@ -42,7 +39,7 @@ namespace Tools {
 			}
 		}
 
-		public static async Task InstallService(string destPath, DBReference database) {
+		public static async Task InstallService(string destPath) {
 			var location = Assembly.GetExecutingAssembly().Location;
 			var currentExePath = location.EndsWith(".dll")
 				? location.TrimEnd(".dll") + ".exe"
@@ -57,7 +54,6 @@ namespace Tools {
 
 				var destExePath = Path.Combine(destPath, Path.GetFileName(currentExePath));
 				Debug.Assert(File.Exists(destExePath));
-				await DatabaseReferenceFileManager.CreateDatabaseConnectionFile(destExePath, database);
 
 				ProcessStartInfo info = new ProcessStartInfo {
 					FileName = "sc.exe",
@@ -182,5 +178,8 @@ namespace Tools {
 					.GetServices()
 					.FirstOrDefault(s => s.ServiceName == ServiceName);
 		}
+
+		public static bool IsInstalled() => ServiceController.GetServices().Any(s => s.ServiceName == ServiceName);
+		
 	}
 }

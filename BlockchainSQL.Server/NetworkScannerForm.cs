@@ -95,7 +95,7 @@ namespace BlockchainSQL.Server
 				    using (_loadingCircle.BeginAnimationScope(this, _startButton, _logBox, _progressBar)) {
 					    _progressBar.Visible = true;
 					    _startButton.Text = "Stop";
-					    await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, false, scope.Settings.NetworkPeerPollRate);
+					    await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, false, TimeSpan.FromSeconds( scope.Settings.Get<NodeSettings>().PollRateSEC));
 				    }
 			    }
 		    }
@@ -171,10 +171,10 @@ namespace BlockchainSQL.Server
         public int? NodePort {get;set;}
         public string BlockFilePath { get; set; }
 
-        [DefaultValue(DBMSType.SQLServer)]
-        public DBMSType DBMS { get; set; }
+		public DBMSType DBMS { get; set; } = DBMSType.SQLServer;
 
-        public string ConnectionString { get; set; }
+
+		public string ConnectionString { get; set; }
 
     }
 

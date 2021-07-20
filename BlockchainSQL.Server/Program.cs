@@ -73,23 +73,16 @@ namespace BlockchainSQL.Server
                 Debug.Assert(arguments != null);
                 Debug.Assert(arguments.Length > 0);
                 Debug.Assert(arguments[0].ToUpperInvariant() == "-INSTALL");
-                if (arguments.Length != 4) {
+                if (arguments.Length != 1) {
                     PrintUsage("Invalid number arguments for service installation.");
                     Environment.Exit(-1);
                 }
                 var path = arguments[1];
-                var dbType = arguments[2];
-                var dbConnString = arguments[3];
 
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
-                DBMSType dbmsType;
-                if (!Enum.TryParse(dbType, out dbmsType)) {
-                    PrintUsage("DBTYPE is invalid");
-                    Environment.Exit(-1);
-                }                
-                Tools.BlockchainSQL.InstallService(path, new DBReference{ DBMSType = dbmsType, ConnectionString = dbConnString}).Wait();
+                Tools.BlockchainSQL.InstallService(path).Wait();
                 Console.WriteLine("Service Installed & Started");
                 Environment.Exit(0);
             } catch (Exception error) {

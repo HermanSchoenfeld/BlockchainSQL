@@ -24,21 +24,26 @@
         /// </summary>
         private void InitializeComponent() {
             this._installOptionsGroupBox = new System.Windows.Forms.GroupBox();
-            this._webUIPort = new System.Windows.Forms.NumericUpDown();
-            this.webUiPortLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this._installWebUICheckbox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
-            this._pathSelector = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
             this._installButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this._generateNewDatabaseButton = new System.Windows.Forms.Button();
-            this._testConnectionButon = new System.Windows.Forms.Button();
-            this._databaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
+            this._generateBlockchainDatabaseButton = new System.Windows.Forms.Button();
+            this._testBlockchainConnectionButon = new System.Windows.Forms.Button();
+            this._blockchainDatabaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
             this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this._generateWebDatabaseButton = new System.Windows.Forms.Button();
+            this._testWebConnectionButon = new System.Windows.Forms.Button();
+            this._webDatabaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
+            this._webUIPort = new System.Windows.Forms.NumericUpDown();
+            this.webUiPortLabel = new System.Windows.Forms.Label();
+            this._installWebUICheckbox = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this._pathSelector = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
             this._installOptionsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._webUIPort)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._webUIPort)).BeginInit();
             this.SuspendLayout();
             // 
             // _installOptionsGroupBox
@@ -55,10 +60,151 @@
             this._installOptionsGroupBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this._installOptionsGroupBox.Name = "_installOptionsGroupBox";
             this._installOptionsGroupBox.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._installOptionsGroupBox.Size = new System.Drawing.Size(642, 114);
+            this._installOptionsGroupBox.Size = new System.Drawing.Size(688, 114);
             this._installOptionsGroupBox.TabIndex = 1;
             this._installOptionsGroupBox.TabStop = false;
             this._installOptionsGroupBox.Text = "Options";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(103, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Destination Folder";
+            // 
+            // _installButton
+            // 
+            this._installButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._installButton.Location = new System.Drawing.Point(615, 399);
+            this._installButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._installButton.Name = "_installButton";
+            this._installButton.Size = new System.Drawing.Size(88, 27);
+            this._installButton.TabIndex = 2;
+            this._installButton.Text = "Install";
+            this._installButton.UseVisualStyleBackColor = true;
+            this._installButton.Click += new System.EventHandler(this._installButton_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this._generateBlockchainDatabaseButton);
+            this.groupBox1.Controls.Add(this._testBlockchainConnectionButon);
+            this.groupBox1.Controls.Add(this._blockchainDatabaseConnectionPanel);
+            this.groupBox1.Location = new System.Drawing.Point(13, 129);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox1.Size = new System.Drawing.Size(336, 266);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Blockchain Database";
+            // 
+            // _generateBlockchainDatabaseButton
+            // 
+            this._generateBlockchainDatabaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._generateBlockchainDatabaseButton.Location = new System.Drawing.Point(10, 232);
+            this._generateBlockchainDatabaseButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._generateBlockchainDatabaseButton.Name = "_generateBlockchainDatabaseButton";
+            this._generateBlockchainDatabaseButton.Size = new System.Drawing.Size(164, 27);
+            this._generateBlockchainDatabaseButton.TabIndex = 4;
+            this._generateBlockchainDatabaseButton.Text = "Generate New Database";
+            this._generateBlockchainDatabaseButton.UseVisualStyleBackColor = true;
+            this._generateBlockchainDatabaseButton.Click += new System.EventHandler(this._generateBlockchainDatabaseButton_Click);
+            // 
+            // _testBlockchainConnectionButon
+            // 
+            this._testBlockchainConnectionButon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._testBlockchainConnectionButon.Location = new System.Drawing.Point(189, 232);
+            this._testBlockchainConnectionButon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._testBlockchainConnectionButon.Name = "_testBlockchainConnectionButon";
+            this._testBlockchainConnectionButon.Size = new System.Drawing.Size(140, 27);
+            this._testBlockchainConnectionButon.TabIndex = 3;
+            this._testBlockchainConnectionButon.Text = "Test Connection";
+            this._testBlockchainConnectionButon.UseVisualStyleBackColor = true;
+            this._testBlockchainConnectionButon.Click += new System.EventHandler(this._testBlockchainConnectionButon_Click);
+            // 
+            // _blockchainDatabaseConnectionPanel
+            // 
+            this._blockchainDatabaseConnectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._blockchainDatabaseConnectionPanel.Location = new System.Drawing.Point(10, 22);
+            this._blockchainDatabaseConnectionPanel.Margin = new System.Windows.Forms.Padding(14);
+            this._blockchainDatabaseConnectionPanel.Name = "_blockchainDatabaseConnectionPanel";
+            this._blockchainDatabaseConnectionPanel.Size = new System.Drawing.Size(319, 174);
+            this._blockchainDatabaseConnectionPanel.TabIndex = 0;
+            // 
+            // _loadingCircle
+            // 
+            this._loadingCircle.Active = false;
+            this._loadingCircle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._loadingCircle.BackColor = System.Drawing.Color.Transparent;
+            this._loadingCircle.Color = System.Drawing.Color.DarkGray;
+            this._loadingCircle.InnerCircleRadius = 8;
+            this._loadingCircle.Location = new System.Drawing.Point(580, 399);
+            this._loadingCircle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._loadingCircle.Name = "_loadingCircle";
+            this._loadingCircle.NumberSpoke = 10;
+            this._loadingCircle.OuterCircleRadius = 10;
+            this._loadingCircle.RotationSpeed = 100;
+            this._loadingCircle.Size = new System.Drawing.Size(27, 27);
+            this._loadingCircle.SpokeThickness = 4;
+            this._loadingCircle.TabIndex = 4;
+            this._loadingCircle.Text = "loadingCircle1";
+            this._loadingCircle.Visible = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this._generateWebDatabaseButton);
+            this.groupBox2.Controls.Add(this._testWebConnectionButon);
+            this.groupBox2.Controls.Add(this._webDatabaseConnectionPanel);
+            this.groupBox2.Location = new System.Drawing.Point(357, 129);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.groupBox2.Size = new System.Drawing.Size(345, 266);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Web Database";
+            // 
+            // _generateWebDatabaseButton
+            // 
+            this._generateWebDatabaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this._generateWebDatabaseButton.Location = new System.Drawing.Point(8, 232);
+            this._generateWebDatabaseButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._generateWebDatabaseButton.Name = "_generateWebDatabaseButton";
+            this._generateWebDatabaseButton.Size = new System.Drawing.Size(164, 27);
+            this._generateWebDatabaseButton.TabIndex = 4;
+            this._generateWebDatabaseButton.Text = "Generate New Database";
+            this._generateWebDatabaseButton.UseVisualStyleBackColor = true;
+            this._generateWebDatabaseButton.Click += new System.EventHandler(this._generateWebDatabaseButton_Click);
+            // 
+            // _testWebConnectionButon
+            // 
+            this._testWebConnectionButon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this._testWebConnectionButon.Location = new System.Drawing.Point(197, 233);
+            this._testWebConnectionButon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this._testWebConnectionButon.Name = "_testWebConnectionButon";
+            this._testWebConnectionButon.Size = new System.Drawing.Size(140, 27);
+            this._testWebConnectionButon.TabIndex = 3;
+            this._testWebConnectionButon.Text = "Test Connection";
+            this._testWebConnectionButon.UseVisualStyleBackColor = true;
+            this._testWebConnectionButon.Click += new System.EventHandler(this._testWebConnectionButon_Click);
+            // 
+            // _webDatabaseConnectionPanel
+            // 
+            this._webDatabaseConnectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._webDatabaseConnectionPanel.Location = new System.Drawing.Point(13, 22);
+            this._webDatabaseConnectionPanel.Margin = new System.Windows.Forms.Padding(14);
+            this._webDatabaseConnectionPanel.Name = "_webDatabaseConnectionPanel";
+            this._webDatabaseConnectionPanel.Size = new System.Drawing.Size(321, 174);
+            this._webDatabaseConnectionPanel.TabIndex = 0;
             // 
             // _webUIPort
             // 
@@ -86,15 +232,6 @@
             this.webUiPortLabel.TabIndex = 8;
             this.webUiPortLabel.Text = "Web UI Port";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 15);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Install Web UI";
-            // 
             // _installWebUICheckbox
             // 
             this._installWebUICheckbox.AutoSize = true;
@@ -104,15 +241,14 @@
             this._installWebUICheckbox.TabIndex = 5;
             this._installWebUICheckbox.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 30);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Destination Folder";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 15);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Install Web UI";
             // 
             // _pathSelector
             // 
@@ -124,95 +260,15 @@
             this._pathSelector.Name = "_pathSelector";
             this._pathSelector.Path = "";
             this._pathSelector.PlaceHolderText = "Select destination folder to install BlockchainSQL service to";
-            this._pathSelector.Size = new System.Drawing.Size(510, 23);
+            this._pathSelector.Size = new System.Drawing.Size(556, 23);
             this._pathSelector.TabIndex = 1;
-            // 
-            // _installButton
-            // 
-            this._installButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._installButton.Location = new System.Drawing.Point(569, 372);
-            this._installButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._installButton.Name = "_installButton";
-            this._installButton.Size = new System.Drawing.Size(88, 27);
-            this._installButton.TabIndex = 2;
-            this._installButton.Text = "Install";
-            this._installButton.UseVisualStyleBackColor = true;
-            this._installButton.Click += new System.EventHandler(this._installButton_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this._generateNewDatabaseButton);
-            this.groupBox1.Controls.Add(this._testConnectionButon);
-            this.groupBox1.Controls.Add(this._databaseConnectionPanel);
-            this.groupBox1.Location = new System.Drawing.Point(13, 129);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(642, 239);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Database";
-            // 
-            // _generateNewDatabaseButton
-            // 
-            this._generateNewDatabaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this._generateNewDatabaseButton.Location = new System.Drawing.Point(10, 205);
-            this._generateNewDatabaseButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._generateNewDatabaseButton.Name = "_generateNewDatabaseButton";
-            this._generateNewDatabaseButton.Size = new System.Drawing.Size(164, 27);
-            this._generateNewDatabaseButton.TabIndex = 4;
-            this._generateNewDatabaseButton.Text = "Generate New Database";
-            this._generateNewDatabaseButton.UseVisualStyleBackColor = true;
-            this._generateNewDatabaseButton.Click += new System.EventHandler(this._generateNewDatabaseButton_Click);
-            // 
-            // _testConnectionButon
-            // 
-            this._testConnectionButon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._testConnectionButon.Location = new System.Drawing.Point(495, 205);
-            this._testConnectionButon.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._testConnectionButon.Name = "_testConnectionButon";
-            this._testConnectionButon.Size = new System.Drawing.Size(140, 27);
-            this._testConnectionButon.TabIndex = 3;
-            this._testConnectionButon.Text = "Test Connection";
-            this._testConnectionButon.UseVisualStyleBackColor = true;
-            this._testConnectionButon.Click += new System.EventHandler(this._testConnectionButon_Click);
-            // 
-            // _databaseConnectionPanel
-            // 
-            this._databaseConnectionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this._databaseConnectionPanel.Location = new System.Drawing.Point(42, 22);
-            this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(14);
-            this._databaseConnectionPanel.Name = "_databaseConnectionPanel";
-            this._databaseConnectionPanel.Size = new System.Drawing.Size(593, 174);
-            this._databaseConnectionPanel.TabIndex = 0;
-            // 
-            // _loadingCircle
-            // 
-            this._loadingCircle.Active = false;
-            this._loadingCircle.BackColor = System.Drawing.Color.Transparent;
-            this._loadingCircle.Color = System.Drawing.Color.DarkGray;
-            this._loadingCircle.InnerCircleRadius = 8;
-            this._loadingCircle.Location = new System.Drawing.Point(534, 372);
-            this._loadingCircle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this._loadingCircle.Name = "_loadingCircle";
-            this._loadingCircle.NumberSpoke = 10;
-            this._loadingCircle.OuterCircleRadius = 10;
-            this._loadingCircle.RotationSpeed = 100;
-            this._loadingCircle.Size = new System.Drawing.Size(27, 27);
-            this._loadingCircle.SpokeThickness = 4;
-            this._loadingCircle.TabIndex = 4;
-            this._loadingCircle.Text = "loadingCircle1";
-            this._loadingCircle.Visible = false;
             // 
             // ServiceInstallDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 406);
+            this.ClientSize = new System.Drawing.Size(716, 433);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this._loadingCircle);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._installButton);
@@ -222,8 +278,9 @@
             this.Text = "Install BlockchainSQL Server";
             this._installOptionsGroupBox.ResumeLayout(false);
             this._installOptionsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._webUIPort)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._webUIPort)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,16 +289,20 @@
 
         private System.Windows.Forms.GroupBox _installOptionsGroupBox;
         private System.Windows.Forms.Label label1;
-        private Sphere10.Framework.Windows.Forms.PathSelectorControl _pathSelector;
         private System.Windows.Forms.Button _installButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button _generateNewDatabaseButton;
-        private System.Windows.Forms.Button _testConnectionButon;
-        private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _databaseConnectionPanel;
+        private System.Windows.Forms.Button _generateBlockchainDatabaseButton;
+        private System.Windows.Forms.Button _testBlockchainConnectionButon;
+        private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _blockchainDatabaseConnectionPanel;
         private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.CheckBox _installWebUICheckbox;
+		private System.Windows.Forms.GroupBox groupBox2;
+		private System.Windows.Forms.Button _generateWebDatabaseButton;
+		private System.Windows.Forms.Button _testWebConnectionButon;
+		private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _webDatabaseConnectionPanel;
 		private System.Windows.Forms.NumericUpDown _webUIPort;
 		private System.Windows.Forms.Label webUiPortLabel;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.CheckBox _installWebUICheckbox;
+		private Sphere10.Framework.Windows.Forms.PathSelectorControl _pathSelector;
 	}
 }

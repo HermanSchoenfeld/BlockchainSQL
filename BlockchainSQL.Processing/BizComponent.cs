@@ -1,5 +1,6 @@
 ﻿using BlockchainSQL.DataAccess;
 using Sphere10.Framework;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Processing {
 	public abstract class BizComponent : IBizComponent {
@@ -12,7 +13,7 @@ namespace BlockchainSQL.Processing {
         public virtual ILogger Log => _scope.Log;
         public virtual ApplicationDAC DAC => CustomDAC ?? _scope.DAC;
 
-        public virtual SettingsCache Settings => _scope.Settings;
+		public virtual ISettingsProvider Settings => _scope.Settings;
 
         public virtual ApplicationDAC CreateDAC() {
             return _scope.CreateDAC();

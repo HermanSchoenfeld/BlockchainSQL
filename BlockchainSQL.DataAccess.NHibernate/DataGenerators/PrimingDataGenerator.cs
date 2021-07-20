@@ -43,13 +43,8 @@ namespace BlockchainSQL.DataAccess.NHibernate {
                     .Concat(CreateEnumTexts<ScriptClass>())
                     .Concat(CreateEnumTexts<AddressType>())
                     .Concat(CreateEnumTexts<OpCode>())
-                    .Concat(CreateBlockchainSqlConfiguration())
                     .Concat(CreateDefaultBranches())
                     .Concat(CreateNonPrimingData());
-        }
-
-        protected virtual IEnumerable<Setting> CreateBlockchainSqlConfiguration() {
-            return BlockchainDatabase.GenerateDefaultSettings();
         }
 
         protected virtual IEnumerable<Branch> CreateDefaultBranches() {

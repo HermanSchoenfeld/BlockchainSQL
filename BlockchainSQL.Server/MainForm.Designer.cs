@@ -113,8 +113,7 @@ namespace BlockchainSQL.Server {
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(631, 62);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Install a BlockchainSQL service that will automatically download blockchain data " +
-    "into your databsae.";
+            this.label4.Text = "Install a BlockchainSQL service that will automatically download blockchain data into your database.";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3

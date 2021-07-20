@@ -6,6 +6,7 @@
 		<RestorePackages>true</RestorePackages>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
+		<LangVersion>latest</LangVersion>
 		<!--<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>-->
@@ -21,6 +22,15 @@
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 	<ItemGroup>
+		<Compile Update="Controls\UserControl1 - Copy %282%29.Designer.cs">
+		  <DependentUpon>UserControl1.Designer.cs</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\UserControl1 - Copy - Copy.Designer.cs">
+		  <DependentUpon>UserControl1 - Copy.Designer.cs</DependentUpon>
+		</Compile>
+		<Compile Update="Controls\UserControl1 - Copy.Designer.cs">
+		  <DependentUpon>UserControl1.Designer.cs</DependentUpon>
+		</Compile>
 		<Compile Update="Properties\Settings.Designer.cs">
 			<DesignTimeSharedInput>True</DesignTimeSharedInput>
 			<AutoGen>True</AutoGen>
@@ -28,9 +38,6 @@
 		</Compile>
 		<Compile Update="ServiceControl.cs" />
 		<Compile Update="Service\BlockchainSQLService.cs" />
-		<Compile Update="SettingsControl.cs">
-			<SubType>UserControl</SubType>
-		</Compile>
 		<None Update="app.manifest">
 			<SubType>Designer</SubType>
 		</None>
@@ -57,6 +64,17 @@
 			<Version>4.8.2</Version>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Controls\UserControl1 - Copy %282%29.resx">
+	    <DependentUpon>UserControl1.resx</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Controls\UserControl1 - Copy - Copy.resx">
+	    <DependentUpon>UserControl1 - Copy.resx</DependentUpon>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Controls\UserControl1 - Copy.resx">
+	    <DependentUpon>UserControl1.resx</DependentUpon>
+	  </EmbeddedResource>
 	</ItemGroup>
 	<PropertyGroup />
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
