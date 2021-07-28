@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DACBase = Sphere10.Framework.Data.DACBase;
 
 namespace BlockchainSQL.Server {
 	public partial class BlockchainDatabaseSettingsControl : UserControl {

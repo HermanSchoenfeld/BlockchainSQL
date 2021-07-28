@@ -10,31 +10,43 @@ namespace BlockchainSQL.DataAccess {
 	public static class BlockchainDatabase {
 
 	    public static ApplicationDAC NewDAC(DBMSType dbmsType, string connectionString, ILogger logger = null) {
-			IDAC dbmsDAC;
-	        IVendorSpecificImplementation vendorSpecificImplementation;
+			IDAC dac;
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    dbmsDAC = new MSSQLDAC(connectionString, logger);
-                    vendorSpecificImplementation = new MSSQLVendorSpecificImplementation();
+                    dac = new MSSQLDAC(connectionString, logger);
                     break;
                 case DBMSType.Sqlite:
-                    dbmsDAC = new SqliteDAC(connectionString, logger);
-                    vendorSpecificImplementation = new NoOpVendorSpecificImplementation();
+                    dac = new SqliteDAC(connectionString, logger);
                     break;
                 default:
-                    throw new ApplicationException(string.Format("Unsupported DBMS '{0}'", dbmsType));
+                    throw new ApplicationException($"Unsupported DBMS '{dbmsType}'");
             }
-            return new ApplicationDAC(dbmsDAC, vendorSpecificImplementation);
+            return NewDAC(dac, logger);
 	    }
 
-        public static IDatabaseGenerator NewDatabaseGenerator(DBMSType dbmsType) {
+	    public static ApplicationDAC NewDAC(IDAC dac, ILogger logger = null) {
+		    IDBVendorSpecificImplementation vendorSpecificImplementation;
+		    switch (dac.DBMSType) {
+				case DBMSType.SQLServer:
+					vendorSpecificImplementation = new MSSQLVendorSpecificImplementation();
+					break;
+				case DBMSType.Sqlite:
+					vendorSpecificImplementation = new NoOpVendorSpecificImplementation();
+					break;
+				default:
+					throw new ApplicationException($"Unsupported DBMS '{dac.DBMSType}'");
+			}
+		    return new ApplicationDAC(dac, vendorSpecificImplementation);
+	    }
+
+		public static IDatabaseGenerator NewDatabaseGenerator(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
                     return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockhainSQLDatabaseGeneratorMSSQL");
                 case DBMSType.Sqlite:
                     return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseGeneratorSqlite");
                 default:
-                    throw new ApplicationException(string.Format("Unsupported DBMS '{0}'", dbmsType));
+                    throw new ApplicationException($"Unsupported DBMS '{dbmsType}'");
             }
         }
         

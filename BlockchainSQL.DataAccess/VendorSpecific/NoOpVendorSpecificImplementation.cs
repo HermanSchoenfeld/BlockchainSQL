@@ -8,30 +8,30 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.DataAccess {
-    public class NoOpVendorSpecificImplementation : IVendorSpecificImplementation {
+    public class NoOpVendorSpecificImplementation : DBVendorSpecificImplementationBase {
 
-        public bool HasDisabledApplicationIndexes(IDAC dac) {
+        public override bool HasDisabledApplicationIndexes(IDAC dac) {
             return false;
         }
 
-        public void EnableAllApplicationIndexes(IDAC dac) {            
+        public override void EnableAllApplicationIndexes(IDAC dac) {            
             // do nothing
         }
 
 
-        public void DisableAllApplicationIndexes(IDAC dac) {
+        public override void DisableAllApplicationIndexes(IDAC dac) {
             // do nothing
         }
 
-        public void CleanupDatabase(IDAC dac) {
+        public override void CleanupDatabase(IDAC dac) {
             // do nothing
         }
 
-        public DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount) {
+        public override DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount) {
            throw new NotSupportedException(); 
         }
 
-        public IEnumerable<StatementLine> GetStatementLines(IDAC dac, string address) {
+        public override IEnumerable<StatementLine> GetStatementLines(IDAC dac, string address) {
             throw new NotSupportedException();
         }
     }

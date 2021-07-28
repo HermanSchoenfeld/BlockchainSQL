@@ -16,27 +16,23 @@ namespace BlockchainSQL.Server {
 			: base("Intall BlockchainSQL Server Service", InstallWizardModel.Default, "Install") {
 		}
 
-
-
-
-
-
 		public async Task Validate() {
-			var pathValidation = await ValidateDestinationPath();
-			if (pathValidation.Failure) {
-				throw new SoftwareException(pathValidation);
-			}
+			//var pathValidation = await ValidateDestinationPath();
+			//if (pathValidation.Failure) {
+			//	throw new SoftwareException(pathValidation);
+			//}
 
-			var dbValidation = await ValidateDatabase();
-			if (dbValidation.Failure)
-				throw new SoftwareException(dbValidation);
+			//var dbValidation = await ValidateDatabase();
+			//if (dbValidation.Failure)
+			//	throw new SoftwareException(dbValidation);
 		}
 
-		public Task Install() {
-			return Tools.BlockchainSQL.LaunchInstallServiceProcess(
-				_pathSelector.Path,
-				_blockchainDatabaseConnectionPanel.Database
-			);
+		public async Task Install() {
+			//return Tools.BlockchainSQL.LaunchInstallServiceProcess(
+			//	_pathSelector.Path,
+			//	_blockchainDatabaseConnectionPanel.Database
+			//);
+
 		}
 
 
@@ -49,6 +45,7 @@ namespace BlockchainSQL.Server {
 
 		protected override async Task<Result> Finish() {
 			// Do Install
+			return Result.Default;
 		}
 
 		//SaveFormSettings();

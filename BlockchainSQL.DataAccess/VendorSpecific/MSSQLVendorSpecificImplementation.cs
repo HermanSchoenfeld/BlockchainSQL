@@ -12,14 +12,14 @@ using Sphere10.Framework.Data;
 // ReSharper disable InconsistentNaming
 
 namespace BlockchainSQL.DataAccess {
-    public class MSSQLVendorSpecificImplementation : IVendorSpecificImplementation {
+    public class MSSQLVendorSpecificImplementation : DBVendorSpecificImplementationBase {
 
-        public bool HasDisabledApplicationIndexes(IDAC dac) {
+        public override bool HasDisabledApplicationIndexes(IDAC dac) {
             const string query = "SELECT i.name FROM sys.indexes i JOIN sys.tables t ON i.object_id = t.object_id WHERE i.[type] = 2 and i.is_disabled = 1 and t.name in ('Block', 'Branch', 'Script', 'ScriptInstruction', 'Settings', 'Text', 'Transaction', 'TransactionInput', 'TransactionOutput') ORDER BY i.type_desc, t.name, i.name";
             return (dac.ExecuteQuery(query)).Rows.Count > 0;
         }
 
-        public void EnableAllApplicationIndexes(IDAC dac) {
+        public override void EnableAllApplicationIndexes(IDAC dac) {
             const string query =
                 @"-- Enable Indexes
 DECLARE @my_sql2 NVARCHAR(200);
@@ -53,7 +53,7 @@ DEALLOCATE cur_rebuild2;";
         }
 
 
-        public void DisableAllApplicationIndexes(IDAC dac) {
+        public override void DisableAllApplicationIndexes(IDAC dac) {
             const string query =
                 @"DECLARE @my_sql2 NVARCHAR(200);
 DECLARE cur_rebuild CURSOR FOR 
@@ -70,7 +70,7 @@ DEALLOCATE cur_rebuild";
             dac.ExecuteNonQuery(query);
         }
 
-        public void CleanupDatabase(IDAC dac) {
+        public override void CleanupDatabase(IDAC dac) {
             const string query1 = @"SELECT CONVERT(NVARCHAR(MAX), Name) FROM sys.master_files WHERE database_id = db_id('{0}')  AND [Type] = 1";
             const string query2 = @"DBCC SHRINKFILE('{0}', 1)";
             var mssqlDAC = (MSSQLDAC) dac;
@@ -81,7 +81,7 @@ DEALLOCATE cur_rebuild";
             }
         }
 
-        public DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount) {
+        public override DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount) {
             const string pagedQuery =
                 @"WITH __UNPAGED_RESULT AS (	
     {0}
@@ -96,7 +96,7 @@ SELECT * FROM __PAGED_RESULT WHERE __ROWNUM > {2} AND __ROWNUM <= ({2} + {1})";
             return table;
         }
 
-        public IEnumerable<StatementLine> GetStatementLines(IDAC dac, string address) {
+        public override IEnumerable<StatementLine> GetStatementLines(IDAC dac, string address) {
             const string query =
                 #region Query
 

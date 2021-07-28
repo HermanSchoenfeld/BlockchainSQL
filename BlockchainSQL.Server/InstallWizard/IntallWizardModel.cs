@@ -16,7 +16,8 @@ namespace BlockchainSQL.Server {
 		public WebSettings WebSettings { get; set; }
 
 		public static InstallWizardModel Default => new InstallWizardModel {
-			ServiceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "BlockchainSQL Server"),
+			ServiceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "BlockchainSQL"),
+			ScannerSettings = new ScannerSettings(),
 			BlockchainDatabaseSettings = new BlockchainDatabaseSettings(),
 			NodeSettings = new NodeSettings(),
 			WebSettings = new WebSettings()

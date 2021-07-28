@@ -10,8 +10,8 @@ using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.DataAccess {
     public partial class ApplicationDAC : DACDecorator {
-        private readonly IVendorSpecificImplementation _vendorSpecificImplementation;
-        internal ApplicationDAC(IDAC decoratedDAC, IVendorSpecificImplementation vendorSpecificImplementation) : base(decoratedDAC) {
+        private readonly IDBVendorSpecificImplementation _vendorSpecificImplementation;
+        internal ApplicationDAC(IDAC decoratedDAC, IDBVendorSpecificImplementation vendorSpecificImplementation) : base(decoratedDAC) {
             _vendorSpecificImplementation = vendorSpecificImplementation;
         }
 
@@ -38,6 +38,8 @@ namespace BlockchainSQL.DataAccess {
         public IEnumerable<StatementLine> GetStatementLines(string address) {
             return _vendorSpecificImplementation.GetStatementLines(DecoratedDAC, address);
         }
+
+        public bool IsValidSchema() => _vendorSpecificImplementation.IsValidSchema(DecoratedDAC);
 
     }
 }

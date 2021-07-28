@@ -8,7 +8,8 @@ using BlockchainSQL.DataObjects;
 using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.DataAccess {
-    public interface IVendorSpecificImplementation {
+
+	public interface IDBVendorSpecificImplementation {
 
         bool HasDisabledApplicationIndexes(IDAC dac);
 
@@ -20,8 +21,9 @@ namespace BlockchainSQL.DataAccess {
 
         DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount);
 
-
         IEnumerable<StatementLine> GetStatementLines(IDAC dac, string address);
+
+        bool IsValidSchema(IDAC dac);
 
     }
 }
