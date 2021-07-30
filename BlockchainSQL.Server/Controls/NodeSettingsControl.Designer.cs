@@ -60,11 +60,11 @@ namespace BlockchainSQL.Server.Controls {
 			// 
 			// _pollRateIntBox
 			// 
-			this._pollRateIntBox.Location = new System.Drawing.Point(187, 100);
+			this._pollRateIntBox.Location = new System.Drawing.Point(281, 150);
 			this._pollRateIntBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._pollRateIntBox.Name = "_pollRateIntBox";
 			this._pollRateIntBox.PlaceHolderText = "Enter seconds";
-			this._pollRateIntBox.Size = new System.Drawing.Size(301, 31);
+			this._pollRateIntBox.Size = new System.Drawing.Size(678, 47);
 			this._pollRateIntBox.TabIndex = 21;
 			// 
 			// label1
@@ -92,11 +92,11 @@ namespace BlockchainSQL.Server.Controls {
 			// 
 			// _portIntBox
 			// 
-			this._portIntBox.Location = new System.Drawing.Point(186, 50);
+			this._portIntBox.Location = new System.Drawing.Point(279, 75);
 			this._portIntBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._portIntBox.Name = "_portIntBox";
 			this._portIntBox.PlaceHolderText = "Enter port number";
-			this._portIntBox.Size = new System.Drawing.Size(303, 31);
+			this._portIntBox.Size = new System.Drawing.Size(683, 47);
 			this._portIntBox.TabIndex = 18;
 			// 
 			// label12
@@ -124,16 +124,17 @@ namespace BlockchainSQL.Server.Controls {
 			// 
 			// _ipTextBox
 			// 
-			this._ipTextBox.Location = new System.Drawing.Point(187, 0);
+			this._ipTextBox.Location = new System.Drawing.Point(281, 0);
 			this._ipTextBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._ipTextBox.Name = "_ipTextBox";
 			this._ipTextBox.PlaceHolderText = "Enter IP address";
-			this._ipTextBox.Size = new System.Drawing.Size(301, 31);
+			this._ipTextBox.Size = new System.Drawing.Size(678, 47);
 			this._ipTextBox.TabIndex = 15;
 			// 
 			// NodeSettingsControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label5);
 			this.Controls.Add(this._pollRateIntBox);
@@ -145,7 +146,7 @@ namespace BlockchainSQL.Server.Controls {
 			this.Controls.Add(this._ipTextBox);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "NodeSettingsControl";
-			this.Size = new System.Drawing.Size(1013, 145);
+			this.Size = new System.Drawing.Size(1520, 218);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

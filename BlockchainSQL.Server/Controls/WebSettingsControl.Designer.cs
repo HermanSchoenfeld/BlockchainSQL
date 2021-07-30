@@ -37,7 +37,7 @@ namespace BlockchainSQL.Server.Controls {
 			// 
 			this.webUiPortLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.webUiPortLabel.AutoSize = true;
-			this.webUiPortLabel.Location = new System.Drawing.Point(570, 22);
+			this.webUiPortLabel.Location = new System.Drawing.Point(963, 22);
 			this.webUiPortLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.webUiPortLabel.Name = "webUiPortLabel";
 			this.webUiPortLabel.Size = new System.Drawing.Size(90, 25);
@@ -50,7 +50,7 @@ namespace BlockchainSQL.Server.Controls {
 			this._enableWebUICheckBox.Location = new System.Drawing.Point(137, 20);
 			this._enableWebUICheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this._enableWebUICheckBox.Name = "_enableWebUICheckBox";
-			this._enableWebUICheckBox.Size = new System.Drawing.Size(344, 29);
+			this._enableWebUICheckBox.Size = new System.Drawing.Size(337, 29);
 			this._enableWebUICheckBox.TabIndex = 17;
 			this._enableWebUICheckBox.Text = "Enable web user-interface (self-hosted)";
 			this._enableWebUICheckBox.UseVisualStyleBackColor = true;
@@ -62,7 +62,7 @@ namespace BlockchainSQL.Server.Controls {
 			this._databaseConnectionPanel.Location = new System.Drawing.Point(20, 55);
 			this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(20, 23, 20, 23);
 			this._databaseConnectionPanel.Name = "_databaseConnectionPanel";
-			this._databaseConnectionPanel.Size = new System.Drawing.Size(763, 250);
+			this._databaseConnectionPanel.Size = new System.Drawing.Size(1156, 250);
 			this._databaseConnectionPanel.TabIndex = 16;
 			// 
 			// _loadingCircle
@@ -72,7 +72,7 @@ namespace BlockchainSQL.Server.Controls {
 			this._loadingCircle.BackColor = System.Drawing.Color.Transparent;
 			this._loadingCircle.Color = System.Drawing.Color.DarkGray;
 			this._loadingCircle.InnerCircleRadius = 5;
-			this._loadingCircle.Location = new System.Drawing.Point(401, 315);
+			this._loadingCircle.Location = new System.Drawing.Point(794, 497);
 			this._loadingCircle.Name = "_loadingCircle";
 			this._loadingCircle.NumberSpoke = 12;
 			this._loadingCircle.OuterCircleRadius = 11;
@@ -87,7 +87,7 @@ namespace BlockchainSQL.Server.Controls {
 			// _generateDatabaseButton
 			// 
 			this._generateDatabaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._generateDatabaseButton.Location = new System.Drawing.Point(620, 315);
+			this._generateDatabaseButton.Location = new System.Drawing.Point(1013, 497);
 			this._generateDatabaseButton.Name = "_generateDatabaseButton";
 			this._generateDatabaseButton.Size = new System.Drawing.Size(163, 45);
 			this._generateDatabaseButton.TabIndex = 23;
@@ -97,7 +97,7 @@ namespace BlockchainSQL.Server.Controls {
 			// _testButton
 			// 
 			this._testButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._testButton.Location = new System.Drawing.Point(451, 315);
+			this._testButton.Location = new System.Drawing.Point(844, 497);
 			this._testButton.Name = "_testButton";
 			this._testButton.Size = new System.Drawing.Size(163, 45);
 			this._testButton.TabIndex = 22;
@@ -107,16 +107,17 @@ namespace BlockchainSQL.Server.Controls {
 			// _portIntBox
 			// 
 			this._portIntBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this._portIntBox.Location = new System.Drawing.Point(666, 17);
+			this._portIntBox.Location = new System.Drawing.Point(1392, 26);
 			this._portIntBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._portIntBox.Name = "_portIntBox";
 			this._portIntBox.PlaceHolderText = "Port #";
-			this._portIntBox.Size = new System.Drawing.Size(118, 31);
+			this._portIntBox.Size = new System.Drawing.Size(266, 31);
 			this._portIntBox.TabIndex = 24;
 			// 
 			// WebSettingsControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._portIntBox);
 			this.Controls.Add(this._loadingCircle);
 			this.Controls.Add(this._generateDatabaseButton);
@@ -126,7 +127,7 @@ namespace BlockchainSQL.Server.Controls {
 			this.Controls.Add(this._databaseConnectionPanel);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "WebSettingsControl";
-			this.Size = new System.Drawing.Size(786, 363);
+			this.Size = new System.Drawing.Size(1179, 545);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -98,7 +98,7 @@ namespace BlockchainSQL.Server {
 			// 
 			// ServiceFolderScreen
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._groupBox);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

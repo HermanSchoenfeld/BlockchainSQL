@@ -45,11 +45,11 @@ namespace BlockchainSQL.Server.Controls {
 			// 
 			// _maxMemoryIntBox
 			// 
-			this._maxMemoryIntBox.Location = new System.Drawing.Point(130, 53);
+			this._maxMemoryIntBox.Location = new System.Drawing.Point(195, 80);
 			this._maxMemoryIntBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._maxMemoryIntBox.Name = "_maxMemoryIntBox";
 			this._maxMemoryIntBox.PlaceHolderText = "Enter number of megabytes";
-			this._maxMemoryIntBox.Size = new System.Drawing.Size(307, 31);
+			this._maxMemoryIntBox.Size = new System.Drawing.Size(692, 47);
 			this._maxMemoryIntBox.TabIndex = 22;
 			// 
 			// label4
@@ -76,19 +76,20 @@ namespace BlockchainSQL.Server.Controls {
 			this._optionsListBox.Location = new System.Drawing.Point(130, 13);
 			this._optionsListBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._optionsListBox.Name = "_optionsListBox";
-			this._optionsListBox.Size = new System.Drawing.Size(783, 28);
+			this._optionsListBox.Size = new System.Drawing.Size(1243, 28);
 			this._optionsListBox.TabIndex = 20;
 			// 
 			// ScannerSettingsControl
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.label8);
 			this.Controls.Add(this._maxMemoryIntBox);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this._optionsListBox);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "ScannerSettingsControl";
-			this.Size = new System.Drawing.Size(919, 143);
+			this.Size = new System.Drawing.Size(1379, 215);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 

@@ -38,7 +38,7 @@ namespace BlockchainSQL.Server {
 			this._blockchainDatabaseSettingsControl.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
 			this._blockchainDatabaseSettingsControl.Model = null;
 			this._blockchainDatabaseSettingsControl.Name = "_blockchainDatabaseSettingsControl";
-			this._blockchainDatabaseSettingsControl.Size = new System.Drawing.Size(751, 323);
+			this._blockchainDatabaseSettingsControl.Size = new System.Drawing.Size(794, 362);
 			this._blockchainDatabaseSettingsControl.TabIndex = 0;
 			// 
 			// _groupBox
@@ -51,18 +51,19 @@ namespace BlockchainSQL.Server {
 			this._groupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this._groupBox.Name = "_groupBox";
 			this._groupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this._groupBox.Size = new System.Drawing.Size(771, 373);
+			this._groupBox.Size = new System.Drawing.Size(814, 412);
 			this._groupBox.TabIndex = 1;
 			this._groupBox.TabStop = false;
 			this._groupBox.Text = "Select Blockchain Database";
 			// 
 			// BlockchainDatabaseScreen
 			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._groupBox);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "BlockchainDatabaseScreen";
-			this.Size = new System.Drawing.Size(771, 373);
+			this.Size = new System.Drawing.Size(814, 412);
 			this._groupBox.ResumeLayout(false);
 			this.ResumeLayout(false);
 
