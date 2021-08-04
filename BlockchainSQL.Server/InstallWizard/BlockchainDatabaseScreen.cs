@@ -39,5 +39,9 @@ namespace BlockchainSQL.Server {
 			await base.OnNext();
 			Model.BlockchainDatabaseSettings = _blockchainDatabaseSettingsControl.Model;
 		}
+
+		private void _blockchainDatabaseSettingsControl_Load(object sender, EventArgs e) {
+
+		}
 	}
 }

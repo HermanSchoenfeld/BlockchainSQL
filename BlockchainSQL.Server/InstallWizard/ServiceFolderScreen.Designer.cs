@@ -43,7 +43,7 @@ namespace BlockchainSQL.Server {
 			this._groupBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this._groupBox.Name = "_groupBox";
 			this._groupBox.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-			this._groupBox.Size = new System.Drawing.Size(771, 252);
+			this._groupBox.Size = new System.Drawing.Size(577, 202);
 			this._groupBox.TabIndex = 14;
 			this._groupBox.TabStop = false;
 			this._groupBox.Text = "Select Service Installation Directory";
@@ -52,9 +52,9 @@ namespace BlockchainSQL.Server {
 			// 
 			this._installDirLabel.AutoSize = true;
 			this._installDirLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-			this._installDirLabel.Location = new System.Drawing.Point(158, 177);
+			this._installDirLabel.Location = new System.Drawing.Point(95, 131);
 			this._installDirLabel.Name = "_installDirLabel";
-			this._installDirLabel.Size = new System.Drawing.Size(242, 25);
+			this._installDirLabel.Size = new System.Drawing.Size(153, 15);
 			this._installDirLabel.TabIndex = 17;
 			this._installDirLabel.Text = "<<installation directory>>";
 			this._installDirLabel.Visible = false;
@@ -64,9 +64,9 @@ namespace BlockchainSQL.Server {
 			this._createServiceFolderCheckBox.AutoSize = true;
 			this._createServiceFolderCheckBox.Checked = true;
 			this._createServiceFolderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-			this._createServiceFolderCheckBox.Location = new System.Drawing.Point(158, 122);
+			this._createServiceFolderCheckBox.Location = new System.Drawing.Point(95, 86);
 			this._createServiceFolderCheckBox.Name = "_createServiceFolderCheckBox";
-			this._createServiceFolderCheckBox.Size = new System.Drawing.Size(377, 29);
+			this._createServiceFolderCheckBox.Size = new System.Drawing.Size(254, 19);
 			this._createServiceFolderCheckBox.TabIndex = 16;
 			this._createServiceFolderCheckBox.Text = "Create sub-folder \'BlockchainSQL\' in above";
 			this._createServiceFolderCheckBox.UseVisualStyleBackColor = true;
@@ -76,34 +76,34 @@ namespace BlockchainSQL.Server {
 			// 
 			this._pathSelector.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this._pathSelector.Location = new System.Drawing.Point(158, 68);
+			this._pathSelector.Location = new System.Drawing.Point(95, 33);
 			this._pathSelector.Margin = new System.Windows.Forms.Padding(10, 12, 10, 12);
 			this._pathSelector.Mode = Sphere10.Framework.Windows.Forms.PathSelectionMode.Folder;
 			this._pathSelector.Name = "_pathSelector";
 			this._pathSelector.Path = "";
 			this._pathSelector.PlaceHolderText = "Select a directory (e.g. C:\\Program Files)";
-			this._pathSelector.Size = new System.Drawing.Size(587, 38);
+			this._pathSelector.Size = new System.Drawing.Size(472, 38);
 			this._pathSelector.TabIndex = 14;
 			this._pathSelector.PathChanged += new System.EventHandler(this._pathSelector_PathChanged);
 			// 
 			// label7
 			// 
 			this.label7.AutoSize = true;
-			this.label7.Location = new System.Drawing.Point(11, 73);
+			this.label7.Location = new System.Drawing.Point(10, 44);
 			this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
 			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(125, 25);
+			this.label7.Size = new System.Drawing.Size(82, 15);
 			this.label7.TabIndex = 15;
 			this.label7.Text = "Base Directory";
 			// 
 			// ServiceFolderScreen
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._groupBox);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
 			this.Name = "ServiceFolderScreen";
-			this.Size = new System.Drawing.Size(771, 252);
+			this.Size = new System.Drawing.Size(577, 202);
 			this._groupBox.ResumeLayout(false);
 			this._groupBox.PerformLayout();
 			this.ResumeLayout(false);

@@ -57,9 +57,9 @@ namespace BlockchainSQL.Server
             using (_loadingCircle.BeginAnimationScope(this)) {
                 var testResult = await _dbConnectionBar.TestConnection();
                 if (testResult.Failure) {
-                    MessageBox.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+	                DialogEx.Show(this,  testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } else {
-                    MessageBox.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+	                DialogEx.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -152,9 +152,9 @@ namespace BlockchainSQL.Server
             try {
                 var result = await ValidateNode();
                 if (result.Failure)
-                    MessageBox.Show(this, result.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+	                DialogEx.Show(this, result.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+	                DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } catch (Exception error) {
                 ExceptionDialog.Show(this, error);
             }

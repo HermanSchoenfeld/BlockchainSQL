@@ -46,7 +46,7 @@ namespace BlockchainSQL.Server {
 					using (LoadingCircle.EnterAnimationScope(this)) {
 						await Tools.BlockchainSQL.LaunchUninstallServiceProcess(dir);
 					}
-					MessageBox.Show(this, "Success", "Service was stopped and uninstalled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					DialogEx.Show(this, "Success", "Service was stopped and uninstalled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);

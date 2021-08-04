@@ -48,9 +48,9 @@ namespace BlockchainSQL.Server {
                     testResult = await TestConnection();
                 }
                 if (testResult.Failure)
-                    MessageBox.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+	                DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+	                DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } catch (Exception error) {
                 ExceptionDialog.Show(this, error);
             }
@@ -116,7 +116,7 @@ namespace BlockchainSQL.Server {
 
 
 
-                MessageBox.Show(this, "Success", "Database Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogEx.Show(this, "Success", "Database Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 return true;
             }

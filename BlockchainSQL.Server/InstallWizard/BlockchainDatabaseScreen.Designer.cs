@@ -31,15 +31,14 @@ namespace BlockchainSQL.Server {
 			// 
 			// _blockchainDatabaseSettingsControl
 			// 
-			this._blockchainDatabaseSettingsControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this._blockchainDatabaseSettingsControl.Location = new System.Drawing.Point(10, 37);
+			this._blockchainDatabaseSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._blockchainDatabaseSettingsControl.Location = new System.Drawing.Point(4, 21);
 			this._blockchainDatabaseSettingsControl.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
 			this._blockchainDatabaseSettingsControl.Model = null;
 			this._blockchainDatabaseSettingsControl.Name = "_blockchainDatabaseSettingsControl";
-			this._blockchainDatabaseSettingsControl.Size = new System.Drawing.Size(794, 362);
+			this._blockchainDatabaseSettingsControl.Size = new System.Drawing.Size(806, 386);
 			this._blockchainDatabaseSettingsControl.TabIndex = 0;
+			this._blockchainDatabaseSettingsControl.Load += new System.EventHandler(this._blockchainDatabaseSettingsControl_Load);
 			// 
 			// _groupBox
 			// 
@@ -58,7 +57,7 @@ namespace BlockchainSQL.Server {
 			// 
 			// BlockchainDatabaseScreen
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._groupBox);
 			this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

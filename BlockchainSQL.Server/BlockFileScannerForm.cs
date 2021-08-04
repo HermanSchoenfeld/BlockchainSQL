@@ -54,9 +54,9 @@ namespace BlockchainSQL.Server
             using (_loadingCircle.BeginAnimationScope(this)) {
                 var testResult = await _dbConnectionBar.TestConnection();
                 if (testResult.Failure) {
-                    MessageBox.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogEx.Show(SystemIconType.Information, "Connection Failed", testResult.ErrorMessages.ToParagraphCase(), "OK");
                 } else {
-                    MessageBox.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+	                DialogEx.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
