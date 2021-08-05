@@ -18,10 +18,10 @@ using BlockchainSQL.DataAccess.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
 
-	public class WebDatabaseGeneratorMSSQL : NHibernateDatabaseGeneratorBase {
+	public class WebDatabaseManagerMSSQL : NHibernateDatabaseManagerBase {
 
-		public WebDatabaseGeneratorMSSQL()
-			: base(new MSSQLDatabaseGenerator()) {
+		public WebDatabaseManagerMSSQL()
+			: base(new MSSQLDatabaseManager()) {
 		}
 
 		protected override IDataGenerator CreateDataGenerator(ISessionFactory sessionFactory, string databaseName, DatabaseGenerationDataPolicy policy) 

@@ -1,47 +1,61 @@
-﻿using BlockchainSQL.DataAccess.NHibernate.Mappings;
+﻿using System;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
-using NHibernate.Event;
 using NHibernate.Tool.hbm2ddl;
-using Sphere10.Framework;
 using Sphere10.Framework.Data;
+using BlockchainSQL.DataAccess.NHibernate.Mappings;
 using Sphere10.Framework.Data.NHibernate;
-using Sphere10.Framework.Data.Sqlite;
-using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace BlockchainSQL.DataAccess.NHibernate {
-	public class BlockchainSQLDatabaseGeneratorSqlite : NHibernateDatabaseGeneratorBase {
 
-		public BlockchainSQLDatabaseGeneratorSqlite()
-			: base(new SqliteDatabaseGenerator()) {
+	public class BlockhainSQLDatabaseManagerMSSQL : NHibernateDatabaseManagerBase {
+
+		public BlockhainSQLDatabaseManagerMSSQL()
+			: base(new MSSQLDatabaseManager()) {
 		}
 
 		protected override IDataGenerator CreateDataGenerator(ISessionFactory sessionFactory, string databaseName, DatabaseGenerationDataPolicy policy)
 			=> policy switch {
 				DatabaseGenerationDataPolicy.NoData => new EmptyDataGenerator(),
+				DatabaseGenerationDataPolicy.PrimingData => new PrimingDataGenerator(sessionFactory, databaseName),
 				_ => throw new NotSupportedException()
 			};
+
+		protected override void OnDatabaseCreated(string connectionString, bool createdEmptyDatabase) {
+			if (createdEmptyDatabase) {
+				return;
+			}
+
+			// MSSQL specific optimization
+			var mssqlDAC = new MSSQLDAC(connectionString);
+
+			//Optimize Script.ScriptBytesLE (since removed)
+			//mssqlDAC.ExecuteNonQuery("sp_tableoption N'Script', 'large value types out of row', 'ON'");
+
+			// Optomize ScriptInstruction.DataLE
+			mssqlDAC.ExecuteNonQuery("sp_tableoption N'ScriptInstruction', 'large value types out of row', 'ON'");
+
+		}
 
 		protected override FluentConfiguration GetFluentConfig(string connectionString)
 			=> Fluently
 					.Configure()
-					.Database(() => {
-						string filename, password;
-						filename = Tools.Sqlite.GetFilePathFromConnectionString(connectionString, out password);
-						if (!string.IsNullOrEmpty(password)) {
-							return SQLiteConfiguration.Standard.UsingFileWithPassword(filename, password);
-						}
-						return SQLiteConfiguration.Standard.UsingFile(filename);
-					})
+					.Database(() =>
+						MsSqlConfiguration
+							.MsSql2008.Dialect<ExtendedMssqlDialect>()
+							.Driver<ExtendedSql2008ClientDriver>()
+#if OSX
+							.AdoNetBatchSize(0) 
+#endif
+							.AdoNetBatchSize(1000)
+							.ConnectionString(connectionString)
+							//.FormatSql()
+							//.ShowSql()
+							.UseOuterJoin()
+							.UseReflectionOptimizer()
+					)
 					.Mappings(c => c.FluentMappings.AddFromAssemblyOf<TextMap>())
 					.Mappings(c => c.FluentMappings.Conventions.Add<CoreConventions>())
 					//.Mappings(c => c.FluentMappings.Conventions.Add<AnsiStringConvention>())
@@ -53,11 +67,13 @@ namespace BlockchainSQL.DataAccess.NHibernate {
 					.ExposeConfiguration(c => c.SetProperty(global::NHibernate.Cfg.Environment.Hbm2ddlKeyWords, "auto-quote"))
 					.ExposeConfiguration(SchemaMetadataUpdater.QuoteTableAndColumns);
 
+
 		protected override void SetCreateDatabaseConfiguration(string connectionString, string databaseName, Configuration configuration) {
-			string filename, password;
-			filename = Tools.Sqlite.GetFilePathFromConnectionString(connectionString, out password);
-			if (File.Exists(filename))
-				File.Delete(filename);
+			var schemaExport = new SchemaExport(configuration);
+			//schemaExport.Drop(false, true);
+			schemaExport.Create(false, true);
 		}
+
+
 	}
 }

@@ -20,7 +20,7 @@ namespace BlockchainSQL.Web.Controllers {
 			SiteOptions = options ?? throw new ArgumentNullException(nameof(options));
 		}
 
-		private IDatabaseGenerator DatabaseGenerator { get; }
+		private IDatabaseManager DatabaseGenerator { get; }
 
 		private IOptions<SiteOptions> SiteOptions { get; }
 

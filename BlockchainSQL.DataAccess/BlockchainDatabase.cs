@@ -39,12 +39,12 @@ namespace BlockchainSQL.DataAccess {
 		    return new ApplicationDAC(dac, vendorSpecificImplementation);
 	    }
 
-		public static IDatabaseGenerator NewDatabaseGenerator(DBMSType dbmsType) {
+		public static IDatabaseManager NewDatabaseGenerator(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockhainSQLDatabaseGeneratorMSSQL");
+                    return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockhainSQLDatabaseGeneratorMSSQL");
                 case DBMSType.Sqlite:
-                    return (IDatabaseGenerator)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseGeneratorSqlite");
+                    return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseGeneratorSqlite");
                 default:
                     throw new ApplicationException($"Unsupported DBMS '{dbmsType}'");
             }

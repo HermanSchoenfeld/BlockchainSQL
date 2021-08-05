@@ -16,10 +16,10 @@ using System.Threading.Tasks;
 using Tools;
 
 namespace BlockchainSQL.Web.DataAccess {
-	public class WebDatabaseGeneratorSqlite : NHibernateDatabaseGeneratorBase {
+	public class WebDatabaseManagerSqlite : NHibernateDatabaseManagerBase {
 
-		public WebDatabaseGeneratorSqlite()
-			: base(new SqliteDatabaseGenerator()) {
+		public WebDatabaseManagerSqlite()
+			: base(new SqliteDatabaseManager()) {
 		}
 
 		protected override FluentConfiguration GetFluentConfig(string connectionString)

@@ -10,12 +10,12 @@ using Sphere10.Framework.Data;
 namespace BlockchainSQL.Web.DataAccess {
     public static class WebDatabase {
 
-        public static IDatabaseGenerator NewDatabaseGenerator(DBMSType dbmsType) {
+        public static IDatabaseManager NewDatabaseGenerator(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return  new WebDatabaseGeneratorMSSQL();
+                    return  new WebDatabaseManagerMSSQL();
                 case DBMSType.Sqlite:
-                    return new  WebDatabaseGeneratorSqlite();
+                    return new  WebDatabaseManagerSqlite();
                 case DBMSType.Firebird:
                     break;
                 case DBMSType.FirebirdFile:
@@ -27,7 +27,7 @@ namespace BlockchainSQL.Web.DataAccess {
         }
 
         public static ISessionFactory CreateSessionFactory(DBMSType dbmsType, string connectionString) {
-            var dbGen = (NHibernateDatabaseGeneratorBase)NewDatabaseGenerator(dbmsType);
+            var dbGen = (NHibernateDatabaseManagerBase)NewDatabaseGenerator(dbmsType);
             return dbGen.OpenDatabase(connectionString);
         }
     }
