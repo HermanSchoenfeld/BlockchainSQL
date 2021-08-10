@@ -134,7 +134,7 @@ ORDER BY
 		//}
 
 		public static bool IsValidBlockchainDatabase(DBMSType dbmsType, string server, string database, string username, string password, int? port, out string connectionString) {
-			var databaseGenerator = BlockchainDatabase.NewDatabaseGenerator(dbmsType);
+			var databaseGenerator = BlockchainDatabase.NewDatabaseManager(dbmsType);
 			connectionString = databaseGenerator.GenerateConnectionString(server, database, username, password, port);
 			return databaseGenerator.DatabaseExists(connectionString);
 		}

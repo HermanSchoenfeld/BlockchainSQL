@@ -73,7 +73,7 @@ namespace BlockchainSQL.Server {
 				var dropExisting = false;
 				var createShell = false;
 				var createDatabase = false;
-				var schemaGenerator = BlockchainDatabase.NewDatabaseGenerator(dbmsType);
+				var schemaGenerator = BlockchainDatabase.NewDatabaseManager(dbmsType);
 				if (await Task.Run(() => schemaGenerator.DatabaseExists(connectionString))) {
 					switch (
 						QuestionDialog.Show(

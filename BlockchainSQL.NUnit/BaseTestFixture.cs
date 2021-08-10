@@ -60,7 +60,7 @@ namespace BlockchainSQL.NUnit
         }
 
         protected static void DropDatabase(DBMSType dbmsType, string connectionString) {
-            var dbCreator = BlockchainDatabase.NewDatabaseGenerator(dbmsType);
+            var dbCreator = BlockchainDatabase.NewDatabaseManager(dbmsType);
             Task.Run(() => dbCreator.DropDatabase(connectionString)).Wait();
         }
 
@@ -72,7 +72,7 @@ namespace BlockchainSQL.NUnit
             connStringBuilder.UserID = Username;
             connStringBuilder.Password = Password;
             connStringBuilder.InitialCatalog = dbName;
-            var dbCreator = BlockchainDatabase.NewDatabaseGenerator(DBMSType.SQLServer);
+            var dbCreator = BlockchainDatabase.NewDatabaseManager(DBMSType.SQLServer);
             Task.Run(() => dbCreator.CreateEmptyDatabase(connStringBuilder.ToString())).Wait();
             Task.Run(() => dbCreator.CreateApplicationDatabase(connStringBuilder.ToString(), DatabaseGenerationDataPolicy.PrimingData, dbName)).Wait();
             return connStringBuilder.ToString();
