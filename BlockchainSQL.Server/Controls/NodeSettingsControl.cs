@@ -9,9 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Sphere10.Framework.Windows.Forms;
 
 namespace BlockchainSQL.Server.Controls {
-	public partial class NodeSettingsControl : UserControl {
+	public partial class NodeSettingsControl : UserControlEx {
 		private NodeSettings _model;
 
 		public NodeSettingsControl() {
@@ -29,14 +30,14 @@ namespace BlockchainSQL.Server.Controls {
 			}
 		}
 
-		private void CopyModelToUI() {
+		protected override void CopyModelToUI() {
 			Guard.Ensure(_model != null, "Model not set");
 			_ipTextBox.Text = Model.IP;
 			_portIntBox.Value = Model.Port;
 			_pollRateIntBox.Value = Model.PollRateSEC;
 		}
 
-		private void CopyUIToModel() {
+		protected override void CopyUIToModel() {
 			Guard.Ensure(_model != null, "Model not set");
 			Model.IP = _ipTextBox.Text;
 			Model.Port = _portIntBox.Value.GetValueOrDefault(8333);

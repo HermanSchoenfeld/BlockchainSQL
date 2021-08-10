@@ -15,7 +15,7 @@ using System.Windows.Forms;
 using DACBase = Sphere10.Framework.Data.DACBase;
 
 namespace BlockchainSQL.Server {
-	public partial class BlockchainDatabaseSettingsControl : UserControl {
+	public partial class BlockchainDatabaseSettingsControl : UserControlEx {
 		private BlockchainDatabaseSettings _model;
 
 		public BlockchainDatabaseSettingsControl() {
@@ -36,20 +36,20 @@ namespace BlockchainSQL.Server {
 
 		public DatabaseConnectionPanel DatabasePanel => _databaseConnectionPanel;
 
-		private void CopyModelToUI() {
-			Guard.Ensure(_model != null, "Model not set");
-			_databaseConnectionPanel.SelectedDBMSType = _model.DBMSType;
-			_databaseConnectionPanel.ConnectionString = _model.ConnectionString;
+		protected override void CopyModelToUI() {
+			if (Model != null) {
+				_databaseConnectionPanel.SelectedDBMSType = _model.DBMSType;
+				_databaseConnectionPanel.ConnectionString = _model.ConnectionString;
+			} else ClearUI();
 		}
 
-		private void CopyUIToModel() {
+		protected override void CopyUIToModel() {
 			Guard.Ensure(_model != null, "Model not set");
 			_model.DBMSType = _databaseConnectionPanel.SelectedDBMSType;
 			_model.ConnectionString = _databaseConnectionPanel.ConnectionString;
 		}
 
 		private void ClearUI() {
-
 			_databaseConnectionPanel.SelectedDBMSType = DBMSType.SQLServer;
 			_databaseConnectionPanel.ConnectionString = string.Empty;
 		}
@@ -131,18 +131,28 @@ namespace BlockchainSQL.Server {
 
 		private async void _testButton_Click(object sender, EventArgs e) {
 			try {
-				Result testResult;
 				using (_loadingCircle.BeginAnimationScope(this)) {
-					testResult = await TestConnection();
-				}
-				if (testResult.Failure)
-					DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				else {
-					DialogEx.Show(this,
-						"Success",
-						"Connection Succeeded",
-						MessageBoxButtons.OK,
-						MessageBoxIcon.Information);
+					var result = await TestConnection();
+					if (result.Success) {
+						var dac = BlockchainDatabase.NewDAC(_databaseConnectionPanel.GetDAC());
+						if (!dac.IsValidSchema())
+							result.AddError("Database schema is not valid. Ensure ");
+
+					}
+
+					if (result.Failure)
+						DialogEx.Show(this,
+							result.ErrorMessages.ToParagraphCase(),
+							"Connection Failed",
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Error);
+					else {
+						DialogEx.Show(this,
+							"Success",
+							"Connection Succeeded",
+							MessageBoxButtons.OK,
+							MessageBoxIcon.Information);
+					}
 				}
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);

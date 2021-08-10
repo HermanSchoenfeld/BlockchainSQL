@@ -31,12 +31,12 @@ namespace BlockchainSQL.Server.Controls {
 		}
 
 
-		private void CopyModelToUI() {
+		protected override void CopyModelToUI() {
 			_optionsListBox.SetItemChecked(0, Model.StoreScriptData);
 			_maxMemoryIntBox.Value = _model.MaxMemoryBufferSizeMB;
 		}
 
-		private void CopyUIToModel() {
+		protected override void CopyUIToModel() {
 			Model.StoreScriptData = _optionsListBox.GetItemChecked(0);
 			_model.MaxMemoryBufferSizeMB = _maxMemoryIntBox.Value.GetValueOrDefault(500);
 		}

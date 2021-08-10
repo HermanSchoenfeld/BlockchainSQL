@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlockchainSQL.Server.Controls {
-	public partial class WebSettingsControl : UserControl {
+	public partial class WebSettingsControl : UserControlEx {
 		private WebSettings _model;
 
 		public WebSettingsControl() {
@@ -32,7 +32,7 @@ namespace BlockchainSQL.Server.Controls {
 			}
 		}
 
-		private void CopyModelToUI() {
+		protected override void CopyModelToUI() {
 			Guard.Ensure(_model != null, "Model not set");
 			_enableWebUICheckBox.Checked = Model.Enabled;
 			_portIntBox.Value = Model.Port;
@@ -40,7 +40,7 @@ namespace BlockchainSQL.Server.Controls {
 			_databaseConnectionPanel.ConnectionString = Model.DatabaseConnectionString;
 		}
 
-		private void CopyUIToModel() {
+		protected override void CopyUIToModel() {
 			Guard.Ensure(_model != null, "Model not set");
 			Model.Enabled = _enableWebUICheckBox.Checked;
 			Model.Port = _portIntBox.Value.GetValueOrDefault(5000);
