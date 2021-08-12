@@ -87,7 +87,6 @@ namespace BlockchainSQL.Server {
 			// 
 			// BlockchainDatabaseSettingsControl
 			// 
-			this.AutoDetectChildStateChanges = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._loadingCircle);

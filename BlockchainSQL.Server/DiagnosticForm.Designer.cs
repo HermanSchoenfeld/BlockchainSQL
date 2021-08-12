@@ -77,7 +77,7 @@ namespace BlockchainSQL.Server {
             // 
             this._serviceStatusControl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._serviceStatusControl.AutoDetectChildStateChanges = false;
+            this._serviceStatusControl.EnableStateChangeEvent = false;
             this._serviceStatusControl.Location = new System.Drawing.Point(10, 22);
             this._serviceStatusControl.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
             this._serviceStatusControl.Name = "_serviceStatusControl";

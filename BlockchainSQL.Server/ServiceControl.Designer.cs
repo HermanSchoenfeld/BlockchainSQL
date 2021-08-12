@@ -42,7 +42,7 @@
             // 
             // _trafficLight
             // 
-            this._trafficLight.AutoDetectChildStateChanges = false;
+            this._trafficLight.EnableStateChangeEvent = false;
             this._trafficLight.BackColor = System.Drawing.Color.Red;
             this._trafficLight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._trafficLight.Location = new System.Drawing.Point(-2, 0);

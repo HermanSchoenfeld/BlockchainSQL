@@ -18,7 +18,9 @@ namespace BlockchainSQL.Server {
 
 		public override async Task OnPresent() {
 			await base.OnPresent();
-			_blockchainDatabaseSettingsControl.Model = Model.BlockchainDatabaseSettings;
+			using (EnterUpdateScope()) {
+				_blockchainDatabaseSettingsControl.Model = Model.BlockchainDatabaseSettings;
+			}
 		}
 
 		public override Task<Result> Validate() {

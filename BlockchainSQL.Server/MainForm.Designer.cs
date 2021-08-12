@@ -209,7 +209,7 @@ namespace BlockchainSQL.Server {
             // 
             // _appBanner
             // 
-            this._appBanner.AutoDetectChildStateChanges = false;
+            this._appBanner.EnableStateChangeEvent = false;
             this._appBanner.CompanyName = "{CompanyName}";
             this._appBanner.Dock = System.Windows.Forms.DockStyle.Top;
             this._appBanner.FromColor = System.Drawing.Color.RoyalBlue;

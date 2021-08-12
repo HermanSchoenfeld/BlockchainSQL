@@ -31,7 +31,7 @@ namespace BlockchainSQL.Server {
             // 
             // _scannerSettingsControl
             // 
-            this._scannerSettingsControl.AutoDetectChildStateChanges = false;
+            this._scannerSettingsControl.EnableStateChangeEvent = false;
             this._scannerSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._scannerSettingsControl.Location = new System.Drawing.Point(3, 19);
             this._scannerSettingsControl.Model = null;
