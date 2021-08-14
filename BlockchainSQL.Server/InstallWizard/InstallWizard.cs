@@ -37,10 +37,12 @@ namespace BlockchainSQL.Server {
 
 
 		protected override IEnumerable<WizardScreen<InstallWizardModel>> ConstructScreens() {
-			yield return new ServiceFolderScreen();
-			yield return new BlockchainDatabaseScreen();
-			yield return new NodeScreen();
-			yield return new ScannerScreen();
+			yield return new NodeSettingsScreen();
+			yield return new ScannerSettingsScreen();
+			yield return new WebSettingsScreen();
+
+			yield return new InstallationDirectoryScreen();
+			yield return new BSQLDatabaseSettingsScreen();
 		}
 
 		protected override async Task<Result> Finish() {

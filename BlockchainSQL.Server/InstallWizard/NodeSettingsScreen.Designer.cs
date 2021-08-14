@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server {
-	partial class ScannerScreen {
+	partial class NodeSettingsScreen {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -24,38 +24,40 @@ namespace BlockchainSQL.Server {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this._scannerSettingsControl = new BlockchainSQL.Server.Controls.ScannerSettingsControl();
             this._groupBox = new System.Windows.Forms.GroupBox();
+            this._nodeSettingsControl = new BlockchainSQL.Server.Controls.NodeSettingsControl();
             this._groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // _scannerSettingsControl
-            // 
-            this._scannerSettingsControl.EnableStateChangeEvent = false;
-            this._scannerSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._scannerSettingsControl.Location = new System.Drawing.Point(3, 19);
-            this._scannerSettingsControl.Model = null;
-            this._scannerSettingsControl.Name = "_scannerSettingsControl";
-            this._scannerSettingsControl.Size = new System.Drawing.Size(626, 125);
-            this._scannerSettingsControl.TabIndex = 0;
-            // 
             // _groupBox
             // 
-            this._groupBox.Controls.Add(this._scannerSettingsControl);
+            this._groupBox.Controls.Add(this._nodeSettingsControl);
             this._groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._groupBox.Location = new System.Drawing.Point(0, 0);
             this._groupBox.Name = "_groupBox";
-            this._groupBox.Size = new System.Drawing.Size(632, 147);
+            this._groupBox.Size = new System.Drawing.Size(494, 127);
             this._groupBox.TabIndex = 1;
             this._groupBox.TabStop = false;
-            this._groupBox.Text = "Blockchain Scanner Settings";
+            this._groupBox.Text = "Node Settings";
             // 
-            // ScannerScreen
+            // _nodeSettingsControl
             // 
+            this._nodeSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._nodeSettingsControl.Location = new System.Drawing.Point(3, 19);
+            this._nodeSettingsControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this._nodeSettingsControl.Model = null;
+            this._nodeSettingsControl.Name = "_nodeSettingsControl";
+            this._nodeSettingsControl.Padding = new System.Windows.Forms.Padding(8);
+            this._nodeSettingsControl.Size = new System.Drawing.Size(488, 105);
+            this._nodeSettingsControl.TabIndex = 1;
+            // 
+            // NodeSettingsScreen
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._groupBox);
-            this.Name = "ScannerScreen";
-            this.Size = new System.Drawing.Size(632, 147);
+            this.Name = "NodeSettingsScreen";
+            this.Size = new System.Drawing.Size(494, 127);
             this._groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -63,7 +65,7 @@ namespace BlockchainSQL.Server {
 
 		#endregion
 
-		private Controls.ScannerSettingsControl _scannerSettingsControl;
 		private System.Windows.Forms.GroupBox _groupBox;
+		private Controls.NodeSettingsControl _nodeSettingsControl;
 	}
 }

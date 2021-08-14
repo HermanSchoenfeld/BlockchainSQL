@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server {
-	partial class BlockchainDatabaseSettingsControl {
+	partial class BSQLDatabaseSettingsControl {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>

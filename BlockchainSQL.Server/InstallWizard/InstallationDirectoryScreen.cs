@@ -14,27 +14,40 @@ using System.Windows.Forms;
 using XmlDeepDeserializer = Sphere10.Framework.XmlDeepDeserializer;
 
 namespace BlockchainSQL.Server {
-	public partial class ServiceFolderScreen : InstallWizardScreenBase {
+	public partial class InstallationDirectoryScreen : InstallWizardScreenBase {
 		private const string DefaultBlockchainSQLServiceFolder = "BlockchainSQL";
 
-		public ServiceFolderScreen() {
+		public InstallationDirectoryScreen() {
 			InitializeComponent();
-		}
-
-		private string InstallationDirectory { set; get;}
-
-		public override async Task OnPresent() {
-			await base.OnPresent();
-			InstallationDirectory = Model.ServiceDirectory;
-			if (Model.ServiceDirectory.EndsWith(DefaultBlockchainSQLServiceFolder)) {
-				InstallationDirectory = Tools.FileSystem.GetParentDirectoryPath(InstallationDirectory);
-				_createServiceFolderCheckBox.Checked = true;
-			} else _createServiceFolderCheckBox.Checked = false;
-			_pathSelector.Path = InstallationDirectory;
+			this.StateChanged += TryShowInstallDir;
 		}
 
 		public override Task<Result> Validate() {
-			return ValidateDestinationPath(InstallationDirectory);
+			return ValidateDestinationPath(Model.ServiceDirectory);
+		}
+
+		protected override void CopyUIToModel() {
+			var dir = _pathSelector.Path;
+			if (_createServiceFolderCheckBox.Checked)
+				dir = Path.Combine(dir, DefaultBlockchainSQLServiceFolder);
+			Model.ServiceDirectory = dir;
+		}
+
+		protected override void CopyModelToUI() {
+			if (string.IsNullOrWhiteSpace(Model.ServiceDirectory)) {
+				_pathSelector.Path = string.Empty;
+				_createServiceFolderCheckBox.Checked = true;
+				return;
+			}
+
+			var dir = Model.ServiceDirectory;
+			if (dir.EndsWith(DefaultBlockchainSQLServiceFolder)) {
+				dir = Tools.FileSystem.GetParentDirectoryPath(dir);
+				_createServiceFolderCheckBox.Checked = true;
+			} else
+				_createServiceFolderCheckBox.Checked = false;
+			_pathSelector.Path = dir;
+			TryShowInstallDir();
 		}
 
 		private async Task<Result> ValidateDestinationPath(string path) {
@@ -57,27 +70,14 @@ namespace BlockchainSQL.Server {
 			return result;
 		}
 
-		public override async Task OnNext() {
-			await base.OnNext();
-			Model.ServiceDirectory = InstallationDirectory;
-		}
 
-		private void _pathSelector_PathChanged(object sender, EventArgs e) {
-			UpdatePath();
-		}
-
-		private void _createServiceFolderCheckBox_CheckedChanged(object sender, EventArgs e) {
-			UpdatePath();
-		}
-
-		private void UpdatePath() {
-			InstallationDirectory = _pathSelector.Path;
-			if (_createServiceFolderCheckBox.Checked)
-				InstallationDirectory = Path.Combine(InstallationDirectory, DefaultBlockchainSQLServiceFolder);
-			if (Path.IsPathFullyQualified(InstallationDirectory)) {
+		private void TryShowInstallDir() {
+			if (!string.IsNullOrWhiteSpace(Model.ServiceDirectory) && Path.IsPathFullyQualified(Model.ServiceDirectory)) {
 				_installDirLabel.Visible = true;
-				_installDirLabel.Text = InstallationDirectory;
-			} else _installDirLabel.Visible = false;
+				_installDirLabel.Text = Model.ServiceDirectory;
+			} else
+				_installDirLabel.Visible = false;
+
 		}
 	}
 }

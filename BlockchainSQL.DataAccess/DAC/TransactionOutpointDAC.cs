@@ -52,7 +52,6 @@ WHERE
 
                 #endregion
 
-            try {
                 var results = this.ExecuteQuery(query, outpoint.TXID, outpoint.OutputIndex)
                     .Rows
                     .Cast<DataRow>()
@@ -65,16 +64,9 @@ WHERE
                         return to;
                     });
                 return results.SingleOrDefault();
-            } catch (Exception error) {
-                var xxx = error;
-                throw;
-            }
 #warning deal with special case dup TXID's here
-                
 
         }
-        
-
     }
 }
 

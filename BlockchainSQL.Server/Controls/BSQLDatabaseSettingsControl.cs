@@ -15,10 +15,10 @@ using System.Windows.Forms;
 using DACBase = Sphere10.Framework.Data.DACBase;
 
 namespace BlockchainSQL.Server {
-	public partial class BlockchainDatabaseSettingsControl : UserControlEx {
+	public partial class BSQLDatabaseSettingsControl : UserControlEx {
 		private BlockchainDatabaseSettings _model;
 
-		public BlockchainDatabaseSettingsControl() {
+		public BSQLDatabaseSettingsControl() {
 			InitializeComponent();
 			_databaseConnectionPanel.IgnoreDBMS = new[] { DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile };
 		}

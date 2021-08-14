@@ -31,7 +31,8 @@ namespace BlockchainSQL.Server.Controls {
 		}
 
 		protected override void CopyModelToUI() {
-			Guard.Ensure(_model != null, "Model not set");
+			if (Model == null)
+				return;
 			_ipTextBox.Text = Model.IP;
 			_portIntBox.Value = Model.Port;
 			_pollRateIntBox.Value = Model.PollRateSEC;

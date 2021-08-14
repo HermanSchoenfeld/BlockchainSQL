@@ -111,7 +111,7 @@ namespace BlockchainSQL.Server {
             this._blkDataPathControl.PlaceHolderText = "Select folder containing BLK data files";
             this._blkDataPathControl.Size = new System.Drawing.Size(791, 20);
             this._blkDataPathControl.TabIndex = 2;
-            this._blkDataPathControl.PathChanged += new System.EventHandler(this._blkDataPathControl_PathChanged);
+            this._blkDataPathControl.PathChanged += new Sphere10.Framework.EventHandlerEx(this._blkDataPathControl_PathChanged);
             // 
             // groupBox3
             // 

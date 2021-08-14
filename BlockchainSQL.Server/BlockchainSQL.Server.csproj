@@ -49,6 +49,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />

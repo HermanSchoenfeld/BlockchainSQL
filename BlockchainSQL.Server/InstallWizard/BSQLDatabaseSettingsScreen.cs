@@ -9,18 +9,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlockchainSQL.DataAccess;
+using Sphere10.Framework.Windows.Forms;
+using BlockchainSQL.Processing;
 
 namespace BlockchainSQL.Server {
-	public partial class BlockchainDatabaseScreen : InstallWizardScreenBase {
-		public BlockchainDatabaseScreen() {
+	public partial class BSQLDatabaseSettingsScreen : InstallWizardScreenBase {
+		public BSQLDatabaseSettingsScreen() {
 			InitializeComponent();
 		}
 
-		public override async Task OnPresent() {
-			await base.OnPresent();
-			using (EnterUpdateScope()) {
-				_blockchainDatabaseSettingsControl.Model = Model.BlockchainDatabaseSettings;
-			}
+		protected override void CopyModelToUI() {
+			_blockchainDatabaseSettingsControl.Model = new BlockchainDatabaseSettings {
+				DBMSType = Model.BlockchainDatabaseSettings.DBMSType,
+				ConnectionString = Model.BlockchainDatabaseSettings.ConnectionString,
+			};
+		}
+
+		protected override void CopyUIToModel() {
+			Model.BlockchainDatabaseSettings.DBMSType = _blockchainDatabaseSettingsControl.Model.DBMSType;
+			Model.BlockchainDatabaseSettings.ConnectionString = _blockchainDatabaseSettingsControl.Model.ConnectionString; 
 		}
 
 		public override Task<Result> Validate() {

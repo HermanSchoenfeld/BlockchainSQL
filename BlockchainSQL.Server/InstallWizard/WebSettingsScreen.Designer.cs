@@ -35,7 +35,7 @@ namespace BlockchainSQL.Server {
             this._groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._groupBox.Location = new System.Drawing.Point(0, 0);
             this._groupBox.Name = "_groupBox";
-            this._groupBox.Size = new System.Drawing.Size(602, 247);
+            this._groupBox.Size = new System.Drawing.Size(618, 372);
             this._groupBox.TabIndex = 0;
             this._groupBox.TabStop = false;
             this._groupBox.Text = "Web Settings";
@@ -44,17 +44,20 @@ namespace BlockchainSQL.Server {
             // 
             this._webSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this._webSettingsControl.Location = new System.Drawing.Point(3, 19);
+            this._webSettingsControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this._webSettingsControl.Model = null;
             this._webSettingsControl.Name = "_webSettingsControl";
-            this._webSettingsControl.Size = new System.Drawing.Size(596, 225);
+            this._webSettingsControl.Padding = new System.Windows.Forms.Padding(8);
+            this._webSettingsControl.Size = new System.Drawing.Size(612, 350);
             this._webSettingsControl.TabIndex = 0;
             // 
             // WebSettingsScreen
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._groupBox);
             this.Name = "WebSettingsScreen";
-            this.Size = new System.Drawing.Size(598, 247);
+            this.Size = new System.Drawing.Size(618, 372);
             this._groupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -153,7 +153,7 @@ namespace BlockchainSQL.Server
             }
         }
 
-        private void _blkDataPathControl_PathChanged(object sender, EventArgs e) {
+        private void _blkDataPathControl_PathChanged() {
             try {
                 _BLKDataFolderValidator.RunValidation();
             } catch (Exception error) {
