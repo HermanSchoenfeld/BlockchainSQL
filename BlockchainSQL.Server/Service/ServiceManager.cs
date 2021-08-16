@@ -8,20 +8,29 @@ using System.Threading.Tasks;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
-namespace Tools {
-	public class BlockchainSQL {
+namespace BlockchainSQL.Server {
+
+	public class ServiceManager {
 		
 		public const string ServiceName = "BlockchainSQL Server";
 
-		public static async Task LaunchInstallServiceProcess(string destPath, DBReference database) {
+		/// <summary>
+		/// Launches the service installation.
+		/// </summary>
+		/// <param name="destPath">Path service will be installed to</param>
+		/// <param name="startAfterInstall">Whether to launch service after installation</param>
+		/// <returns>Task</returns>
+		/// <remarks>Settings are shared between web/service/gui and should be set before installation of service.</remarks>
+		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall) {
+			PASS Settings Here
 			var location = Assembly.GetExecutingAssembly().Location;
 			var fileName = location.EndsWith(".dll")
 				? location.TrimEnd(".dll") + ".exe"
 				: location;
-
+			var argPostFix = startAfterInstall ? " -start" : string.Empty;
 			var info = new ProcessStartInfo {
 				FileName = fileName,
-				Arguments = String.Format("-install \"{0}\"", destPath),  // database and other settings are shared via PresenationTierSettings
+				Arguments = $"-install \"{destPath}\"{argPostFix}", 
 				ErrorDialog = false,
 				UseShellExecute = false,
 				RedirectStandardOutput = true,
@@ -39,7 +48,7 @@ namespace Tools {
 			}
 		}
 
-		public static async Task InstallService(string destPath) {
+		public static async Task InstallService(string destPath, bool startAfterInstall) {
 			var location = Assembly.GetExecutingAssembly().Location;
 			var currentExePath = location.EndsWith(".dll")
 				? location.TrimEnd(".dll") + ".exe"
@@ -50,12 +59,12 @@ namespace Tools {
 					throw new SoftwareException("Path '{0}' already contains files", destPath);
 				}
 
-				FileSystem.CopyDirectory(Path.GetDirectoryName(currentExePath), destPath, true);
+				Tools.FileSystem.CopyDirectory(Path.GetDirectoryName(currentExePath), destPath, true);
 
 				var destExePath = Path.Combine(destPath, Path.GetFileName(currentExePath));
 				Debug.Assert(File.Exists(destExePath));
 
-				ProcessStartInfo info = new ProcessStartInfo {
+				var info = new ProcessStartInfo {
 					FileName = "sc.exe",
 					Arguments = $"create \"BlockchainSQL Server\" binPath=\"{destExePath}\" start=auto",
 					Verb = "runas",
@@ -74,22 +83,22 @@ namespace Tools {
 					throw new SoftwareException(!string.IsNullOrWhiteSpace(output) ? output : "Error during service install.");
 				}
 
-				try {
+				if (startAfterInstall) {
 					var serviceController = GetServiceController();
 					serviceController?.Start();
-				} catch {
-					// ignored
 				}
 			} catch {
 				if (Directory.Exists(destPath))
-					await FileSystem.DeleteDirectoryAsync(destPath, true);
+					await Tools.FileSystem.DeleteDirectoryAsync(destPath, true);
 				throw;
 			}
 		}
 
 		public static async Task LaunchUninstallServiceProcess(string destPath) {
+			Guard.ArgumentNotNullOrEmpty(destPath, nameof(destPath));
 			if (String.IsNullOrWhiteSpace(destPath))
 				throw new ArgumentNullException("destPath", destPath);
+
 			if (!Directory.Exists(destPath))
 				throw new ArgumentException("Service is not installed at '{0}'".FormatWith(destPath), nameof(destPath));
 
@@ -118,7 +127,7 @@ namespace Tools {
 				throw new SoftwareException(await started.StandardOutput.ReadToEndAsync());
 			}
 			// Clean dangling files left due to file lock bugs from ManagedInstallerClass
-			await FileSystem.DeleteDirectoryAsync(destPath);
+			await Tools.FileSystem.DeleteDirectoryAsync(destPath);
 		}
 
 		public static async Task UninstallService(string destPath) {
@@ -163,9 +172,8 @@ namespace Tools {
 				throw new SoftwareException(!string.IsNullOrWhiteSpace(output) ? output : "Error during service uninstall.");
 			}
 
-			await FileSystem.DeleteDirectoryAsync(destPath, true);
+			await Tools.FileSystem.DeleteDirectoryAsync(destPath, true);
 		}
-
 
 		public static async Task SetServiceRecovery(TimeSpan duration) {
 			var info = new ProcessStartInfo("cmd.exe", string.Format("/c sc failure \"{1}\" reset=0 actions=restart/{0}/restart/{0}/restart/{0}", duration.Milliseconds, ServiceName));

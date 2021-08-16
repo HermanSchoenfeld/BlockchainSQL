@@ -32,8 +32,11 @@ namespace BlockchainSQL.Server.Controls {
 			}
 		}
 
+		public DatabaseConnectionPanel DatabasePanel => _databaseConnectionPanel;
+
 		protected override void CopyModelToUI() {
-			Guard.Ensure(_model != null, "Model not set");
+			if (Model == null)
+				return;
 			_enableWebUICheckBox.Checked = Model.Enabled;
 			_portIntBox.Value = Model.Port;
 			_databaseConnectionPanel.SelectedDBMSType = Model.DBMSType;
@@ -114,7 +117,6 @@ namespace BlockchainSQL.Server.Controls {
 				return true;
 			}
 		}
-
 
 		private async void _generateDatabaseButton_Click(object sender, EventArgs e) {
 			try {

@@ -36,7 +36,7 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
-		<Compile Update="ServiceControl.cs" />
+		<Compile Update="Controls\ServiceControl.cs" />
 		<Compile Update="Service\BlockchainSQLService.cs" />
 		<None Update="app.manifest">
 			<SubType>Designer</SubType>
@@ -77,6 +77,8 @@
 	    <DependentUpon>UserControl1.resx</DependentUpon>
 	  </EmbeddedResource>
 	</ItemGroup>
-	<PropertyGroup />
+	<PropertyGroup>
+	  <AssemblyName>bsql</AssemblyName>
+	</PropertyGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

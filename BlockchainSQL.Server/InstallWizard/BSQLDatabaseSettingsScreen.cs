@@ -39,7 +39,7 @@ namespace BlockchainSQL.Server {
 			if (result.Success) {
 				var dac = BlockchainDatabase.NewDAC(_blockchainDatabaseSettingsControl.DatabasePanel.GetDAC());
 				if (!dac.IsValidSchema())
-					result.AddError("Database schema is not valid. Ensure ");
+					result.AddError("BlockchainSQL Database schema is not valid. Try regenerating.");
 			}
 			return result;
 		}

@@ -67,7 +67,12 @@ namespace BlockchainSQL.Server {
                 _loadingCircle.Enabled = true;
                 _loadingCircle.Active = true;
                 result = await _databaseConnectionPanel.TestConnection();
-            } finally {
+                if (result.Success) {
+	                var dac = BlockchainDatabase.NewDAC(_databaseConnectionPanel.GetDAC());
+	                if (!dac.IsValidSchema())
+		                result.AddError("Database schema is not valid. Ensure ");
+                }
+			} finally {
                 this.EnableChildren(true);
                 _loadingCircle.Active = false;
             }

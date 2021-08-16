@@ -108,8 +108,6 @@ namespace BlockchainSQL.Server {
 				if (createDatabase)
 					await Task.Run(() => schemaGenerator.CreateApplicationDatabase(connectionString, dataPolicy, databaseName));
 
-
-
 				DialogEx.Show(this, "Success", "Database Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 				return true;
@@ -137,7 +135,6 @@ namespace BlockchainSQL.Server {
 						var dac = BlockchainDatabase.NewDAC(_databaseConnectionPanel.GetDAC());
 						if (!dac.IsValidSchema())
 							result.AddError("Database schema is not valid. Ensure ");
-
 					}
 
 					if (result.Failure)

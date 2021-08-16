@@ -14,7 +14,7 @@ namespace BlockchainSQL.Server {
 
 		protected override void OnActivated(EventArgs e) {
 			base.OnActivated(e);
-			_installServiceButton.Enabled = !Tools.BlockchainSQL.IsInstalled();
+			_installServiceButton.Enabled = !ServiceManager.IsInstalled();
 			_uninstallServiceButton.Enabled = !_installServiceButton.Enabled;
 			_databaseDiagnosticButton.Enabled = _uninstallServiceButton.Enabled;
 		}
@@ -44,7 +44,7 @@ namespace BlockchainSQL.Server {
 				if (dirPicker.ShowDialog(this) == DialogResult.OK) {
 					var dir = dirPicker.SelectedPath;
 					using (LoadingCircle.EnterAnimationScope(this)) {
-						await Tools.BlockchainSQL.LaunchUninstallServiceProcess(dir);
+						await ServiceManager.LaunchUninstallServiceProcess(dir);
 					}
 					DialogEx.Show(this, "Success", "Service was stopped and uninstalled", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}

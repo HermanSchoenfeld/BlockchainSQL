@@ -9,11 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BlockchainSQL.DataAccess;
 
 namespace BlockchainSQL.Server {
 	public partial class WebSettingsScreen : InstallWizardScreenBase {
 		public WebSettingsScreen() {
 			InitializeComponent();
+		}
+
+		public override async Task<Result> Validate() {
+			var result = Model.WebSettings.Validate();
+			if (result.Failure)
+				return result;
+			result = await ValidateDatabase();
+			return result;
+		}
+
+		public async Task<Result> ValidateDatabase() {
+			var result = await _webSettingsControl.DatabasePanel.TestConnection();
+			return result;
 		}
 
 		protected override void CopyModelToUI() {
@@ -30,10 +44,6 @@ namespace BlockchainSQL.Server {
 			Model.WebSettings.Port = _webSettingsControl.Model.Port;
 			Model.WebSettings.DBMSType = _webSettingsControl.Model.DBMSType;
 			Model.WebSettings.DatabaseConnectionString = _webSettingsControl.Model.DatabaseConnectionString;
-		}
-
-		public override async Task<Result> Validate() {
-			return Model.WebSettings.Validate();
 		}
 
 	}

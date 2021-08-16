@@ -64,7 +64,7 @@ namespace BlockchainSQL.Server
         }
 
         public Task Install() {
-            return Tools.BlockchainSQL.LaunchInstallServiceProcess(
+            return ServiceManager.LaunchInstallServiceProcess(
                 _pathSelector.Path,
                 _blockchainDatabaseConnectionPanel.Database
             );

@@ -20,6 +20,7 @@ namespace BlockchainSQL.Server {
 		public InstallationDirectoryScreen() {
 			InitializeComponent();
 			this.StateChanged += TryShowInstallDir;
+			_installDirLabel.Text = string.Format(_installDirLabel.Text, DefaultBlockchainSQLServiceFolder);
 		}
 
 		public override Task<Result> Validate() {
@@ -31,12 +32,14 @@ namespace BlockchainSQL.Server {
 			if (_createServiceFolderCheckBox.Checked)
 				dir = Path.Combine(dir, DefaultBlockchainSQLServiceFolder);
 			Model.ServiceDirectory = dir;
+			Model.StartAfterInstall = _startServiceCheckBox.Checked;
 		}
 
 		protected override void CopyModelToUI() {
 			if (string.IsNullOrWhiteSpace(Model.ServiceDirectory)) {
 				_pathSelector.Path = string.Empty;
 				_createServiceFolderCheckBox.Checked = true;
+				_startServiceCheckBox.Checked = false;
 				return;
 			}
 
@@ -47,6 +50,7 @@ namespace BlockchainSQL.Server {
 			} else
 				_createServiceFolderCheckBox.Checked = false;
 			_pathSelector.Path = dir;
+			_startServiceCheckBox.Checked = Model.StartAfterInstall;
 			TryShowInstallDir();
 		}
 
@@ -74,7 +78,7 @@ namespace BlockchainSQL.Server {
 		private void TryShowInstallDir() {
 			if (!string.IsNullOrWhiteSpace(Model.ServiceDirectory) && Path.IsPathFullyQualified(Model.ServiceDirectory)) {
 				_installDirLabel.Visible = true;
-				_installDirLabel.Text = Model.ServiceDirectory;
+				_installDirLabel.Text = $"Installation Directory: {Model.ServiceDirectory}";
 			} else
 				_installDirLabel.Visible = false;
 

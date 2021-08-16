@@ -76,7 +76,7 @@ namespace BlockchainSQL.Server
 
         private void MonitorService() {
 	        try {
-		        _serviceController = Tools.BlockchainSQL.GetServiceController();
+		        _serviceController = ServiceManager.GetServiceController();
 
 		        ServiceStatus newStatus = default;
 

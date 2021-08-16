@@ -5,6 +5,8 @@ using System.IO;
 namespace BlockchainSQL.Server {
 	public class InstallWizardModel {
 
+		public bool StartAfterInstall { get; set; }
+
 		public string ServiceDirectory { get; set; }
 
 		public BlockchainDatabaseSettings BlockchainDatabaseSettings { get; set; }
@@ -17,6 +19,7 @@ namespace BlockchainSQL.Server {
 
 		public static InstallWizardModel Default => new InstallWizardModel {
 			ServiceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "BlockchainSQL"),
+			StartAfterInstall = true,
 			ScannerSettings = new ScannerSettings(),
 			BlockchainDatabaseSettings = new BlockchainDatabaseSettings(),
 			NodeSettings = new NodeSettings(),

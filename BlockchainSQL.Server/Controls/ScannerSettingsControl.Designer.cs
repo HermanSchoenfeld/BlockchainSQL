@@ -37,7 +37,7 @@ namespace BlockchainSQL.Server.Controls {
             this._maxMemoryIntBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this._maxMemoryIntBox.Name = "_maxMemoryIntBox";
             this._maxMemoryIntBox.PlaceHolderText = "Enter the maximum memory to allocate in processing buffers";
-            this._maxMemoryIntBox.Size = new System.Drawing.Size(451, 23);
+            this._maxMemoryIntBox.Size = new System.Drawing.Size(460, 23);
             this._maxMemoryIntBox.TabIndex = 22;
             // 
             // label4
@@ -64,7 +64,7 @@ namespace BlockchainSQL.Server.Controls {
             this._optionsListBox.Location = new System.Drawing.Point(0, 5);
             this._optionsListBox.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this._optionsListBox.Name = "_optionsListBox";
-            this._optionsListBox.Size = new System.Drawing.Size(538, 18);
+            this._optionsListBox.Size = new System.Drawing.Size(550, 18);
             this._optionsListBox.TabIndex = 20;
             // 
             // ScannerSettingsControl
@@ -76,7 +76,7 @@ namespace BlockchainSQL.Server.Controls {
             this.Controls.Add(this._optionsListBox);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ScannerSettingsControl";
-            this.Size = new System.Drawing.Size(550, 58);
+            this.Size = new System.Drawing.Size(560, 60);
             this.ResumeLayout(false);
             this.PerformLayout();
 
