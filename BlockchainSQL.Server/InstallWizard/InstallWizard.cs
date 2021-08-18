@@ -25,31 +25,7 @@ namespace BlockchainSQL.Server {
 		}
 
 		public Task Install() {
-			// Save settings to disk (these are loaded by service and web processes)
-			var bsqlDBSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
-			bsqlDBSettings.DBMSType = Model.BlockchainDatabaseSettings.DBMSType;
-			bsqlDBSettings.ConnectionString = Model.BlockchainDatabaseSettings.ConnectionString;
-			bsqlDBSettings.Save();
-
-			var nodeSettings = GlobalSettings.Get<NodeSettings>();
-			nodeSettings.IP = Model.NodeSettings.IP;
-			nodeSettings.Port = Model.NodeSettings.Port;
-			nodeSettings.PollRateSEC = Model.NodeSettings.PollRateSEC;
-			nodeSettings.Save();
-
-			var scannerSettings = GlobalSettings.Get<ScannerSettings>();
-			scannerSettings.StoreScriptData = Model.ScannerSettings.StoreScriptData;
-			scannerSettings.MaxMemoryBufferSizeMB = Model.ScannerSettings.MaxMemoryBufferSizeMB;
-			scannerSettings.Save();
-
-			var webSettings = GlobalSettings.Get<WebSettings>();
-			webSettings.Enabled = Model.WebSettings.Enabled;
-			webSettings.Port = Model.WebSettings.Port;
-			webSettings.DBMSType = Model.WebSettings.DBMSType;
-			webSettings.DatabaseConnectionString = Model.WebSettings.DatabaseConnectionString;
-			webSettings.Save();
-
-			return ServiceManager.LaunchInstallServiceProcess(Model.ServiceDirectory, Model.StartAfterInstall);
+			return ServiceManager.LaunchInstallServiceProcess(Model.ServiceDirectory, Model.StartAfterInstall, Model.BlockchainDatabaseSettings, Model.NodeSettings, Model.ScannerSettings, Model.WebSettings);
 		}
 
 

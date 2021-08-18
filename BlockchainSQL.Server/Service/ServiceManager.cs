@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.ServiceProcess;
+using System.Text;
 using System.Threading.Tasks;
+using BlockchainSQL.Processing;
 using Sphere10.Framework;
 using Sphere10.Framework.Data;
 
@@ -21,16 +23,54 @@ namespace BlockchainSQL.Server {
 		/// <param name="startAfterInstall">Whether to launch service after installation</param>
 		/// <returns>Task</returns>
 		/// <remarks>Settings are shared between web/service/gui and should be set before installation of service.</remarks>
-		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall) {
-			PASS Settings Here
+		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall, BlockchainDatabaseSettings dbSettings, NodeSettings nodeSettings, ScannerSettings scannerSettings, WebSettings webSettings) {
+			/*
+						Commands = new CommandLineCommand[] {
+							new("install", "Installs the BlockchainSQL Server Windows Service",
+								new CommandLineParameter[] {
+									new("path", "Path where to install the BlockchainSQL Server Windows Service", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+									new("start", "Path to install windows service"),
+									new("dbms", $"DBMS that will host the BlockchainSQL database. Options are: {DBMSType.SQLServer}", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+									new("db", $"Database connection string for BlockchainSQL database", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+									new("ip", $"IP address of the Bitcoin Core node", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+									new("port", "Port of the Bitcoin Core network protocol (default 8333)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
+									new("poll", "Number of seconds between polling node for new blocks (default 10)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
+									new("store_scripts", "Scanner should store scripts resulting in very large databaes (default true). Options: True, False", CommandLineParameterOptions.Optional),
+									new("maxmem", "Maximum megabytes of memory to consume during scanning (default 500)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
+									new("web", "Whether or not to install web application explorer", CommandLineParameterOptions.Optional),
+									new("web_port", "Whether or not to install web application explorer (default 5000)", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
+									new("web_dbms", $"DBMS that will host the BlockchainSQL web database. Options are: {new[] {DBMSType.SQLServer, DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile}.ToDelimittedString(", ")}", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
+									new("web_db", "Database connection string for BlockchainSQL web database", CommandLineParameterOptions.Optional),
+								}
+							),
+							new("uninstall", "Uninstalls BlockchainSQL Server Windows Service",
+								new CommandLineParameter[] {
+									new("path", "Path where to install the BlockchainSQL Server Windows Service", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+								}
+							),
+							new("service", "Run in service mode")
+						}, 
+			 */
+
+			var args = new StringBuilder();
+			args.Append($"install --path \"{destPath}\" --dbms {dbSettings.DBMSType} --db \"{Tools.Runtime.EncodeCommandLineArgumentWin(dbSettings.ConnectionString)}\" --ip {nodeSettings.IP} --port {nodeSettings.Port} --poll {nodeSettings.PollRateSEC} --maxmem {scannerSettings.MaxMemoryBufferSizeMB}");
+			if (scannerSettings.StoreScriptData)
+				args.Append(" --store_scripts");
+			if (startAfterInstall)
+				args.Append(" --start");
+			if (webSettings.Enabled) {
+				args.Append($" --web --web_port {webSettings.Port} --web_dbms {webSettings.DBMSType} --web_db \"{Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.DatabaseConnectionString)}\"");
+			}
+
+
 			var location = Assembly.GetExecutingAssembly().Location;
 			var fileName = location.EndsWith(".dll")
 				? location.TrimEnd(".dll") + ".exe"
 				: location;
-			var argPostFix = startAfterInstall ? " -start" : string.Empty;
+			
 			var info = new ProcessStartInfo {
 				FileName = fileName,
-				Arguments = $"-install \"{destPath}\"{argPostFix}", 
+				Arguments = args.ToString(), 
 				ErrorDialog = false,
 				UseShellExecute = false,
 				RedirectStandardOutput = true,

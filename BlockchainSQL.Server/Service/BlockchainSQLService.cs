@@ -10,7 +10,7 @@ using Sphere10.Framework;
 using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 using Sphere10.Framework.Windows;
-using static BlockchainSQL.Server.ServiceInstallDialog;
+
 
 namespace BlockchainSQL.Server {
 	partial class BlockchainSQLService : ServiceBase {
@@ -18,7 +18,6 @@ namespace BlockchainSQL.Server {
 		private readonly CancellationTokenSource _cancellationTokenSource;
 		private readonly ManualResetEventSlim _waiter;
 		private Process _webAppProcess;
-		private FormSettings _settings;
 
 		public BlockchainSQLService() {
 			InitializeComponent();
@@ -38,7 +37,6 @@ namespace BlockchainSQL.Server {
 
 		protected override async void OnStart(string[] args) {
 			_logger.Info("Starting");
-			_settings = GlobalSettings.Get<FormSettings>();
 			
 			while (!_cancellationTokenSource.IsCancellationRequested) {
 				try {
@@ -131,7 +129,8 @@ namespace BlockchainSQL.Server {
 		private void StartWebUI() {
 			var dllPath = GetWebUIDllPath();
 
-			var url = $"http://*:{_settings.WebUIPort}";
+			var webSettings = GlobalSettings.Get<WebSettings>();
+			var url = $"http://*:{webSettings.Port}";
 
 			if (File.Exists(dllPath)) {
 				ProcessStartInfo startInfo = new ProcessStartInfo() {
@@ -166,7 +165,7 @@ namespace BlockchainSQL.Server {
 			return Path.Join(installFolder, "/Web/BlockchainSQL.Web.dll");
 		}
 
-		private bool IsWebAppEnabled() => _settings?.IsWebUIEnabled ?? false;
+		private bool IsWebAppEnabled() => GlobalSettings.Get<WebSettings>().Enabled;
 	}
 }
 
