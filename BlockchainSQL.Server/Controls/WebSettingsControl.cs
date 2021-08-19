@@ -88,15 +88,15 @@ namespace BlockchainSQL.Server.Controls {
 							"&Cancel", "&Overwrite", "&Append")
 						) {
 						case DialogExResult.Button1:
-							return false;
+						return false;
 						case DialogExResult.Button2:
-							dropExisting = true;
-							createShell = true;
-							createDatabase = true;
-							break;
+						dropExisting = true;
+						createShell = true;
+						createDatabase = true;
+						break;
 						case DialogExResult.Button3:
-							createDatabase = true;
-							break;
+						createDatabase = true;
+						break;
 					}
 				} else {
 					createShell = true;
@@ -141,6 +141,15 @@ namespace BlockchainSQL.Server.Controls {
 					DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				else
 					DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			} catch (Exception error) {
+				ExceptionDialog.Show(this, error);
+			}
+		}
+
+		private void _enableWebUICheckBox_CheckedChanged(object sender, EventArgs e) {
+			try {
+				_databaseConnectionPanel.Enabled = _portLabel.Enabled = _portIntBox.Enabled = _enableWebUICheckBox.Checked;
+
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);
 			}

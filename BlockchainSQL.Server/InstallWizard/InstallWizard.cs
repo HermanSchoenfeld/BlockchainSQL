@@ -24,8 +24,19 @@ namespace BlockchainSQL.Server {
 			// Rely on screen validations
 		}
 
-		public Task Install() {
-			return ServiceManager.LaunchInstallServiceProcess(Model.ServiceDirectory, Model.StartAfterInstall, Model.BlockchainDatabaseSettings, Model.NodeSettings, Model.ScannerSettings, Model.WebSettings);
+
+		protected override async Task<Result> Finish() {
+			try {
+				await ServiceManager.LaunchInstallServiceProcess(Model.ServiceDirectory,
+					Model.StartAfterInstall,
+					Model.BlockchainDatabaseSettings,
+					Model.NodeSettings,
+					Model.ScannerSettings,
+					Model.WebSettings);
+			} catch (Exception error) {
+				return Result.Error("Failed to install Service Process.", error.ToDisplayString());
+			}
+			return Result.Valid;
 		}
 
 
@@ -48,13 +59,5 @@ namespace BlockchainSQL.Server {
 			yield return new WebSettingsScreen();
 		}
 
-		protected override async Task<Result> Finish() {
-			// Do Install
-			return Result.Default;
-		}
-
-		//SaveFormSettings();
-		//await Validate();
-		//await Install();
 	}
 }

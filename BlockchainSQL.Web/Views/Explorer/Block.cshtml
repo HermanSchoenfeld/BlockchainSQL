@@ -167,7 +167,7 @@
                         $('#BlockTransactionsGrid')
                             .on('aweselect', function () {
                                 var selectedItems = $('#BlockTransactionsGrid').data('api').getSelection();
-                                console.log(selectedItems)
+                                console.log(selectedItems);
                                 if (selectedItems.length > 0) {
                                     var selectedItem = selectedItems[0];
                                     window.location = "/explorer/transaction?txid=" + selectedItem.txid;

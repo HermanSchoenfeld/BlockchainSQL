@@ -21,7 +21,8 @@ namespace BlockchainSQL.Server {
 			var result = Model.WebSettings.Validate();
 			if (result.Failure)
 				return result;
-			result = await ValidateDatabase();
+			if (Model.WebSettings.Enabled)
+				result = await ValidateDatabase();
 			return result;
 		}
 

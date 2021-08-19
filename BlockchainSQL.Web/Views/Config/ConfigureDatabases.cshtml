@@ -1,6 +1,6 @@
 ﻿@model BlockchainSQL.Web.Models.ConfigureDatabaseFormInput;
 
-@using (Html.BeginFormEx(Model, "form-horizontal", false)) {
+@using (Html.BeginFormEx("ConfigureDatabases", "Config", Model, "form-horizontal", false)) {
     <h4> Web Application Database</h4>
     <div class="form-group">
         @Html.LabelFor(o => o.WebDbModel.Server, new {

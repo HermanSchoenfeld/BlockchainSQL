@@ -20,7 +20,7 @@ namespace BlockchainSQL.Server {
 		public InstallationDirectoryScreen() {
 			InitializeComponent();
 			this.StateChanged += TryShowInstallDir;
-			_installDirLabel.Text = string.Format(_installDirLabel.Text, DefaultBlockchainSQLServiceFolder);
+			_createServiceFolderCheckBox.Text = string.Format(_createServiceFolderCheckBox.Text, DefaultBlockchainSQLServiceFolder);
 		}
 
 		public override Task<Result> Validate() {

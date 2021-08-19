@@ -34,7 +34,6 @@ namespace BlockchainSQL.Web.Controllers {
 		[HttpGet]
 		[Route("/initial-config")]
 		public ActionResult InitialConfig() {
-
 			if (DatabaseManager.IsConfigured)
 				return RedirectToAction("Index");
 
@@ -79,7 +78,7 @@ namespace BlockchainSQL.Web.Controllers {
 				var blockchainValid = DatabaseManager.IsValidBlockchainDatabase(
 					DBMSType.SQLServer, 
 					model.BlockchainDbModel.Server, 
-					model.BlockchainDbModel.Server, 
+					model.BlockchainDbModel.Database, 
 					model.BlockchainDbModel.Username, 
 					model.BlockchainDbModel.Password, 
 					model.BlockchainDbModel.Port, 

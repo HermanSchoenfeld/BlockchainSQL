@@ -5,6 +5,7 @@
 
 using System;
 using System.Text.Json.Serialization;
+using BlockchainSQL.DataAccess.NHibernate;
 using BlockchainSQL.Web.Code;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -66,6 +67,7 @@ namespace BlockchainSQL.Web {
 		}
 
 		private void TryInitializeDatabaseClasses() {
+			var preLoaded = typeof(BlockchainSQLDatabaseManagerMSSQL); // Preload nhib assembly
 			if (DatabaseManager.IsConfigured)
 				DatabaseManager.InitializeDatabases();
 		}

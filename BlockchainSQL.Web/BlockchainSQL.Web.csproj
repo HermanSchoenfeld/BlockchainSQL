@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj" />
+    <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
     <ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
@@ -109,17 +110,17 @@
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.113" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Omu.Awem">
-      <HintPath>..\..\Framework-v3\lib\AwesomeMvc.5.3\Omu.Awem.dll</HintPath>
-    </Reference>
-    <Reference Include="Omu.AwesomeMvc">
-      <HintPath>..\..\Framework-v3\lib\AwesomeMvc.5.3\Omu.AwesomeMvc.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\Scripts\jquery-validate\jquery.validate.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\Scripts\jqueryui\jquery-ui.min.js" />
     <_ContentIncludedByDefault Remove="wwwroot\js\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Omu.Awem">
+      <HintPath>..\..\3rdParty\AwesomeMvc.5.4\bin\Core\netstandard1.6\Omu.Awem.dll</HintPath>
+    </Reference>
+    <Reference Include="Omu.AwesomeMvc">
+      <HintPath>..\..\3rdParty\AwesomeMvc.5.4\bin\Core\netstandard1.6\Omu.AwesomeMvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

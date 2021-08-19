@@ -10,9 +10,9 @@ using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
 
-	public class BlockhainSQLDatabaseManagerMSSQL : NHibernateDatabaseManagerBase {
+	public class BlockchainSQLDatabaseManagerMSSQL : NHibernateDatabaseManagerBase {
 
-		public BlockhainSQLDatabaseManagerMSSQL()
+		public BlockchainSQLDatabaseManagerMSSQL()
 			: base(new MSSQLDatabaseManager()) {
 		}
 

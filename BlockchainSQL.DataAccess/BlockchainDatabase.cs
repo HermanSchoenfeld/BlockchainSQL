@@ -42,7 +42,7 @@ namespace BlockchainSQL.DataAccess {
 		public static IDatabaseManager NewDatabaseManager(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockhainSQLDatabaseManagerMSSQL");
+                    return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseManagerMSSQL");
                 case DBMSType.Sqlite:
                     return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseManagerSqlite");
                 default:
