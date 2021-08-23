@@ -24,12 +24,7 @@ namespace Sphere10.Framework.Application {
 			// Components: share settings with web/server
 			registry.RegisterComponentInstance<ISettingsProvider>(new CachedSettingsProvider(new DirectorySettingsProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlockchainSQL"))), "UserSettings");
 			registry.RegisterComponentInstance<ISettingsProvider>(new CachedSettingsProvider(new DirectorySettingsProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "BlockchainSQL"))), "SystemSettings");
-
-
 			registry.RegisterInitializationTask<IncrementUsageByOneTask>();
-			registry.RegisterEndTask<SaveSettingsEndTask>();
-
-
 		}
 	}
 }

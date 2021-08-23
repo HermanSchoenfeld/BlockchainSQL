@@ -23,7 +23,7 @@ namespace BlockchainSQL.Server {
 			if (!dbms.IsIn(DBMSType.SQLServer))
 				throw new InvalidOperationException($"Only SQLServer supported for BlockchainSQL database");
 			var db = installCommand.GetSingleArgumentValue("db");
-			if (Tools.MSSQL.TestConnectionString(db)) {
+			if (!Tools.MSSQL.TestConnectionString(db)) {
 				throw new InvalidOperationException($"Unable to connect to BlockchainSQL database: {db}");
 			}
 			var ip = Tools.Parser.Parse<IPAddress>(installCommand.GetSingleArgumentValue("ip"));

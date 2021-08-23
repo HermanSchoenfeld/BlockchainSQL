@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Sphere10.Framework;
 using Omu.AwesomeMvc;
+using Sphere10.Framework;
 
 namespace BlockchainSQL.Web {
 	public class Startup {

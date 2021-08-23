@@ -10,11 +10,12 @@ using Sphere10.Framework.Application;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Sphere 10 Software Pty Ltd")]
 [assembly: AssemblyProduct("BlockchainSQL Server")]
+[assembly: AssemblyProductLink("www.blockchainsql.io")]
 [assembly: AssemblyProductCode("A49ECEC9-1E83-436c-B432-BBF7B26055E7")]
 [assembly: AssemblyProductSecret("d7dd4d108cf489557f3645370f70c53a1166f582a13989ab45dc305df6b30a28")]
 [assembly: AssemblyDefaultProductKey("6ES3-YJAD-7N4P-3V7B")]    // full version product key
-[assembly: AssemblyCopyright("Copyright © 2015 - {CurrentYear}")]
-[assembly: AssemblyCompanyLink("www.blockchainsql.io")]
+[assembly: AssemblyCopyright("Copyright © Sphere 10 Software 2015 - {CurrentYear}")]
+[assembly: AssemblyCompanyLink("www.sphere10.com")]
 [assembly: AssemblyCompanyNumber("ABN 39 600 596 316")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -26,7 +27,7 @@ using Sphere10.Framework.Application;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("1373ad1d-8e8c-4d68-bc66-915814a8a3a0")]
+[assembly: Guid("AB05E2BD-F9EF-4088-A9D1-A47049A20146")]
 
 // Version information for an assembly consists of the following four values:
 //

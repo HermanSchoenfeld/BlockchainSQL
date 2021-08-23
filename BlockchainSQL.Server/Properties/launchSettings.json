@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "BlockchainSQL.Server": {
+      "commandName": "Project"
+    }
+  }
+}

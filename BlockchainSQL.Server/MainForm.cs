@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Sphere10.Framework.Application;
+using BlockchainSQL.Processing;
 
 namespace BlockchainSQL.Server {
 	public partial class MainForm : LiteMainForm {
@@ -25,12 +26,18 @@ namespace BlockchainSQL.Server {
 
 		private void _blockFileScannerButton_Click(object sender, EventArgs e) {
 			OpenForm<BlockFileScannerForm>();
+
+			var blockchainSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+			blockchainSettings.ConnectionString = "changed";
+			blockchainSettings.Save();
+
 		}
 
 		private async void _installServiceButton_Click(object sender, EventArgs e) {
 			try {
 				var wizard = new InstallWizard();
-				await wizard.Start(this);
+				if(await wizard.Start(this) == WizardResult.Success) 
+					DialogEx.Show(this, "BlockchainSQL Server Windows Service was installed", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);
 			}
@@ -46,7 +53,7 @@ namespace BlockchainSQL.Server {
 					using (LoadingCircle.EnterAnimationScope(this)) {
 						await ServiceManager.LaunchUninstallServiceProcess(dir);
 					}
-					DialogEx.Show(this, "Success", "Service was stopped and uninstalled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					DialogEx.Show(this, "BlockchainSQL Server Windows Service was uninstalled", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);

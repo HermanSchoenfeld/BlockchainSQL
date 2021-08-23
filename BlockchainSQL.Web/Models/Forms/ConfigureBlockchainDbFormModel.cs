@@ -2,12 +2,14 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
+using BlockchainSQL.Processing;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Web.Models {
 	public class ConfigureBlockchainDbFormModel {
 
 		public ConfigureBlockchainDbFormModel() {
-			string blockchainDbConnectionString = DatabaseManager.Settings.BlockchainDatabaseConnectionString;
+			string blockchainDbConnectionString = GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString;
 
 			if (!string.IsNullOrEmpty(blockchainDbConnectionString)) {
 				var connString = new SqlConnectionStringBuilder(blockchainDbConnectionString);

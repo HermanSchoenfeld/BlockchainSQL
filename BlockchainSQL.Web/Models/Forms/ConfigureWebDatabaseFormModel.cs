@@ -2,13 +2,15 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
+using BlockchainSQL.Processing;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Web.Models {
 
 	public class ConfigureWebDatabaseFormModel  {
 
 		public ConfigureWebDatabaseFormModel() {
-			string webAppConfig = DatabaseManager.Settings.WebDatabaseConnectionString;
+			string webAppConfig = GlobalSettings.Get<WebSettings>().DatabaseConnectionString;
 
 			if (!string.IsNullOrEmpty(webAppConfig)) {
 				var connString = new SqlConnectionStringBuilder(webAppConfig);

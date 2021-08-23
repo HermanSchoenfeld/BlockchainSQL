@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlockchainSQL.Processing;
 using Sphere10.Framework;
+using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Server {
@@ -24,42 +25,14 @@ namespace BlockchainSQL.Server {
 		/// <returns>Task</returns>
 		/// <remarks>Settings are shared between web/service/gui and should be set before installation of service.</remarks>
 		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall, BlockchainDatabaseSettings dbSettings, NodeSettings nodeSettings, ScannerSettings scannerSettings, WebSettings webSettings) {
-			/*
-						Commands = new CommandLineCommand[] {
-							new("install", "Installs the BlockchainSQL Server Windows Service",
-								new CommandLineParameter[] {
-									new("path", "Path where to install the BlockchainSQL Server Windows Service", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
-									new("start", "Path to install windows service"),
-									new("dbms", $"DBMS that will host the BlockchainSQL database. Options are: {DBMSType.SQLServer}", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
-									new("db", $"Database connection string for BlockchainSQL database", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
-									new("ip", $"IP address of the Bitcoin Core node", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
-									new("port", "Port of the Bitcoin Core network protocol (default 8333)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
-									new("poll", "Number of seconds between polling node for new blocks (default 10)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
-									new("store_scripts", "Scanner should store scripts resulting in very large databaes (default true). Options: True, False", CommandLineParameterOptions.Optional),
-									new("maxmem", "Maximum megabytes of memory to consume during scanning (default 500)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
-									new("web", "Whether or not to install web application explorer", CommandLineParameterOptions.Optional),
-									new("web_port", "Whether or not to install web application explorer (default 5000)", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
-									new("web_dbms", $"DBMS that will host the BlockchainSQL web database. Options are: {new[] {DBMSType.SQLServer, DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile}.ToDelimittedString(", ")}", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
-									new("web_db", "Database connection string for BlockchainSQL web database", CommandLineParameterOptions.Optional),
-								}
-							),
-							new("uninstall", "Uninstalls BlockchainSQL Server Windows Service",
-								new CommandLineParameter[] {
-									new("path", "Path where to install the BlockchainSQL Server Windows Service", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
-								}
-							),
-							new("service", "Run in service mode")
-						}, 
-			 */
-
 			var args = new StringBuilder();
-			args.Append($"install --path \"{destPath}\" --dbms {dbSettings.DBMSType} --db \"{Tools.Runtime.EncodeCommandLineArgumentWin(dbSettings.ConnectionString)}\" --ip {nodeSettings.IP} --port {nodeSettings.Port} --poll {nodeSettings.PollRateSEC} --maxmem {scannerSettings.MaxMemoryBufferSizeMB}");
+			args.Append($"install --path \"{destPath}\" --dbms {dbSettings.DBMSType} --db {Tools.Runtime.EncodeCommandLineArgumentWin(dbSettings.ConnectionString)} --ip {nodeSettings.IP} --port {nodeSettings.Port} --poll {nodeSettings.PollRateSEC} --maxmem {scannerSettings.MaxMemoryBufferSizeMB}");
 			if (scannerSettings.StoreScriptData)
 				args.Append(" --store_scripts");
 			if (startAfterInstall)
 				args.Append(" --start");
 			if (webSettings.Enabled) {
-				args.Append($" --web --web_port {webSettings.Port} --web_dbms {webSettings.DBMSType} --web_db \"{Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.DatabaseConnectionString)}\"");
+				args.Append($" --web --web_port {webSettings.Port} --web_dbms {webSettings.DBMSType} --web_db {Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.DatabaseConnectionString)}");
 			}
 
 
@@ -154,7 +127,7 @@ namespace BlockchainSQL.Server {
 			var info = new ProcessStartInfo {
 				UseShellExecute = false,
 				FileName = files[0],
-				Arguments = String.Format("-uninstall \"{0}\"", destPath),
+				Arguments = String.Format("uninstall --path \"{0}\"", destPath),
 				ErrorDialog = false,
 				Verb = "runas",
 				RedirectStandardOutput = true,
@@ -171,7 +144,7 @@ namespace BlockchainSQL.Server {
 		}
 
 		public static async Task UninstallService(string destPath) {
-			if (String.IsNullOrWhiteSpace(destPath))
+			if (string.IsNullOrWhiteSpace(destPath))
 				throw new ArgumentNullException(nameof(destPath), destPath);
 
 			var serviceController = GetServiceController();
@@ -194,7 +167,7 @@ namespace BlockchainSQL.Server {
 				throw new SoftwareException("Conflicting executables found at '{0}'. Remove foreign files ending with '-Service.exe'.", destPath);
 			}
 
-			ProcessStartInfo info = new ProcessStartInfo {
+			var info = new ProcessStartInfo {
 				UseShellExecute = false,
 				FileName = "sc.exe",
 				Arguments = $"delete \"BlockchainSQL Server\"",
@@ -213,6 +186,11 @@ namespace BlockchainSQL.Server {
 			}
 
 			await Tools.FileSystem.DeleteDirectoryAsync(destPath, true);
+
+			GlobalSettings.Get<BlockchainDatabaseSettings>().Delete();
+			GlobalSettings.Get<NodeSettings>().Delete();
+			GlobalSettings.Get<ScannerSettings>().Delete();
+			GlobalSettings.Get<WebSettings>().Delete();
 		}
 
 		public static async Task SetServiceRecovery(TimeSpan duration) {

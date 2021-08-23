@@ -14,5 +14,6 @@ namespace BlockchainSQL.Processing {
 		[Encrypted]
 		public string DatabaseConnectionString { get; set; } = "";
 	}
-
 }
+
+

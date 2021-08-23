@@ -22,6 +22,5 @@ namespace BlockchainSQL.Server {
 			Console.WriteLine("Service Stopped & Uninstalled");
 		}
 
-
 	}
 }

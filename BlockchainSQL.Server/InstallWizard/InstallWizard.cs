@@ -39,18 +39,6 @@ namespace BlockchainSQL.Server {
 			return Result.Valid;
 		}
 
-
-		public class WebSettings : SettingsObject {
-			public bool Enabled { get; set; } = true;
-
-			public int Port { get; set; } = 5000;
-
-			public DBMSType DBMSType { get; set; } = DBMSType.Sqlite;
-
-			[Encrypted]
-			public string DatabaseConnectionString { get; set; } = "";
-		}
-
 		protected override IEnumerable<WizardScreen<InstallWizardModel>> ConstructScreens() {
 			yield return new InstallationDirectoryScreen();
 			yield return new BSQLDatabaseSettingsScreen();

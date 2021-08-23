@@ -18,9 +18,7 @@
 		<DebugType>none</DebugType>
 		<UseVSHostingProcess>false</UseVSHostingProcess>
 	</PropertyGroup>
-	<PropertyGroup>
-		<ApplicationManifest>app.manifest</ApplicationManifest>
-	</PropertyGroup>
+	<PropertyGroup />
 	<ItemGroup>
 		<Compile Update="Controls\UserControl1 - Copy %282%29.Designer.cs">
 		  <DependentUpon>UserControl1.Designer.cs</DependentUpon>
@@ -81,6 +79,8 @@
 	</ItemGroup>
 	<PropertyGroup>
 	  <AssemblyName>bsql</AssemblyName>
+	  <ApplicationIcon />
+	  <StartupObject />
 	</PropertyGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>
