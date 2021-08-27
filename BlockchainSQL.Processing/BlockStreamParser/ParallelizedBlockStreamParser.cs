@@ -18,9 +18,11 @@ namespace BlockchainSQL.Processing {
         }
 
         public IBlockStream Stream { get; }
+
         public IBlockLocator Locator { get; }
 
         public IPreProcessor PreProcessor { get; }
+
         public IPostProcessor PostProcessor { get;}
 
         public IBlockStreamPersistor Persistor { get; }

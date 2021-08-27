@@ -26,11 +26,6 @@ namespace BlockchainSQL.Server {
 
 		private void _blockFileScannerButton_Click(object sender, EventArgs e) {
 			OpenForm<BlockFileScannerForm>();
-
-			var blockchainSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
-			blockchainSettings.ConnectionString = "changed";
-			blockchainSettings.Save();
-
 		}
 
 		private async void _installServiceButton_Click(object sender, EventArgs e) {

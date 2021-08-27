@@ -36,9 +36,6 @@
 		</Compile>
 		<Compile Update="Controls\ServiceControl.cs" />
 		<Compile Update="Service\BlockchainSQLService.cs" />
-		<None Update="app.manifest">
-			<SubType>Designer</SubType>
-		</None>
 		<None Update="Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>
 			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,6 +78,7 @@
 	  <AssemblyName>bsql</AssemblyName>
 	  <ApplicationIcon />
 	  <StartupObject />
+	  <ApplicationManifest>app.manifest</ApplicationManifest>
 	</PropertyGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

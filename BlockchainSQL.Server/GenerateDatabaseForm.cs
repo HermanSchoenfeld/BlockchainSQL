@@ -46,8 +46,8 @@ namespace BlockchainSQL.Server {
                 Result testResult;
                 using (_loadingCircle.BeginAnimationScope(this)) {
                     testResult = await TestConnection();
-                }
-                if (testResult.Failure)
+				}
+				if (testResult.Failure)
 	                DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
 	                DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -70,9 +70,9 @@ namespace BlockchainSQL.Server {
                 if (result.Success) {
 	                var dac = BlockchainDatabase.NewDAC(_databaseConnectionPanel.GetDAC());
 	                if (!dac.IsValidSchema())
-		                result.AddError("Database schema is not valid. Ensure ");
+		                result.AddError("Database schema is not valid. It has either been altered or is old. Generating a new database will resolve the problem. If 'Overwrite' is selected, current data will be lost. If 'Append' is selected, data will be kept and schema will be repaired (however data consistency may be inconsistent due to current state).  Proceed with caution.");
                 }
-			} finally {
+            } finally {
                 this.EnableChildren(true);
                 _loadingCircle.Active = false;
             }

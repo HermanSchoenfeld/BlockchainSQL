@@ -185,12 +185,12 @@ namespace BlockchainSQL.Server {
 				throw new SoftwareException(!string.IsNullOrWhiteSpace(output) ? output : "Error during service uninstall.");
 			}
 
-			await Tools.FileSystem.DeleteDirectoryAsync(destPath, true);
-
 			GlobalSettings.Get<BlockchainDatabaseSettings>().Delete();
 			GlobalSettings.Get<NodeSettings>().Delete();
 			GlobalSettings.Get<ScannerSettings>().Delete();
 			GlobalSettings.Get<WebSettings>().Delete();
+
+			await Tools.FileSystem.DeleteDirectoryAsync(destPath, true);
 		}
 
 		public static async Task SetServiceRecovery(TimeSpan duration) {
