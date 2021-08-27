@@ -116,10 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Omu.Awem">
-      <HintPath>..\..\Framework-v3\lib\AwesomeMvc.5.3\Omu.Awem.dll</HintPath>
+      <HintPath>..\..\3rdParty\AwesomeMvc.5.4\bin\Core\netstandard1.6\Omu.Awem.dll</HintPath>
     </Reference>
     <Reference Include="Omu.AwesomeMvc">
-      <HintPath>..\..\Framework-v3\lib\AwesomeMvc.5.3\Omu.AwesomeMvc.dll</HintPath>
+      <HintPath>..\..\3rdParty\AwesomeMvc.5.4\bin\Core\netstandard1.6\Omu.AwesomeMvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

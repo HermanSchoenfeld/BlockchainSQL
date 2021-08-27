@@ -120,11 +120,11 @@ namespace BlockchainSQL.Processing {
                 Advertize = false,
                 IsRelay = false,
                 Services = NB.Protocol.NodeServices.Nothing,
-                ReuseBuffer = true,
+                //ReuseBuffer = true,
                 Version = NB.Network.Main.MaxP2PVersion,
                 ConnectCancellation = new CancellationToken(),
-                ReceiveBufferSize = 5000000,
-                SendBufferSize = 1000000,
+                //ReceiveBufferSize = 5000000,
+                //SendBufferSize = 1000000,
                 UserAgent = NB.Protocol.VersionPayload.GetNBitcoinUserAgent(),
             };
             nodeParams.TemplateBehaviors.Add(new NB.Protocol.Behaviors.PingPongBehavior());

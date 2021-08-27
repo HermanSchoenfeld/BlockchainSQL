@@ -16,12 +16,12 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-		<PackageReference Include="NBitcoin" Version="5.0.83" />
+		<PackageReference Include="NBitcoin" Version="6.0.8" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="protobuf-net" Version="3.0.101" />
 		<PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
 		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.114.3" />
+		<PackageReference Include="System.Data.SQLite.Core" Version="1.0.115" />
 		<PackageReference Include="System.Linq" Version="4.3.0" />
 		<PackageReference Include="System.Runtime.Extensions" Version="4.3.1" />
 		<PackageReference Include="System.ServiceModel.Duplex" Version="4.8.1" />

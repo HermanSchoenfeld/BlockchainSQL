@@ -28,7 +28,7 @@
 		<PackageReference Include="FluentNHibernate" Version="3.1.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="NHibernate" Version="5.3.9" />
-		<PackageReference Include="System.Data.SQLite" Version="1.0.114.4" />
+		<PackageReference Include="System.Data.SQLite" Version="1.0.115" />
 	</ItemGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 	<Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
