@@ -86,12 +86,6 @@
     <None Include="wwwroot\images\sql-256.png" />
     <None Include="wwwroot\images\sql-512.png" />
     <None Include="wwwroot\images\utility.png" />
-    <None Include="wwwroot\themes\gui2\AwesomeMvc.css" />
-    <None Include="wwwroot\themes\gui2\awe_icons.png" />
-    <None Include="wwwroot\themes\gui2\editdel.png" />
-    <None Include="wwwroot\themes\gui2\loading.gif" />
-    <None Include="wwwroot\themes\gui2\mods.css" />
-    <None Include="wwwroot\themes\gui2\pm.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj" />
@@ -116,10 +110,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Omu.Awem">
-      <HintPath>..\..\3rdParty\AwesomeMvc.5.4\bin\Core\netstandard1.6\Omu.Awem.dll</HintPath>
+      <HintPath>..\..\3rdParty\AwesomeMvc.5.5\bin\Core\netstandard2.0\Omu.Awem.dll</HintPath>
     </Reference>
     <Reference Include="Omu.AwesomeMvc">
-      <HintPath>..\..\3rdParty\AwesomeMvc.5.4\bin\Core\netstandard1.6\Omu.AwesomeMvc.dll</HintPath>
+      <HintPath>..\..\3rdParty\AwesomeMvc.5.5\bin\Core\netstandard2.0\Omu.AwesomeMvc.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />

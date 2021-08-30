@@ -129,8 +129,7 @@ namespace BlockchainSQL.Server
 
             base.OnClosing(e);
         }
-
-    
+   
 #endregion
 
         #region Event Handlers
@@ -186,7 +185,6 @@ namespace BlockchainSQL.Server
         }
 
         #endregion
-
 
     }
 
