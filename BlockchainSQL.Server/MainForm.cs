@@ -17,7 +17,7 @@ namespace BlockchainSQL.Server {
 			base.OnActivated(e);
 			_installServiceButton.Enabled = !ServiceManager.IsInstalled();
 			_uninstallServiceButton.Enabled = !_installServiceButton.Enabled;
-			_databaseDiagnosticButton.Enabled = _uninstallServiceButton.Enabled;
+			//_databaseDiagnosticButton.Enabled = _uninstallServiceButton.Enabled;
 		}
 
 		private void _generateDatabaseButton_Click(object sender, EventArgs e) {
