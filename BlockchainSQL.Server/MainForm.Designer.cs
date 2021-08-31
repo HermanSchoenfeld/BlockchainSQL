@@ -115,6 +115,8 @@ namespace BlockchainSQL.Server {
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.label3.Location = new System.Drawing.Point(208, 176);
 			this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+			this.label3.MaximumSize = new System.Drawing.Size(575, 62);
+			this.label3.MinimumSize = new System.Drawing.Size(575, 62);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(575, 62);
 			this.label3.TabIndex = 7;
