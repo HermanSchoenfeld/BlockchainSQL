@@ -109,6 +109,9 @@
     <_ContentIncludedByDefault Remove="wwwroot\js\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Omu.Awem">
       <HintPath>..\..\3rdParty\AwesomeMvc.5.5\bin\Core\netstandard2.0\Omu.Awem.dll</HintPath>
     </Reference>

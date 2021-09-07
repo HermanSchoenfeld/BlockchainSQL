@@ -72,18 +72,24 @@ namespace BlockchainSQL.Server {
 					switch (userArgs.SubCommand?.CommandName?.ToUpperInvariant()) {
 						case "":
 						case null:
-							if (Environment.UserInteractive)
+							if (Environment.UserInteractive) {
+								Sphere10Framework.Instance.RegisterApplicationLogger("gui", visibleToAllUsers: true);
 								RunAsGUI();
-							else
+							} else {
+								Sphere10Framework.Instance.RegisterApplicationLogger("service", visibleToAllUsers: true);
 								RunAsService();
+							}
 							break;
 						case "INSTALL":
+							Sphere10Framework.Instance.RegisterApplicationLogger("installer", visibleToAllUsers: true);
 							RunAsInstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "UNINSTALL":
+							Sphere10Framework.Instance.RegisterApplicationLogger("installer", visibleToAllUsers: true);
 							RunAsUninstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "SERVICE":
+							Sphere10Framework.Instance.RegisterApplicationLogger("service", visibleToAllUsers: true);
 							RunAsService();
 							break;
 					}

@@ -20,6 +20,9 @@
 	</PropertyGroup>
 	<PropertyGroup />
 	<ItemGroup>
+	  <Compile Include="..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+	</ItemGroup>
+	<ItemGroup>
 		<Compile Update="Controls\UserControl1 - Copy %282%29.Designer.cs">
 		  <DependentUpon>UserControl1.Designer.cs</DependentUpon>
 		</Compile>

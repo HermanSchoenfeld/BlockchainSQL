@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using BlockchainSQL.DataAccess;
+using BlockchainSQL.Processing;
 using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
 using BlockchainSQL.Web.Models;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Sphere10.Framework;
+using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 using Sphere10.Framework.Web.AspNetCore;
 
@@ -53,7 +55,7 @@ namespace BlockchainSQL.Web.Controllers {
 				var webValid = DatabaseManager.IsValidWebDatabase(
 					DBMSType.SQLServer,
 					model.WebDbModel.Server,
-					model.WebDbModel.Server,
+					model.WebDbModel.Database,
 					model.WebDbModel.Username,
 					model.WebDbModel.Password,
 					model.WebDbModel.Port,
@@ -64,15 +66,15 @@ namespace BlockchainSQL.Web.Controllers {
 						if (!await DatabaseManager.GenerateWebDatabase(
 							DBMSType.SQLServer,
 							model.WebDbModel.Server,
-							model.WebDbModel.Server,
+							model.WebDbModel.Database,
 							model.WebDbModel.Username,
 							model.WebDbModel.Password,
 							model.WebDbModel.Port
 						)) {
-							result.AddError("Unable to generate WebDB database, check connection details");
+							result.AddError("Unable to generate Web database, check connection details");
 						}
 					} else {
-						result.AddError("Could not connect to the WebDB database, check connection details.");
+						result.AddError("Could not connect to the Web database, check connection details.");
 					}
 
 				var blockchainValid = DatabaseManager.IsValidBlockchainDatabase(
@@ -86,7 +88,7 @@ namespace BlockchainSQL.Web.Controllers {
 				);
 
 				if (!blockchainValid) {
-					result.AddError("Could not connect to the WebDB database, check connection details.");
+					result.AddError("Could not connect to the BSQL database, check connection details.");
 				}
 
 				if (result.Failure) {
@@ -96,6 +98,17 @@ namespace BlockchainSQL.Web.Controllers {
 					});
 				}
 
+				var blockchainSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+				blockchainSettings.ConnectionString = blockchainConnectionString;
+				blockchainSettings.DBMSType = DBMSType.SQLServer;
+
+				var webSettings = GlobalSettings.Get<WebSettings>();
+				webSettings.DBMSType = DBMSType.SQLServer;
+				webSettings.DatabaseConnectionString = webConnectionString;
+
+				blockchainSettings.Save();
+				webSettings.Save();
+
 				return Json(new FormResult {
 					Result = true,
 					Message = "Database connection details configured successfully.",
@@ -104,9 +117,10 @@ namespace BlockchainSQL.Web.Controllers {
 				});
 			} catch (Exception error) {
 				// Log error
-				return Json(new {
+				return Json(new FormResult {
 					Result = false,
-					Message = error.ToDisplayString()
+					Message = error.ToDisplayString(),
+					ResultType = FormResultType.ShowMessage
 				});
 			}
 		}
@@ -114,24 +128,18 @@ namespace BlockchainSQL.Web.Controllers {
 		[HttpPost]
 		public async Task<ActionResult> Auth(LoginForm form) {
 			try {
-				if (SiteOptions.Value.ConfigPassword == form.Password) {
-
+				if ((form.Username, form.Password) == (SiteOptions.Value.AdminUsername, SiteOptions.Value.AdminPassword)) {
 					await SignInAsync();
-
 					return RedirectToAction("Index", "Config");
 				} else {
-					ModelState.AddModelError("Password", "Invalid Password");
+					ModelState.AddModelError("Password", "Invalid Credentials");
 					return View(form);
 				}
-			} catch (Exception) {
-				ModelState.AddModelError("Password", "Invalid Password");
+			} catch (Exception exception) {
+				ModelState.AddModelError("Password", "Unexpected error");
 				return View(form);
 			}
 		}
-
-
-
-
 
 	}
 }
