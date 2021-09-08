@@ -18,7 +18,6 @@ using Environment = System.Environment;
 namespace BlockchainSQL.Web.Controllers {
 	public class FormController : BaseController {
 
-
 		public FormController(IConfiguration configuration, IOptions<SiteOptions> siteOptions) {
 			Configuration = configuration;
 			SiteOptions = siteOptions;
@@ -70,12 +69,12 @@ namespace BlockchainSQL.Web.Controllers {
 		[FormAction]
 		public async Task<ActionResult> Login(LoginForm form) {
 
-			if (form.Username == Configuration["ConfigUsername"] && form.Password == Configuration["ConfigPassword"]) {
+			if (form.Username == SiteOptions.Value.AdminUsername && form.Password == SiteOptions.Value.AdminPassword) {
 				await SignInAsync();
 				return Json(new FormResult {
 					Result = true,
 					ResultType = FormResultType.Redirect,
-					Location = Url.Action("Index", "Home")
+					Location = Url.Action("Index", "Config")
 				});
 			} else {
 				return Json(new FormResult {

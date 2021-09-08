@@ -2,6 +2,9 @@
 
 namespace BlockchainSQL.Web {
 	public class SiteOptions {
+		public bool EnableGoogleAnalytics { get; set; }
+
+		public string GoogleTrackingCode { get; set; }
 
 		public bool ShowProductPage { get; set; }
 
