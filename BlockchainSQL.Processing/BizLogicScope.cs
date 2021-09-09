@@ -15,7 +15,7 @@ namespace BlockchainSQL.Processing {
         }
 
         public BizLogicScope(ILogger logger = null)
-            : this(GlobalSettings.Get<BlockchainDatabaseSettings>().DBMSType, GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString, logger, GlobalSettings.Provider, false) {
+            : this(GlobalSettings.Get<ServiceSettings>().DBMSType, GlobalSettings.Get<ServiceSettings>().ConnectionString, logger, GlobalSettings.Provider, false) {
         }
 
         public BizLogicScope(DBMSType dbmsType, string connectionString, ILogger logger = null)

@@ -92,7 +92,7 @@ ORDER BY
 		public static bool IsValid => _webDbInitialized && _blockchainDbInitialized;
 
 		public static bool IsConfigured =>
-			!string.IsNullOrEmpty(GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString) && !string.IsNullOrEmpty(GlobalSettings.Get<WebSettings>().DatabaseConnectionString);
+			!string.IsNullOrEmpty(GlobalSettings.Get<ServiceSettings>().ConnectionString) && !string.IsNullOrEmpty(GlobalSettings.Get<WebSettings>().DatabaseConnectionString);
 
 		public static ISessionFactory NhSessionFactory { get; private set; }
 
@@ -108,7 +108,7 @@ ORDER BY
 		}
 
 		public static void SetBlockchainDatabaseConnectionString(string connectionString) {
-			var blockchainSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+			var blockchainSettings = GlobalSettings.Get<ServiceSettings>();
 			blockchainSettings.ConnectionString = connectionString;
 			InitializeBlockchainSqlDb();
 			blockchainSettings.Save();
@@ -122,7 +122,7 @@ ORDER BY
 		public static DBBlockchainRepository GetBlockchainRepository() {
 			if (!IsConfigured)
 				throw new InvalidOperationException("Databases are not configured");
-			return new DBBlockchainRepository(GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString);
+			return new DBBlockchainRepository(GlobalSettings.Get<ServiceSettings>().ConnectionString);
 		}
 
 		//public static DBBlockchainRepository GetWebRepository() {
@@ -156,7 +156,7 @@ ORDER BY
 		}
 
 		private static void InitializeBlockchainSqlDb() {
-			var dac = new MSSQLDAC(GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString);
+			var dac = new MSSQLDAC(GlobalSettings.Get<ServiceSettings>().ConnectionString);
 			var schema = dac.ExecuteQuery(BlockchainSchemaQuery);
 			_blockchainDbInitialized = true;
 			BlockchainSchema = schema;

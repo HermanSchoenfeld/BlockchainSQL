@@ -98,7 +98,7 @@ namespace BlockchainSQL.Web.Controllers {
 					});
 				}
 
-				var blockchainSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+				var blockchainSettings = GlobalSettings.Get<ServiceSettings>();
 				blockchainSettings.ConnectionString = blockchainConnectionString;
 				blockchainSettings.DBMSType = DBMSType.SQLServer;
 

@@ -24,7 +24,7 @@ namespace BlockchainSQL.Server {
 		/// <param name="startAfterInstall">Whether to launch service after installation</param>
 		/// <returns>Task</returns>
 		/// <remarks>Settings are shared between web/service/gui and should be set before installation of service.</remarks>
-		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall, BlockchainDatabaseSettings dbSettings, NodeSettings nodeSettings, ScannerSettings scannerSettings, WebSettings webSettings) {
+		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall, ServiceSettings dbSettings, NodeSettings nodeSettings, ScannerSettings scannerSettings, WebSettings webSettings) {
 			var args = new StringBuilder();
 			args.Append($"install --path \"{destPath}\" --dbms {dbSettings.DBMSType} --db {Tools.Runtime.EncodeCommandLineArgumentWin(dbSettings.ConnectionString)} --ip {nodeSettings.IP} --port {nodeSettings.Port} --poll {nodeSettings.PollRateSEC} --maxmem {scannerSettings.MaxMemoryBufferSizeMB}");
 			if (scannerSettings.StoreScriptData)
@@ -185,7 +185,7 @@ namespace BlockchainSQL.Server {
 				throw new SoftwareException(!string.IsNullOrWhiteSpace(output) ? output : "Error during service uninstall.");
 			}
 
-			GlobalSettings.Get<BlockchainDatabaseSettings>().Delete();
+			GlobalSettings.Get<ServiceSettings>().Delete();
 			GlobalSettings.Get<NodeSettings>().Delete();
 			GlobalSettings.Get<ScannerSettings>().Delete();
 			GlobalSettings.Get<WebSettings>().Delete();

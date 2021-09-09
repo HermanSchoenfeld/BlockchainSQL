@@ -37,7 +37,7 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Settings.settings</DependentUpon>
 		</Compile>
-		<Compile Update="Controls\ServiceControl.cs" />
+		<Compile Update="Controls\ServiceStatusControl.cs" />
 		<Compile Update="Service\BlockchainSQLService.cs" />
 		<None Update="Properties\Settings.settings">
 			<Generator>SettingsSingleFileGenerator</Generator>

@@ -41,7 +41,7 @@ namespace BlockchainSQL.Server {
 			while (!_cancellationTokenSource.IsCancellationRequested) {
 				try {
 					var serviceExePath = Assembly.GetEntryAssembly().Location;
-					var dbSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+					var dbSettings = GlobalSettings.Get<ServiceSettings>();
 					if (dbSettings.DBMSType != DBMSType.SQLServer)
 						throw new NotSupportedException($"Database type not supported {dbSettings.DBMSType}");
 

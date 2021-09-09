@@ -43,7 +43,7 @@ namespace BlockchainSQL.Server {
 			}
 
 
-			var bsqlDBSettings = GlobalSettings.Get<BlockchainDatabaseSettings>();
+			var bsqlDBSettings = GlobalSettings.Get<ServiceSettings>();
 			bsqlDBSettings.DBMSType = dbms;
 			bsqlDBSettings.ConnectionString = db;
 			bsqlDBSettings.Validate().ThrowOnFailure();

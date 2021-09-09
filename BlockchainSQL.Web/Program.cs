@@ -12,7 +12,6 @@ using System.IO;
 
 namespace BlockchainSQL.Web {
 	public class Program {
-
 		
 		public static void Main(string[] args) {
 			Sphere10Framework.Instance.StartFramework();

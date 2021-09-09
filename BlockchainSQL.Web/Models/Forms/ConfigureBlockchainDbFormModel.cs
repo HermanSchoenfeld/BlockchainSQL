@@ -9,7 +9,7 @@ namespace BlockchainSQL.Web.Models {
 	public class ConfigureBlockchainDbFormModel {
 
 		public ConfigureBlockchainDbFormModel() {
-			string blockchainDbConnectionString = GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString;
+			string blockchainDbConnectionString = GlobalSettings.Get<ServiceSettings>().ConnectionString;
 
 			if (!string.IsNullOrEmpty(blockchainDbConnectionString)) {
 				var connString = new SqlConnectionStringBuilder(blockchainDbConnectionString);
