@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlockchainSQL.Web.DataObjectss;
 
 namespace BlockchainSQL.Web.DataObjects {
     public class TemplateQuery {
@@ -18,6 +17,7 @@ namespace BlockchainSQL.Web.DataObjects {
         public virtual string MSSQL { get; set; }
 
         public virtual string MySQL { get; set; }
+
         public virtual string Oracle { get; set; }
 
         public virtual string Sqlite { get; set; }

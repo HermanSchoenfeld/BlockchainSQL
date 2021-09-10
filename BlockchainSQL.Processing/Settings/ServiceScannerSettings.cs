@@ -4,7 +4,7 @@ using Sphere10.Framework.Data;
 using System.ComponentModel;
 
 namespace BlockchainSQL.Processing {
-	public class ScannerSettings : SettingsObject {
+	public class ServiceScannerSettings : SettingsObject {
 
 		public bool StoreScriptData { get; set; } = true;
 

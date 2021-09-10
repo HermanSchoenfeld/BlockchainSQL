@@ -36,9 +36,9 @@ namespace BlockchainSQL.Processing {
             progressCallback = progressCallback ?? (x => Tools.Lambda.NoOp());
 
             // Determine how to allocate memory to the buffers
-            var userPreferredMaxMemory = Settings.Get<ScannerSettings>().MaxMemoryBufferSizeMB.ClipTo(minBufferSizeMB, maxBufferSizeMB);
+            var userPreferredMaxMemory = Settings.Get<ServiceScannerSettings>().MaxMemoryBufferSizeMB.ClipTo(minBufferSizeMB, maxBufferSizeMB);
             var bufferSize = Tools.Memory.ConvertMemoryMetric(userPreferredMaxMemory,MemoryMetric.Megabyte,MemoryMetric.Byte);
-            var saveScriptData = Settings.Get<ScannerSettings>().StoreScriptData;
+            var saveScriptData = Settings.Get<ServiceScannerSettings>().StoreScriptData;
             var scannedQueueBufferPortion = 0.5;
             var processQueueBufferPortion = 0.5;
 

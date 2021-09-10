@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlockchainSQL.Server {
-	public partial class NodeSettingsScreen : InstallWizardScreenBase {
-		public NodeSettingsScreen() {
+	public partial class ServiceNodeSettingsScreen : InstallWizardScreenBase {
+		public ServiceNodeSettingsScreen() {
 			InitializeComponent();
 		}
 
 		protected override void CopyModelToUI() {
-			_nodeSettingsControl.Model = new NodeSettings {
+			_nodeSettingsControl.Model = new ServiceNodeSettings {
 				IP = Model.NodeSettings.IP,
 				Port = Model.NodeSettings.Port,
 				PollRateSEC = Model.NodeSettings.PollRateSEC
@@ -32,6 +32,10 @@ namespace BlockchainSQL.Server {
 
 		public override async Task<Result> Validate() {
 			return Model.NodeSettings.Validate();
+		}
+
+		protected override void OnStateChanged() {
+			base.OnStateChanged();
 		}
 	}
 }

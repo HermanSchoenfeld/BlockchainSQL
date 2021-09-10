@@ -9,10 +9,19 @@ namespace BlockchainSQL.Processing {
 
 		public int Port { get; set; } = 5000;
 
-		public DBMSType DBMSType { get; set; } = DBMSType.Sqlite;
+		public DBMSType WebDBMSType { get; set; } = DBMSType.SQLServer;
 
 		[Encrypted]
-		public string DatabaseConnectionString { get; set; } = "";
+		public string WebDatabaseConnectionString { get; set; } = "";
+
+
+		public DBMSType BlockchainDBMSType { get; set; } = DBMSType.SQLServer;
+
+		[Encrypted]
+		public string BlockchainDatabaseConnectionString { get; set; } = "";
+
+		public bool SaveQueries { get; set; } = true;
+
 	}
 }
 

@@ -1,4 +1,4 @@
-﻿using BlockchainSQL.Web.DataObjectss;
+﻿using BlockchainSQL.Web.DataObjects;
 using FluentNHibernate.Mapping;
 using FluentNHibernate.MappingModel.Output;
 

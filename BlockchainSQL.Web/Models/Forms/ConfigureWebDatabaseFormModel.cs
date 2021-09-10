@@ -10,7 +10,7 @@ namespace BlockchainSQL.Web.Models {
 	public class ConfigureWebDatabaseFormModel  {
 
 		public ConfigureWebDatabaseFormModel() {
-			string webAppConfig = GlobalSettings.Get<WebSettings>().DatabaseConnectionString;
+			string webAppConfig = GlobalSettings.Get<WebSettings>().WebDatabaseConnectionString;
 
 			if (!string.IsNullOrEmpty(webAppConfig)) {
 				var connString = new SqlConnectionStringBuilder(webAppConfig);

@@ -35,28 +35,32 @@ namespace BlockchainSQL.Server {
 			int web_port = default;
 			var web_dbms = DBMSType.SQLServer;
 			var web_db = string.Empty;
+			var web_bsql_dbms = DBMSType.SQLServer;
+			var web_bsql_db = string.Empty;
 			if (web) {
 				web_port = Tools.Parser.Parse<int>(installCommand.GetSingleArgumentValue("web_port"));
 				web_dbms = Tools.Parser.Parse<DBMSType>(installCommand.GetSingleArgumentValue("web_dbms"));
 				web_db = installCommand.GetSingleArgumentValue("web_db");
+				web_bsql_dbms = installCommand.GetSingleArgumentValueOrDefault("web_bsql_dbms", web_dbms);
+				web_bsql_db = installCommand.GetSingleArgumentValueOrDefault("web_bsql_db", web_db);
 				// Test connection string for web
 			}
 
 
-			var bsqlDBSettings = GlobalSettings.Get<ServiceSettings>();
+			var bsqlDBSettings = GlobalSettings.Get<ServiceDatabaseSettings>();
 			bsqlDBSettings.DBMSType = dbms;
 			bsqlDBSettings.ConnectionString = db;
 			bsqlDBSettings.Validate().ThrowOnFailure();
 			bsqlDBSettings.Save();
 
-			var nodeSettings = GlobalSettings.Get<NodeSettings>();
+			var nodeSettings = GlobalSettings.Get<ServiceNodeSettings>();
 			nodeSettings.IP = ip.ToString();
 			nodeSettings.Port = port;
 			nodeSettings.PollRateSEC = poll;
 			nodeSettings.Validate().ThrowOnFailure();
 			nodeSettings.Save();
 
-			var scannerSettings = GlobalSettings.Get<ScannerSettings>();
+			var scannerSettings = GlobalSettings.Get<ServiceScannerSettings>();
 			scannerSettings.StoreScriptData = store_scripts;
 			scannerSettings.MaxMemoryBufferSizeMB = maxmem;
 			scannerSettings.Validate().ThrowOnFailure();
@@ -65,8 +69,10 @@ namespace BlockchainSQL.Server {
 			var webSettings = GlobalSettings.Get<WebSettings>();
 			webSettings.Enabled = web;
 			webSettings.Port = web_port;
-			webSettings.DBMSType = web_dbms;
-			webSettings.DatabaseConnectionString = web_db;
+			webSettings.WebDBMSType = web_dbms;
+			webSettings.WebDatabaseConnectionString = web_db;
+			webSettings.BlockchainDBMSType = web_bsql_dbms;
+			webSettings.BlockchainDatabaseConnectionString = web_bsql_db;
 			webSettings.Validate().ThrowOnFailure();
 			webSettings.Save();
 

@@ -41,7 +41,7 @@ namespace BlockchainSQL.Server {
 			while (!_cancellationTokenSource.IsCancellationRequested) {
 				try {
 					var serviceExePath = Assembly.GetEntryAssembly().Location;
-					var dbSettings = GlobalSettings.Get<ServiceSettings>();
+					var dbSettings = GlobalSettings.Get<ServiceDatabaseSettings>();
 					if (dbSettings.DBMSType != DBMSType.SQLServer)
 						throw new NotSupportedException($"Database type not supported {dbSettings.DBMSType}");
 
@@ -87,7 +87,7 @@ namespace BlockchainSQL.Server {
 			var connectionString = database.ConnectionString;
 
 			using (var scope = new BizLogicScope(dbmsType, connectionString, _logger)) {
-				var nodeIP = scope.Settings.Get<NodeSettings>().IP;
+				var nodeIP = scope.Settings.Get<ServiceNodeSettings>().IP;
 				int? nodePort = null; // TODO add port setting
 				var nodeValidation = await ValidateNode(nodeIP, nodePort);
 				if (!nodeValidation.Success)
@@ -96,7 +96,7 @@ namespace BlockchainSQL.Server {
 				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(nodeIP, nodePort))) {
 					var blockStreamParser = BizLogicFactory.NewNodeStreamParser(nodeStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(false, true), BizLogicFactory.NewPostProcessor(), BizLogicFactory.NewBlockStreamPersistor());
 					Action<int> progressHandler = i => Tools.Lambda.NoOp();
-					await blockStreamParser.Parse(cancelToken, progressHandler, false,  TimeSpan.FromSeconds(scope.Settings.Get<NodeSettings>().PollRateSEC));
+					await blockStreamParser.Parse(cancelToken, progressHandler, false,  TimeSpan.FromSeconds(scope.Settings.Get<ServiceNodeSettings>().PollRateSEC));
 				}
 			}
 		}

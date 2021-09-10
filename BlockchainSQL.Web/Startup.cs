@@ -10,6 +10,7 @@ using BlockchainSQL.Web.Code;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +62,10 @@ namespace BlockchainSQL.Web {
 				endpoints.MapControllerRoute("QuerySlug",
 					"/{queryId:regex([a-zA-Z0-9]{{6,}})}",
 					new { controller = "Query", action = "Load" });
+			});
+
+			app.UseForwardedHeaders(new ForwardedHeadersOptions {
+				ForwardedHeaders = ForwardedHeaders.All 
 			});
 
 			TryInitializeDatabaseClasses();

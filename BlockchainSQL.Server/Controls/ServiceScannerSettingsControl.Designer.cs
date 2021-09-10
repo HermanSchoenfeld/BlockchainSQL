@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server.Controls {
-	partial class ScannerSettingsControl {
+	partial class ServiceScannerSettingsControl {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>

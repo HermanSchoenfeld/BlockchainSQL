@@ -7,6 +7,11 @@ using BlockchainSQL.Web.Models;
 using Sphere10.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using System.Threading;
+using BlockchainSQL.Processing;
+using Microsoft.AspNetCore.Http;
+using Sphere10.Framework.Application;
+using Sphere10.Framework.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Controllers {
 	public class QueryController : BaseController {
@@ -39,6 +44,27 @@ namespace BlockchainSQL.Web.Controllers {
 					var end = DateTime.UtcNow;
 					result.ExecutedOn = start;
 					result.ExecutionDuration = end - start;
+				}
+
+				if (GlobalSettings.Get<WebSettings>().SaveQueries) {
+					var typedHeaders = Request.GetTypedHeaders();
+					var executedQuery = new ExecutedQuery {
+						Query = sql,
+						PageNumber = page,
+						PageSize = pageSize,
+						IP = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+						ExecutedOn = result.ExecutedOn,
+						ExecutionDurationMS = (int)Math.Round(result.ExecutionDuration.TotalMilliseconds, 0)
+					};
+					// Save in background
+					ThreadPool.QueueUserWorkItem(_ => {
+						try {
+							var session = DatabaseManager.NhSessionFactory.OpenSession();
+							session.SaveOrUpdate(executedQuery);
+						} catch (Exception error) {
+							// todo: log this
+						}
+					});
 				}
 			} catch (Exception error) {
 				result.Messages.Add(new PageMessage {

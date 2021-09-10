@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server.Controls {
-	partial class NodeSettingsControl {
+	partial class ServiceNodeSettingsControl {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>

@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server {
-	partial class ScannerSettingsScreen {
+	partial class ServiceScannerSettingsScreen {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -24,7 +24,7 @@ namespace BlockchainSQL.Server {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this._scannerSettingsControl = new BlockchainSQL.Server.Controls.ScannerSettingsControl();
+            this._scannerSettingsControl = new BlockchainSQL.Server.Controls.ServiceScannerSettingsControl();
             this._groupBox = new System.Windows.Forms.GroupBox();
             this._groupBox.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +66,7 @@ namespace BlockchainSQL.Server {
 
 		#endregion
 
-		private Controls.ScannerSettingsControl _scannerSettingsControl;
+		private Controls.ServiceScannerSettingsControl _scannerSettingsControl;
 		private System.Windows.Forms.GroupBox _groupBox;
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BlockchainSQL.Web.DataObjectss;
+using BlockchainSQL.Web.DataObjects;
 
 namespace BlockchainSQL.Web.Models {
 	public class LoadTemplateModel {

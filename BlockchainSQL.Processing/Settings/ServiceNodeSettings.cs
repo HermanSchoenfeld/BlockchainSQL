@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Net;
 
 namespace BlockchainSQL.Processing {
-	public class NodeSettings : SettingsObject {
+	public class ServiceNodeSettings : SettingsObject {
 		public string IP { get; set; } = "127.0.0.1";
 
 		public int Port { get; set; } = 8333;

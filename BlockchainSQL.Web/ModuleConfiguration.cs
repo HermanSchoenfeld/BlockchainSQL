@@ -20,9 +20,6 @@ namespace Sphere10.Framework.Application {
 		public override int Priority => int.MinValue; // last to execute
 
 		public override void RegisterComponents(ComponentRegistry registry) {
-			// Components: share settings with web/server
-			registry.RegisterComponentInstance<ISettingsProvider>(new CachedSettingsProvider( new DirectorySettingsProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlockchainSQL"))), "UserSettings");
-			registry.RegisterComponentInstance<ISettingsProvider>(new CachedSettingsProvider( new DirectorySettingsProvider(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "BlockchainSQL"))), "SystemSettings");
 		}
 	}
 }

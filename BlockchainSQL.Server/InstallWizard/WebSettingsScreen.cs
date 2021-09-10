@@ -27,7 +27,20 @@ namespace BlockchainSQL.Server {
 		}
 
 		public async Task<Result> ValidateDatabase() {
-			var result = await _webSettingsControl.DatabasePanel.TestConnection();
+			var result = Result.Default;
+			;
+			var webResult = await _webSettingsControl.WebDatabasePanel.TestConnection();
+			if (webResult.Failure) {
+				result.AddError("Unable to connect to web database");
+				result.Merge(webResult);
+			}
+
+			var bsqlResult = await _webSettingsControl.BlockchainDatabasePanel.TestConnection();
+			if (bsqlResult.Failure) {
+				result.AddError("Unable to connect to blockchain database");
+				result.Merge(bsqlResult);
+			}
+
 			return result;
 		}
 
@@ -35,16 +48,20 @@ namespace BlockchainSQL.Server {
 			_webSettingsControl.Model = new WebSettings {
 				Enabled = Model.WebSettings.Enabled,
 				Port = Model.WebSettings.Port,
-				DBMSType = Model.WebSettings.DBMSType,
-				DatabaseConnectionString = Model.WebSettings.DatabaseConnectionString,
+				WebDBMSType = Model.WebSettings.WebDBMSType,
+				WebDatabaseConnectionString = Model.WebSettings.WebDatabaseConnectionString,
+				BlockchainDBMSType = Model.WebSettings.BlockchainDBMSType,
+				BlockchainDatabaseConnectionString = Model.WebSettings.BlockchainDatabaseConnectionString
 			};
 		}
 
 		protected override void CopyUIToModel() {
 			Model.WebSettings.Enabled = _webSettingsControl.Model.Enabled;
 			Model.WebSettings.Port = _webSettingsControl.Model.Port;
-			Model.WebSettings.DBMSType = _webSettingsControl.Model.DBMSType;
-			Model.WebSettings.DatabaseConnectionString = _webSettingsControl.Model.DatabaseConnectionString;
+			Model.WebSettings.WebDBMSType = _webSettingsControl.Model.WebDBMSType;
+			Model.WebSettings.WebDatabaseConnectionString = _webSettingsControl.Model.WebDatabaseConnectionString;
+			Model.WebSettings.BlockchainDBMSType = _webSettingsControl.Model.BlockchainDBMSType;
+			Model.WebSettings.BlockchainDatabaseConnectionString = _webSettingsControl.Model.BlockchainDatabaseConnectionString;
 		}
 
 	}

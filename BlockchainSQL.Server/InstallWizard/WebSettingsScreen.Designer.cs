@@ -24,42 +24,42 @@ namespace BlockchainSQL.Server {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this._groupBox = new System.Windows.Forms.GroupBox();
-            this._webSettingsControl = new BlockchainSQL.Server.Controls.WebSettingsControl();
-            this._groupBox.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // _groupBox
-            // 
-            this._groupBox.Controls.Add(this._webSettingsControl);
-            this._groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._groupBox.Location = new System.Drawing.Point(0, 0);
-            this._groupBox.Name = "_groupBox";
-            this._groupBox.Size = new System.Drawing.Size(618, 372);
-            this._groupBox.TabIndex = 0;
-            this._groupBox.TabStop = false;
-            this._groupBox.Text = "Web Settings";
-            // 
-            // _webSettingsControl
-            // 
-            this._webSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._webSettingsControl.Location = new System.Drawing.Point(3, 19);
-            this._webSettingsControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this._webSettingsControl.Model = null;
-            this._webSettingsControl.Name = "_webSettingsControl";
-            this._webSettingsControl.Padding = new System.Windows.Forms.Padding(8);
-            this._webSettingsControl.Size = new System.Drawing.Size(612, 350);
-            this._webSettingsControl.TabIndex = 0;
-            // 
-            // WebSettingsScreen
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this._groupBox);
-            this.Name = "WebSettingsScreen";
-            this.Size = new System.Drawing.Size(618, 372);
-            this._groupBox.ResumeLayout(false);
-            this.ResumeLayout(false);
+			this._groupBox = new System.Windows.Forms.GroupBox();
+			this._webSettingsControl = new BlockchainSQL.Server.Controls.WebSettingsControl();
+			this._groupBox.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// _groupBox
+			// 
+			this._groupBox.Controls.Add(this._webSettingsControl);
+			this._groupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._groupBox.Location = new System.Drawing.Point(0, 0);
+			this._groupBox.Name = "_groupBox";
+			this._groupBox.Size = new System.Drawing.Size(643, 420);
+			this._groupBox.TabIndex = 0;
+			this._groupBox.TabStop = false;
+			this._groupBox.Text = "Web Settings";
+			// 
+			// _webSettingsControl
+			// 
+			this._webSettingsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+			this._webSettingsControl.Location = new System.Drawing.Point(3, 19);
+			this._webSettingsControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+			this._webSettingsControl.Model = null;
+			this._webSettingsControl.Name = "_webSettingsControl";
+			this._webSettingsControl.Padding = new System.Windows.Forms.Padding(8);
+			this._webSettingsControl.Size = new System.Drawing.Size(637, 398);
+			this._webSettingsControl.TabIndex = 0;
+			// 
+			// WebSettingsScreen
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this._groupBox);
+			this.Name = "WebSettingsScreen";
+			this.Size = new System.Drawing.Size(643, 420);
+			this._groupBox.ResumeLayout(false);
+			this.ResumeLayout(false);
 
 		}
 

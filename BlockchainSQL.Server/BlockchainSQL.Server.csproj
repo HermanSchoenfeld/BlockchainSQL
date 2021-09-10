@@ -45,13 +45,18 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.NHibernate\Sphere10.Framework.Data.NHibernate.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
+		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
@@ -61,10 +66,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0" />
-		<PackageReference Include="System.Data.SqlClient">
-			<Version>4.8.2</Version>
-		</PackageReference>
-		<PackageReference Include="Microsoft.Windows.Compatibility" Version="5.0.2" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Update="Controls\UserControl1 - Copy %282%29.resx">

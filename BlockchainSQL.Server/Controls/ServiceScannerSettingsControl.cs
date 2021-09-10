@@ -12,19 +12,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlockchainSQL.Server.Controls {
-	public partial class ScannerSettingsControl : UserControlEx {
-		private ScannerSettings _model;
+	public partial class ServiceScannerSettingsControl : UserControlEx {
+		private ServiceScannerSettings _model;
 
-		public ScannerSettingsControl() {
+		public ServiceScannerSettingsControl() {
 			InitializeComponent();
 		}
 
-		public ScannerSettings Model {
+		public ServiceScannerSettings Model {
 			get => _model;
 			set {
 				_model = value;
 				if (_model != null)
-					CopyModelToUI();
+					using (EnterUpdateScope(FinishedUpdateBehaviour.DoNothing))
+						CopyModelToUI();
 				else
 					ClearUI();
 			}
@@ -46,6 +47,10 @@ namespace BlockchainSQL.Server.Controls {
 		private void ClearUI() {
 			_optionsListBox.SetItemChecked(0, false);
 			_maxMemoryIntBox.Value = null;
+		}
+
+		protected override void OnStateChanged() {
+			base.OnStateChanged();
 		}
 	}
 }

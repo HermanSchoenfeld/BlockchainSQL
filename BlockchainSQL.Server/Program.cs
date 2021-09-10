@@ -28,8 +28,8 @@ namespace BlockchainSQL.Server {
 					new CommandLineParameter[] {
 						new("path", "Path where to install the BlockchainSQL Server Windows Service", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
 						new("start", "\tPath to install windows service"),
-						new("dbms", $"DBMS that will host the BlockchainSQL database. Options are: {DBMSType.SQLServer}", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
-						new("db", $"\tDatabase connection string for BlockchainSQL database", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+						new("dbms", $"DBMS that will host the blockchain database used by indexing service. Options are: {DBMSType.SQLServer}", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
+						new("db", $"\tDatabase connection string to blockchain database used by indexing service", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
 						new("ip", $"\tIP address of the Bitcoin Core node", CommandLineParameterOptions.Mandatory | CommandLineParameterOptions.RequiresValue),
 						new("port", "Port of the Bitcoin Core network protocol (default 8333)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
 						new("poll", "Number of seconds between polling node for new blocks (default 10)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
@@ -37,8 +37,10 @@ namespace BlockchainSQL.Server {
 						new("maxmem", "Maximum megabytes of memory to consume during scanning (default 500)", CommandLineParameterOptions.Optional  | CommandLineParameterOptions.RequiresValue),
 						new("web", "\tWhether or not to install web application explorer", CommandLineParameterOptions.Optional),
 						new("web_port", "Whether or not to install web application explorer (default 5000)", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
-						new("web_dbms", $"DBMS that will host the BlockchainSQL web database. Options are: {new[] {DBMSType.SQLServer, DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile}.ToDelimittedString(", ")}", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
-						new("web_db", "\tDatabase connection string for BlockchainSQL web database", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
+						new("web_dbms", $"DBMS that will host the web database. Options are: {new[] {DBMSType.SQLServer, DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile}.ToDelimittedString(", ")}", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
+						new("web_db", "\tDatabase connection string for web database", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
+						new("web_bsql_dbms", $"DBMS of blockchain database used by web-server (will default to `dbms` argument if omitted)", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
+						new("web_bsql_db", "\tDatabase connection string to blockchain database that web-server will use (will default to `db` argument if omitted)", CommandLineParameterOptions.Optional | CommandLineParameterOptions.RequiresValue),
 					}
 				),
 				new("uninstall", "Uninstalls BlockchainSQL Server Windows Service",
