@@ -16,7 +16,9 @@ namespace BlockchainSQL.Web {
 		public static void Main(string[] args) {
 			Sphere10Framework.Instance.StartFramework();
 			Sphere10Framework.Instance.RegisterApplicationLogger("web", visibleToAllUsers: true);
+			SystemLog.Info("Web Server Started");
 			CreateHostBuilder(args).Build().Run();
+			SystemLog.Info("Web Server Ended");
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>

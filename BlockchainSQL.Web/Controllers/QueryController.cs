@@ -62,7 +62,7 @@ namespace BlockchainSQL.Web.Controllers {
 							var session = DatabaseManager.NhSessionFactory.OpenSession();
 							session.SaveOrUpdate(executedQuery);
 						} catch (Exception error) {
-							// todo: log this
+							SystemLog.Exception(error);
 						}
 					});
 				}
