@@ -17,6 +17,7 @@ namespace BlockchainSQL.Server {
 
 		public static void RunAsService() {
 			// load first-run time
+			Sphere10Framework.Instance.RegisterApplicationLogger("service.log");
 			ServiceBase.Run(new BlockchainSQLService());
 		}
 

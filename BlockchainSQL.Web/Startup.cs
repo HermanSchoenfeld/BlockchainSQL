@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Omu.AwesomeMvc;
 using Sphere10.Framework;
 
@@ -47,12 +48,22 @@ namespace BlockchainSQL.Web {
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+			app.UseForwardedHeaders(new ForwardedHeadersOptions {
+				ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+			});
 			app.UseExceptionHandler("/error");
 			app.UseStaticFiles();
 			app.UseRouting();
 			app.UseAuthentication();
 			app.UseAuthorization();
-			
+			if (env.IsDevelopment()) {
+				//app.UseExceptionHandler("/Error");
+				app.UseDeveloperExceptionPage();
+			} else {
+				app.UseExceptionHandler("/Error");
+				//	app.UseHsts();  // TODO: make this a config?
+			}
+
 			app.UseEndpoints(endpoints => {
 				
 				endpoints.MapControllerRoute(
@@ -63,11 +74,6 @@ namespace BlockchainSQL.Web {
 					"/{queryId:regex([a-zA-Z0-9]{{6,}})}",
 					new { controller = "Query", action = "Load" });
 			});
-
-			app.UseForwardedHeaders(new ForwardedHeadersOptions {
-				ForwardedHeaders = ForwardedHeaders.All 
-			});
-
 			TryInitializeDatabaseClasses();
 		}
 

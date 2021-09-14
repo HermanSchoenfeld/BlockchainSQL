@@ -17,6 +17,7 @@ namespace BlockchainSQL.Server {
 
 
 		public static void RunAsUninstallServiceCommand(CommandLineResults uninstallCommand) {
+			Sphere10Framework.Instance.RegisterApplicationLogger("uninstaller.log");
 			var path = uninstallCommand.GetSingleArgumentValue("path");
 			ServiceManager.UninstallService(path).Wait();
 			Console.WriteLine("Service Stopped & Uninstalled");

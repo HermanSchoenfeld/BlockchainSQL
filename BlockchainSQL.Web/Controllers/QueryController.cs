@@ -67,6 +67,7 @@ namespace BlockchainSQL.Web.Controllers {
 					});
 				}
 			} catch (Exception error) {
+				SystemLog.Exception(error);
 				result.Messages.Add(new PageMessage {
 					Title = "Error", Description = error.ToDisplayString(), Dismissable = false, Severity = PageMessageSeverity.Error
 				});

@@ -17,6 +17,7 @@ namespace BlockchainSQL.Server {
 
 
 		private static void RunAsInstallServiceCommand(CommandLineResults installCommand) {
+			Sphere10Framework.Instance.RegisterApplicationLogger("installer.log");
 			var path = installCommand.GetSingleArgumentValue("path");
 			var start = installCommand.HasArgument("start");
 			var dbms = installCommand.GetEnumArgument<DBMSType>("dbms");

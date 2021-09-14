@@ -49,7 +49,7 @@ namespace BlockchainSQL.Web.Code {
 			return await WithDirtyScope(() => _dac.GetTransactionInputsByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), false, true));
 		}
 
-		public async Task<TransactionInput> GetTransactionInputById(int id) {
+		public async Task<TransactionInput> GetTransactionInputById(long id) {
 			return await WithDirtyScope(() => _dac.GetTransactionInputById((uint)id));
 		}
 

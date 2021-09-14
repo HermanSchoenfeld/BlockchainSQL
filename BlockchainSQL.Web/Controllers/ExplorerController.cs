@@ -57,7 +57,7 @@ namespace BlockchainSQL.Web.Controllers {
 			return View(txn);
 		}
 
-		public async Task<ActionResult> TransactionInputScripts(int key) {
+		public async Task<ActionResult> TransactionInputScripts(long key) {
 			var repo = DatabaseManager.GetBlockchainRepository();
 
 			var txin = await repo.GetTransactionInputById(key);
@@ -73,7 +73,7 @@ namespace BlockchainSQL.Web.Controllers {
 			return View(model);
 		}
 		
-		public async Task<ActionResult> Script(int key) {
+		public async Task<ActionResult> Script(long key) {
 			var repo = DatabaseManager.GetBlockchainRepository();
 			var summary = await repo.GetScriptSummary(key);
 			return View(summary);

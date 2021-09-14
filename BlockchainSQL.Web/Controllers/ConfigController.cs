@@ -108,6 +108,7 @@ namespace BlockchainSQL.Web.Controllers {
 
 				blockchainSettings.Save();
 				webSettings.Save();
+				DatabaseManager.InitializeDatabases();
 
 				return Json(new FormResult {
 					Result = true,
