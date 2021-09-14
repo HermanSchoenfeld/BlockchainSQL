@@ -75,23 +75,23 @@ namespace BlockchainSQL.Server {
 						case "":
 						case null:
 							if (Environment.UserInteractive) {
-								Sphere10Framework.Instance.RegisterApplicationLogger("gui", visibleToAllUsers: true);
+								SystemLog.RegisterLogger( Sphere10Framework.Instance.CreateApplicationLogger("gui.log"));
 								RunAsGUI();
 							} else {
-								Sphere10Framework.Instance.RegisterApplicationLogger("service", visibleToAllUsers: true);
+								SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
 								RunAsService();
 							}
 							break;
 						case "INSTALL":
-							Sphere10Framework.Instance.RegisterApplicationLogger("installer", visibleToAllUsers: true);
+							SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("installer.log"));
 							RunAsInstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "UNINSTALL":
-							Sphere10Framework.Instance.RegisterApplicationLogger("installer", visibleToAllUsers: true);
+							SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("installer.log"));
 							RunAsUninstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "SERVICE":
-							Sphere10Framework.Instance.RegisterApplicationLogger("service", visibleToAllUsers: true);
+							SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("service.log"));
 							RunAsService();
 							break;
 					}

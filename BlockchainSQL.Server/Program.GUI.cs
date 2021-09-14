@@ -16,7 +16,6 @@ namespace BlockchainSQL.Server {
 	public static partial class Program {
 
 		public static void RunAsGUI() {
-			Sphere10Framework.Instance.RegisterApplicationLogger("gui.log");
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			AppDomain.CurrentDomain.UnhandledException += (s, e) =>
