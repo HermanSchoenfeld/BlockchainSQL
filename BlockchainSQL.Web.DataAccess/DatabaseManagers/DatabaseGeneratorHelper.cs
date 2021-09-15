@@ -4,7 +4,7 @@ using NHibernate.Tool.hbm2ddl;
 using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
-	internal static class NHibernateDatabaseGeneratorHelper {
+	internal static class DatabaseGeneratorHelper {
 		public static FluentConfiguration ConfigureBSQL(this FluentConfiguration config)
 			=> config.Mappings(c => c.FluentMappings.AddFromAssemblyOf<SavedQueryMap>())
 					.Mappings(c => c.FluentMappings.Conventions.Add<CoreConventions>())
