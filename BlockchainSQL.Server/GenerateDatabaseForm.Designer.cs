@@ -35,8 +35,8 @@ namespace BlockchainSQL.Server {
 			// 
 			// _testButton
 			// 
-			this._testButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this._testButton.Location = new System.Drawing.Point(639, 217);
+			this._testButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this._testButton.Location = new System.Drawing.Point(344, 217);
 			this._testButton.Margin = new System.Windows.Forms.Padding(2);
 			this._testButton.Name = "_testButton";
 			this._testButton.Size = new System.Drawing.Size(114, 27);
@@ -56,7 +56,7 @@ namespace BlockchainSQL.Server {
 			this._databaseGroupBox.Margin = new System.Windows.Forms.Padding(2);
 			this._databaseGroupBox.Name = "_databaseGroupBox";
 			this._databaseGroupBox.Padding = new System.Windows.Forms.Padding(2);
-			this._databaseGroupBox.Size = new System.Drawing.Size(765, 258);
+			this._databaseGroupBox.Size = new System.Drawing.Size(470, 258);
 			this._databaseGroupBox.TabIndex = 6;
 			this._databaseGroupBox.TabStop = false;
 			this._databaseGroupBox.Text = "Blockchain Database";
@@ -68,7 +68,7 @@ namespace BlockchainSQL.Server {
 			this._databaseConnectionPanel.Location = new System.Drawing.Point(9, 24);
 			this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(7);
 			this._databaseConnectionPanel.Name = "_databaseConnectionPanel";
-			this._databaseConnectionPanel.Size = new System.Drawing.Size(744, 183);
+			this._databaseConnectionPanel.Size = new System.Drawing.Size(449, 183);
 			this._databaseConnectionPanel.TabIndex = 0;
 			// 
 			// _loadingCircle
@@ -78,7 +78,7 @@ namespace BlockchainSQL.Server {
 			this._loadingCircle.BackColor = System.Drawing.Color.Transparent;
 			this._loadingCircle.Color = System.Drawing.Color.DarkGray;
 			this._loadingCircle.InnerCircleRadius = 5;
-			this._loadingCircle.Location = new System.Drawing.Point(622, 279);
+			this._loadingCircle.Location = new System.Drawing.Point(327, 279);
 			this._loadingCircle.Margin = new System.Windows.Forms.Padding(2);
 			this._loadingCircle.Name = "_loadingCircle";
 			this._loadingCircle.NumberSpoke = 12;
@@ -94,7 +94,7 @@ namespace BlockchainSQL.Server {
 			// _generateDatabaseButton
 			// 
 			this._generateDatabaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._generateDatabaseButton.Location = new System.Drawing.Point(658, 277);
+			this._generateDatabaseButton.Location = new System.Drawing.Point(363, 277);
 			this._generateDatabaseButton.Margin = new System.Windows.Forms.Padding(2);
 			this._generateDatabaseButton.Name = "_generateDatabaseButton";
 			this._generateDatabaseButton.Size = new System.Drawing.Size(114, 27);
@@ -107,7 +107,7 @@ namespace BlockchainSQL.Server {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(779, 316);
+			this.ClientSize = new System.Drawing.Size(484, 316);
 			this.Controls.Add(this._loadingCircle);
 			this.Controls.Add(this._generateDatabaseButton);
 			this.Controls.Add(this._databaseGroupBox);
