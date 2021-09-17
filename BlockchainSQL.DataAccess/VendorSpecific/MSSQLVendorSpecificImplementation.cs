@@ -14,14 +14,34 @@ using Sphere10.Framework.Data;
 namespace BlockchainSQL.DataAccess {
     public class MSSQLVendorSpecificImplementation : DBVendorSpecificImplementationBase {
 
-        public override bool HasDisabledApplicationIndexes(IDAC dac) {
+	    public override string GenerateConnectOutpointsQuery() 
+		    => "SET QUERY_GOVERNOR_COST_LIMIT 0; " + Environment.NewLine + base.GenerateConnectOutpointsQuery();
+
+	    public override string GenerateConnectOutpointsQuery(long fromTransactionInputID, long toTransactionInputID)
+		    => "SET QUERY_GOVERNOR_COST_LIMIT 0; " + Environment.NewLine + base.GenerateConnectOutpointsQuery(fromTransactionInputID, toTransactionInputID);
+
+
+	    public override string GenerateTotalizeTransactionsQuery()
+		    => "SET QUERY_GOVERNOR_COST_LIMIT 0; " + Environment.NewLine + base.GenerateTotalizeTransactionsQuery();
+
+		public override string GenerateTotalizeTransactionsQuery(long fromTransactionInputID, long toTransactionInputID)
+			=> "SET QUERY_GOVERNOR_COST_LIMIT 0; " + Environment.NewLine + base.GenerateTotalizeTransactionsQuery(fromTransactionInputID, toTransactionInputID);
+
+		public override string GenerateTotalizeBlocksQuery()
+			=> "SET QUERY_GOVERNOR_COST_LIMIT 0; " + Environment.NewLine + base.GenerateTotalizeBlocksQuery();
+
+		public override string GenerateTotalizeBlocksQuery(long fromBlockID, long toBlockID)
+			=> "SET QUERY_GOVERNOR_COST_LIMIT 0; " + Environment.NewLine + base.GenerateTotalizeBlocksQuery(fromBlockID, toBlockID);
+
+		public override bool HasDisabledApplicationIndexes(IDAC dac) {
             const string query = "SELECT i.name FROM sys.indexes i JOIN sys.tables t ON i.object_id = t.object_id WHERE i.[type] = 2 and i.is_disabled = 1 and t.name in ('Block', 'Branch', 'Script', 'ScriptInstruction', 'Settings', 'Text', 'Transaction', 'TransactionInput', 'TransactionOutput') ORDER BY i.type_desc, t.name, i.name";
             return (dac.ExecuteQuery(query)).Rows.Count > 0;
         }
 
         public override void EnableAllApplicationIndexes(IDAC dac) {
             const string query =
-                @"-- Enable Indexes
+				@"SET QUERY_GOVERNOR_COST_LIMIT 0;
+-- Enable Indexes
 DECLARE @my_sql2 NVARCHAR(200);
 DECLARE cur_rebuild CURSOR FOR 
    SELECT 'ALTER INDEX [' +  i.name + '] ON [' + t.name + '] REBUILD WITH (PAD_INDEX = ON, FILLFACTOR=90)' FROM sys.indexes i JOIN sys.tables t ON i.object_id = t.object_id WHERE i.[type] = 2 and i.is_disabled = 1 and t.name in ('Block', 'Branch', 'Script', 'ScriptInstruction', 'Settings', 'Text', 'Transaction', 'TransactionInput', 'TransactionOutput') ORDER BY i.type_desc, t.name, i.name;
@@ -52,10 +72,10 @@ DEALLOCATE cur_rebuild2;";
             dac.ExecuteNonQuery(query);
         }
 
-
         public override void DisableAllApplicationIndexes(IDAC dac) {
             const string query =
-                @"DECLARE @my_sql2 NVARCHAR(200);
+				@"SET QUERY_GOVERNOR_COST_LIMIT 0;
+DECLARE @my_sql2 NVARCHAR(200);
 DECLARE cur_rebuild CURSOR FOR 
    SELECT 'ALTER INDEX [' +  i.name + '] ON [' + t.name + '] DISABLE' FROM sys.indexes i JOIN sys.tables t ON i.object_id = t.object_id WHERE i.[type] = 2 and i.is_disabled = 0 and t.name in ('Block', 'Branch', 'Script', 'ScriptInstruction', 'Settings', 'Text', 'Transaction', 'TransactionInput', 'TransactionOutput') ORDER BY i.type_desc, t.name, i.name;
 OPEN cur_rebuild;
@@ -141,8 +161,6 @@ ORDER BY Block ASC, TXDate ASC";
 
             return dac.ExecuteQuery(query.FormatWith(address)).Rows.Cast<DataRow>().Select(Hydrators.HydrateStatementLine);
         }
-
-
 
     }
 }
