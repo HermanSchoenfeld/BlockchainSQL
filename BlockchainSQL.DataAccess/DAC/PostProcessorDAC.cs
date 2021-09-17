@@ -14,8 +14,6 @@ using Sphere10.Framework.Data.Exceptions;
 namespace BlockchainSQL.DataAccess {
     public partial class ApplicationDAC {
 
- 
-
         public void ConnectOutpoints() {
 	        var query = _vendorSpecificImplementation.GenerateConnectOutpointsQuery();
             this.ExecuteNonQuery(query);
