@@ -142,7 +142,7 @@ namespace BlockchainSQL.Web.Code {
 			if (cellData != null) {
 				var cellDataByteArray = cellData as byte[];
 				var cellDataAsString = cellData as string;
-				if ((cellDataByteArray != null && BitcoinProtocolHelper.IsValidHashByteArray(cellDataByteArray) && !colName.Contains("merkle")) ||
+				if ((cellDataByteArray != null && BitcoinProtocolHelper.IsValidHashByteArray(cellDataByteArray) && !colName.Contains("merkle") && !colName.Contains("wtxid")) ||
 					(cellDataAsString != null && BitcoinProtocolHelper.IsValidAddress(cellDataAsString))) {
 					if (cellString != BitcoinProtocolHelper.EmptyHashString) {
 						cellString = string.Format("<small><a href='/Search?term={0}'>{0}</a></small>", cellString);

@@ -63,9 +63,6 @@
     <None Include="wwwroot\images\logos\android.png" />
     <None Include="wwwroot\images\logos\bitcoin.png" />
     <None Include="wwwroot\images\logos\bitcoin.svg" />
-    <None Include="wwwroot\images\logos\blockchainsql-full.png" />
-    <None Include="wwwroot\images\logos\blockchainsql-med.png" />
-    <None Include="wwwroot\images\logos\blockchainsql-small.png" />
     <None Include="wwwroot\images\logos\dotnet.png" />
     <None Include="wwwroot\images\logos\ethereum.png" />
     <None Include="wwwroot\images\logos\ios.png" />

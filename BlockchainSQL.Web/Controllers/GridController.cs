@@ -69,14 +69,14 @@ namespace BlockchainSQL.Web.Controllers {
             return Json(model);
         }
 
-        private async Task<GridModelDto<T>> BuildGridModel<T>(
+        private Task<GridModelDto<T>> BuildGridModel<T>(
             GridParams gridParams,
             Func<int, int, SortOption[], Task< IEnumerable<T>>> itemFetchFunc,
             Func<Task<int>> itemCountFunc = null,
             SortOption defaultSortOption = null,
             Func<T, object> map = null,
             string key = null) {
-            return await Task.Run(
+            return Task.Run(
                 () => BuildGridModel(
                     gridParams, 
                     (x, y, z) => itemFetchFunc(x,y,z).ResultSafe(),
@@ -120,6 +120,7 @@ namespace BlockchainSQL.Web.Controllers {
                     Map = map,
                     Key = key
                 };
+                gridModelBuilder.DefaultKeySort = Sort.None;
                 var gridModel = gridModelBuilder.BuildModel();
 
                 // update grid model for client

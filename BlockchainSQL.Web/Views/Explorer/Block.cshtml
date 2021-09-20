@@ -82,7 +82,8 @@
                         hash = BitcoinProtocolHelper.BytesToString(Model.Hash)
                     }))
                     .Groupable(false)
-                    .Selectable(SelectionType.Single).Columns(
+                    .Selectable(SelectionType.Single)
+                    .Columns(
                         new Column {
                             Name = "Index",
                             Sortable = true,
