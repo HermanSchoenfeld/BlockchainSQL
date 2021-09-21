@@ -36,6 +36,9 @@ namespace BlockchainSQL.Web.Controllers {
 			// validate SQL
 			var result = new QueryResultModel();
 			try {
+				if (sql.Contains("@@"))
+					throw new InvalidOperationException("Queries cannot refer to database environment variables");
+
 				var repo = DatabaseManager.GetBlockchainRepository();
 				var start = DateTime.UtcNow;
 				try {

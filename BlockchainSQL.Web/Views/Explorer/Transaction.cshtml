@@ -19,9 +19,7 @@
                     <dd>@Model.Size bytes</dd>
 
                     <dt>Block</dt>
-                    <dd><a href="@Url.Action(nameof(ExplorerController.Block), new {height = Model.Block.Height})">
-                        @Model.Block.Height
-                    </a></dd>
+                    <dd><a href="/explorer/block/@Model.Block.Height">@Model.Block.Height</a></dd>
 
                     <dt>Index</dt>
                     <dd>@Model.Index</dd>

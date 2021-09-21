@@ -17,44 +17,76 @@ namespace BlockchainSQL.Web.Controllers {
 			return View();
 		}
 
-		public async Task<ActionResult> Block([FromQuery] int height, [FromQuery] string hash) {
+		public async Task<ActionResult> Block(string id) {
+			if (string.IsNullOrWhiteSpace(id))
+				return View("Index");
 
-			if (height > 0) {
+			// Load by block height
+			if (long.TryParse(id, out var height)) {
+				if (height < 0) {
+					AddPageMessage("Invalid block height '{0}'".FormatWith(height), "Block not found", PageMessageSeverity.Error);
+					return View("Index");
+				}
+
 				var repo = DatabaseManager.GetBlockchainRepository();
-
 				try {
 					var block = await repo.GetBlockByHeight(height);
 					return View(block);
-				} catch (NoSingleRecordException e) {
-					AddPageMessage("No block with height {0} is known to this node".FormatWith(height),
-						"Block not found",
-						PageMessageSeverity.Error);
+				} catch (NoSingleRecordException) {
+					AddPageMessage("No block with height {0} is known to this node".FormatWith(height), "Block not found", PageMessageSeverity.Error);
 					return View("Index");
 				}
 			}
 
-			if (!string.IsNullOrEmpty(hash)) {
-				if (!BitcoinProtocolHelper.IsValidHashString(hash)) {
-					AddPageMessage("Invalid block hash '{0}'".FormatWith(hash), "Block not found", PageMessageSeverity.Error);
-					return View("Index");
-
-				}
-
+			// Load by block hash
+			if (BitcoinProtocolHelper.IsValidHashString(id)) {
 				var repo = DatabaseManager.GetBlockchainRepository();
-				var block = await repo.GetBlock(hash);
+				var block = await repo.GetBlock(id);
 				return View(block);
 			}
-
+			
+			AddPageMessage("Invalid block hash '{0}'".FormatWith(id), "Block not found", PageMessageSeverity.Error);
 			return View("Index");
+
 		}
 
-		public async Task<ActionResult> Transaction(string txid) {
-			if (!BitcoinProtocolHelper.IsValidHashString(txid))
-				throw new Exception("Invalid TXID");
-			var repo = DatabaseManager.GetBlockchainRepository();
-			var txn = await repo.GetTransaction(txid);
+		public async Task<ActionResult> Transaction(string id) {
+			if (string.IsNullOrWhiteSpace(id))
+				return View("Index");
 
-			return View(txn);
+			if (!BitcoinProtocolHelper.IsValidHashString(id)) {
+				AddPageMessage("Transaction identifier (TXID) `{0}` was invalidly formatted".FormatWith(id),
+					"Transaction not found",
+					PageMessageSeverity.Error);
+				return View("Index");
+			}
+
+			try {
+				var repo = DatabaseManager.GetBlockchainRepository();
+				var txn = await repo.GetTransaction(id);
+				return View(txn);
+			} catch (NoSingleRecordException) {
+				AddPageMessage("No transaction with TXID `{0}` was found".FormatWith(id), "Block not found", PageMessageSeverity.Error);
+				return View("Index");
+			}
+		
+		}
+
+		public async Task<ActionResult> Address(string id, int? page) {
+			if (string.IsNullOrWhiteSpace(id))
+				return View("Index");
+
+			if (!BitcoinProtocolHelper.IsValidAddress(id)) {
+				AddPageMessage($"Invalid address '{id}'", "Address not found", PageMessageSeverity.Error);
+				return View("Index");
+			}
+
+			var repo = DatabaseManager.GetBlockchainRepository();
+			var items = await repo.GetStatementLines(id);
+
+			var model = ConstructModel(id, items);
+			return View(model);
+
 		}
 
 		public async Task<ActionResult> TransactionInputScripts(long key) {
@@ -79,21 +111,6 @@ namespace BlockchainSQL.Web.Controllers {
 			return View(summary);
 		}
 
-		public async Task<ActionResult> Address([FromQuery] string address) {
-			if (!BitcoinProtocolHelper.IsValidAddress(address))
-				return HomePageRedirect();
-
-			var repo = DatabaseManager.GetBlockchainRepository();
-			var items = await repo.GetStatementLines(address);
-
-			// If address was not a P2PKH address and it's empty, just re-direct (only show 0 balance for p2pkh addresses)
-			if (!items.Any() && !BitcoinProtocolHelper.IsValidP2PKHAddress(address, true))
-				return HomePageRedirect();
-
-			var model = ConstructModel(address, items);
-			return View(model);
-			
-		}
 
 		private static AddressPageModel ConstructModel(string address, IEnumerable<StatementLine> lines) {
 			if (!lines.Any()) {

@@ -42,7 +42,7 @@
                                 var selectedItems = $('#BlocksGrid').data('api').getSelection();
                                 if (selectedItems.length > 0) {
                                     var selectedItem = selectedItems[0];
-                                    window.location = "/explorer/block/?height=" + selectedItem.height;
+                                    window.location = "/explorer/block/" + selectedItem.height;
                                 }
                             });
                     });

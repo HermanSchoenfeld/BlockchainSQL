@@ -13,20 +13,18 @@ namespace BlockchainSQL.Web.Controllers {
 			}
 			uint height;
 			if (uint.TryParse(term, out height)) {
-				return RedirectToAction("Block", "Explorer", new { height });
+				return Redirect($"/explorer/block/{height}");
 			}
 			if (!(BitcoinProtocolHelper.IsValidHashString(term) || BitcoinProtocolHelper.IsValidAddress(term))) {
 				return HomePageRedirect("Invalid search pattern");
 			}
 			var repo = DatabaseManager.GetBlockchainRepository();
 			var result = await repo.SearchHash(term);
-			switch (result.ResultType) {
-				case SearchResultType.Block:
-					return RedirectToAction("Block", "Explorer", new { hash = result.Key });
-				case SearchResultType.Transaction:
-					return RedirectToAction("Transaction", "Explorer", new { txid = result.Key });
-			}
-			return RedirectToAction("Address", "Explorer", new { address = term });
+			return result.ResultType switch {
+				SearchResultType.Block => Redirect($"/explorer/block/{result.Key}"),
+				SearchResultType.Transaction => Redirect($"/explorer/transaction/{result.Key}"),
+				_ => Redirect($"/explorer/address/{term}")
+			};
 		}
 	}
 }

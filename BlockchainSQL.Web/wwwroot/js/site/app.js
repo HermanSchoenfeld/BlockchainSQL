@@ -70,7 +70,7 @@ function isEmpty(str) {
 
 function toAddressFormatFunction(output) {
     if (output.toAddressDisplay !== "coinbase" && output.toAddressDisplay !== "N/A") {
-        var path = "/explorer/address?address=" + output.toAddressDisplay;
+        var path = "/explorer/address/" + output.toAddressDisplay;
         return `<a href=${path}>${output.toAddressDisplay}</a>`;
     }
 
@@ -79,7 +79,7 @@ function toAddressFormatFunction(output) {
 
 function fromAddressFormatFunction(output) {
     if (output.fromAddressDisplay !== "coinbase" && output.toAddressDisplay !== "N/A") {
-        var path = "/explorer/address?address=" + output.fromAddressDisplay;
+        var path = "/explorer/address/" + output.fromAddressDisplay;
         return `<a href=${path}>${output.fromAddressDisplay}</a>`;
     }
 

@@ -159,7 +159,8 @@ ORDER BY Block ASC, TXDate ASC";
 
             #endregion
 
-            return dac.ExecuteQuery(query.FormatWith(address)).Rows.Cast<DataRow>().Select(Hydrators.HydrateStatementLine);
+			// Note: we rely on query governor to stop extremely large account statements. See Notion for ideas to solve this short and long-term.
+            return dac.ExecuteQuery(/*"SET QUERY_GOVERNOR_COST_LIMIT 0; "+*/ query.FormatWith(address)).Rows.Cast<DataRow>().Select(Hydrators.HydrateStatementLine);
         }
 
     }

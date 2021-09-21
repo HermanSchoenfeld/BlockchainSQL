@@ -27,7 +27,7 @@ namespace BlockchainSQL.DataAccess {
                 throw new NoSingleRecordException("Block", hash, results.Length);
             return results[0];
         }
-		public virtual Block GetActiveBlockByHeight(int height) { 
+		public virtual Block GetActiveBlockByHeight(long height) { 
 			var results = (FindBlocks(new[] { new ColumnValue("Height", height), new ColumnValue("BranchID", 1) })).ToArray();
 			if (results.Length != 1)
 				throw new NoSingleRecordException("Block", height, results.Length);

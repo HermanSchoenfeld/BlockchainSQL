@@ -68,7 +68,8 @@ namespace BlockchainSQL.Web {
 				
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Home}/{action=Index}/{id?}"
+				);
 
 				endpoints.MapControllerRoute("QuerySlug",
 					"/{queryId:regex([a-zA-Z0-9]{{6,}})}",

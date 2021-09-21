@@ -20,9 +20,7 @@
 
                     <dt>Previous Block</dt>
                     <dd>
-                        <a href="@Url.Action(nameof(ExplorerController.Block), new {Hash = @BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)})">
-                            @BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)
-                        </a>
+                        <a href="/explorer/block/@BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)">@BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)</a>
                     </dd>
 
                     <dt>Height</dt>
@@ -171,7 +169,7 @@
                                 console.log(selectedItems);
                                 if (selectedItems.length > 0) {
                                     var selectedItem = selectedItems[0];
-                                    window.location = "/explorer/transaction?txid=" + selectedItem.txid;
+                                    window.location = "/explorer/transaction/" + selectedItem.txid;
                                 }
                             });
                     });

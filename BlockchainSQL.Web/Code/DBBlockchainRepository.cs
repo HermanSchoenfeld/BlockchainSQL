@@ -26,7 +26,7 @@ namespace BlockchainSQL.Web.Code {
 			return WithDirtyScope(() => _dac.GetBlockByHash(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(hash)));
 		}
 
-		public Task<Block> GetBlockByHeight(int height) {
+		public Task<Block> GetBlockByHeight(long height) {
 			return WithDirtyScope(() => _dac.GetActiveBlockByHeight(height));
 		}
 
