@@ -12,10 +12,13 @@ using System.IO;
 
 namespace BlockchainSQL.Web {
 	public class Program {
+		
 		public static void Main(string[] args) {
-			SystemLog.RegisterLogger(new FileAppendLogger(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlockchainSQL", "log", "Web.log")));
 			Sphere10Framework.Instance.StartFramework();
+			SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));
+			SystemLog.Info("Web Server Started");
 			CreateHostBuilder(args).Build().Run();
+			SystemLog.Info("Web Server Ended");
 		}
 
 		public static IHostBuilder CreateHostBuilder(string[] args) =>

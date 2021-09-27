@@ -2,7 +2,7 @@
 @using BlockchainSQL.Web.Controllers
 @model BlockchainSQL.DataObjects.Transaction
 @{
-    ViewBag.Title = "Transaction #" + Tools.Html.Beautify(Model.TXID);
+    ViewBag.Title = "Transaction #" + Tools.Html.Beautify(Model.TXID) + " - BlockchainSQL.io";
 }
 
 <section class="margin-bottom">
@@ -19,9 +19,7 @@
                     <dd>@Model.Size bytes</dd>
 
                     <dt>Block</dt>
-                    <dd><a href="@Url.Action(nameof(ExplorerController.Block), new {height = Model.Block.Height})">
-                        @Model.Block.Height
-                    </a></dd>
+                    <dd><a href="/explorer/block/@Model.Block.Height">@Model.Block.Height</a></dd>
 
                     <dt>Index</dt>
                     <dd>@Model.Index</dd>
@@ -78,7 +76,7 @@
                         new Column {Name =  "", ClientFormat = "<div class='viewScriptButton'><span class='icon-ar icon-ar-sm icon-ar-round'><i class='fa fa-codepen'></i></span></div>", Width = 45, MinWidth = 45},
                         new Column {Name = "Index",                   Header = "Index",       Sortable = false, Resizable = true, Width = 50, MinWidth = 50},
                         new Column {Name = "FromAddressTypeDisplay",  Header = "Payer Type",  Sortable = true, Hidden = false, Resizable = true, Width = 120, MinWidth = 120},
-                        new Column {Name = "FromAddressDisplay",      Header = "Payer",       Sortable = true, Hidden = false, Resizable = true, Width = 200, MinWidth = 200 , ClientFormatFunc = "fromAddressFormatFunction"},
+                        new Column {Name = "FromAddressDisplay",      Header = "Payer",       Sortable = true, Hidden = false, Resizable = true, Width = 200, MinWidth = 200, ClientFormatFunc = "fromAddressFormatFunction"},
                         new Column {Name = "OutpointDisplay",         Header = "Outpoint",    Sortable = false, Hidden = true, Resizable = true, Width = 500, MinWidth = 500},
                         new Column {Name = "Value",                   Header = "Amount (฿)",  Sortable = true, Hidden = false, Resizable = true, Width = 110, MinWidth = 110 },
                         new Column {Name = "Sequence",                Header = "Lock Time",   Hidden = true, Resizable = true, Width = 100, MinWidth = 100}

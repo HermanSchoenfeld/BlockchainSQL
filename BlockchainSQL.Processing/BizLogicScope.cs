@@ -10,13 +10,13 @@ namespace BlockchainSQL.Processing {
         private readonly string _connectionString;
         private readonly ApplicationDAC _dac;
 
-        public BizLogicScope(ApplicationDAC dac)
-            : this(dac.DBMSType, dac.ConnectionString, dac.Log) {
-        }
+        //public BizLogicScope(ApplicationDAC dac)
+        //    : this(dac.DBMSType, dac.ConnectionString, dac.Log) {
+        //}
 
-        public BizLogicScope(ILogger logger = null)
-            : this(GlobalSettings.Get<BlockchainDatabaseSettings>().DBMSType, GlobalSettings.Get<BlockchainDatabaseSettings>().ConnectionString, logger, GlobalSettings.Provider, false) {
-        }
+        //public BizLogicScope(ILogger logger = null)
+        //    : this(GlobalSettings.Get<ServiceDatabaseSettings>().DBMSType, GlobalSettings.Get<ServiceDatabaseSettings>().ConnectionString, logger, GlobalSettings.Provider, false) {
+        //}
 
         public BizLogicScope(DBMSType dbmsType, string connectionString, ILogger logger = null)
             : this(dbmsType, connectionString, logger, GlobalSettings.Provider, false) {

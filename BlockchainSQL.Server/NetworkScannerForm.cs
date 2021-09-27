@@ -95,7 +95,7 @@ namespace BlockchainSQL.Server
 				    using (_loadingCircle.BeginAnimationScope(this, _startButton, _logBox, _progressBar)) {
 					    _progressBar.Visible = true;
 					    _startButton.Text = "Stop";
-					    await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, false, TimeSpan.FromSeconds( scope.Settings.Get<NodeSettings>().PollRateSEC));
+					    await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, false, TimeSpan.FromSeconds( scope.Settings.Get<ServiceNodeSettings>().PollRateSEC));
 				    }
 			    }
 		    }

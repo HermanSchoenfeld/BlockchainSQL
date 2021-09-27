@@ -20,7 +20,7 @@ namespace BlockchainSQL.DataAccess {
         }    
 
         public static void HydrateScript(DataRow sourceRow, Script entity, string colPreFix = "") {
-            entity.ID = sourceRow.Get<int>(colPreFix + "ID");
+            entity.ID = sourceRow.Get<long>(colPreFix + "ID");
             entity.ScriptType = (ScriptType)sourceRow.Get<uint>(colPreFix + "ScriptType");
             entity.ScriptClass = (ScriptClass) sourceRow.Get<uint>(colPreFix + "ScriptClass");
             entity.ScriptByteLength = sourceRow.Get<int>(colPreFix + "ScriptByteLength");

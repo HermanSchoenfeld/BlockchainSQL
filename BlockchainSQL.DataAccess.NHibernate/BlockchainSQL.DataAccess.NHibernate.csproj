@@ -17,18 +17,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-		<PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-		<PackageReference Include="System.ServiceModel.Duplex" Version="4.8.1" />
-		<PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.1" />
-		<PackageReference Include="System.ServiceModel.Federation" Version="4.8.1" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="FluentNHibernate" Version="3.1.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="NHibernate" Version="5.3.9" />
-		<PackageReference Include="System.Data.SQLite" Version="1.0.115" />
 	</ItemGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 	<Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />

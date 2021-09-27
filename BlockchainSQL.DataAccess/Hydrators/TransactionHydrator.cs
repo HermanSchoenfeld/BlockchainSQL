@@ -19,7 +19,7 @@ namespace BlockchainSQL.DataAccess {
         }
 
         public static void HydrateTransaction(DataRow sourceRow, Transaction entity, string colPreFix = "") {
-            entity.ID = sourceRow.Get<int>(colPreFix + "ID");
+            entity.ID = sourceRow.Get<long>(colPreFix + "ID");
             entity.TXID = sourceRow.Get<byte[]>(colPreFix + "TXID");
             entity.WTXID = sourceRow.Get<byte[]>(colPreFix + "WTXID");
             entity.Size = sourceRow.Get<uint>(colPreFix + "Size");

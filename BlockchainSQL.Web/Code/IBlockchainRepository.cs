@@ -11,7 +11,7 @@ namespace BlockchainSQL.Web.Code {
 
 		Task<Block> GetBlock(string hash);
 
-		Task<Block> GetBlockByHeight(int height);
+		Task<Block> GetBlockByHeight(long height);
 
 		Task<int> GetBlockCount();
 

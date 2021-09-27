@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server {
-	partial class NodeSettingsScreen {
+	partial class ServiceNodeSettingsScreen {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -25,7 +25,7 @@ namespace BlockchainSQL.Server {
 		/// </summary>
 		private void InitializeComponent() {
             this._groupBox = new System.Windows.Forms.GroupBox();
-            this._nodeSettingsControl = new BlockchainSQL.Server.Controls.NodeSettingsControl();
+            this._nodeSettingsControl = new BlockchainSQL.Server.Controls.ServiceNodeSettingsControl();
             this._groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +66,6 @@ namespace BlockchainSQL.Server {
 		#endregion
 
 		private System.Windows.Forms.GroupBox _groupBox;
-		private Controls.NodeSettingsControl _nodeSettingsControl;
+		private Controls.ServiceNodeSettingsControl _nodeSettingsControl;
 	}
 }

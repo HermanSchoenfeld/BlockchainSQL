@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using NBitcoin.DataEncoders;
+using NHibernate.Engine.Query;
 using Sphere10.Framework;
 
 namespace BlockchainSQL.Processing {
@@ -54,23 +56,51 @@ namespace BlockchainSQL.Processing {
         }
 
         public static bool IsValidHashByteArray(byte[] hashBytes) {
-            return hashBytes != null && hashBytes.Length == 32;
+            return hashBytes is { Length: 32 };
         }
 
         public static bool IsValidHashString(string blockHash) {
-            return blockHash != null && blockHash.Length == 64 && Tools.Text.IsValidHexString(blockHash);
+            return blockHash is { Length: 64 } && Tools.Text.IsValidHexString(blockHash);
         }
 
         public static bool IsValidAddress(string address) {
+	        if (string.IsNullOrWhiteSpace(address))
+		        return false;
+
+	        if (address.Length == 130 && HexEncoding.IsValid(address))
+		        return true; // P2PK
+
+	        if (IsValidP2PKHAddress(address))
+		        return true;
+
+	        if (address.StartsWith("bc") && IsValidBech32Address(address))
+		        return true;
+
+	        return false;
+        }
+
+		public static bool IsValidP2PKHAddress(string address, bool assumeValidBase58 = false) {
+	        // note: assumeValidAddress is intended to by-pass IsValidAddress call if already known to be true
+	        return (assumeValidBase58 || IsValidBase58String(address)) && address.Length == 34;
+        }
+
+
+        public static bool IsValidBech32Address(string adr) {
+	        try {
+		        Encoders.Bech32("bc").Decode(adr, out _);
+		        return true;
+	        } catch (FormatException) {
+		        return false;
+	        }
+		}
+
+        public static bool IsValidBase58String(string str) {
 	        var base58Chars = Base58Helper.Digits.ToCharArray();
-	        return address != null && (address.All(base58Chars.Contains) || Bech32Helper.IsValidAddress(address));
+	        return str.All(base58Chars.Contains);
         }
 
-        public static bool IsValidP2PKHAddress(string address, bool assumeValidAddress = false) {
-            return (assumeValidAddress || IsValidAddress(address)) && address.Length == 34;
-        }
 
-        public static string BytesToString(byte[] bytes) {
+		public static string BytesToString(byte[] bytes) {
             return BitConverter.ToString(bytes).Replace("-", string.Empty);
         }
 

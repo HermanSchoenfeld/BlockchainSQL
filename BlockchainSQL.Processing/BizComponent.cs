@@ -6,11 +6,14 @@ namespace BlockchainSQL.Processing {
 	public abstract class BizComponent : IBizComponent {
         private readonly BizLogicScope _scope;
 
-        protected BizComponent() {
-            _scope = BizLogicScope.Current;
-        }
-        public ApplicationDAC CustomDAC { get; set; }
+		protected BizComponent() {
+			_scope = BizLogicScope.Current;
+		}
+
+		public ApplicationDAC CustomDAC { get; set; }
+
         public virtual ILogger Log => _scope.Log;
+
         public virtual ApplicationDAC DAC => CustomDAC ?? _scope.DAC;
 
 		public virtual ISettingsProvider Settings => _scope.Settings;

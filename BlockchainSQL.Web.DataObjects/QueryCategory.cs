@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using BlockchainSQL.Web.DataObjects;
 
 
-namespace BlockchainSQL.Web.DataObjectss {
+namespace BlockchainSQL.Web.DataObjects {
     public class QueryCategory {
         public virtual int ID { get; set; }
 
@@ -17,7 +17,6 @@ namespace BlockchainSQL.Web.DataObjectss {
         public virtual QueryCategory Parent { get; set; }
 
         public virtual ICollection<TemplateQuery> Templates { get; set; }
-
 
         public virtual IEnumerable<TemplateQuery> AddTemplates {
             set {

@@ -69,18 +69,18 @@ function isEmpty(str) {
 }
 
 function toAddressFormatFunction(output) {
-    if (output.toAddressDisplay !== "coinbase") {
-        let path = "/explorer/address?address=" + output.toAddressDisplay;
-        return `<a href=${path}>${output.toAddressDisplay}</a>`
+    if (output.toAddressDisplay !== "coinbase" && output.toAddressDisplay !== "N/A") {
+        var path = "/explorer/address/" + output.toAddressDisplay;
+        return `<a href=${path}>${output.toAddressDisplay}</a>`;
     }
 
     return output.toAddressDisplay;
 }
 
 function fromAddressFormatFunction(output) {
-    if (output.fromAddressDisplay !== "coinbase") {
-        let path = "/explorer/address?address=" + output.fromAddressDisplay;
-        return `<a href=${path}>${output.fromAddressDisplay}</a>`
+    if (output.fromAddressDisplay !== "coinbase" && output.toAddressDisplay !== "N/A") {
+        var path = "/explorer/address/" + output.fromAddressDisplay;
+        return `<a href=${path}>${output.fromAddressDisplay}</a>`;
     }
 
     return output.fromAddressDisplay;

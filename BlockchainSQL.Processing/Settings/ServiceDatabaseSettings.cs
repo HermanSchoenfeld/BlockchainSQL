@@ -3,7 +3,7 @@ using Sphere10.Framework.Application;
 using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Processing {
-	public class BlockchainDatabaseSettings : SettingsObject {
+	public class ServiceDatabaseSettings : SettingsObject {
 
 		public DBMSType DBMSType { get; set; } = DBMSType.SQLServer;
 

@@ -29,7 +29,7 @@ namespace BlockchainSQL.Server {
 			try {
 				await ServiceManager.LaunchInstallServiceProcess(Model.ServiceDirectory,
 					Model.StartAfterInstall,
-					Model.BlockchainDatabaseSettings,
+					Model.ServiceDatabaseSettings,
 					Model.NodeSettings,
 					Model.ScannerSettings,
 					Model.WebSettings);
@@ -41,9 +41,9 @@ namespace BlockchainSQL.Server {
 
 		protected override IEnumerable<WizardScreen<InstallWizardModel>> ConstructScreens() {
 			yield return new InstallationDirectoryScreen();
-			yield return new BSQLDatabaseSettingsScreen();
-			yield return new NodeSettingsScreen();
-			yield return new ScannerSettingsScreen();
+			yield return new ServiceDatabaseSettingsScreen();
+			yield return new ServiceNodeSettingsScreen();
+			yield return new ServiceScannerSettingsScreen();
 			yield return new WebSettingsScreen();
 		}
 

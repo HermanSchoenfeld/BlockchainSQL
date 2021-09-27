@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BlockchainSQL.Server {
-	public partial class ScannerSettingsScreen : InstallWizardScreenBase {
-		public ScannerSettingsScreen() {
+	public partial class ServiceScannerSettingsScreen : InstallWizardScreenBase {
+		public ServiceScannerSettingsScreen() {
 			InitializeComponent();
 		}
 
 		protected override void CopyModelToUI() {
-			_scannerSettingsControl.Model = new ScannerSettings {
+			_scannerSettingsControl.Model = new ServiceScannerSettings {
 				StoreScriptData = Model.ScannerSettings.StoreScriptData,
 				MaxMemoryBufferSizeMB = Model.ScannerSettings.MaxMemoryBufferSizeMB
 			};

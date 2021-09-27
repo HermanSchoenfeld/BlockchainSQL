@@ -13,21 +13,21 @@ using Sphere10.Framework.Windows.Forms;
 using BlockchainSQL.Processing;
 
 namespace BlockchainSQL.Server {
-	public partial class BSQLDatabaseSettingsScreen : InstallWizardScreenBase {
-		public BSQLDatabaseSettingsScreen() {
+	public partial class ServiceDatabaseSettingsScreen : InstallWizardScreenBase {
+		public ServiceDatabaseSettingsScreen() {
 			InitializeComponent();
 		}
 
 		protected override void CopyModelToUI() {
-			_blockchainDatabaseSettingsControl.Model = new BlockchainDatabaseSettings {
-				DBMSType = Model.BlockchainDatabaseSettings.DBMSType,
-				ConnectionString = Model.BlockchainDatabaseSettings.ConnectionString,
+			_blockchainDatabaseSettingsControl.Model = new ServiceDatabaseSettings {
+				DBMSType = Model.ServiceDatabaseSettings.DBMSType,
+				ConnectionString = Model.ServiceDatabaseSettings.ConnectionString,
 			};
 		}
 
 		protected override void CopyUIToModel() {
-			Model.BlockchainDatabaseSettings.DBMSType = _blockchainDatabaseSettingsControl.Model.DBMSType;
-			Model.BlockchainDatabaseSettings.ConnectionString = _blockchainDatabaseSettingsControl.Model.ConnectionString; 
+			Model.ServiceDatabaseSettings.DBMSType = _blockchainDatabaseSettingsControl.Model.DBMSType;
+			Model.ServiceDatabaseSettings.ConnectionString = _blockchainDatabaseSettingsControl.Model.ConnectionString;
 		}
 
 		public override Task<Result> Validate() {
@@ -46,11 +46,10 @@ namespace BlockchainSQL.Server {
 
 		public override async Task OnNext() {
 			await base.OnNext();
-			Model.BlockchainDatabaseSettings = _blockchainDatabaseSettingsControl.Model;
+			Model.ServiceDatabaseSettings = _blockchainDatabaseSettingsControl.Model;
+			Model.WebSettings.BlockchainDBMSType = _blockchainDatabaseSettingsControl.Model.DBMSType;
+			Model.WebSettings.BlockchainDatabaseConnectionString = _blockchainDatabaseSettingsControl.Model.ConnectionString;
 		}
 
-		private void _blockchainDatabaseSettingsControl_Load(object sender, EventArgs e) {
-
-		}
 	}
 }

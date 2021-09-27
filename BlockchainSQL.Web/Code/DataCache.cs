@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BlockchainSQL.Web.DataObjects;
-using BlockchainSQL.Web.DataObjectss;
 using NHibernate;
 using NHibernate.Linq;
 

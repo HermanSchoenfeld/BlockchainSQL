@@ -18,43 +18,43 @@ namespace BlockchainSQL.Web.Code {
 			_dac = BlockchainDatabase.NewDAC(DBMSType.SQLServer, connString);
 		}
 
-		public async Task<IEnumerable<Block>> GetBlocks(int page, int pageSize, SortOption[] sortOptions) {
-			return await WithDirtyScope(() => _dac.GetBlocks(pageSize, page * pageSize, sortOptions));
+		public Task<IEnumerable<Block>> GetBlocks(int page, int pageSize, SortOption[] sortOptions) {
+			return WithDirtyScope(() => _dac.GetBlocks(pageSize, page * pageSize, sortOptions));
 		}
 
-		public async Task<Block> GetBlock(string hash) {
-			return await WithDirtyScope(() => _dac.GetBlockByHash(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(hash)));
+		public Task<Block> GetBlock(string hash) {
+			return WithDirtyScope(() => _dac.GetBlockByHash(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(hash)));
 		}
 
-		public async Task<Block> GetBlockByHeight(int height) {
-			return await WithDirtyScope(() => _dac.GetActiveBlockByHeight(height));
+		public Task<Block> GetBlockByHeight(long height) {
+			return WithDirtyScope(() => _dac.GetActiveBlockByHeight(height));
 		}
 
-		public async Task<int> GetBlockCount() {
-			return await WithDirtyScope(() => _dac.CountBlocks((int)KnownBranches.MainChain));
+		public Task<int> GetBlockCount() {
+			return WithDirtyScope(() => _dac.CountBlocks((int)KnownBranches.MainChain));
 		}
 
-		public async Task<IEnumerable<Transaction>> GetBlockTransactions(string blockHash, int page, int pageSize, SortOption[] sortOptions) {
-			return await WithDirtyScope(() => {
+		public Task<IEnumerable<Transaction>> GetBlockTransactions(string blockHash, int page, int pageSize, SortOption[] sortOptions) {
+			return WithDirtyScope(() => {
 				var block = _dac.GetBlockByHash(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(blockHash));
 				return _dac.GetTransactionsByBlockID(block.ID, pageSize, page * pageSize, sortOptions);
 			});
 		}
 
-		public async Task<Transaction> GetTransaction(string txid) {
-			return await WithDirtyScope(() => _dac.GetTransactionByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), true));
+		public Task<Transaction> GetTransaction(string txid) {
+			return WithDirtyScope(() => _dac.GetTransactionByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), true));
 		}
 
-		public async Task<IEnumerable<TransactionInput>> GetTransactionInputs(string txid) {
-			return await WithDirtyScope(() => _dac.GetTransactionInputsByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), false, true));
+		public Task<IEnumerable<TransactionInput>> GetTransactionInputs(string txid) {
+			return WithDirtyScope(() => _dac.GetTransactionInputsByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), false, true));
 		}
 
-		public async Task<TransactionInput> GetTransactionInputById(int id) {
-			return await WithDirtyScope(() => _dac.GetTransactionInputById((uint)id));
+		public Task<TransactionInput> GetTransactionInputById(long id) {
+			return WithDirtyScope(() => _dac.GetTransactionInputById((uint)id));
 		}
 
-		public async Task<IEnumerable<TransactionOutput>> GetTransactionOutputs(string txid) {
-			return await WithDirtyScope(() => _dac.GetTransactionOutputsByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), false));
+		public Task<IEnumerable<TransactionOutput>> GetTransactionOutputs(string txid) {
+			return WithDirtyScope(() => _dac.GetTransactionOutputsByTXID(BitcoinProtocolHelper.ConvertHashStringToDatabaseBytes(txid), false));
 		}
 
 		public async Task<IEnumerable<StatementLine>> GetStatementLines(string address) {

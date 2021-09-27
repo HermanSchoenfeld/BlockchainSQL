@@ -9,20 +9,20 @@ namespace BlockchainSQL.Server {
 
 		public string ServiceDirectory { get; set; }
 
-		public BlockchainDatabaseSettings BlockchainDatabaseSettings { get; set; }
+		public ServiceDatabaseSettings ServiceDatabaseSettings { get; set; }
 
-		public NodeSettings NodeSettings { get; set; }
+		public ServiceNodeSettings NodeSettings { get; set; }
 
-		public ScannerSettings ScannerSettings { get; set; }
+		public ServiceScannerSettings ScannerSettings { get; set; }
 
 		public WebSettings WebSettings { get; set; }
 
 		public static InstallWizardModel Default => new InstallWizardModel {
 			ServiceDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "BlockchainSQL"),
 			StartAfterInstall = true,
-			ScannerSettings = new ScannerSettings(),
-			BlockchainDatabaseSettings = new BlockchainDatabaseSettings(),
-			NodeSettings = new NodeSettings(),
+			ScannerSettings = new ServiceScannerSettings(),
+			ServiceDatabaseSettings = new ServiceDatabaseSettings(),
+			NodeSettings = new ServiceNodeSettings(),
 			WebSettings = new WebSettings()
 		};
 	}

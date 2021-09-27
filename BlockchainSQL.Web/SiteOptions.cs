@@ -2,12 +2,17 @@
 
 namespace BlockchainSQL.Web {
 	public class SiteOptions {
+		public bool EnableGoogleAnalytics { get; set; }
 
-		public bool HasWebDBMS { get; set; }
+		public string GoogleTrackingCode { get; set; }
 
-		public DBMSType WebDBMSType { get; set; }
+		public bool ShowProductPage { get; set; }
 
-		public DBMSType BlockchainDBMSType { get; set; }
+		public bool ShowCompanyAboutPage { get; set; }
+
+		public string AdminUsername { get; set; }
+
+		public string AdminPassword { get; set; }
 
 		public string SMTPServer { get; set; }
 
@@ -18,9 +23,8 @@ namespace BlockchainSQL.Web {
 		public string SMTPPassword { get; set; }
 
 		public string ContactRecipientEmail { get; set; }
-		
-		public string ConfigPassword { get; set; }
 
-		public bool HideServer { get; set; } = true;
+		public string ContactFromEmail { get; set; }
+
 	}
 }

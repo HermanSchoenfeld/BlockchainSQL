@@ -1,6 +1,6 @@
 ﻿
 namespace BlockchainSQL.Server {
-	partial class BSQLDatabaseSettingsControl {
+	partial class ServiceDatabaseSettingsControl {
 		/// <summary> 
 		/// Required designer variable.
 		/// </summary>
@@ -38,7 +38,7 @@ namespace BlockchainSQL.Server {
 			this._databaseConnectionPanel.Location = new System.Drawing.Point(0, 0);
 			this._databaseConnectionPanel.Margin = new System.Windows.Forms.Padding(33, 45, 33, 45);
 			this._databaseConnectionPanel.Name = "_databaseConnectionPanel";
-			this._databaseConnectionPanel.Size = new System.Drawing.Size(671, 358);
+			this._databaseConnectionPanel.Size = new System.Drawing.Size(550, 222);
 			this._databaseConnectionPanel.TabIndex = 1;
 			// 
 			// _loadingCircle
@@ -48,13 +48,13 @@ namespace BlockchainSQL.Server {
 			this._loadingCircle.BackColor = System.Drawing.Color.Transparent;
 			this._loadingCircle.Color = System.Drawing.Color.DarkGray;
 			this._loadingCircle.InnerCircleRadius = 5;
-			this._loadingCircle.Location = new System.Drawing.Point(350, 353);
+			this._loadingCircle.Location = new System.Drawing.Point(317, 249);
 			this._loadingCircle.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._loadingCircle.Name = "_loadingCircle";
 			this._loadingCircle.NumberSpoke = 12;
 			this._loadingCircle.OuterCircleRadius = 11;
 			this._loadingCircle.RotationSpeed = 100;
-			this._loadingCircle.Size = new System.Drawing.Size(47, 63);
+			this._loadingCircle.Size = new System.Drawing.Size(27, 27);
 			this._loadingCircle.SpokeThickness = 2;
 			this._loadingCircle.StylePreset = Sphere10.Framework.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
 			this._loadingCircle.TabIndex = 8;
@@ -64,10 +64,10 @@ namespace BlockchainSQL.Server {
 			// _generateDatabaseButton
 			// 
 			this._generateDatabaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._generateDatabaseButton.Location = new System.Drawing.Point(546, 367);
+			this._generateDatabaseButton.Location = new System.Drawing.Point(456, 249);
 			this._generateDatabaseButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._generateDatabaseButton.Name = "_generateDatabaseButton";
-			this._generateDatabaseButton.Size = new System.Drawing.Size(126, 45);
+			this._generateDatabaseButton.Size = new System.Drawing.Size(88, 27);
 			this._generateDatabaseButton.TabIndex = 10;
 			this._generateDatabaseButton.Text = "Generate Database";
 			this._generateDatabaseButton.UseVisualStyleBackColor = true;
@@ -76,27 +76,26 @@ namespace BlockchainSQL.Server {
 			// _testButton
 			// 
 			this._testButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this._testButton.Location = new System.Drawing.Point(409, 367);
+			this._testButton.Location = new System.Drawing.Point(356, 249);
 			this._testButton.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
 			this._testButton.Name = "_testButton";
-			this._testButton.Size = new System.Drawing.Size(126, 45);
+			this._testButton.Size = new System.Drawing.Size(88, 27);
 			this._testButton.TabIndex = 9;
 			this._testButton.Text = "Test Connection";
 			this._testButton.UseVisualStyleBackColor = true;
 			this._testButton.Click += new System.EventHandler(this._testButton_Click);
 			// 
-			// BlockchainDatabaseSettingsControl
+			// ServiceSettingsControl
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this._loadingCircle);
 			this.Controls.Add(this._generateDatabaseButton);
 			this.Controls.Add(this._testButton);
 			this.Controls.Add(this._databaseConnectionPanel);
 			this.Margin = new System.Windows.Forms.Padding(7, 10, 7, 10);
-			this.Name = "BlockchainDatabaseSettingsControl";
-			this.Size = new System.Drawing.Size(671, 417);
-			this.UpdateModelOnStateChanged = true;
+			this.Name = "ServiceSettingsControl";
+			this.Size = new System.Drawing.Size(550, 281);
 			this.ResumeLayout(false);
 
 		}

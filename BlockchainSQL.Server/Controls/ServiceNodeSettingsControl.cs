@@ -12,19 +12,20 @@ using System.Windows.Forms;
 using Sphere10.Framework.Windows.Forms;
 
 namespace BlockchainSQL.Server.Controls {
-	public partial class NodeSettingsControl : UserControlEx {
-		private NodeSettings _model;
+	public partial class ServiceNodeSettingsControl : UserControlEx {
+		private ServiceNodeSettings _model;
 
-		public NodeSettingsControl() {
+		public ServiceNodeSettingsControl() {
 			InitializeComponent();
 		}
 
-		public NodeSettings Model {
+		public ServiceNodeSettings Model {
 			get => _model;
 			set {
 				_model = value;
 				if (value != null)
-					CopyModelToUI();
+					using (EnterUpdateScope(FinishedUpdateBehaviour.DoNothing))
+						CopyModelToUI();
 				else
 					ClearUI();
 			}
@@ -49,6 +50,10 @@ namespace BlockchainSQL.Server.Controls {
 			_ipTextBox.Text = string.Empty;
 			_portIntBox.Value = null;
 			_pollRateIntBox.Value = null;
+		}
+
+		protected override void OnStateChanged() {
+			base.OnStateChanged();
 		}
 	}
 }

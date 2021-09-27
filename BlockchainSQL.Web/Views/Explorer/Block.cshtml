@@ -3,7 +3,7 @@
 
 @model BlockchainSQL.DataObjects.Block
 @{
-    ViewBag.Title = "Block #" + Model.Height;
+    ViewBag.Title = "Block #" + Model.Height + " - BlockchainSQL.io";
 }
 <section class="margin-bottom">
     <div class="container">
@@ -20,9 +20,7 @@
 
                     <dt>Previous Block</dt>
                     <dd>
-                        <a href="@Url.Action(nameof(ExplorerController.Block), new {Hash = @BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)})">
-                            @BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)
-                        </a>
+                        <a href="/explorer/block/@BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)">@BitcoinProtocolHelper.BytesToString(Model.PreviousBlockHash)</a>
                     </dd>
 
                     <dt>Height</dt>
@@ -82,7 +80,8 @@
                         hash = BitcoinProtocolHelper.BytesToString(Model.Hash)
                     }))
                     .Groupable(false)
-                    .Selectable(SelectionType.Single).Columns(
+                    .Selectable(SelectionType.Single)
+                    .Columns(
                         new Column {
                             Name = "Index",
                             Sortable = true,
@@ -170,7 +169,7 @@
                                 console.log(selectedItems);
                                 if (selectedItems.length > 0) {
                                     var selectedItem = selectedItems[0];
-                                    window.location = "/explorer/transaction?txid=" + selectedItem.txid;
+                                    window.location = "/explorer/transaction/" + selectedItem.txid;
                                 }
                             });
                     });

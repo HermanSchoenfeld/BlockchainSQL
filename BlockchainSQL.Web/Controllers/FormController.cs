@@ -10,18 +10,22 @@ using Sphere10.Framework.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using NHibernate.Cfg;
 using Sphere10.Framework.Web.AspNetCore;
+using Tools;
+using Environment = System.Environment;
 
 namespace BlockchainSQL.Web.Controllers {
 	public class FormController : BaseController {
-		private IConfiguration Configuration { get; }
-		
-		private IOptions<SiteOptions> SiteOptions { get; }
 
 		public FormController(IConfiguration configuration, IOptions<SiteOptions> siteOptions) {
 			Configuration = configuration;
 			SiteOptions = siteOptions;
 		}
+
+		private IConfiguration Configuration { get; }
+
+		private IOptions<SiteOptions> SiteOptions { get; }
 
 		[HttpPost]
 		[FormAction]
@@ -30,27 +34,30 @@ namespace BlockchainSQL.Web.Controllers {
 				if (!ModelState.IsValid) {
 					return PartialView(model);
 				}
+				
 				await Task.Run(() =>
 					Tools.Mail.SendEmail(
-						DatabaseManager.Options.SMTPServer,
-						model.Email ?? "no-reply@sphere10.com",
+						SiteOptions.Value.SMTPServer,
+						model.Email,
 						"BlockchainSQL Enquiry",
 						"Name: {1}{0}Email: {2}{0}Subject: {3}".FormatWith(Environment.NewLine, model.Name, model.Email, model.Message),
-						DatabaseManager.Options.ContactRecipientEmail,
-						requiresSSL: true,
-						username: DatabaseManager.Options.SMTPUsername,
-						password: DatabaseManager.Options.SMTPPassword,
-						port: DatabaseManager.Options.SMTPPort
+						SiteOptions.Value.ContactRecipientEmail,
+						requiresSSL: false,
+						username: SiteOptions.Value.SMTPUsername,
+						password: SiteOptions.Value.SMTPPassword,
+						port: SiteOptions.Value.SMTPPort
 					));
 			} catch (Exception) {
 				// Log error
-				return Json(new {
+				return Json(new FormResult {
 					Result = false,
+					ResultType = FormResultType.ShowMessage,
 					Message = "We are experiencing technical difficulties. Please try later or contact us by another method."
 				});
 			}
-			return Json(new {
+			return Json(new FormResult {
 				Result = true,
+				ResultType = FormResultType.ShowMessage,
 				Message = "Thank you for contacting us, {0}. We will get back to you as soon as we can!".FormatWith(model.Name)
 			});
 
@@ -62,12 +69,12 @@ namespace BlockchainSQL.Web.Controllers {
 		[FormAction]
 		public async Task<ActionResult> Login(LoginForm form) {
 
-			if (form.Username == Configuration["ConfigUsername"] && form.Password == Configuration["ConfigPassword"]) {
+			if (form.Username == SiteOptions.Value.AdminUsername && form.Password == SiteOptions.Value.AdminPassword) {
 				await SignInAsync();
 				return Json(new FormResult {
 					Result = true,
 					ResultType = FormResultType.Redirect,
-					Location = Url.Action("Index", "Home")
+					Location = Url.Action("Index", "Config")
 				});
 			} else {
 				return Json(new FormResult {

@@ -133,7 +133,6 @@ namespace BlockchainSQL.Web.Code {
 			}
 		}
 
-
 		public static string PrintCell(DataColumn col, DataRow row) {
 			var cellData = row.ItemArray[col.Ordinal];
 			var cellString = Tools.Html.Beautify(cellData);
@@ -142,10 +141,10 @@ namespace BlockchainSQL.Web.Code {
 			if (cellData != null) {
 				var cellDataByteArray = cellData as byte[];
 				var cellDataAsString = cellData as string;
-				if ((cellDataByteArray != null && BitcoinProtocolHelper.IsValidHashByteArray(cellDataByteArray) && !colName.Contains("merkle")) ||
+				if ((cellDataByteArray != null && BitcoinProtocolHelper.IsValidHashByteArray(cellDataByteArray) && !colName.Contains("merkle") && !colName.Contains("wtxid")) ||
 					(cellDataAsString != null && BitcoinProtocolHelper.IsValidAddress(cellDataAsString))) {
 					if (cellString != BitcoinProtocolHelper.EmptyHashString) {
-						cellString = string.Format("<small><a href='/Search?term={0}'>{0}</a></small>", cellString);
+						cellString = string.Format("<small><a href='/Search?term={0}' target='_blank'>{0}</a></small>", cellString);
 					} else {
 						cellString = string.Format("<small>{0}</small>", cellString);
 					}
@@ -172,7 +171,7 @@ namespace BlockchainSQL.Web.Code {
 
 		public static string AddressLineLink(AddressPageModel.LineItem line) {
 			return string.Format(
-				"<a href='/explorer/transaction?txid={0}'><b>TX:</b>{0} <b>{1}X:</b>{2}</a>",
+				"<a href='/explorer/transaction/{0}' target='_blank'><b>TX:</b>{0} <b>{1}X:</b>{2}</a>",
 				line.TXID,
 				line.ItemType == AddressPageModel.LineItemType.Credit ? "O" : "I",
 				line.Index

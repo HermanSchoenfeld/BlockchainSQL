@@ -105,13 +105,13 @@ WHERE
             return Hydrators.HydrateTransactionInput(results[0]);
         }
 
-        public virtual IEnumerable<TransactionInput> FindTransactionInputs(IEnumerable<ColumnValue> columnMatches = null, string whereClause = null) {
+        public virtual IEnumerable<TransactionInput> FindTransactionInputs(IEnumerable<ColumnValue> columnMatches = null, string whereClause = null, string orderByClause = null) {
             return (this.Select(
                 "TransactionInput",
                 TransactionInputColumns,
                 columnMatches: columnMatches,
                 whereClause: whereClause,
-                orderByClause: "[Index] ASC"
+                orderByClause: orderByClause ?? "[Index] ASC"
                 ))
                 .Rows
                 .Cast<DataRow>()

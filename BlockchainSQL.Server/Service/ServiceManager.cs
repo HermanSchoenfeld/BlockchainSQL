@@ -24,7 +24,7 @@ namespace BlockchainSQL.Server {
 		/// <param name="startAfterInstall">Whether to launch service after installation</param>
 		/// <returns>Task</returns>
 		/// <remarks>Settings are shared between web/service/gui and should be set before installation of service.</remarks>
-		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall, BlockchainDatabaseSettings dbSettings, NodeSettings nodeSettings, ScannerSettings scannerSettings, WebSettings webSettings) {
+		public static async Task LaunchInstallServiceProcess(string destPath, bool startAfterInstall, ServiceDatabaseSettings dbSettings, ServiceNodeSettings nodeSettings, ServiceScannerSettings scannerSettings, WebSettings webSettings) {
 			var args = new StringBuilder();
 			args.Append($"install --path \"{destPath}\" --dbms {dbSettings.DBMSType} --db {Tools.Runtime.EncodeCommandLineArgumentWin(dbSettings.ConnectionString)} --ip {nodeSettings.IP} --port {nodeSettings.Port} --poll {nodeSettings.PollRateSEC} --maxmem {scannerSettings.MaxMemoryBufferSizeMB}");
 			if (scannerSettings.StoreScriptData)
@@ -32,7 +32,7 @@ namespace BlockchainSQL.Server {
 			if (startAfterInstall)
 				args.Append(" --start");
 			if (webSettings.Enabled) {
-				args.Append($" --web --web_port {webSettings.Port} --web_dbms {webSettings.DBMSType} --web_db {Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.DatabaseConnectionString)}");
+				args.Append($" --web --web_port {webSettings.Port} --web_dbms {webSettings.WebDBMSType} --web_db {Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.WebDatabaseConnectionString)} --web_bsql_dbms {webSettings.BlockchainDBMSType} --web_bsql_db {Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.BlockchainDatabaseConnectionString)}");
 			}
 
 
@@ -185,9 +185,9 @@ namespace BlockchainSQL.Server {
 				throw new SoftwareException(!string.IsNullOrWhiteSpace(output) ? output : "Error during service uninstall.");
 			}
 
-			GlobalSettings.Get<BlockchainDatabaseSettings>().Delete();
-			GlobalSettings.Get<NodeSettings>().Delete();
-			GlobalSettings.Get<ScannerSettings>().Delete();
+			GlobalSettings.Get<ServiceDatabaseSettings>().Delete();
+			GlobalSettings.Get<ServiceNodeSettings>().Delete();
+			GlobalSettings.Get<ServiceScannerSettings>().Delete();
 			GlobalSettings.Get<WebSettings>().Delete();
 
 			await Tools.FileSystem.DeleteDirectoryAsync(destPath, true);

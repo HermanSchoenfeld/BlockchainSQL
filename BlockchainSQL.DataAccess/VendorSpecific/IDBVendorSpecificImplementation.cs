@@ -11,7 +11,19 @@ namespace BlockchainSQL.DataAccess {
 
 	public interface IDBVendorSpecificImplementation {
 
-        bool HasDisabledApplicationIndexes(IDAC dac);
+		string GenerateConnectOutpointsQuery();
+
+		string GenerateConnectOutpointsQuery(long fromTransactionInputID, long toTransactionInputID);
+
+		string GenerateTotalizeTransactionsQuery();
+
+		string GenerateTotalizeTransactionsQuery(long fromTransactionInputID, long toTransactionInputID);
+
+		string GenerateTotalizeBlocksQuery();
+
+		string GenerateTotalizeBlocksQuery(long fromBlockID, long toBlockID);
+
+		bool HasDisabledApplicationIndexes(IDAC dac);
 
         void EnableAllApplicationIndexes(IDAC dac);
 
@@ -19,7 +31,7 @@ namespace BlockchainSQL.DataAccess {
 
         void CleanupDatabase(IDAC dac);
 
-        DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount);
+		DataTable ExecuteUserSQL(IDAC dac, string userSql, int page, int pageSize, string orderByHint, out int pageCount);
 
         IEnumerable<StatementLine> GetStatementLines(IDAC dac, string address);
 

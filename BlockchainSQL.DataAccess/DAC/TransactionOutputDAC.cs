@@ -101,8 +101,8 @@ WHERE
                 TransactionOutputColumns,
                 columnMatches: columnMatches,
                 whereClause: whereClause,
-                orderByClause: orderByClause
-                ))
+                orderByClause: orderByClause ?? "[Index] ASC"
+				))
                 .Rows
                 .Cast<DataRow>()
                 .Select(Hydrators.HydrateTransactionOutput);

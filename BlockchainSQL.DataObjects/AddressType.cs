@@ -5,7 +5,7 @@ namespace BlockchainSQL.DataObjects
 {
     public enum AddressType : byte {
 
-        [Description("Public key address")]
+        [Description("Payment to a public key")]
         PublicKey = 1,
 
         [Description("Standard Bitcoin address (l)")] 

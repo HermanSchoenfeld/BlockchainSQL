@@ -34,10 +34,10 @@ namespace BlockchainSQL.Processing {
 
 
 			progressCallback = progressCallback ?? (x => Tools.Lambda.NoOp());
-			var saveScriptData = Settings.Get<ScannerSettings>().StoreScriptData;
+			var saveScriptData = Settings.Get<ServiceScannerSettings>().StoreScriptData;
 
 			// Determine how to allocate memory to the buffers
-			var userPreferredMaxMemory = Settings.Get<ScannerSettings>().MaxMemoryBufferSizeMB.ClipTo(minBufferSizeMB, maxBufferSizeMB);
+			var userPreferredMaxMemory = Settings.Get<ServiceScannerSettings>().MaxMemoryBufferSizeMB.ClipTo(minBufferSizeMB, maxBufferSizeMB);
 			var bufferSize = Tools.Memory.ConvertMemoryMetric(
 				userPreferredMaxMemory,
 				MemoryMetric.Megabyte,
@@ -73,7 +73,7 @@ namespace BlockchainSQL.Processing {
 							persistStartTime = DateTime.Now;
 							using (var scope = DAC.BeginScope()) {
 								scope.BeginTransaction();
-								var persistResult = await Task.Run(() => Persistor.Persist(processed, Settings.Get<ScannerSettings>().StoreScriptData, true, cancellationToken));
+								var persistResult = await Task.Run(() => Persistor.Persist(processed, Settings.Get<ServiceScannerSettings>().StoreScriptData, true, cancellationToken));
 								peristEndTime = DateTime.Now;
 								if (!deferPostProcessing) {
 									await Task.Run(() => PostProcessor.PostProcessPartial(persistResult), cancellationToken);

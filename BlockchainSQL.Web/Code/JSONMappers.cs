@@ -1,5 +1,6 @@
 ﻿using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
+using Microsoft.SqlServer.Management.SqlParser.Metadata;
 using Sphere10.Framework;
 
 namespace BlockchainSQL.Web.Code {
@@ -60,7 +61,7 @@ namespace BlockchainSQL.Web.Code {
 				FromAddressType = fromAddressType,
 				FromAddress = transactionInput.TransactionOutput?.ToAddress,
 				FromAddressDisplay = !coinbaseOutpoint ? transactionInput.TransactionOutput?.ToAddress ?? "Missing from Database" : "coinbase",
-				FromAddressTypeDisplay = ToFriendlyAddressType(fromAddressType),
+				FromAddressTypeDisplay = !coinbaseOutpoint ? fromAddressType?.ToString() ?? "Indeterminable Sender" : "Minted",
 				Outpoint = MapOutpoint(transactionInput.Outpoint),
 				OutpointDisplay = outpointText,
 				Value = SatoshiToBTC(transactionInput.Value),
@@ -75,9 +76,9 @@ namespace BlockchainSQL.Web.Code {
 				TransactionID = transactionOutput.Transaction.ID,
 				Index = transactionOutput.Index.ToString(),
 				ToAddressType = transactionOutput.ToAddressType.ToString(),
-				ToAddressTypeDisplay = ToFriendlyAddressType(transactionOutput.ToAddressType),
+				ToAddressTypeDisplay = transactionOutput.ToAddressType.ToString(),
 				ToAddress = transactionOutput.ToAddress,
-				ToAddressDisplay = transactionOutput.ToAddress,
+				ToAddressDisplay = transactionOutput.ToAddress ?? "N/A",
 				Value = $"{SatoshiToBTC(transactionOutput.Value):0.#############################}",
 				ScriptId = transactionOutput.ScriptId
 			};
@@ -94,13 +95,6 @@ namespace BlockchainSQL.Web.Code {
 			return new {
 				ID = branch.ID.ToString()
 			};
-		}
-
-
-		public static string ToFriendlyAddressType(AddressType? addressType) {
-			if (addressType == null)
-				return string.Empty;
-			return addressType.Value.ToString();
 		}
 
 		public static decimal? SatoshiToBTC(long? satoshi) {

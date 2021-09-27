@@ -4,31 +4,25 @@ using Sphere10.Framework;
 using Sphere10.Framework.Data;
 using Sphere10.Framework.Windows.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DACBase = Sphere10.Framework.Data.DACBase;
 
 namespace BlockchainSQL.Server {
-	public partial class BSQLDatabaseSettingsControl : UserControlEx {
-		private BlockchainDatabaseSettings _model;
+	public partial class ServiceDatabaseSettingsControl : UserControlEx {
+		private ServiceDatabaseSettings _model;
 
-		public BSQLDatabaseSettingsControl() {
+		public ServiceDatabaseSettingsControl() {
 			InitializeComponent();
 			_databaseConnectionPanel.IgnoreDBMS = new[] { DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile };
 		}
 
-		public BlockchainDatabaseSettings Model {
+		public ServiceDatabaseSettings Model {
 			get => _model;
 			set {
 				_model = value;
 				if (_model != null)
-					CopyModelToUI();
+					using (EnterUpdateScope(FinishedUpdateBehaviour.DoNothing))
+						CopyModelToUI();
 				else
 					ClearUI();
 			}
