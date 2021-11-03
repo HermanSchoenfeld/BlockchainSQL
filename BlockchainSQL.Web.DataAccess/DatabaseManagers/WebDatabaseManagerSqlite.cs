@@ -1,5 +1,4 @@
-﻿using BlockchainSQL.DataAccess.NHibernate;
-using FluentNHibernate.Cfg;
+﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
@@ -13,6 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Sphere10.Framework.Data.NHibernate;
 using Tools;
 
 namespace BlockchainSQL.Web.DataAccess {

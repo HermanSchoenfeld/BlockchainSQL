@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using BlockchainSQL.Web.DataAccess;
 using System.Data.SqlClient;
 using Sphere10.Framework.Data.NHibernate;
-using BlockchainSQL.DataAccess.NHibernate;
+
 
 namespace BlockchainSQL.Web.DataAccess {
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BlockchainSQL.DataAccess.NHibernate;
 using NHibernate;
 using Sphere10.Framework.Data;
+using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
     public static class WebDatabase {

@@ -19,6 +19,7 @@ using System.Transactions;
 using BlockchainSQL.DataAccess.NHibernate.Mappings;
 using BlockchainSQL.DataObjects;
 using Sphere10.Framework.Data.NHibernate;
+using Sphere10.Framework.Data.NHibernatee;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
     public class PrimingDataGenerator : NHibernateDataGeneratorBase {
