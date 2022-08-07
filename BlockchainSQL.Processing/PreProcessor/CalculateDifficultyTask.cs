@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework.Data;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class CalculateDifficultyTask : BizComponent, IPreProcessingTask {

@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
+using Hydrogen;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class OptimizedBlockOrganizer : BizComponent, IBlockOrganizer {
@@ -284,17 +284,18 @@ namespace BlockchainSQL.Processing {
             // Cache - Migrate unpersisted blocks from branch and from block height to new branch
             using (_blockCache.EnterWriteScope()) {
                 _blockCache
-                    .GetCachedItems()
-                    .Values
-                    .Where(c => !c.Invalidated)
+	                .CachedItems
+                    //.Where(c => !c.Invalidated)
+					.Where(c => !c.CanPurge)
                     .Where(i => i.Value.Branch.ID == fromBranchID && i.Value.Height >= fromBlockHeight)
                     .ForEach(block => block.Value.Branch = toBranch);
             }
             using (_bulkLoadedBlockDbCache.EnterWriteScope()) {
                 _bulkLoadedBlockDbCache
-                    .GetCachedItems()
-                    .Values
-                    .Where(c => !c.Invalidated && c.Value != null)
+                    //.GetCachedItems()
+					.CachedItems
+                    //.Where(c => !c.Invalidated && c.Value != null)
+                    .Where(c => !c.CanPurge && c.Value != null)
                     .Where(i => i.Value.Branch.ID == fromBranchID && i.Value.Height >= fromBlockHeight)
                     .ForEach(block => block.Value.Branch = toBranch);
 

@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
-using Sphere10.Framework.Windows.LevelDB;
+using Hydrogen;
+using Hydrogen.Data;
+using Hydrogen.Windows.LevelDB;
 
 namespace BlockchainSQL.Processing {
 	public static class ProcessingTierHelper {

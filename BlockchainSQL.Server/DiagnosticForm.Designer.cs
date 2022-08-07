@@ -28,7 +28,7 @@ namespace BlockchainSQL.Server {
 			this._optionsGroupBox = new System.Windows.Forms.GroupBox();
 			this._serviceStatusGroupBox = new System.Windows.Forms.GroupBox();
 			this._serviceStatusControl = new BlockchainSQL.Server.ServiceStatusControl();
-			this._dbConnectionBar = new Sphere10.Framework.Windows.Forms.DatabaseConnectionBar();
+			this._dbConnectionBar = new Hydrogen.Windows.Forms.DatabaseConnectionBar();
 			this._connectButton = new System.Windows.Forms.Button();
 			this._databaseGroupBox = new System.Windows.Forms.GroupBox();
 			this._toolsGroupBox = new System.Windows.Forms.GroupBox();
@@ -38,7 +38,7 @@ namespace BlockchainSQL.Server {
 			this._enableIndexesButton = new System.Windows.Forms.Button();
 			this._shrinkDatabaseButton = new System.Windows.Forms.Button();
 			this._postProcessButton = new System.Windows.Forms.Button();
-			this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
+			this._loadingCircle = new Hydrogen.Windows.Forms.LoadingCircle();
 			this._serviceStatusGroupBox.SuspendLayout();
 			this._databaseGroupBox.SuspendLayout();
 			this._toolsGroupBox.SuspendLayout();
@@ -227,7 +227,7 @@ namespace BlockchainSQL.Server {
 			this._loadingCircle.RotationSpeed = 100;
 			this._loadingCircle.Size = new System.Drawing.Size(31, 25);
 			this._loadingCircle.SpokeThickness = 2;
-			this._loadingCircle.StylePreset = Sphere10.Framework.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
+			this._loadingCircle.StylePreset = Hydrogen.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
 			this._loadingCircle.TabIndex = 13;
 			this._loadingCircle.Text = "_loadingCircle";
 			this._loadingCircle.Visible = false;
@@ -259,7 +259,7 @@ namespace BlockchainSQL.Server {
         #endregion
         private System.Windows.Forms.GroupBox _optionsGroupBox;
         private System.Windows.Forms.GroupBox _serviceStatusGroupBox;
-        private Sphere10.Framework.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
+        private Hydrogen.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
         private System.Windows.Forms.Button _connectButton;
         private System.Windows.Forms.GroupBox _databaseGroupBox;
         private ServiceStatusControl _serviceStatusControl;
@@ -269,7 +269,7 @@ namespace BlockchainSQL.Server {
         private System.Windows.Forms.Button _enableIndexesButton;
         private System.Windows.Forms.Button _shrinkDatabaseButton;
         private System.Windows.Forms.Button _postProcessButton;
-        private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
+        private Hydrogen.Windows.Forms.LoadingCircle _loadingCircle;
         private System.Windows.Forms.Button _saveSettingsButton;
     }
 }

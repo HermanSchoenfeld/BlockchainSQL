@@ -1,7 +1,7 @@
 ﻿using BlockchainSQL.Web.DataObjects;
 using FluentNHibernate.Mapping;
 using FluentNHibernate.MappingModel.Output;
-using Sphere10.Framework.Data;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Web.DataAccess { 
     public class SavedQueryMap : ClassMap<SavedQuery> {

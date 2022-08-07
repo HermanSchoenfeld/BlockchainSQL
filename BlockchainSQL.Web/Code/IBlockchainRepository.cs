@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Web.Models;
-using Sphere10.Framework;
+using Hydrogen;
 
 namespace BlockchainSQL.Web.Code {
 	public interface IBlockchainRepository {

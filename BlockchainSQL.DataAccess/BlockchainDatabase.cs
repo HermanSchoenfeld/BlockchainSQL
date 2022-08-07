@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
+using Hydrogen;
+using Hydrogen.Data;
 using Tools;
 
 namespace BlockchainSQL.DataAccess {

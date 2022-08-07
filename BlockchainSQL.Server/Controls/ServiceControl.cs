@@ -2,9 +2,8 @@
 using System.Drawing;
 using System.ServiceProcess;
 using System.Windows.Forms;
-using Sphere10.Framework;
-using Sphere10.Framework.Scheduler;
-using Sphere10.Framework.Windows.Forms;
+using Hydrogen;
+using Hydrogen.Windows.Forms;
 
 namespace BlockchainSQL.Server
 {

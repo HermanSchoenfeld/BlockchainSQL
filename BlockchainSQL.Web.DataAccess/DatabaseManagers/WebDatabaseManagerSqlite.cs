@@ -2,9 +2,9 @@
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
-using Sphere10.Framework.Data.Sqlite;
+using Hydrogen;
+using Hydrogen.Data;
+using Hydrogen.Data.Sqlite;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -12,8 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Sphere10.Framework.Data.NHibernate;
-using Tools;
+using Hydrogen.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
 	public class WebDatabaseManagerSqlite : NHibernateDatabaseManagerBase {

@@ -1,4 +1,4 @@
-﻿using Sphere10.Framework;
+﻿using Hydrogen;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BlockchainSQL.DataAccess;
-using Sphere10.Framework.Windows.Forms;
+using Hydrogen.Windows.Forms;
 using BlockchainSQL.Processing;
 
 namespace BlockchainSQL.Server {

@@ -11,6 +11,10 @@
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
 		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.MSSQL\Hydrogen.Data.MSSQL.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.NHibernate\Hydrogen.Data.NHibernate.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.Sqlite\Hydrogen.Data.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.Web.DataObjects\BlockchainSQL.Web.DataObjects.csproj" />
 	</ItemGroup>
 	<ItemGroup>

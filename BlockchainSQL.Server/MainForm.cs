@@ -1,10 +1,10 @@
-﻿using Sphere10.Framework.Windows.Forms;
+﻿using Hydrogen.Windows.Forms;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Sphere10.Framework.Application;
+using Hydrogen.Application;
 using BlockchainSQL.Processing;
 
 namespace BlockchainSQL.Server {

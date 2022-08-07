@@ -16,7 +16,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Omu.AwesomeMvc;
-using Sphere10.Framework;
+using Hydrogen;
 
 namespace BlockchainSQL.Web {
 	public class Startup {

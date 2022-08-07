@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<TargetFramework>net6.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
 		<RestorePackages>true</RestorePackages>
@@ -45,27 +45,16 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.NHibernate\Sphere10.Framework.Data.NHibernate.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj">
-		  <TreatAsUsed>true</TreatAsUsed>
-		</ProjectReference>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj">
-		  <TreatAsUsed>true</TreatAsUsed>
-		</ProjectReference>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj">
-		  <TreatAsUsed>true</TreatAsUsed>
-		</ProjectReference>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.MSSQL\Hydrogen.Windows.Forms.MSSQL.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.Sqlite\Hydrogen.Windows.Forms.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms\Hydrogen.Windows.Forms.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.ServiceProcess.ServiceController" Version="5.0.0" />
+		<PackageReference Include="System.ServiceProcess.ServiceController" Version="6.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Update="Controls\UserControl1 - Copy %282%29.resx">

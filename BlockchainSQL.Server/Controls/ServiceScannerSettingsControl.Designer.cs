@@ -24,9 +24,9 @@ namespace BlockchainSQL.Server.Controls {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-            this._maxMemoryIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
+            this._maxMemoryIntBox = new Hydrogen.Windows.Forms.IntBox();
             this.label4 = new System.Windows.Forms.Label();
-            this._optionsListBox = new Sphere10.Framework.Windows.Forms.CheckedListBoxEx();
+            this._optionsListBox = new Hydrogen.Windows.Forms.CheckedListBoxEx();
             this.SuspendLayout();
             // 
             // _maxMemoryIntBox
@@ -83,8 +83,8 @@ namespace BlockchainSQL.Server.Controls {
 		}
 
 		#endregion
-		private Sphere10.Framework.Windows.Forms.IntBox _maxMemoryIntBox;
+		private Hydrogen.Windows.Forms.IntBox _maxMemoryIntBox;
 		private System.Windows.Forms.Label label4;
-		private Sphere10.Framework.Windows.Forms.CheckedListBoxEx _optionsListBox;
+		private Hydrogen.Windows.Forms.CheckedListBoxEx _optionsListBox;
 	}
 }

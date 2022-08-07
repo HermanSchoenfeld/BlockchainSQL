@@ -12,8 +12,8 @@ using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
 using NUnit.Framework;
-using Sphere10.Framework.Data;
-using Sphere10.Framework;
+using Hydrogen.Data;
+using Hydrogen;
 
 namespace BlockchainSQL.NUnit
 {

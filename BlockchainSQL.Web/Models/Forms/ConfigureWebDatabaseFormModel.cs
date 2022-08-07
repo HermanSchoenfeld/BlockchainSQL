@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using BlockchainSQL.Processing;
-using Sphere10.Framework.Application;
+using Hydrogen.Application;
 
 namespace BlockchainSQL.Web.Models {
 

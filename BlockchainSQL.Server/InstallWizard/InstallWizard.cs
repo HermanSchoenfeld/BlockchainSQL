@@ -1,6 +1,6 @@
-﻿using Sphere10.Framework;
-using Sphere10.Framework.Data;
-using Sphere10.Framework.Windows.Forms;
+﻿using Hydrogen;
+using Hydrogen.Data;
+using Hydrogen.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlockchainSQL.Processing;
 using NHibernate.Proxy;
-using Sphere10.Framework.Application;
+using Hydrogen.Application;
 
 namespace BlockchainSQL.Server {
 	public class InstallWizard : WizardBase<InstallWizardModel> {

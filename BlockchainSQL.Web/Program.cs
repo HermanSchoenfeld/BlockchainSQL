@@ -5,8 +5,8 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Sphere10.Framework;
-using Sphere10.Framework.Application;
+using Hydrogen;
+using Hydrogen.Application;
 using System;
 using System.IO;
 

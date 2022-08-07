@@ -1,6 +1,5 @@
 ﻿using BlockchainSQL.DataObjects;
 using FluentNHibernate.Mapping;
-using Tools;
 
 namespace BlockchainSQL.DataAccess.NHibernate.Mappings {
 

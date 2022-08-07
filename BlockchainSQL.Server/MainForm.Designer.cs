@@ -1,4 +1,4 @@
-﻿using Sphere10.Framework.Windows.Forms;
+﻿using Hydrogen.Windows.Forms;
 
 namespace BlockchainSQL.Server {
     partial class MainForm {
@@ -34,7 +34,7 @@ namespace BlockchainSQL.Server {
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
-			this._appBanner = new Sphere10.Framework.Windows.Forms.ApplicationBanner();
+			this._appBanner = new Hydrogen.Windows.Forms.ApplicationBanner();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.button3 = new System.Windows.Forms.Button();
 			this.label9 = new System.Windows.Forms.Label();

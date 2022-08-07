@@ -1,5 +1,5 @@
 ﻿using System;
-using Sphere10.Framework;
+using Hydrogen;
 namespace BlockchainSQL.Processing {
 	public class FastDifficultyCalculator : IDifficultyCalculator {
         static readonly float MaxBody = (float)Math.Log(0x00ffff);

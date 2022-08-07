@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using BlockchainSQL.Processing.BusinessObjects;
-using Sphere10.Framework;
+using Hydrogen;
 
 namespace BlockchainSQL.Processing {
 	public abstract class FilesBlockStreamBase : BlockStreamBase {

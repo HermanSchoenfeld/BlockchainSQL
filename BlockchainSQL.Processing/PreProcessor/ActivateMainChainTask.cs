@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
+using Hydrogen;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class ActivateMainChainTask : BizComponent, IPreProcessingTask {

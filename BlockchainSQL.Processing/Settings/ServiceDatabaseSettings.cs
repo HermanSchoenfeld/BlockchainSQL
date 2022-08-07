@@ -1,6 +1,6 @@
-﻿using Sphere10.Framework;
-using Sphere10.Framework.Application;
-using Sphere10.Framework.Data;
+﻿using Hydrogen;
+using Hydrogen.Application;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class ServiceDatabaseSettings : SettingsObject {

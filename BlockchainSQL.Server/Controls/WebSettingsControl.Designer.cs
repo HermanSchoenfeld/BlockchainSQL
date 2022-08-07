@@ -26,16 +26,16 @@ namespace BlockchainSQL.Server.Controls {
 		private void InitializeComponent() {
 			this._portLabel = new System.Windows.Forms.Label();
 			this._enableWebUICheckBox = new System.Windows.Forms.CheckBox();
-			this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
-			this._portIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
+			this._loadingCircle = new Hydrogen.Windows.Forms.LoadingCircle();
+			this._portIntBox = new Hydrogen.Windows.Forms.IntBox();
 			this._splitContainer = new System.Windows.Forms.SplitContainer();
 			this._webDBGroupBox = new System.Windows.Forms.GroupBox();
 			this._generateWebDatabaseButton = new System.Windows.Forms.Button();
 			this._testWebDatabaseButton = new System.Windows.Forms.Button();
-			this._webDatabaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
+			this._webDatabaseConnectionPanel = new Hydrogen.Windows.Forms.DatabaseConnectionPanel();
 			this._bsqlDBGroupBox = new System.Windows.Forms.GroupBox();
 			this._testBlockchainDatabaseButton = new System.Windows.Forms.Button();
-			this._blockchainDatabaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
+			this._blockchainDatabaseConnectionPanel = new Hydrogen.Windows.Forms.DatabaseConnectionPanel();
 			((System.ComponentModel.ISupportInitialize)(this._splitContainer)).BeginInit();
 			this._splitContainer.Panel1.SuspendLayout();
 			this._splitContainer.Panel2.SuspendLayout();
@@ -81,7 +81,7 @@ namespace BlockchainSQL.Server.Controls {
 			this._loadingCircle.RotationSpeed = 100;
 			this._loadingCircle.Size = new System.Drawing.Size(27, 27);
 			this._loadingCircle.SpokeThickness = 2;
-			this._loadingCircle.StylePreset = Sphere10.Framework.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
+			this._loadingCircle.StylePreset = Hydrogen.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
 			this._loadingCircle.TabIndex = 21;
 			this._loadingCircle.Text = "_loadingCircle";
 			this._loadingCircle.Visible = false;
@@ -223,13 +223,13 @@ namespace BlockchainSQL.Server.Controls {
 		#endregion
 		private System.Windows.Forms.Label _portLabel;
 		private System.Windows.Forms.CheckBox _enableWebUICheckBox;
-		private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
-		private Sphere10.Framework.Windows.Forms.IntBox _portIntBox;
+		private Hydrogen.Windows.Forms.LoadingCircle _loadingCircle;
+		private Hydrogen.Windows.Forms.IntBox _portIntBox;
 		private System.Windows.Forms.SplitContainer _splitContainer;
 		private System.Windows.Forms.GroupBox _webDBGroupBox;
-		private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _webDatabaseConnectionPanel;
+		private Hydrogen.Windows.Forms.DatabaseConnectionPanel _webDatabaseConnectionPanel;
 		private System.Windows.Forms.GroupBox _bsqlDBGroupBox;
-		private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _blockchainDatabaseConnectionPanel;
+		private Hydrogen.Windows.Forms.DatabaseConnectionPanel _blockchainDatabaseConnectionPanel;
 		private System.Windows.Forms.Button _generateWebDatabaseButton;
 		private System.Windows.Forms.Button _testWebDatabaseButton;
 		private System.Windows.Forms.Button _testBlockchainDatabaseButton;

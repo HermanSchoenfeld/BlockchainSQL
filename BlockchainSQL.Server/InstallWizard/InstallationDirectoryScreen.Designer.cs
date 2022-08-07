@@ -27,7 +27,7 @@ namespace BlockchainSQL.Server {
 			this._groupBox = new System.Windows.Forms.GroupBox();
 			this._installDirLabel = new System.Windows.Forms.Label();
 			this._createServiceFolderCheckBox = new System.Windows.Forms.CheckBox();
-			this._pathSelector = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
+			this._pathSelector = new Hydrogen.Windows.Forms.PathSelectorControl();
 			this.label7 = new System.Windows.Forms.Label();
 			this._startServiceCheckBox = new System.Windows.Forms.CheckBox();
 			this._groupBox.SuspendLayout();
@@ -79,7 +79,7 @@ namespace BlockchainSQL.Server {
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._pathSelector.Location = new System.Drawing.Point(73, 36);
 			this._pathSelector.Margin = new System.Windows.Forms.Padding(10, 12, 10, 12);
-			this._pathSelector.Mode = Sphere10.Framework.Windows.Forms.PathSelectionMode.Folder;
+			this._pathSelector.Mode = Hydrogen.Windows.Forms.PathSelectionMode.Folder;
 			this._pathSelector.Name = "_pathSelector";
 			this._pathSelector.Path = "";
 			this._pathSelector.PlaceHolderText = "Select a directory (e.g. C:\\Program Files)";
@@ -126,7 +126,7 @@ namespace BlockchainSQL.Server {
 		#endregion
 
 		private System.Windows.Forms.GroupBox _groupBox;
-		private Sphere10.Framework.Windows.Forms.PathSelectorControl _pathSelector;
+		private Hydrogen.Windows.Forms.PathSelectorControl _pathSelector;
 		private System.Windows.Forms.Label label7;
 		private System.Windows.Forms.Label _installDirLabel;
 		private System.Windows.Forms.CheckBox _createServiceFolderCheckBox;

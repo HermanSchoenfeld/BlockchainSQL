@@ -25,11 +25,11 @@ namespace BlockchainSQL.Server.Controls {
 		/// </summary>
 		private void InitializeComponent() {
             this.label5 = new System.Windows.Forms.Label();
-            this._pollRateIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
+            this._pollRateIntBox = new Hydrogen.Windows.Forms.IntBox();
             this.label2 = new System.Windows.Forms.Label();
-            this._portIntBox = new Sphere10.Framework.Windows.Forms.IntBox();
+            this._portIntBox = new Hydrogen.Windows.Forms.IntBox();
             this.label16 = new System.Windows.Forms.Label();
-            this._ipTextBox = new Sphere10.Framework.Windows.Forms.TextBoxEx();
+            this._ipTextBox = new Hydrogen.Windows.Forms.TextBoxEx();
             this.SuspendLayout();
             // 
             // label5
@@ -115,10 +115,10 @@ namespace BlockchainSQL.Server.Controls {
 
 		#endregion
 		private System.Windows.Forms.Label label5;
-		private Sphere10.Framework.Windows.Forms.IntBox _pollRateIntBox;
+		private Hydrogen.Windows.Forms.IntBox _pollRateIntBox;
 		private System.Windows.Forms.Label label2;
-		private Sphere10.Framework.Windows.Forms.IntBox _portIntBox;
+		private Hydrogen.Windows.Forms.IntBox _portIntBox;
 		private System.Windows.Forms.Label label16;
-		private Sphere10.Framework.Windows.Forms.TextBoxEx _ipTextBox;
+		private Hydrogen.Windows.Forms.TextBoxEx _ipTextBox;
 	}
 }

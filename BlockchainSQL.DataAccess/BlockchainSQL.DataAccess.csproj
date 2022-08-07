@@ -5,8 +5,10 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.MSSQL\Hydrogen.Data.MSSQL.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.Sqlite\Hydrogen.Data.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen\Hydrogen.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.Web.DataAccess\BlockchainSQL.Web.DataAccess.csproj" />
 	</ItemGroup>

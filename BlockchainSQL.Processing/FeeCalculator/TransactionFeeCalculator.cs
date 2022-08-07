@@ -6,8 +6,8 @@ using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
+using Hydrogen;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class TransactionFeeCalculator : BizComponent, ITransactionFeeCalculator {

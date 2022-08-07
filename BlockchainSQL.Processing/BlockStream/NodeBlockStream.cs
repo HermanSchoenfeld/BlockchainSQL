@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading;
-using Sphere10.Framework;
+using Hydrogen;
 
 namespace BlockchainSQL.Processing {
 	public class NodeBlockStream : BlockStreamBase {

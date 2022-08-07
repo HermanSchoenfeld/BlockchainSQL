@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29209.152
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32728.150
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.DataAccess", "BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj", "{D7D8065C-BC79-4C87-980A-9F0E1E40A488}"
 EndProject
@@ -31,39 +31,37 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Web.DataAcces
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockchainSQL.Server", "BlockchainSQL.Server\BlockchainSQL.Server.csproj", "{0D5F416A-DD59-49AE-BA6B-B04C09241B06}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework", "..\Framework-v3\src\Sphere10.Framework\Sphere10.Framework.csproj", "{C7FF345B-C182-40EA-B5C8-0990BC475B68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Application", "..\Hydrogen\src\Hydrogen.Application\Hydrogen.Application.csproj", "{9D084836-BC7D-4593-9F7B-7385D765FFC0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Application", "..\Framework-v3\src\Sphere10.Framework.Application\Sphere10.Framework.Application.csproj", "{9D084836-BC7D-4593-9F7B-7385D765FFC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Data", "..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj", "{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data", "..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj", "{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Data.Firebird", "..\Hydrogen\src\Hydrogen.Data.Firebird\Hydrogen.Data.Firebird.csproj", "{1C677A80-4066-42E2-A899-8137CAF1E113}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Firebird", "..\Framework-v3\src\Sphere10.Framework.Data.Firebird\Sphere10.Framework.Data.Firebird.csproj", "{1C677A80-4066-42E2-A899-8137CAF1E113}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Data.MSSQL", "..\Hydrogen\src\Hydrogen.Data.MSSQL\Hydrogen.Data.MSSQL.csproj", "{3955D8D5-8522-45CD-A157-5440EAD27DF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.MSSQL", "..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj", "{3955D8D5-8522-45CD-A157-5440EAD27DF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Data.Sqlite", "..\Hydrogen\src\Hydrogen.Data.Sqlite\Hydrogen.Data.Sqlite.csproj", "{2F5340EE-E6EB-4605-AC36-8853180DF97A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Data.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj", "{2F5340EE-E6EB-4605-AC36-8853180DF97A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Drawing", "..\Hydrogen\src\Hydrogen.Drawing\Hydrogen.Drawing.csproj", "{3D35AB46-AB43-4464-839C-8304F980ABC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Drawing", "..\Framework-v3\src\Sphere10.Framework.Drawing\Sphere10.Framework.Drawing.csproj", "{3D35AB46-AB43-4464-839C-8304F980ABC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.NUnit", "..\Hydrogen\src\Hydrogen.NUnit\Hydrogen.NUnit.csproj", "{72787D46-92CB-4391-AAB2-F815201A7CDA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.NUnit", "..\Framework-v3\src\Sphere10.Framework.NUnit\Sphere10.Framework.NUnit.csproj", "{72787D46-92CB-4391-AAB2-F815201A7CDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Windows", "..\Hydrogen\src\Hydrogen.Windows\Hydrogen.Windows.csproj", "{A09540B1-88C0-47E6-98D8-731C490DB869}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Services", "..\Framework-v3\src\Sphere10.Framework.Services\Sphere10.Framework.Services.csproj", "{141DBCCA-E7C9-41D2-890D-4F34E97E765D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Windows.Forms", "..\Hydrogen\src\Hydrogen.Windows.Forms\Hydrogen.Windows.Forms.csproj", "{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows", "..\Framework-v3\src\Sphere10.Framework.Windows\Sphere10.Framework.Windows.csproj", "{A09540B1-88C0-47E6-98D8-731C490DB869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Windows.Forms.MSSQL", "..\Hydrogen\src\Hydrogen.Windows.Forms.MSSQL\Hydrogen.Windows.Forms.MSSQL.csproj", "{97D707E8-38FF-4435-B7A6-7F777D255E3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms\Sphere10.Framework.Windows.Forms.csproj", "{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Windows.Forms.Firebird", "..\Hydrogen\src\Hydrogen.Windows.Forms.Firebird\Hydrogen.Windows.Forms.Firebird.csproj", "{0AAE6912-CDE3-4D49-9AE5-63193105537C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.MSSQL", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.MSSQL\Sphere10.Framework.Windows.Forms.MSSQL.csproj", "{97D707E8-38FF-4435-B7A6-7F777D255E3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Windows.Forms.Sqlite", "..\Hydrogen\src\Hydrogen.Windows.Forms.Sqlite\Hydrogen.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.Firebird", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Firebird\Sphere10.Framework.Windows.Forms.Firebird.csproj", "{0AAE6912-CDE3-4D49-9AE5-63193105537C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Windows.LevelDB", "..\Hydrogen\src\Hydrogen.Windows.LevelDB\Hydrogen.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.Forms.Sqlite", "..\Framework-v3\src\Sphere10.Framework.Windows.Forms.Sqlite\Sphere10.Framework.Windows.Forms.Sqlite.csproj", "{BD8F6B59-E0DB-4DEE-A144-944BBC44FD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Web.AspNetCore", "..\Framework\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj", "{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Windows.LevelDB", "..\Framework-v3\src\Sphere10.Framework.Windows.LevelDB\Sphere10.Framework.Windows.LevelDB.csproj", "{C1549308-26F7-49C3-B1AA-8AD986C90DB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Data.NHibernate", "..\Hydrogen\src\Hydrogen.Data.NHibernate\Hydrogen.Data.NHibernate.csproj", "{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sphere10.Framework.Web.AspNetCore", "..\Framework-v3\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj", "{4B017B8A-C05C-41E6-8D5E-CAB2083C1998}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sphere10.Framework.Data.NHibernate", "..\Framework-v3\src\Sphere10.Framework.Data.NHibernate\Sphere10.Framework.Data.NHibernate.csproj", "{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen", "..\Hydrogen\src\Hydrogen\Hydrogen.csproj", "{2110E244-3948-4A34-8F6A-EFBDA030C193}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,14 +133,6 @@ Global
 		{0D5F416A-DD59-49AE-BA6B-B04C09241B06}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D5F416A-DD59-49AE-BA6B-B04C09241B06}.Release|x86.ActiveCfg = Release|Any CPU
 		{0D5F416A-DD59-49AE-BA6B-B04C09241B06}.Release|x86.Build.0 = Release|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Debug|x86.Build.0 = Debug|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Release|x86.ActiveCfg = Release|Any CPU
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68}.Release|x86.Build.0 = Release|Any CPU
 		{9D084836-BC7D-4593-9F7B-7385D765FFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D084836-BC7D-4593-9F7B-7385D765FFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D084836-BC7D-4593-9F7B-7385D765FFC0}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -199,14 +189,6 @@ Global
 		{72787D46-92CB-4391-AAB2-F815201A7CDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{72787D46-92CB-4391-AAB2-F815201A7CDA}.Release|x86.ActiveCfg = Release|Any CPU
 		{72787D46-92CB-4391-AAB2-F815201A7CDA}.Release|x86.Build.0 = Release|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Debug|x86.Build.0 = Debug|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|x86.ActiveCfg = Release|Any CPU
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D}.Release|x86.Build.0 = Release|Any CPU
 		{A09540B1-88C0-47E6-98D8-731C490DB869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A09540B1-88C0-47E6-98D8-731C490DB869}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A09540B1-88C0-47E6-98D8-731C490DB869}.Debug|x86.ActiveCfg = Debug|x86
@@ -271,6 +253,14 @@ Global
 		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|x86.ActiveCfg = Release|Any CPU
 		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785}.Release|x86.Build.0 = Release|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Debug|x86.Build.0 = Debug|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Release|x86.ActiveCfg = Release|Any CPU
+		{2110E244-3948-4A34-8F6A-EFBDA030C193}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -285,7 +275,6 @@ Global
 		{D1A7689D-0EAB-4A09-BEA4-FC7A5C170CBD} = {59662E69-E5FD-4EBA-A02D-4DFCEAB9079C}
 		{00E389DE-E9C4-416A-B9BE-A35988E6A49D} = {59662E69-E5FD-4EBA-A02D-4DFCEAB9079C}
 		{0D5F416A-DD59-49AE-BA6B-B04C09241B06} = {AD6B54C3-BA61-4B27-9F50-BE8122511F0E}
-		{C7FF345B-C182-40EA-B5C8-0990BC475B68} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{9D084836-BC7D-4593-9F7B-7385D765FFC0} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{92FEF1DF-BA3A-4E76-8D91-8B8DF5D3C148} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{1C677A80-4066-42E2-A899-8137CAF1E113} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
@@ -293,7 +282,6 @@ Global
 		{2F5340EE-E6EB-4605-AC36-8853180DF97A} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{3D35AB46-AB43-4464-839C-8304F980ABC5} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{72787D46-92CB-4391-AAB2-F815201A7CDA} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
-		{141DBCCA-E7C9-41D2-890D-4F34E97E765D} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{A09540B1-88C0-47E6-98D8-731C490DB869} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{239CC8DA-C3DD-49FE-8ED5-58CF0061D8A0} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{97D707E8-38FF-4435-B7A6-7F777D255E3A} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
@@ -302,6 +290,7 @@ Global
 		{C1549308-26F7-49C3-B1AA-8AD986C90DB8} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{4B017B8A-C05C-41E6-8D5E-CAB2083C1998} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
+		{2110E244-3948-4A34-8F6A-EFBDA030C193} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {397BE48B-9758-4106-90CD-B7FF8C8AA782}

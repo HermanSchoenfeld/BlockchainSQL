@@ -1,4 +1,4 @@
-﻿using Sphere10.Framework.Windows.Forms;
+﻿using Hydrogen.Windows.Forms;
 using System.Windows.Forms;
 
 namespace BlockchainSQL.Server {
@@ -31,15 +31,15 @@ namespace BlockchainSQL.Server {
 			this._logBox = new System.Windows.Forms.TextBox();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label1 = new System.Windows.Forms.Label();
-			this._BLKDataFolderValidator = new Sphere10.Framework.Windows.Forms.ValidationIndicator();
-			this._blkDataPathControl = new Sphere10.Framework.Windows.Forms.PathSelectorControl();
+			this._BLKDataFolderValidator = new Hydrogen.Windows.Forms.ValidationIndicator();
+			this._blkDataPathControl = new Hydrogen.Windows.Forms.PathSelectorControl();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this._disableIndexCheckBox = new System.Windows.Forms.CheckBox();
 			this._testDatabaseButton = new System.Windows.Forms.Button();
-			this._dbConnectionBar = new Sphere10.Framework.Windows.Forms.DatabaseConnectionBar();
+			this._dbConnectionBar = new Hydrogen.Windows.Forms.DatabaseConnectionBar();
 			this._startButton = new System.Windows.Forms.Button();
-			this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
-			this._progressBar = new Sphere10.Framework.Windows.Forms.ProgressBarEx();
+			this._loadingCircle = new Hydrogen.Windows.Forms.LoadingCircle();
+			this._progressBar = new Hydrogen.Windows.Forms.ProgressBarEx();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -112,9 +112,9 @@ namespace BlockchainSQL.Server {
 			this._BLKDataFolderValidator.Name = "_BLKDataFolderValidator";
 			this._BLKDataFolderValidator.RunValidatorWhenEnabled = false;
 			this._BLKDataFolderValidator.Size = new System.Drawing.Size(23, 23);
-			this._BLKDataFolderValidator.State = Sphere10.Framework.Windows.Forms.ValidationState.Error;
+			this._BLKDataFolderValidator.State = Hydrogen.Windows.Forms.ValidationState.Error;
 			this._BLKDataFolderValidator.TabIndex = 7;
-			this._BLKDataFolderValidator.PerformValidation += new Sphere10.Framework.EventHandlerEx<Sphere10.Framework.Windows.Forms.ValidationIndicator, Sphere10.Framework.Windows.Forms.ValidationIndicatorEvent>(this._BLKDataFolderValidator_PerformValidation);
+			this._BLKDataFolderValidator.PerformValidation += new Hydrogen.EventHandlerEx<Hydrogen.Windows.Forms.ValidationIndicator, Hydrogen.Windows.Forms.ValidationIndicatorEvent>(this._BLKDataFolderValidator_PerformValidation);
 			// 
 			// _blkDataPathControl
 			// 
@@ -122,13 +122,13 @@ namespace BlockchainSQL.Server {
             | System.Windows.Forms.AnchorStyles.Right)));
 			this._blkDataPathControl.Location = new System.Drawing.Point(9, 22);
 			this._blkDataPathControl.Margin = new System.Windows.Forms.Padding(0);
-			this._blkDataPathControl.Mode = Sphere10.Framework.Windows.Forms.PathSelectionMode.Folder;
+			this._blkDataPathControl.Mode = Hydrogen.Windows.Forms.PathSelectionMode.Folder;
 			this._blkDataPathControl.Name = "_blkDataPathControl";
 			this._blkDataPathControl.Path = "";
 			this._blkDataPathControl.PlaceHolderText = "Select folder containing BLK data files";
 			this._blkDataPathControl.Size = new System.Drawing.Size(923, 23);
 			this._blkDataPathControl.TabIndex = 2;
-			this._blkDataPathControl.PathChanged += new Sphere10.Framework.EventHandlerEx(this._blkDataPathControl_PathChanged);
+			this._blkDataPathControl.PathChanged += new Hydrogen.EventHandlerEx(this._blkDataPathControl_PathChanged);
 			// 
 			// groupBox3
 			// 
@@ -218,7 +218,7 @@ namespace BlockchainSQL.Server {
 			// 
 			this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._progressBar.CustomText = null;
-			this._progressBar.DisplayStyle = Sphere10.Framework.Windows.Forms.ProgressBarDisplayText.Percentage;
+			this._progressBar.DisplayStyle = Hydrogen.Windows.Forms.ProgressBarDisplayText.Percentage;
 			this._progressBar.Location = new System.Drawing.Point(14, 479);
 			this._progressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this._progressBar.Name = "_progressBar";

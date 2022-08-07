@@ -7,8 +7,8 @@ using BlockchainSQL.Web.Code;
 using BlockchainSQL.Web.DataAccess;
 using Microsoft.Extensions.Caching.Memory;
 using NHibernate;
-using Sphere10.Framework.Application;
-using Sphere10.Framework.Data;
+using Hydrogen.Application;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Web.Code {
 	public static class DatabaseManager {

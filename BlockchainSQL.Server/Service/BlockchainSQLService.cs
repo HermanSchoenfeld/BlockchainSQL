@@ -6,10 +6,10 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.Processing;
-using Sphere10.Framework;
-using Sphere10.Framework.Application;
-using Sphere10.Framework.Data;
-using Sphere10.Framework.Windows;
+using Hydrogen;
+using Hydrogen.Application;
+using Hydrogen.Data;
+using Hydrogen.Windows;
 
 
 namespace BlockchainSQL.Server {

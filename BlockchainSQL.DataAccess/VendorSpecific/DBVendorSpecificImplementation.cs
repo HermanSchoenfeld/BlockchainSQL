@@ -2,8 +2,8 @@
 using System.Data;
 using System.Linq;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
+using Hydrogen;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.DataAccess {
 	public abstract class DBVendorSpecificImplementationBase : IDBVendorSpecificImplementation {

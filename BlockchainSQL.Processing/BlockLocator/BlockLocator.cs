@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sphere10.Framework.Data;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class BlockLocator : BizComponent, IBlockLocator {

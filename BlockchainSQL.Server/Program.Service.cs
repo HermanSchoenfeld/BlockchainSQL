@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Windows.Forms;
 using BlockchainSQL.Processing;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
-using Sphere10.Framework.Windows.Forms;
-using Sphere10.Framework.Application;
+using Hydrogen;
+using Hydrogen.Data;
+using Hydrogen.Windows.Forms;
+using Hydrogen.Application;
 
 namespace BlockchainSQL.Server {
 	public static partial class Program {

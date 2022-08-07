@@ -8,10 +8,11 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.MSSQL\Sphere10.Framework.Data.MSSQL.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.NHibernate\Sphere10.Framework.Data.NHibernate.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data.Sqlite\Sphere10.Framework.Data.Sqlite.csproj" />
-		<ProjectReference Include="..\..\Framework-v3\src\Sphere10.Framework.Data\Sphere10.Framework.Data.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.MSSQL\Hydrogen.Data.MSSQL.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.NHibernate\Hydrogen.Data.NHibernate.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.Sqlite\Hydrogen.Data.Sqlite.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen\Hydrogen.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
 	</ItemGroup>

@@ -2,7 +2,7 @@
 using System.Linq;
 using NBitcoin.DataEncoders;
 using NHibernate.Engine.Query;
-using Sphere10.Framework;
+using Hydrogen;
 
 namespace BlockchainSQL.Processing {
 

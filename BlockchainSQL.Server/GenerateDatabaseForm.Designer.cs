@@ -27,8 +27,8 @@ namespace BlockchainSQL.Server {
         private void InitializeComponent() {
 			this._testButton = new System.Windows.Forms.Button();
 			this._databaseGroupBox = new System.Windows.Forms.GroupBox();
-			this._databaseConnectionPanel = new Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel();
-			this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
+			this._databaseConnectionPanel = new Hydrogen.Windows.Forms.DatabaseConnectionPanel();
+			this._loadingCircle = new Hydrogen.Windows.Forms.LoadingCircle();
 			this._generateDatabaseButton = new System.Windows.Forms.Button();
 			this._databaseGroupBox.SuspendLayout();
 			this.SuspendLayout();
@@ -86,7 +86,7 @@ namespace BlockchainSQL.Server {
 			this._loadingCircle.RotationSpeed = 100;
 			this._loadingCircle.Size = new System.Drawing.Size(31, 25);
 			this._loadingCircle.SpokeThickness = 2;
-			this._loadingCircle.StylePreset = Sphere10.Framework.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
+			this._loadingCircle.StylePreset = Hydrogen.Windows.Forms.LoadingCircle.StylePresets.MacOSX;
 			this._loadingCircle.TabIndex = 1;
 			this._loadingCircle.Text = "_loadingCircle";
 			this._loadingCircle.Visible = false;
@@ -124,8 +124,8 @@ namespace BlockchainSQL.Server {
 
         #endregion
 
-        private Sphere10.Framework.Windows.Forms.DatabaseConnectionPanel _databaseConnectionPanel;
-        private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
+        private Hydrogen.Windows.Forms.DatabaseConnectionPanel _databaseConnectionPanel;
+        private Hydrogen.Windows.Forms.LoadingCircle _loadingCircle;
         private System.Windows.Forms.Button _testButton;
         private System.Windows.Forms.GroupBox _databaseGroupBox;
         private System.Windows.Forms.Button _generateDatabaseButton;

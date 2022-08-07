@@ -29,16 +29,16 @@
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this._nodePortBox = new Sphere10.Framework.Windows.Forms.IntBox();
-			this._nodeIPTextBox = new Sphere10.Framework.Windows.Forms.TextBoxEx();
+			this._nodePortBox = new Hydrogen.Windows.Forms.IntBox();
+			this._nodeIPTextBox = new Hydrogen.Windows.Forms.TextBoxEx();
 			this._testNodeButton = new System.Windows.Forms.Button();
-			this._BLKDataFolderValidator = new Sphere10.Framework.Windows.Forms.ValidationIndicator();
+			this._BLKDataFolderValidator = new Hydrogen.Windows.Forms.ValidationIndicator();
 			this.groupBox3 = new System.Windows.Forms.GroupBox();
 			this._testDatabaseButton = new System.Windows.Forms.Button();
-			this._dbConnectionBar = new Sphere10.Framework.Windows.Forms.DatabaseConnectionBar();
+			this._dbConnectionBar = new Hydrogen.Windows.Forms.DatabaseConnectionBar();
 			this._startButton = new System.Windows.Forms.Button();
-			this._loadingCircle = new Sphere10.Framework.Windows.Forms.LoadingCircle();
-			this._progressBar = new Sphere10.Framework.Windows.Forms.ProgressBarEx();
+			this._loadingCircle = new Hydrogen.Windows.Forms.LoadingCircle();
+			this._progressBar = new Hydrogen.Windows.Forms.ProgressBarEx();
 			this.groupBox1.SuspendLayout();
 			this.groupBox2.SuspendLayout();
 			this.groupBox3.SuspendLayout();
@@ -155,7 +155,7 @@
 			this._BLKDataFolderValidator.Name = "_BLKDataFolderValidator";
 			this._BLKDataFolderValidator.RunValidatorWhenEnabled = false;
 			this._BLKDataFolderValidator.Size = new System.Drawing.Size(23, 23);
-			this._BLKDataFolderValidator.State = Sphere10.Framework.Windows.Forms.ValidationState.Error;
+			this._BLKDataFolderValidator.State = Hydrogen.Windows.Forms.ValidationState.Error;
 			this._BLKDataFolderValidator.TabIndex = 7;
 			// 
 			// groupBox3
@@ -232,7 +232,7 @@
 			// 
 			this._progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this._progressBar.CustomText = null;
-			this._progressBar.DisplayStyle = Sphere10.Framework.Windows.Forms.ProgressBarDisplayText.Percentage;
+			this._progressBar.DisplayStyle = Hydrogen.Windows.Forms.ProgressBarDisplayText.Percentage;
 			this._progressBar.Location = new System.Drawing.Point(21, 450);
 			this._progressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			this._progressBar.Name = "_progressBar";
@@ -270,16 +270,16 @@
         private System.Windows.Forms.TextBox _logBox;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private Sphere10.Framework.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
+        private Hydrogen.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
         private System.Windows.Forms.Button _startButton;
         private System.Windows.Forms.Button _testDatabaseButton;
-        private Sphere10.Framework.Windows.Forms.ValidationIndicator _BLKDataFolderValidator;
-        private Sphere10.Framework.Windows.Forms.LoadingCircle _loadingCircle;
-        private Sphere10.Framework.Windows.Forms.TextBoxEx _nodeIPTextBox;
+        private Hydrogen.Windows.Forms.ValidationIndicator _BLKDataFolderValidator;
+        private Hydrogen.Windows.Forms.LoadingCircle _loadingCircle;
+        private Hydrogen.Windows.Forms.TextBoxEx _nodeIPTextBox;
         private System.Windows.Forms.Button _testNodeButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private Sphere10.Framework.Windows.Forms.IntBox _nodePortBox;
-        private Sphere10.Framework.Windows.Forms.ProgressBarEx _progressBar;
+        private Hydrogen.Windows.Forms.IntBox _nodePortBox;
+        private Hydrogen.Windows.Forms.ProgressBarEx _progressBar;
     }
 }

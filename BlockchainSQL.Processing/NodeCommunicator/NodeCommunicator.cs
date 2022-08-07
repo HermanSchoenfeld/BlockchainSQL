@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using NBitcoin.Protocol;
-using Sphere10.Framework;
+using Hydrogen;
 using NB = NBitcoin;
 
 namespace BlockchainSQL.Processing {

@@ -2,8 +2,8 @@
 using System.Linq;
 using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
-using Sphere10.Framework;
-using Sphere10.Framework.Data;
+using Hydrogen;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public sealed class TransactionCache : CacheBase<byte[], Transaction> {
@@ -21,12 +21,12 @@ namespace BlockchainSQL.Processing {
             _scope.Dispose();
         }
 
-        public override Transaction Get(byte[] key) {
+        public override CachedItem Get(object key) {
             var size = this.CurrentSize;
             return base.Get(key);
         }
 
-        protected override sealed uint EstimateSize(Transaction value) {
+        protected override sealed long EstimateSize(Transaction value) {
             return (uint) SizeEstimator.Estimate(value);
         }
 

@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using BlockchainSQL.DataAccess;
-using Sphere10.Framework.Data;
+using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
 	public class BlockStreamPersistor : BizComponent, IBlockStreamPersistor {
