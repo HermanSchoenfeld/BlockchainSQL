@@ -58,7 +58,7 @@ namespace BlockchainSQL.Server {
 		[STAThread]
 		private static void Main(string[] args) {
 			try {
-				Sphere10Framework.Instance.StartFramework();
+				HydrogenFramework.Instance.StartFramework();
 				using (new AttachToCommandPromptScope()) {
 					var userArgsResult = Arguments.TryParseArguments(args);
 					if (userArgsResult.Failure) {
@@ -75,23 +75,23 @@ namespace BlockchainSQL.Server {
 						case "":
 						case null:
 							if (Environment.UserInteractive) {
-								SystemLog.RegisterLogger( Sphere10Framework.Instance.CreateApplicationLogger("gui.log"));
+								SystemLog.RegisterLogger( HydrogenFramework.Instance.CreateApplicationLogger("gui.log"));
 								RunAsGUI();
 							} else {
-								SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
+								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
 								RunAsService();
 							}
 							break;
 						case "INSTALL":
-							SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("installer.log"));
+							SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
 							RunAsInstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "UNINSTALL":
-							SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("installer.log"));
+							SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
 							RunAsUninstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "SERVICE":
-							SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("service.log"));
+							SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log"));
 							RunAsService();
 							break;
 					}
@@ -102,8 +102,8 @@ namespace BlockchainSQL.Server {
 				System.Threading.Thread.Sleep(200); // give time for output to flush to parent process
 				Environment.ExitCode = -1;
 			} finally {
-				if (Sphere10Framework.Instance.IsStarted)
-					Sphere10Framework.Instance.EndFramework();
+				if (HydrogenFramework.Instance.IsStarted)
+					HydrogenFramework.Instance.EndFramework();
 			}
 		}
 
