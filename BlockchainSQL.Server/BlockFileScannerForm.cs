@@ -102,7 +102,7 @@ namespace BlockchainSQL.Server
                             await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, true);
                         } 
                         catch(Exception e) {
-                        	logger.LogException(e);
+                        	logger.Exception(e);
                         }
                         finally {
                             if (disableIndexes) {

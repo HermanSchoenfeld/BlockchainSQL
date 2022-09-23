@@ -142,7 +142,7 @@ namespace BlockchainSQL.Server
                     _cancellationTokenSource = new CancellationTokenSource();
                 }
             } catch (Exception error) {
-                _logger.LogException(error);
+                _logger.Exception(error);
                 _logger.Warning("Stopped scanning due to error");
                // ExceptionDialog.Show(this, error);
             }

@@ -15,7 +15,7 @@ namespace BlockchainSQL.NUnit {
         private readonly DACScope _dacScope;
         private int _genCount;
         public UnitTestScope(DBMSType dbmsType, string connectionString) {     
-            _bizScope = new BizLogicScope(dbmsType, connectionString, new ConsoleLogger() { Options = LogOptions.ReleaseBuildDefaults});
+            _bizScope = new BizLogicScope(dbmsType, connectionString, new ConsoleLogger() { Options = LogOptions.StandardProfile});
             _dacScope = _bizScope.DAC.BeginScope();
             _dacScope.BeginTransaction();
             _genCount = 0;

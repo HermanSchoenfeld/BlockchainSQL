@@ -3,19 +3,19 @@ using BlockchainSQL.DataObjects;
 using Hydrogen;
 
 namespace BlockchainSQL.Processing {
-	public sealed class WipPipelineScope : ScopeContext<WipPipelineScope> {
+	public sealed class WipPipelineScope : SyncContextScope {
         private const string ContextID = "FDDBCCE3-37C0-422F-8FCA-1AD316D4F51B";
         public readonly SynchronizedDictionary<byte[], WipBlock> PipelineBlocks;
         public readonly SynchronizedDictionary<byte[], Transaction> PipelineTransactions;
 
         public WipPipelineScope()
-            : base(ContextID, ScopeContextPolicy.MustBeRoot) {
+            : base(ContextScopePolicy.MustBeRoot, ContextID) {
             PipelineBlocks = new SynchronizedDictionary<byte[], WipBlock>(new Dictionary<byte[], WipBlock>(ByteArrayEqualityComparer.Instance));
             PipelineTransactions = new SynchronizedDictionary<byte[], Transaction>(new Dictionary<byte[], Transaction>(ByteArrayEqualityComparer.Instance));
             ProcessingTaskShouldExpandScripts = false;
         }
 
-        public static WipPipelineScope Current => GetCurrent(ContextID);
+        public static WipPipelineScope Current => GetCurrent(ContextID) as WipPipelineScope;
 
         public bool ProcessingTaskShouldExpandScripts { get; set; }
 
@@ -68,7 +68,7 @@ namespace BlockchainSQL.Processing {
             PipelineTransactions.Clear();
         }
 
-        protected override void OnScopeEnd(WipPipelineScope rootScope, bool inException) {
+        protected override void OnContextEnd() {
             PipelineTransactions.Clear();
             PipelineBlocks.Clear();
         }

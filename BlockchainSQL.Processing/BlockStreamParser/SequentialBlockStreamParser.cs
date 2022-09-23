@@ -112,7 +112,7 @@ namespace BlockchainSQL.Processing {
 				}
 			} catch (Exception error) {
 				if (!(error is OperationCanceledException))
-					Log.LogException(error);
+					Log.Exception(error);
 				throw;
 			}
 		}

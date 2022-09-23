@@ -4,7 +4,7 @@ using Hydrogen.Application;
 using Hydrogen.Data;
 
 namespace BlockchainSQL.Processing {
-	public sealed class BizLogicScope : ScopeContext<BizLogicScope> {
+	public sealed class BizLogicScope : SyncContextScope {
         private readonly bool _databaseFreeContext;
         private readonly DBMSType _dbmsType;
         private readonly string _connectionString;
@@ -23,7 +23,7 @@ namespace BlockchainSQL.Processing {
         }
 
         private BizLogicScope(DBMSType? dbmsType, string connectionString, ILogger logger, ISettingsProvider settings, bool databaseFree)
-            : base(typeof (BizLogicScope).FullName, ScopeContextPolicy.MustBeRoot) {
+            : base(ContextScopePolicy.MustBeRoot, typeof (BizLogicScope).FullName) {
             _databaseFreeContext = databaseFree;
             if (dbmsType.HasValue)
                 _dbmsType = dbmsType.Value;
@@ -37,7 +37,7 @@ namespace BlockchainSQL.Processing {
 
         public static BizLogicScope Current {
             get {
-                var current = GetCurrent(typeof (BizLogicScope).FullName);
+                var current = GetCurrent(typeof (BizLogicScope).FullName) as BizLogicScope;
                 if (current == null)
                     throw new SoftwareException("Business logic components must be used within a BizLogicScope");
                 return current;
@@ -84,7 +84,7 @@ namespace BlockchainSQL.Processing {
             return new BizLogicScope(null, null, logger, GlobalSettings.Provider, true);
         }
 
-        protected override void OnScopeEnd(BizLogicScope rootScope, bool inException) {
+        protected override void OnContextEnd() {
         }
 
         private void CheckSet() {
