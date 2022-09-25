@@ -27,7 +27,7 @@ namespace BlockchainSQL.Server {
         private void InitializeComponent() {
 			this._optionsGroupBox = new System.Windows.Forms.GroupBox();
 			this._serviceStatusGroupBox = new System.Windows.Forms.GroupBox();
-			this._serviceStatusControl = new BlockchainSQL.Server.ServiceStatusControl();
+			this._serviceStatusControl = new Hydrogen.Windows.Forms.ServiceStatusControl();
 			this._dbConnectionBar = new Hydrogen.Windows.Forms.DatabaseConnectionBar();
 			this._connectButton = new System.Windows.Forms.Button();
 			this._databaseGroupBox = new System.Windows.Forms.GroupBox();
@@ -81,7 +81,7 @@ namespace BlockchainSQL.Server {
 			this._serviceStatusControl.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
 			this._serviceStatusControl.Name = "_serviceStatusControl";
 			this._serviceStatusControl.Size = new System.Drawing.Size(838, 27);
-			this._serviceStatusControl.Status = BlockchainSQL.Server.ServiceStatus.NotInstalled;
+			this._serviceStatusControl.Status = Hydrogen.Windows.ServiceStatus.NotInstalled;
 			this._serviceStatusControl.TabIndex = 0;
 			// 
 			// _dbConnectionBar
@@ -262,7 +262,7 @@ namespace BlockchainSQL.Server {
         private Hydrogen.Windows.Forms.DatabaseConnectionBar _dbConnectionBar;
         private System.Windows.Forms.Button _connectButton;
         private System.Windows.Forms.GroupBox _databaseGroupBox;
-        private ServiceStatusControl _serviceStatusControl;
+        private Hydrogen.Windows.Forms.ServiceStatusControl _serviceStatusControl;
         private System.Windows.Forms.GroupBox _toolsGroupBox;
         private System.Windows.Forms.Button _logsButton;
         private System.Windows.Forms.Button _disableIndexesButton;

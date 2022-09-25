@@ -45,9 +45,13 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Application\Hydrogen.Application.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Drawing\Hydrogen.Drawing.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.MSSQL\Hydrogen.Windows.Forms.MSSQL.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.Sqlite\Hydrogen.Windows.Forms.Sqlite.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms\Hydrogen.Windows.Forms.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen\Hydrogen.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
