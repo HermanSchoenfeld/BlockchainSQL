@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Hydrogen.Web.AspNetCore {
 	public static class HtmlHelperExtensions {
 
-		public static IDisposable BeginFormEx<T>(this IHtmlHelper<T> htmlHelper, T formModel, string formClass = null, bool resetOnSuccess = true) where T : FormModelBase, new() {
+		public static IDisposable BeginAweFormEx<T>(this IHtmlHelper<T> htmlHelper, T formModel, string formClass = null, bool resetOnSuccess = true) where T : FormModelBase, new() {
 			return new AweFormScope<T>(htmlHelper, formModel ?? new T(), formClass, resetOnSuccess);
 		}
 
-		public static IDisposable BeginFormEx<T>(this IHtmlHelper<T> htmlHelper, string action, string controller, T formModel, string formClass = null, bool resetOnSuccess = true) where T : FormModelBase, new() {
+		public static IDisposable BeginAweFormEx<T>(this IHtmlHelper<T> htmlHelper, string action, string controller, T formModel, string formClass = null, bool resetOnSuccess = true) where T : FormModelBase, new() {
 			return new AweFormScope<T>(htmlHelper, action, controller, formModel ?? new T(), formClass, resetOnSuccess);
 		}
 	

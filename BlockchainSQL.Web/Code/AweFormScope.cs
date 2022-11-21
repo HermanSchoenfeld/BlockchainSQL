@@ -37,23 +37,23 @@ namespace BlockchainSQL.Web {
          $('#{0} :input[type=""submit""]').prop('disabled', false);
         $('#{0} .formLoadingImage').remove();
 	if (result.result){{
-		  if (result.resultType === ""Redirect""){{
-			location.assign(result.location);
+		  if (result.resultType === ""redirect""){{
+			location.assign(result.url);
 			}}
-          if (result.resultType === ""ShowMessage""){{
+          if (result.resultType === ""message""){{
 			var alertType = ""success"";
 	        var alertHeader = ""Okay!"";
 	        var alertIcon = ""fa fa-check""; 
 	        $(""#{1}"").replaceWith('<div id={1} class=""form-result alert alert-' + alertType+'""><strong><i class=""' + alertIcon + '""></i> ' + alertHeader + '</strong> ' + result.message + '</div>');				
 		  }}
-          if (result.resultType === ""ReplacePage""){{
+          if (result.resultType === ""replace_page""){{
 var doc = document;			
 doc = doc.open(""text/html"");
 			doc.write(result.content);
 			doc.close();
 		  }}
 
-		if (result.resultType === ""ReplaceForm""){{
+		if (result.resultType === ""replace_form""){{
 			$(""#{0}"").replaceWith(result.content)
 }}		
 	else

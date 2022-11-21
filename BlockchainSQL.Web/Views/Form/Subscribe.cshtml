@@ -1,5 +1,5 @@
 ﻿@model BlockchainSQL.Web.Models.SubscribeFormInput
-@using (Html.BeginFormEx(Model)) {
+@using (Html.BeginAweFormEx(Model)) {
     <div class="input-group">
         @Html.TextBoxFor(o => o.Email, new { @class = "form-control" })
         <span class="input-group-btn">

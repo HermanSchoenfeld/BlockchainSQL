@@ -115,7 +115,7 @@ namespace BlockchainSQL.Web.Controllers {
 					Result = true,
 					Message = "Database connection details configured successfully.",
 					ResultType = FormResultType.Redirect,
-					Location = Url.Action("Index", "Explorer")
+					Url = Url.Action("Index", "Explorer")
 				});
 			} catch (Exception error) {
 				// Log error
