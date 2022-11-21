@@ -11,7 +11,6 @@ using System.Threading;
 using BlockchainSQL.Processing;
 using Microsoft.AspNetCore.Http;
 using Hydrogen.Application;
-using Sphere10.Framework.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Controllers {
 	public class QueryController : BaseController {

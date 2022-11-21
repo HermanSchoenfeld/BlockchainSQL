@@ -48,5 +48,7 @@ namespace BlockchainSQL.Processing {
                 return txn;
             }
         }
-    }
+
+        protected override bool CheckStaleness(byte[] key, CachedItem<Transaction> item) => false;
+	}
 }

@@ -85,7 +85,7 @@
     <None Include="wwwroot\images\utility.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Framework\src\Sphere10.Framework.Web.AspNetCore\Sphere10.Framework.Web.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Web.AspNetCore\Hydrogen.Web.AspNetCore.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />

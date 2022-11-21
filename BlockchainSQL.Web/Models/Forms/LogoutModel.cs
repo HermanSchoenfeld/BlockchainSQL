@@ -1,4 +1,4 @@
-﻿using Sphere10.Framework.Web.AspNetCore;
+﻿using Hydrogen.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Models {
 	public class LogoutForm : FormModelBase {

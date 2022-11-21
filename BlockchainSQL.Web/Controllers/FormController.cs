@@ -1,19 +1,13 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
-using BlockchainSQL.Web.Code;
-using BlockchainSQL.Web.DataAccess;
 using BlockchainSQL.Web.Models;
 using Microsoft.AspNetCore.Authentication;
 using Hydrogen;
-using Hydrogen.Data;
+using Hydrogen.Web.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
-using NHibernate.Cfg;
-using Sphere10.Framework.Web.AspNetCore;
-using Tools;
-using Environment = System.Environment;
+
 
 namespace BlockchainSQL.Web.Controllers {
 	public class FormController : BaseController {

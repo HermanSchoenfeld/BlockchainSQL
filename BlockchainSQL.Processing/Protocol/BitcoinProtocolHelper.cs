@@ -60,7 +60,7 @@ namespace BlockchainSQL.Processing {
         }
 
         public static bool IsValidHashString(string blockHash) {
-            return blockHash is { Length: 64 } && Tools.Text.IsValidHexString(blockHash);
+            return blockHash is { Length: 64 } && HexEncoding.IsValid(blockHash);
         }
 
         public static bool IsValidAddress(string address) {
