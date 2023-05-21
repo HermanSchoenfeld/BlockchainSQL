@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using Hydrogen.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
-	public class WebDatabaseManagerSqlite : NHibernateDatabaseManagerBase {
+	public class WebDatabaseManagerSqlite : NHDatabaseManagerBase {
 
 		public WebDatabaseManagerSqlite()
 			: base(new SqliteDatabaseManager()) {

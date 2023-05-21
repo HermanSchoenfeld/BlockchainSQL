@@ -2,7 +2,7 @@
 using Hydrogen.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Models {
-	public class LoginForm : FormModelBase {
+	public class LoginForm : AweFormModelBase {
 
 		[Required] 
 		public string Username { get; set; }

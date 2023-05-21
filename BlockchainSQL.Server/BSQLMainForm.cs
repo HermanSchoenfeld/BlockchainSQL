@@ -8,9 +8,10 @@ using Hydrogen.Application;
 using BlockchainSQL.Processing;
 
 namespace BlockchainSQL.Server {
-	public partial class MainForm : LiteMainForm {
-		public MainForm() {
+	public partial class BSQLMainForm : MainForm {
+		public BSQLMainForm() {
 			InitializeComponent();
+		//	base._toolStrip.Visible = false;
 		}
 
 		protected override void OnActivated(EventArgs e) {
@@ -31,7 +32,7 @@ namespace BlockchainSQL.Server {
 		private async void _installServiceButton_Click(object sender, EventArgs e) {
 			try {
 				var wizard = new InstallWizard();
-				if(await wizard.Start(this) == WizardResult.Success) 
+				if (await wizard.Start(this) == WizardResult.Success)
 					DialogEx.Show(this, "BlockchainSQL Server Windows Service was installed", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);

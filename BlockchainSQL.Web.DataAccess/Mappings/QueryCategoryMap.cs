@@ -10,7 +10,7 @@ namespace BlockchainSQL.Web.DataAccess {
             Map(x => x.Title).Column("Title");
             Map(x => x.Description).Column("Description");
             References(x => x.Parent).Column("ParentID").Nullable();
-            HasMany(x => x.Templates);
+            HasMany(x => x.Templates).Cascade.All();
         }
     }
 }

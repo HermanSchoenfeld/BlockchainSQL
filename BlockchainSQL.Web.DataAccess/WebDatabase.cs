@@ -27,7 +27,7 @@ namespace BlockchainSQL.Web.DataAccess {
         }
 
         public static ISessionFactory CreateSessionFactory(DBMSType dbmsType, string connectionString) {
-            var dbGen = (NHibernateDatabaseManagerBase)NewDatabaseGenerator(dbmsType);
+            var dbGen = (NHDatabaseManagerBase)NewDatabaseGenerator(dbmsType);
             return dbGen.OpenDatabase(connectionString);
         }
     }

@@ -11,12 +11,18 @@ using Hydrogen;
 using Hydrogen.Data;
 using Hydrogen.Windows.Forms;
 using Hydrogen.Application;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlockchainSQL.Server {
 	public static partial class Program {
 
 
 		private static void RunAsInstallServiceCommand(CommandLineResults installCommand) {
+			HydrogenFramework.Instance.StartFramework(configure => 
+				configure.AddTransient<IUserInterfaceServices, ConsoleApplicationUserInterfaceServices>(),
+				HydrogenFrameworkOptions.EnableDrm | HydrogenFrameworkOptions.BackgroundLicenseVerify
+			);
+			
 			var path = installCommand.GetSingleArgumentValue("path");
 			var start = installCommand.HasArgument("start");
 			var dbms = installCommand.GetEnumArgument<DBMSType>("dbms");

@@ -35,8 +35,7 @@ namespace BlockchainSQL.Server {
 				args.Append($" --web --web_port {webSettings.Port} --web_dbms {webSettings.WebDBMSType} --web_db {Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.WebDatabaseConnectionString)} --web_bsql_dbms {webSettings.BlockchainDBMSType} --web_bsql_db {Tools.Runtime.EncodeCommandLineArgumentWin(webSettings.BlockchainDatabaseConnectionString)}");
 			}
 
-
-			var location = Assembly.GetExecutingAssembly().Location;
+			var location = Tools.Runtime.GetExecutablePath();
 			var fileName = location.EndsWith(".dll")
 				? location.TrimEnd(".dll") + ".exe"
 				: location;

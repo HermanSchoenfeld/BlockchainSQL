@@ -18,7 +18,7 @@ using Hydrogen.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
 
-	public class WebDatabaseManagerMSSQL : NHibernateDatabaseManagerBase {
+	public class WebDatabaseManagerMSSQL : NHDatabaseManagerBase {
 
 		public WebDatabaseManagerMSSQL()
 			: base(new MSSQLDatabaseManager()) {

@@ -63,6 +63,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen", "..\Hydrogen\src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.Web.AspNetCore", "..\Hydrogen\src\Hydrogen.Web.AspNetCore\Hydrogen.Web.AspNetCore.csproj", "{2BB09328-4FC0-413B-A9A7-9A85C3B07473}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hydrogen.CryptoEx", "..\Hydrogen\src\Hydrogen.CryptoEx\Hydrogen.CryptoEx.csproj", "{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -261,6 +263,14 @@ Global
 		{2BB09328-4FC0-413B-A9A7-9A85C3B07473}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BB09328-4FC0-413B-A9A7-9A85C3B07473}.Release|x86.ActiveCfg = Release|Any CPU
 		{2BB09328-4FC0-413B-A9A7-9A85C3B07473}.Release|x86.Build.0 = Release|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -291,6 +301,7 @@ Global
 		{D7F7C71A-C8CE-4A1E-A1A9-16A46B58C785} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{2110E244-3948-4A34-8F6A-EFBDA030C193} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 		{2BB09328-4FC0-413B-A9A7-9A85C3B07473} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
+		{AD6F31E7-EBDD-4028-87BF-C7280A3C36AE} = {24285B43-F6E2-4320-BFA1-9B5C2E2DC626}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {397BE48B-9758-4106-90CD-B7FF8C8AA782}

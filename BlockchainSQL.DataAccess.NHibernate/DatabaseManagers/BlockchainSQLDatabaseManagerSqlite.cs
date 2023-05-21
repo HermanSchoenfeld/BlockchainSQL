@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 
 namespace BlockchainSQL.DataAccess.NHibernate {
-	public class BlockchainSQLDatabaseManagerSqlite : NHibernateDatabaseManagerBase {
+	public class BlockchainSQLDatabaseManagerSqlite : NHDatabaseManagerBase {
 
 		public BlockchainSQLDatabaseManagerSqlite()
 			: base(new SqliteDatabaseManager()) {

@@ -4,7 +4,7 @@ using Hydrogen.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Models {
 
-	public class SubscribeFormInput : FormModelBase {
+	public class SubscribeFormInput : AweFormModelBase {
 
 		public override string FormName => "Subscribe";
 

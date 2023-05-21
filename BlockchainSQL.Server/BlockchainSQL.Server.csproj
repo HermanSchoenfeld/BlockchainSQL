@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0-windows</TargetFramework>
+		<TargetFramework>net7.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
 		<RestorePackages>true</RestorePackages>
@@ -46,6 +46,7 @@
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Application\Hydrogen.Application.csproj" />
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.CryptoEx\Hydrogen.CryptoEx.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Drawing\Hydrogen.Drawing.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.MSSQL\Hydrogen.Windows.Forms.MSSQL.csproj" />
@@ -58,7 +59,7 @@
 		<ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
 	</ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="System.ServiceProcess.ServiceController" Version="6.0.0" />
+		<PackageReference Include="System.ServiceProcess.ServiceController" Version="7.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Update="Controls\UserControl1 - Copy %282%29.resx">
@@ -76,6 +77,12 @@
 	  <ApplicationIcon />
 	  <StartupObject />
 	  <ApplicationManifest>app.manifest</ApplicationManifest>
+	  <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	  <Title>BlockchainSQL Server</Title>
+	  <Company>Sphere 10 Software</Company>
+	  <Product>BlockchainSQL Server</Product>
+	  <Description>BlockchainSQL Server gives you the blockchain as an SQL database. Easily build your analytics and BI platform without ever worrying about protocols again.</Description>
+	  <PackageProjectUrl>https://blockchainsql.io</PackageProjectUrl>
 	</PropertyGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 </Project>

@@ -7,7 +7,7 @@ namespace BlockchainSQL.Processing {
 
 		public DBMSType DBMSType { get; set; } = DBMSType.SQLServer;
 
-		[Encrypted]
+		[EncryptedString]
 		public string ConnectionString { get; set; } = string.Empty;
 	}
 }

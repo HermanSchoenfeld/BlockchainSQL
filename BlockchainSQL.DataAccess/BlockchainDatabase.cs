@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using BlockchainSQL.DataObjects;
 using Hydrogen;
+using Hydrogen.Application;
 using Hydrogen.Data;
+using Microsoft.Extensions.DependencyInjection;
 using Tools;
 
 namespace BlockchainSQL.DataAccess {
@@ -42,9 +44,9 @@ namespace BlockchainSQL.DataAccess {
 		public static IDatabaseManager NewDatabaseManager(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseManagerMSSQL");
+                    return HydrogenFramework.Instance.ServiceProvider.GetNamedService<IDatabaseManager>(DBMSType.SQLServer.ToString());
                 case DBMSType.Sqlite:
-                    return (IDatabaseManager)Tools.Object.Create("BlockchainSQL.DataAccess.NHibernate.BlockchainSQLDatabaseManagerSqlite");
+	                return HydrogenFramework.Instance.ServiceProvider.GetNamedService<IDatabaseManager>(DBMSType.Sqlite.ToString());
                 default:
                     throw new ApplicationException($"Unsupported DBMS '{dbmsType}'");
             }

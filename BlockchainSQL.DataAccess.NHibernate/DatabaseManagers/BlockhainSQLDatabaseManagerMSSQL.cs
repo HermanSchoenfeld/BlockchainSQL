@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -10,7 +11,7 @@ using Hydrogen.Data.NHibernate;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
 
-	public class BlockchainSQLDatabaseManagerMSSQL : NHibernateDatabaseManagerBase {
+	public class BlockchainSQLDatabaseManagerMSSQL : NHDatabaseManagerBase {
 
 		public BlockchainSQLDatabaseManagerMSSQL()
 			: base(new MSSQLDatabaseManager()) {
@@ -23,11 +24,7 @@ namespace BlockchainSQL.DataAccess.NHibernate {
 				_ => throw new NotSupportedException()
 			};
 
-		protected override void OnDatabaseCreated(string connectionString, bool createdEmptyDatabase) {
-			if (createdEmptyDatabase) {
-				return;
-			}
-
+		protected override void OnDatabaseSchemasCreated(string connectionString) {
 			// MSSQL specific optimization
 			var mssqlDAC = new MSSQLDAC(connectionString);
 
@@ -35,7 +32,8 @@ namespace BlockchainSQL.DataAccess.NHibernate {
 			//mssqlDAC.ExecuteNonQuery("sp_tableoption N'Script', 'large value types out of row', 'ON'");
 
 			// Optomize ScriptInstruction.DataLE
-			mssqlDAC.ExecuteNonQuery("sp_tableoption N'ScriptInstruction', 'large value types out of row', 'ON'");
+			if (mssqlDAC.GetSchema().ContainsTable("ScriptInstruction"))
+				mssqlDAC.ExecuteNonQuery("sp_tableoption N'ScriptInstruction', 'large value types out of row', 'ON'");
 
 		}
 

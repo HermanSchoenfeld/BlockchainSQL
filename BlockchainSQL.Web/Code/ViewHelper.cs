@@ -136,7 +136,7 @@ namespace BlockchainSQL.Web.Code {
 
 		public static string PrintCell(DataColumn col, DataRow row) {
 			var cellData = row.ItemArray[col.Ordinal];
-			var cellString = Tools.Html.Beautify(cellData);
+			var cellString = Tools.Web.Html.Beautify(cellData);
 			var colName = col.ColumnName?.ToLowerInvariant() ?? string.Empty;
 
 			if (cellData != null) {

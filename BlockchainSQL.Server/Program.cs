@@ -8,6 +8,7 @@ using Hydrogen;
 using Hydrogen.Data;
 using Hydrogen.Windows.Forms;
 using Hydrogen.Application;
+using Hydrogen.CryptoEx;
 using Hydrogen.Windows;
 
 namespace BlockchainSQL.Server {
@@ -58,7 +59,9 @@ namespace BlockchainSQL.Server {
 		[STAThread]
 		private static void Main(string[] args) {
 			try {
-				HydrogenFramework.Instance.StartFramework();
+				// Ensure explicit loading of certain dlls for IoC init
+				var type = typeof(BlockchainSQL.DataAccess.NHibernate.ModuleConfiguration);
+			
 				using (new AttachToCommandPromptScope()) {
 					var userArgsResult = Arguments.TryParseArguments(args);
 					if (userArgsResult.Failure) {

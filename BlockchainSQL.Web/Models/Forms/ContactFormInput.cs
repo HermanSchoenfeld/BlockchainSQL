@@ -4,7 +4,7 @@ using Hydrogen.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Models {
 
-	public class ContactFormInput : FormModelBase {
+	public class ContactFormInput : AweFormModelBase {
 
 		public override string FormName => "Contact";
 

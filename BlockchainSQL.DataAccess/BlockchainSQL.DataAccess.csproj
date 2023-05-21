@@ -1,10 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Application\Hydrogen.Application.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.MSSQL\Hydrogen.Data.MSSQL.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.Sqlite\Hydrogen.Data.Sqlite.csproj" />
 		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />

@@ -18,11 +18,10 @@ using System.Threading.Tasks;
 using System.Transactions;
 using BlockchainSQL.DataAccess.NHibernate.Mappings;
 using BlockchainSQL.DataObjects;
-using Hydrogen.Data.NHibernate;
-using Hydrogen.Data.NHibernatee;
+using HYD = Hydrogen.Data.NHibernate;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
-    public class PrimingDataGenerator : NHibernateDataGeneratorBase {
+    public class PrimingDataGenerator : HYD.NHDataGeneratorBase {
         protected readonly string DatabaseName;
 
         public PrimingDataGenerator(

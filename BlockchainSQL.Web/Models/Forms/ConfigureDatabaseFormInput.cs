@@ -1,7 +1,7 @@
 ﻿using Hydrogen.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Models {
-	public class ConfigureDatabaseFormInput : FormModelBase {
+	public class ConfigureDatabaseFormInput : AweFormModelBase {
 		public override string FormName => "ConfigureDatabases";
 
 		public ConfigureBlockchainDbFormModel BlockchainDbModel { get; init; } = new ();

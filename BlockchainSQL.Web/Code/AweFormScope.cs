@@ -9,7 +9,7 @@ using Omu.AwesomeMvc;
 namespace BlockchainSQL.Web {
 
 	[Obsolete]
-	public sealed class AweFormScope<T> : IDisposable where T : FormModelBase {
+	public sealed class AweFormScope<T> : IDisposable where T : AweFormModelBase {
 		public const string DefaultControllerName = "Form";
 
 		//private const string ErrorDivHtml = 
@@ -89,7 +89,7 @@ else
 		}
 
 		public AweFormScope(IHtmlHelper<T> htmlHelper, string action, string controller, T formModel, string clientFormClass = null, bool resetOnSuccess = true) {
-			_formID = "_" + formModel.ID.ToStrictAlphaString().ToLowerInvariant();
+			_formID = "_" + formModel.ID;
 			_htmlHelper = htmlHelper;
 			_formName = formModel.FormName;
 			_formClass = (_formName + "Form");

@@ -11,13 +11,13 @@ namespace BlockchainSQL.Processing {
 
 		public DBMSType WebDBMSType { get; set; } = DBMSType.SQLServer;
 
-		[Encrypted]
+		[EncryptedString]
 		public string WebDatabaseConnectionString { get; set; } = "";
 
 
 		public DBMSType BlockchainDBMSType { get; set; } = DBMSType.SQLServer;
 
-		[Encrypted]
+		[EncryptedString]
 		public string BlockchainDatabaseConnectionString { get; set; } = "";
 
 		public bool SaveQueries { get; set; } = true;

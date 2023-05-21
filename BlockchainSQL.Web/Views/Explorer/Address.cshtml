@@ -27,19 +27,19 @@
                         <tbody>
                             @foreach (var line in Model.LineItems.OrderByDescending(li => li.DateTime)) {
                                 <tr>
-                                    <td>@Tools.Html.Beautify(line.DateTime)</td>
+                                    <td>@Tools.Web.Html.Beautify(line.DateTime)</td>
                                     <td><small><small>@Html.Raw(ViewHelper.AddressLineLink(line))</small></small></td>
-                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Debit ? Tools.Html.Beautify(line.AmountBTC) : string.Empty)</td>
-                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Credit ? Tools.Html.Beautify(line.AmountBTC) : string.Empty)</td>
-                                    <td>@Tools.Html.Beautify(line.TotalBTC)</td>
+                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Debit ? Tools.Web.Html.Beautify(line.AmountBTC) : string.Empty)</td>
+                                    <td>@(line.ItemType == AddressPageModel.LineItemType.Credit ? Tools.Web.Html.Beautify(line.AmountBTC) : string.Empty)</td>
+                                    <td>@Tools.Web.Html.Beautify(line.TotalBTC)</td>
                                 </tr>
                             }
                             <tr>
                                 <td><b>TOTAL</b></td>
                                 <td>&nbsp;</td>
-                                <td><b>@Tools.Html.Beautify(Model.TotalDebits)</b></td>
-                                <td><b>@Tools.Html.Beautify(Model.TotalCredits)</b></td>
-                                <td><b>@Tools.Html.Beautify(Model.Balance)</b></td>
+                                <td><b>@Tools.Web.Html.Beautify(Model.TotalDebits)</b></td>
+                                <td><b>@Tools.Web.Html.Beautify(Model.TotalCredits)</b></td>
+                                <td><b>@Tools.Web.Html.Beautify(Model.Balance)</b></td>
                             </tr>
                         </tbody>
                     </table>
@@ -48,6 +48,3 @@
         </div>
     </div>
 </section>
-
-
-

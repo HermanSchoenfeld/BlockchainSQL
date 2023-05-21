@@ -11,6 +11,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
 
@@ -19,10 +20,7 @@ namespace Hydrogen.Application {
 
 		public override int Priority => int.MinValue; // last to execute
 
-		public override void RegisterComponents(ComponentRegistry registry) {
-
-			// Components: share settings with web/server
-			registry.RegisterInitializationTask<IncrementUsageByOneTask>();
+		public override void RegisterComponents(IServiceCollection services) {
 		}
 	}
 }

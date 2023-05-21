@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 using BlockchainSQL.Web.DataObjects;
 using NHibernate;
 using Hydrogen.Data.NHibernate;
-using Hydrogen.Data.NHibernatee;
 
 namespace BlockchainSQL.Web.DataAccess {
-    public class PrimingDataGenerator : NHibernateDataGeneratorBase {
+    public class PrimingDataGenerator : NHDataGeneratorBase {
         public PrimingDataGenerator(ISessionFactory sessionFactory) : base(sessionFactory) {
         }
 

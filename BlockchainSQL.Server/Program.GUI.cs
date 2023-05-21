@@ -24,7 +24,7 @@ namespace BlockchainSQL.Server {
 				Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", e.Exception));
 
 			SystemLog.RegisterLogger(new ConsoleLogger());
-			HydrogenFramework.Instance.StartWinFormsApplication<MainForm>();
+			HydrogenFramework.Instance.StartWinFormsApplication<BSQLMainForm>(options:HydrogenFrameworkOptions.EnableDrm | HydrogenFrameworkOptions.BackgroundLicenseVerify);
 		}
 
 	}
