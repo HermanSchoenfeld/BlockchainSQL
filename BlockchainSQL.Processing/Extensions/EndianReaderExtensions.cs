@@ -6,7 +6,7 @@ namespace BlockchainSQL.Processing {
             return BitcoinProtocolParser.ParseCompactVarInt(reader);
         }
 
-        public static long ReadVarInt(this EndianBinaryReader reader) {
+        public static ulong ReadVarInt(this EndianBinaryReader reader) {
             return BitcoinProtocolParser.ParseVarInt(reader);
         }
     }

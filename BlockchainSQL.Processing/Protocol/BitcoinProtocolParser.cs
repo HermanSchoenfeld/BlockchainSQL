@@ -37,12 +37,12 @@ namespace BlockchainSQL.Processing {
 			return n;
 		}
 
-		public static long ParseVarInt(EndianBinaryReader reader) {
+		public static ulong ParseVarInt(EndianBinaryReader reader) {
 			var t = reader.ReadByte();
 			if (t < 0xfd) return t;
-			if (t == 0xfd) return reader.ReadInt16();
-			if (t == 0xfe) return reader.ReadInt32();
-			if (t == 0xff) return reader.ReadInt64();
+			if (t == 0xfd) return reader.ReadUInt16();
+			if (t == 0xfe) return reader.ReadUInt32();
+			if (t == 0xff) return reader.ReadUInt64();
 
 			throw new InvalidDataException("Reading Var Int");
 		}
@@ -77,7 +77,7 @@ namespace BlockchainSQL.Processing {
 		}
 
 		public static Block ParseBlock(EndianBinaryReader reader, bool parseTransaction, bool expandScripts, bool readMagicID = true,
-		                               bool readSize = true, uint? blockSize = null) {
+									   bool readSize = true, uint? blockSize = null) {
 			var profiler = reader.BaseStream as StreamProfiler;
 			if (profiler == null)
 				throw new Exception(
@@ -141,6 +141,7 @@ namespace BlockchainSQL.Processing {
 		}
 
 		public static Transaction ParseTransaction(EndianBinaryReader reader, bool expandScriptBytes) {
+			Tools.Debugger.CounterA++;
 			var profiler = reader.BaseStream as StreamProfiler;
 			if (profiler == null)
 				throw new Exception(
@@ -193,10 +194,12 @@ namespace BlockchainSQL.Processing {
 			if (isSegWit) {
 				profiler.StartListening();
 				for (int i = 0; i < transaction.InputCount; i++) {
+					Tools.Debugger.CounterB++;
 					List<byte[]> itemStack = new List<byte[]>();
-					var stackItems = (uint)ParseVarInt(reader);
-					for (int j = 0; j < stackItems; j++) {
-						var itemSize = (uint)ParseVarInt(reader);
+					var stackItems = ParseVarInt(reader);
+					for (var j = 0UL; j < stackItems; j++) {
+						Tools.Debugger.CounterC++;
+						var itemSize = ParseVarInt(reader);
 						var item = reader.ReadBytes((int)itemSize);
 						itemStack.Add(item);
 					}
@@ -223,6 +226,7 @@ namespace BlockchainSQL.Processing {
 				: transaction.TXID;
 
 			return transaction;
+
 		}
 
 		public static TransactionInput ParseInput(EndianBinaryReader reader) {
@@ -238,7 +242,7 @@ namespace BlockchainSQL.Processing {
 					ScriptByteLength = scriptBytes.Length
 				};
 			}
-			
+
 			input.Sequence = reader.ReadUInt32();
 			return input;
 		}
@@ -259,13 +263,13 @@ namespace BlockchainSQL.Processing {
 				ScriptBytesLE = bytes,
 				ScriptByteLength = bytes.Length
 			};
-			
+
 			return output;
 		}
 
 		public static byte[] ParseScriptBytes(EndianBinaryReader reader) {
 			var script = new Script();
-			return  ParseStringAsBytes(reader);
+			return ParseStringAsBytes(reader);
 		}
 
 		public static void ExpandTransactionItemScript(Transaction transaction) {
@@ -315,7 +319,7 @@ namespace BlockchainSQL.Processing {
 				input.WitScript = new Script {
 					ScriptType = DetermineScriptType(input),
 					ScriptByteLength = input.WitnessStackBytes.Sum(x => x.Length)
-					
+
 				};
 
 				input.WitScript.AddInstructions(instructions);
@@ -335,9 +339,9 @@ namespace BlockchainSQL.Processing {
 
 			TypeSwitch.For(transactionItem,
 				TypeSwitch.Case<TransactionInput>(input => {
-						var isCoinbase = input.Index == 0 && input.Outpoint.TXID.All(c => c == '0');
-						result = isCoinbase ? ScriptType.Coinbase : ScriptType.Unlock;
-					}
+					var isCoinbase = input.Index == 0 && input.Outpoint.TXID.All(c => c == '0');
+					result = isCoinbase ? ScriptType.Coinbase : ScriptType.Unlock;
+				}
 				),
 				TypeSwitch.Case<TransactionOutput>(output => result = ScriptType.Lock),
 				TypeSwitch.Default(() => throw new NotSupportedException(transactionItem.GetType().FullName))
