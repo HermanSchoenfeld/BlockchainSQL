@@ -53,11 +53,11 @@ namespace BlockchainSQL.Server {
 			groupBox1.Controls.Add(label4);
 			groupBox1.Controls.Add(_uninstallServiceButton);
 			groupBox1.Controls.Add(_installServiceButton);
-			groupBox1.Location = new System.Drawing.Point(13, 117);
+			groupBox1.Location = new System.Drawing.Point(11, 165);
 			groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			groupBox1.Name = "groupBox1";
 			groupBox1.Padding = new System.Windows.Forms.Padding(2);
-			groupBox1.Size = new System.Drawing.Size(799, 181);
+			groupBox1.Size = new System.Drawing.Size(816, 177);
 			groupBox1.TabIndex = 0;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Service Installer";
@@ -68,7 +68,7 @@ namespace BlockchainSQL.Server {
 			label5.Location = new System.Drawing.Point(208, 101);
 			label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label5.Name = "label5";
-			label5.Size = new System.Drawing.Size(381, 62);
+			label5.Size = new System.Drawing.Size(398, 62);
 			label5.TabIndex = 9;
 			label5.Text = "Remove a previously installed BlockchainSQL Windows Service.";
 			label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -79,7 +79,7 @@ namespace BlockchainSQL.Server {
 			label4.Location = new System.Drawing.Point(206, 34);
 			label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label4.Name = "label4";
-			label4.Size = new System.Drawing.Size(554, 62);
+			label4.Size = new System.Drawing.Size(571, 62);
 			label4.TabIndex = 8;
 			label4.Text = "Install a BlockchainSQL Windows Service and optional web interface.";
 			label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -125,7 +125,7 @@ namespace BlockchainSQL.Server {
 			label2.Location = new System.Drawing.Point(208, 110);
 			label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label2.Name = "label2";
-			label2.Size = new System.Drawing.Size(575, 62);
+			label2.Size = new System.Drawing.Size(593, 62);
 			label2.TabIndex = 3;
 			label2.Text = "Import Bitcoin (BTC) blockchain data from Bitcoin Core BLK data files.";
 			label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -136,7 +136,7 @@ namespace BlockchainSQL.Server {
 			label1.Location = new System.Drawing.Point(206, 44);
 			label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label1.Name = "label1";
-			label1.Size = new System.Drawing.Size(575, 62);
+			label1.Size = new System.Drawing.Size(593, 62);
 			label1.TabIndex = 1;
 			label1.Text = "Generate or repair an empty BlockchainSQL database.";
 			label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,9 +153,9 @@ namespace BlockchainSQL.Server {
 			groupBox2.Controls.Add(button1);
 			groupBox2.Controls.Add(label7);
 			groupBox2.Controls.Add(label1);
-			groupBox2.Location = new System.Drawing.Point(13, 303);
+			groupBox2.Location = new System.Drawing.Point(9, 347);
 			groupBox2.Name = "groupBox2";
-			groupBox2.Size = new System.Drawing.Size(800, 240);
+			groupBox2.Size = new System.Drawing.Size(818, 243);
 			groupBox2.TabIndex = 2;
 			groupBox2.TabStop = false;
 			groupBox2.Text = "Tools";
@@ -167,7 +167,7 @@ namespace BlockchainSQL.Server {
 			button3.Name = "button3";
 			button3.Size = new System.Drawing.Size(194, 62);
 			button3.TabIndex = 2;
-			button3.Text = "Block File Scanner";
+			button3.Text = "Block File Importer";
 			button3.UseVisualStyleBackColor = true;
 			button3.Click += _blockFileScannerButton_Click;
 			// 
@@ -177,9 +177,9 @@ namespace BlockchainSQL.Server {
 			label9.Location = new System.Drawing.Point(206, 97);
 			label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label9.Name = "label9";
-			label9.Size = new System.Drawing.Size(461, 62);
+			label9.Size = new System.Drawing.Size(500, 62);
 			label9.TabIndex = 3;
-			label9.Text = "Fill database with blockchain via rapid import of Bitcoin Core node BLK data files. ";
+			label9.Text = "Rapidly import blocks into the database by scanning the raw Bitcoin Core BLK data files. ";
 			label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// button2
@@ -189,7 +189,7 @@ namespace BlockchainSQL.Server {
 			button2.Name = "button2";
 			button2.Size = new System.Drawing.Size(194, 62);
 			button2.TabIndex = 6;
-			button2.Text = "Network Scanner";
+			button2.Text = "Network Block Importer";
 			button2.UseVisualStyleBackColor = true;
 			button2.Click += _networkButton_Click;
 			// 
@@ -199,9 +199,9 @@ namespace BlockchainSQL.Server {
 			label8.Location = new System.Drawing.Point(206, 163);
 			label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label8.Name = "label8";
-			label8.Size = new System.Drawing.Size(299, 62);
+			label8.Size = new System.Drawing.Size(490, 62);
 			label8.TabIndex = 7;
-			label8.Text = "Fill database with blockchain data from a node.";
+			label8.Text = "Import blocks into the database using the network protocol and a trusted Bitcoin node.";
 			label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// button1
@@ -218,10 +218,10 @@ namespace BlockchainSQL.Server {
 			// label7
 			// 
 			label7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label7.Location = new System.Drawing.Point(207, 31);
+			label7.Location = new System.Drawing.Point(210, 31);
 			label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label7.Name = "label7";
-			label7.Size = new System.Drawing.Size(367, 62);
+			label7.Size = new System.Drawing.Size(569, 62);
 			label7.TabIndex = 1;
 			label7.Text = "Generate an empty or repair an existing BlockchainSQL database.";
 			label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -236,7 +236,7 @@ namespace BlockchainSQL.Server {
 			_appBanner.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
 			_appBanner.MaximumSize = new System.Drawing.Size(9999, 111);
 			_appBanner.Name = "_appBanner";
-			_appBanner.Size = new System.Drawing.Size(825, 111);
+			_appBanner.Size = new System.Drawing.Size(838, 111);
 			_appBanner.TabIndex = 6;
 			_appBanner.Title = "{ProductName}";
 			_appBanner.ToColor = System.Drawing.Color.LightBlue;
@@ -246,7 +246,7 @@ namespace BlockchainSQL.Server {
 			// 
 			AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			ClientSize = new System.Drawing.Size(825, 555);
+			ClientSize = new System.Drawing.Size(838, 615);
 			Controls.Add(_appBanner);
 			Controls.Add(groupBox2);
 			Controls.Add(groupBox1);

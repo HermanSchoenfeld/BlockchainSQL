@@ -141,7 +141,6 @@ namespace BlockchainSQL.Processing {
 		}
 
 		public static Transaction ParseTransaction(EndianBinaryReader reader, bool expandScriptBytes) {
-			Tools.Debugger.CounterA++;
 			var profiler = reader.BaseStream as StreamProfiler;
 			if (profiler == null)
 				throw new Exception(
@@ -194,11 +193,9 @@ namespace BlockchainSQL.Processing {
 			if (isSegWit) {
 				profiler.StartListening();
 				for (int i = 0; i < transaction.InputCount; i++) {
-					Tools.Debugger.CounterB++;
 					List<byte[]> itemStack = new List<byte[]>();
 					var stackItems = ParseVarInt(reader);
 					for (var j = 0UL; j < stackItems; j++) {
-						Tools.Debugger.CounterC++;
 						var itemSize = ParseVarInt(reader);
 						var item = reader.ReadBytes((int)itemSize);
 						itemStack.Add(item);

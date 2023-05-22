@@ -11,7 +11,8 @@ namespace BlockchainSQL.Server {
 	public partial class BSQLMainForm : MainForm {
 		public BSQLMainForm() {
 			InitializeComponent();
-		//	base._toolStrip.Visible = false;
+			base.MenuStrip.Visible = true;
+			base.ToolStrip.Visible = false;
 		}
 
 		protected override void OnActivated(EventArgs e) {
@@ -26,7 +27,7 @@ namespace BlockchainSQL.Server {
 		}
 
 		private void _blockFileScannerButton_Click(object sender, EventArgs e) {
-			OpenForm<BlockFileScannerForm>();
+			OpenForm<BlockFileImporterForm>();
 		}
 
 		private async void _installServiceButton_Click(object sender, EventArgs e) {
@@ -57,13 +58,20 @@ namespace BlockchainSQL.Server {
 		}
 
 		private void _networkButton_Click(object sender, EventArgs e) {
-			OpenForm<NetworkScannerForm>();
+			OpenForm<NetworkBlockImporterForm>();
 		}
 
 		private void _databaseDiagnosticButton_Click(object sender, EventArgs e) {
 			OpenForm<DiagnosticForm>();
 		}
 
+		private void _aboutMenuItem_Click(object sender, EventArgs e) {
+			try {
+				this.ShowAboutBox();
+			} catch (Exception error) {
+				ExceptionDialog.Show(this, error);
+			}
+		}
 
 		private void OpenForm<TForm>() where TForm : Form, new() {
 			try {

@@ -18,14 +18,20 @@ namespace BlockchainSQL.Server {
 		public static void RunAsGUI() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			AppDomain.CurrentDomain.UnhandledException += (s, e) =>
-				Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", (Exception)e.ExceptionObject));
+			AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 			Application.ThreadException += (s, e) =>
 				Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", e.Exception));
-
 			SystemLog.RegisterLogger(new ConsoleLogger());
 			HydrogenFramework.Instance.StartWinFormsApplication<BSQLMainForm>(options:HydrogenFrameworkOptions.EnableDrm | HydrogenFrameworkOptions.BackgroundLicenseVerify);
 		}
 
+		static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
+			try {
+				if (e.ExceptionObject is Exception exception) {
+					ExceptionDialog.Show("Unexpected error", exception);
+				} else MessageBox.Show("No information available", "Unexpected Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			} catch {
+			}
+		}
 	}
 }

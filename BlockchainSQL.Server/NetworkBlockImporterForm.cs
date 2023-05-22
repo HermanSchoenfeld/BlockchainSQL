@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,12 +11,16 @@ using Hydrogen.Windows;
 using Hydrogen.Windows.Forms;
 
 namespace BlockchainSQL.Server {
-	public partial class BlockFileScannerForm : FormEx {
+	public partial class NetworkBlockImporterForm : FormEx {
 		private CancellationTokenSource _cancellationTokenSource;
-		public BlockFileScannerForm() {
+		private readonly ILogger _logger;
+		public NetworkBlockImporterForm() {
 			InitializeComponent();
 			_dbConnectionBar.IgnoreDBMS = new[] { DBMSType.Sqlite, DBMSType.Firebird, DBMSType.FirebirdFile };
 			_cancellationTokenSource = new CancellationTokenSource();
+			_logger = new AsyncLogger(new MulticastLogger(new TextBoxLogger(_logBox), new ConsoleLogger())) {
+				Options = LogOptions.InfoEnabled | LogOptions.WarningEnabled | LogOptions.ErrorEnabled
+			};
 		}
 
 		#region Form Logic
@@ -32,20 +35,20 @@ namespace BlockchainSQL.Server {
 
 		protected virtual void LoadFormSettings() {
 			using (this.EnterUpdateScope()) {
-				var settings = UserSettings.Get<FileScannerFormSettings>();
-				_blkDataPathControl.Path = settings.BlockFilePath;
+				var settings = UserSettings.Get<NetworkScannerFormSettings>();
+				_nodeIPTextBox.Text = settings.NodeIP;
+				_nodePortBox.Value = settings.NodePort;
 				_dbConnectionBar.SelectedDBMSType = settings.DBMS;
 				_dbConnectionBar.ConnectionString = settings.ConnectionString;
-				_disableIndexCheckBox.Checked = settings.DisableIndexes;
 			}
 		}
 
 		protected virtual void SaveFormSettings() {
-			var settings = UserSettings.Get<FileScannerFormSettings>();
-			settings.BlockFilePath = _blkDataPathControl.Path;
+			var settings = UserSettings.Get<NetworkScannerFormSettings>();
+			settings.NodeIP = _nodeIPTextBox.Text;
+			settings.NodePort = _nodePortBox.Value;
 			settings.DBMS = _dbConnectionBar.SelectedDBMSType;
 			settings.ConnectionString = _dbConnectionBar.ConnectionString;
-			settings.DisableIndexes = _disableIndexCheckBox.Checked;
 			settings.Save();
 		}
 
@@ -53,65 +56,45 @@ namespace BlockchainSQL.Server {
 			using (_loadingCircle.BeginAnimationScope(this)) {
 				var testResult = await _dbConnectionBar.TestConnection();
 				if (testResult.Failure) {
-					DialogEx.Show(SystemIconType.Information, "Connection Failed", testResult.ErrorMessages.ToParagraphCase(), "OK");
+					DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				} else {
 					DialogEx.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 			}
 		}
 
-		protected virtual async Task<Result> ValidateBLKDataFolder() {
-			using (BizLogicScope.EnterDatabaseFreeScope()) {
-				return await Task.Run(() => ProcessingTierHelper.ValidateBlocksDirectory(_blkDataPathControl.Path));
+		protected virtual async Task<Result> ValidateNode() {
+			var result = Result<NodeEndpoint>.Default;
+			NodeEndpoint endPoint;
+			if (!NodeEndpoint.TryParse(_nodeIPTextBox.Text, _nodePortBox.Value, out endPoint)) {
+				result.AddError("Node IP address is not a validly formatted IP adress");
+			} else {
+				using (_loadingCircle.BeginAnimationScope(this)) {
+					return await NodeCommunicator.TestConnection(endPoint);
+				}
 			}
+			return result;
 		}
 
 		protected virtual async Task StartScanning() {
-			var blockchainSourceValidation = await Task.Run(() => ProcessingTierHelper.ValidateBlocksDirectory(_blkDataPathControl.Path));
+			var blockchainSourceValidation = await ValidateNode();
 			if (!blockchainSourceValidation.Success)
 				throw new ApplicationException(blockchainSourceValidation.ErrorMessages.ToParagraphCase());
 			var databaseValidation = await _dbConnectionBar.TestConnection();
 			if (!databaseValidation.Success)
 				throw new ApplicationException(databaseValidation.ErrorMessages.ToParagraphCase());
 
-
 			var dbmsType = _dbConnectionBar.SelectedDBMSType;
 			var connectionString = _dbConnectionBar.ConnectionString;
-			var disableIndexes = _disableIndexCheckBox.Checked;
-			ILogger logger = new MulticastLogger(new TextBoxLogger(_logBox), new ConsoleLogger()) {
-				Options = LogOptions.InfoEnabled | LogOptions.WarningEnabled | LogOptions.ErrorEnabled
-			};
-
-			using (var scope = new BizLogicScope(dbmsType, connectionString, logger)) {
-
-				using (var blockStream = BizLogicFactory.NewBlockStream(_blkDataPathControl.Path)) {
-					var postProcessor = BizLogicFactory.NewPostProcessor();
-					var blockStreamParser = BizLogicFactory.NewBLKFileStreamParser(blockStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(true, true), postProcessor, BizLogicFactory.NewBlockStreamPersistor());
+			using (var scope = new BizLogicScope(dbmsType, connectionString, _logger)) {
+				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(_nodeIPTextBox.Text, _nodePortBox.Value))) {
+					var blockStreamParser = BizLogicFactory.NewNodeStreamParser(nodeStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(false, true), BizLogicFactory.NewPostProcessor(), BizLogicFactory.NewBlockStreamPersistor());
 					Action<int> progressHandler = i => _progressBar.BeginInvokeEx(() => _progressBar.Value = i);
 					SaveFormSettings();
-
 					using (_loadingCircle.BeginAnimationScope(this, _startButton, _logBox, _progressBar)) {
 						_progressBar.Visible = true;
 						_startButton.Text = "Stop";
-						if (disableIndexes) {
-							await Task.Run(() => scope.DAC.DisableAllApplicationIndexes());
-							logger.Warning("Disabled database indexes (temporarily)");
-						}
-						try {
-							await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, true);
-						} catch (Exception e) {
-							logger.Exception(e);
-						} finally {
-							if (disableIndexes) {
-								logger.Warning("Enabling database indexes (this can take a very long time up to 24 hours)");
-								await Task.Run(() => scope.DAC.EnableAllApplicationIndexes());
-							}
-							logger.Info("Running post-processing tasks");
-							await Task.Run(() => postProcessor.PostProcessAll());
-							logger.Warning("Shrinking database");
-							await Task.Run(() => scope.DAC.CleanupDatabase());
-							logger.Info("Finished");
-						}
+						await blockStreamParser.Parse(_cancellationTokenSource.Token, progressHandler, false, TimeSpan.FromSeconds(scope.Settings.Get<ServiceNodeSettings>().PollRateSEC));
 					}
 				}
 			}
@@ -123,9 +106,9 @@ namespace BlockchainSQL.Server {
 			} else {
 				GC.Collect();
 			}
-
 			base.OnClosing(e);
 		}
+
 
 		#endregion
 
@@ -139,31 +122,12 @@ namespace BlockchainSQL.Server {
 			}
 		}
 
-		private async void _BLKDataFolderValidator_PerformValidation(ValidationIndicator arg1, ValidationIndicatorEvent arg2) {
-			try {
-				var result = await ValidateBLKDataFolder();
-				arg2.ValidationResult = result.Success;
-				arg2.ValidationMessage = result.GetMessages().ToParagraphCase();
-			} catch (Exception error) {
-				ExceptionDialog.Show(error);
-			}
-		}
-
-		private void _blkDataPathControl_PathChanged() {
-			try {
-				_BLKDataFolderValidator.RunValidation();
-			} catch (Exception error) {
-				ExceptionDialog.Show(error);
-			}
-		}
-
 		private async void _startButton_Click(object sender, EventArgs e) {
 			try {
 				if (!IsScanning) {
 					try {
-						using (new AlwaysOnScope(true, false)) {
+						using (new AlwaysOnScope(true, false))
 							await StartScanning();
-						}
 					} finally {
 						_progressBar.Value = 0;
 						_progressBar.Visible = false;
@@ -177,22 +141,41 @@ namespace BlockchainSQL.Server {
 					_cancellationTokenSource = new CancellationTokenSource();
 				}
 			} catch (Exception error) {
+				_logger.Exception(error);
+				_logger.Warning("Stopped scanning due to error");
+				// ExceptionDialog.Show(this, error);
+			}
+		}
+
+		private async void _testNodeButton_Click(object sender, EventArgs e) {
+			try {
+				var result = await ValidateNode();
+				if (result.Failure)
+					DialogEx.Show(this, result.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				else
+					DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);
 			}
 		}
+
 
 		#endregion
 
 	}
 
-	public class FileScannerFormSettings : SettingsObject {
+	public class NetworkScannerFormSettings : SettingsObject {
+
+		public string NodeIP { get; set; }
+		public int? NodePort { get; set; }
 		public string BlockFilePath { get; set; }
 
 		public DBMSType DBMS { get; set; } = DBMSType.SQLServer;
 
+
 		public string ConnectionString { get; set; }
 
-		public bool DisableIndexes { get; set; } = true;
-
 	}
+
+
 }
