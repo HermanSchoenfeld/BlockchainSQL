@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Hydrogen.Application;
 using BlockchainSQL.Processing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlockchainSQL.Server {
 	public partial class BSQLMainForm : MainForm {
@@ -66,6 +67,32 @@ namespace BlockchainSQL.Server {
 		}
 
 		private void _aboutMenuItem_Click(object sender, EventArgs e) {
+			try {
+				this.ShowAboutBox();
+			} catch (Exception error) {
+				ExceptionDialog.Show(this, error);
+			}
+		}
+
+		private void _productManualMenuItem_Click(object sender, EventArgs e) {
+			try {
+				var launcher = HydrogenFramework.Instance.ServiceProvider.GetService<IWebsiteLauncher>();
+				launcher.LaunchWebsite("https://sphere10.com/products/blockchainsql/manual");
+			} catch (Exception error) {
+				ExceptionDialog.Show(this, error);
+			}
+		}
+
+		private void _hardwareManualMenuItem_Click(object sender, EventArgs e) {
+			try {
+				var launcher = HydrogenFramework.Instance.ServiceProvider.GetService<IWebsiteLauncher>();
+				launcher.LaunchWebsite("https://sphere10.com/products/blockchainsql/hardware-manual");
+			} catch (Exception error) {
+				ExceptionDialog.Show(this, error);
+			}
+		}
+
+		private void _aboutMenuItem_Click_1(object sender, EventArgs e) {
 			try {
 				this.ShowAboutBox();
 			} catch (Exception error) {

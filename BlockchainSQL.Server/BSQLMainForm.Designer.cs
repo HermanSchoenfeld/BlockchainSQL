@@ -42,8 +42,15 @@ namespace BlockchainSQL.Server {
 			button1 = new System.Windows.Forms.Button();
 			label7 = new System.Windows.Forms.Label();
 			_appBanner = new ApplicationBanner();
+			_bsqlMenuStrip = new MergeableMenuStrip();
+			_helpMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			_productManualMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			_hardwareManualMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			_aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			groupBox1.SuspendLayout();
 			groupBox2.SuspendLayout();
+			_bsqlMenuStrip.SuspendLayout();
 			SuspendLayout();
 			// 
 			// groupBox1
@@ -232,7 +239,7 @@ namespace BlockchainSQL.Server {
 			_appBanner.Dock = System.Windows.Forms.DockStyle.Top;
 			_appBanner.EnableStateChangeEvent = false;
 			_appBanner.FromColor = System.Drawing.Color.RoyalBlue;
-			_appBanner.Location = new System.Drawing.Point(0, 49);
+			_appBanner.Location = new System.Drawing.Point(0, 73);
 			_appBanner.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
 			_appBanner.MaximumSize = new System.Drawing.Size(9999, 111);
 			_appBanner.Name = "_appBanner";
@@ -242,6 +249,49 @@ namespace BlockchainSQL.Server {
 			_appBanner.ToColor = System.Drawing.Color.LightBlue;
 			_appBanner.Version = "Version {ProductVersion}";
 			// 
+			// _bsqlMenuStrip
+			// 
+			_bsqlMenuStrip.InheritedToolStrip = null;
+			_bsqlMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { _helpMenuItem });
+			_bsqlMenuStrip.Location = new System.Drawing.Point(0, 0);
+			_bsqlMenuStrip.Name = "_bsqlMenuStrip";
+			_bsqlMenuStrip.Size = new System.Drawing.Size(838, 24);
+			_bsqlMenuStrip.TabIndex = 7;
+			_bsqlMenuStrip.Text = "mergeableMenuStrip1";
+			// 
+			// _helpMenuItem
+			// 
+			_helpMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { _productManualMenuItem, _hardwareManualMenuItem, toolStripSeparator1, _aboutMenuItem });
+			_helpMenuItem.Name = "_helpMenuItem";
+			_helpMenuItem.Size = new System.Drawing.Size(44, 20);
+			_helpMenuItem.Text = "Help";
+			// 
+			// _productManualMenuItem
+			// 
+			_productManualMenuItem.Name = "_productManualMenuItem";
+			_productManualMenuItem.Size = new System.Drawing.Size(180, 22);
+			_productManualMenuItem.Text = "Product Manual";
+			_productManualMenuItem.Click += _productManualMenuItem_Click;
+			// 
+			// _hardwareManualMenuItem
+			// 
+			_hardwareManualMenuItem.Name = "_hardwareManualMenuItem";
+			_hardwareManualMenuItem.Size = new System.Drawing.Size(180, 22);
+			_hardwareManualMenuItem.Text = "Hardware Manual";
+			_hardwareManualMenuItem.Click += _hardwareManualMenuItem_Click;
+			// 
+			// toolStripSeparator1
+			// 
+			toolStripSeparator1.Name = "toolStripSeparator1";
+			toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			// 
+			// _aboutMenuItem
+			// 
+			_aboutMenuItem.Name = "_aboutMenuItem";
+			_aboutMenuItem.Size = new System.Drawing.Size(180, 22);
+			_aboutMenuItem.Text = "About";
+			_aboutMenuItem.Click += _aboutMenuItem_Click_1;
+			// 
 			// BSQLMainForm
 			// 
 			AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -250,16 +300,21 @@ namespace BlockchainSQL.Server {
 			Controls.Add(_appBanner);
 			Controls.Add(groupBox2);
 			Controls.Add(groupBox1);
+			Controls.Add(_bsqlMenuStrip);
 			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
+			MainMenuStrip = _bsqlMenuStrip;
 			Margin = new System.Windows.Forms.Padding(2);
 			Name = "BSQLMainForm";
 			Text = "BlockchainSQL Management Studio";
+			Controls.SetChildIndex(_bsqlMenuStrip, 0);
 			Controls.SetChildIndex(groupBox1, 0);
 			Controls.SetChildIndex(groupBox2, 0);
 			Controls.SetChildIndex(_appBanner, 0);
 			groupBox1.ResumeLayout(false);
 			groupBox2.ResumeLayout(false);
+			_bsqlMenuStrip.ResumeLayout(false);
+			_bsqlMenuStrip.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -282,6 +337,12 @@ namespace BlockchainSQL.Server {
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Label label7;
 		private ApplicationBanner _appBanner;
+		private MergeableMenuStrip _bsqlMenuStrip;
+		private System.Windows.Forms.ToolStripMenuItem _helpMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem _productManualMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem _hardwareManualMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem _aboutMenuItem;
 	}
 }
 
