@@ -47,6 +47,7 @@ namespace BlockchainSQL.Server {
 			_aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			groupBox1.SuspendLayout();
 			groupBox2.SuspendLayout();
+			_bsqlMenuStrip.SuspendLayout();
 			SuspendLayout();
 			// 
 			// groupBox1
@@ -209,9 +210,9 @@ namespace BlockchainSQL.Server {
 			// 
 			// _bsqlMenuStrip
 			// 
-			_bsqlMenuStrip.InheritedToolStrip = null;
+			_bsqlMenuStrip.InheritedToolStrip = _menuStrip;
 			_bsqlMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { _helpMenuItem });
-			_bsqlMenuStrip.Location = new System.Drawing.Point(0, 0);
+			_bsqlMenuStrip.Location = new System.Drawing.Point(0, 49);
 			_bsqlMenuStrip.Name = "_bsqlMenuStrip";
 			_bsqlMenuStrip.Size = new System.Drawing.Size(838, 24);
 			_bsqlMenuStrip.TabIndex = 7;
