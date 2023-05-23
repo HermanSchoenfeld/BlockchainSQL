@@ -92,7 +92,7 @@ namespace BlockchainSQL.Server {
 				if (!nodeValidation.Success)
 					throw new ApplicationException("Failed to connect to Bitcoin node. " + nodeValidation.ErrorMessages.ToParagraphCase());
 
-				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(nodeIP, nodePort))) {
+				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(nodeIP, nodePort), 1)) {
 					var blockStreamParser = BizLogicFactory.NewNodeStreamParser(nodeStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(false, true), BizLogicFactory.NewPostProcessor(), BizLogicFactory.NewBlockStreamPersistor());
 					Action<int> progressHandler = i => Tools.Lambda.NoOp();
 					await blockStreamParser.Parse(cancelToken, progressHandler, false,  TimeSpan.FromSeconds(scope.Settings.Get<ServiceNodeSettings>().PollRateSEC));

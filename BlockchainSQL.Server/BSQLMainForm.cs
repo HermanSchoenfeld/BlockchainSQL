@@ -14,6 +14,7 @@ namespace BlockchainSQL.Server {
 			InitializeComponent();
 			base.MenuStrip.Visible = true;
 			base.ToolStrip.Visible = false;
+			base.StatusStrip.Visible = false;
 		}
 
 		protected override void OnActivated(EventArgs e) {

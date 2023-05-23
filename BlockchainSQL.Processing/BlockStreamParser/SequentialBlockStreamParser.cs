@@ -44,14 +44,6 @@ namespace BlockchainSQL.Processing {
 				MemoryMetric.Byte
 				);
 
-			var scannedQueueBufferPortion = 0.5;
-			var processQueueBufferPortion = 0.5;
-			long totalBlocksPersisted = 0;
-			var persistBatchSize = (int)Tools.Memory.ConvertMemoryMetric(100, MemoryMetric.Megabyte, MemoryMetric.Byte);
-			var blockFetchSize = 10;
-
-			var hasMoreBlocks = true;
-
 			try {
 				Log.Info("Contacting block stream");
 				using (await Stream.EnterOpenScope()) {
@@ -63,7 +55,6 @@ namespace BlockchainSQL.Processing {
 							await Task.Delay(pollSleepDuration.Value, cancellationToken);
 							continue;
 						}
-
 
 						var blocks = await Task.Run(() => Stream.ReadNextBlocks(cancellationToken));
 						if (blocks.BlocksRead.Any()) {

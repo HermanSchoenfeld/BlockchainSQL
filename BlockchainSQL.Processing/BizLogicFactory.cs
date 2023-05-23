@@ -8,7 +8,6 @@ namespace BlockchainSQL.Processing {
             return new BlockFileReader(blockFilePath);
         }
 
-
         public static IDifficultyCalculator NewDifficultyCalculator() {
             return new DifficultyCalculator();
         }
@@ -21,8 +20,8 @@ namespace BlockchainSQL.Processing {
             return new NodeCommunicator(endpoint);
         }
 
-        public static IBlockStream NewNodeBlockStream(NodeEndpoint endpoint) {
-            return new NodeBlockStream( NewCommunicator(endpoint), NewBlockLocator());
+        public static IBlockStream NewNodeBlockStream(NodeEndpoint endpoint, int blocksPerBatch) {
+            return new NodeBlockStream(NewCommunicator(endpoint), NewBlockLocator(), blocksPerBatch);
         }
 
         public static IBlockStream NewBlockStream(string directory) {

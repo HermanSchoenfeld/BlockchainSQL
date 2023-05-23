@@ -39,20 +39,24 @@
 			_startButton = new System.Windows.Forms.Button();
 			_loadingCircle = new Hydrogen.Windows.Forms.LoadingCircle();
 			_progressBar = new Hydrogen.Windows.Forms.ProgressBarEx();
+			groupBox4 = new System.Windows.Forms.GroupBox();
+			_blocksPerBatchIntBox = new Hydrogen.Windows.Forms.IntBox();
+			_blocksPerBatch = new System.Windows.Forms.Label();
 			groupBox1.SuspendLayout();
 			groupBox2.SuspendLayout();
 			groupBox3.SuspendLayout();
+			groupBox4.SuspendLayout();
 			SuspendLayout();
 			// 
 			// groupBox1
 			// 
 			groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
 			groupBox1.Controls.Add(_logBox);
-			groupBox1.Location = new System.Drawing.Point(14, 215);
+			groupBox1.Location = new System.Drawing.Point(14, 281);
 			groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			groupBox1.Name = "groupBox1";
 			groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-			groupBox1.Size = new System.Drawing.Size(966, 228);
+			groupBox1.Size = new System.Drawing.Size(966, 124);
 			groupBox1.TabIndex = 3;
 			groupBox1.TabStop = false;
 			groupBox1.Text = "Log";
@@ -66,7 +70,7 @@
 			_logBox.Name = "_logBox";
 			_logBox.ReadOnly = true;
 			_logBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			_logBox.Size = new System.Drawing.Size(951, 196);
+			_logBox.Size = new System.Drawing.Size(951, 96);
 			_logBox.TabIndex = 3;
 			// 
 			// groupBox2
@@ -192,7 +196,7 @@
 			// _startButton
 			// 
 			_startButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
-			_startButton.Location = new System.Drawing.Point(850, 450);
+			_startButton.Location = new System.Drawing.Point(850, 412);
 			_startButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			_startButton.Name = "_startButton";
 			_startButton.Size = new System.Drawing.Size(130, 27);
@@ -209,7 +213,7 @@
 			_loadingCircle.Color = System.Drawing.Color.DarkGray;
 			_loadingCircle.HideStopControl = null;
 			_loadingCircle.InnerCircleRadius = 8;
-			_loadingCircle.Location = new System.Drawing.Point(803, 450);
+			_loadingCircle.Location = new System.Drawing.Point(803, 412);
 			_loadingCircle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			_loadingCircle.Name = "_loadingCircle";
 			_loadingCircle.NumberSpoke = 10;
@@ -226,18 +230,47 @@
 			_progressBar.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
 			_progressBar.CustomText = null;
 			_progressBar.DisplayStyle = Hydrogen.Windows.Forms.ProgressBarDisplayText.Percentage;
-			_progressBar.Location = new System.Drawing.Point(21, 450);
+			_progressBar.Location = new System.Drawing.Point(21, 412);
 			_progressBar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
 			_progressBar.Name = "_progressBar";
 			_progressBar.Size = new System.Drawing.Size(782, 27);
 			_progressBar.TabIndex = 9;
 			_progressBar.Visible = false;
 			// 
+			// groupBox4
+			// 
+			groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+			groupBox4.Controls.Add(_blocksPerBatch);
+			groupBox4.Controls.Add(_blocksPerBatchIntBox);
+			groupBox4.Location = new System.Drawing.Point(14, 214);
+			groupBox4.Name = "groupBox4";
+			groupBox4.Size = new System.Drawing.Size(966, 61);
+			groupBox4.TabIndex = 10;
+			groupBox4.TabStop = false;
+			groupBox4.Text = "Options";
+			// 
+			// _blocksPerBatchIntBox
+			// 
+			_blocksPerBatchIntBox.Location = new System.Drawing.Point(130, 22);
+			_blocksPerBatchIntBox.Name = "_blocksPerBatchIntBox";
+			_blocksPerBatchIntBox.Size = new System.Drawing.Size(100, 23);
+			_blocksPerBatchIntBox.TabIndex = 0;
+			// 
+			// _blocksPerBatch
+			// 
+			_blocksPerBatch.AutoSize = true;
+			_blocksPerBatch.Location = new System.Drawing.Point(30, 25);
+			_blocksPerBatch.Name = "_blocksPerBatch";
+			_blocksPerBatch.Size = new System.Drawing.Size(94, 15);
+			_blocksPerBatch.TabIndex = 1;
+			_blocksPerBatch.Text = "Blocks Per Batch";
+			// 
 			// NetworkBlockImporterForm
 			// 
 			AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			ClientSize = new System.Drawing.Size(994, 490);
+			ClientSize = new System.Drawing.Size(994, 452);
+			Controls.Add(groupBox4);
 			Controls.Add(_progressBar);
 			Controls.Add(_loadingCircle);
 			Controls.Add(_startButton);
@@ -253,6 +286,8 @@
 			groupBox2.ResumeLayout(false);
 			groupBox2.PerformLayout();
 			groupBox3.ResumeLayout(false);
+			groupBox4.ResumeLayout(false);
+			groupBox4.PerformLayout();
 			ResumeLayout(false);
 		}
 
@@ -273,5 +308,8 @@
 		private System.Windows.Forms.Label label2;
 		private Hydrogen.Windows.Forms.IntBox _nodePortBox;
 		private Hydrogen.Windows.Forms.ProgressBarEx _progressBar;
+		private System.Windows.Forms.GroupBox groupBox4;
+		private System.Windows.Forms.Label _blocksPerBatch;
+		private Hydrogen.Windows.Forms.IntBox _blocksPerBatchIntBox;
 	}
 }

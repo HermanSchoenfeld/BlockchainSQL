@@ -31,9 +31,6 @@ namespace BlockchainSQL.Server {
 			label4 = new System.Windows.Forms.Label();
 			_uninstallServiceButton = new System.Windows.Forms.Button();
 			_installServiceButton = new System.Windows.Forms.Button();
-			label3 = new System.Windows.Forms.Label();
-			label2 = new System.Windows.Forms.Label();
-			label1 = new System.Windows.Forms.Label();
 			groupBox2 = new System.Windows.Forms.GroupBox();
 			button3 = new System.Windows.Forms.Button();
 			label9 = new System.Windows.Forms.Label();
@@ -50,7 +47,6 @@ namespace BlockchainSQL.Server {
 			_aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			groupBox1.SuspendLayout();
 			groupBox2.SuspendLayout();
-			_bsqlMenuStrip.SuspendLayout();
 			SuspendLayout();
 			// 
 			// groupBox1
@@ -60,7 +56,7 @@ namespace BlockchainSQL.Server {
 			groupBox1.Controls.Add(label4);
 			groupBox1.Controls.Add(_uninstallServiceButton);
 			groupBox1.Controls.Add(_installServiceButton);
-			groupBox1.Location = new System.Drawing.Point(11, 165);
+			groupBox1.Location = new System.Drawing.Point(11, 151);
 			groupBox1.Margin = new System.Windows.Forms.Padding(2);
 			groupBox1.Name = "groupBox1";
 			groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -72,10 +68,10 @@ namespace BlockchainSQL.Server {
 			// label5
 			// 
 			label5.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label5.Location = new System.Drawing.Point(208, 101);
+			label5.Location = new System.Drawing.Point(218, 101);
 			label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label5.Name = "label5";
-			label5.Size = new System.Drawing.Size(398, 62);
+			label5.Size = new System.Drawing.Size(388, 62);
 			label5.TabIndex = 9;
 			label5.Text = "Remove a previously installed BlockchainSQL Windows Service.";
 			label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -83,10 +79,10 @@ namespace BlockchainSQL.Server {
 			// label4
 			// 
 			label4.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label4.Location = new System.Drawing.Point(206, 34);
+			label4.Location = new System.Drawing.Point(218, 34);
 			label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label4.Name = "label4";
-			label4.Size = new System.Drawing.Size(571, 62);
+			label4.Size = new System.Drawing.Size(559, 62);
 			label4.TabIndex = 8;
 			label4.Text = "Install a BlockchainSQL Windows Service and optional web interface.";
 			label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,56 +109,18 @@ namespace BlockchainSQL.Server {
 			_installServiceButton.UseVisualStyleBackColor = true;
 			_installServiceButton.Click += _installServiceButton_Click;
 			// 
-			// label3
-			// 
-			label3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label3.Location = new System.Drawing.Point(208, 176);
-			label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			label3.MaximumSize = new System.Drawing.Size(575, 62);
-			label3.MinimumSize = new System.Drawing.Size(575, 62);
-			label3.Name = "label3";
-			label3.Size = new System.Drawing.Size(575, 62);
-			label3.TabIndex = 7;
-			label3.Text = "Fill database with blockchain data from a node.";
-			label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// label2
-			// 
-			label2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label2.Location = new System.Drawing.Point(208, 110);
-			label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			label2.Name = "label2";
-			label2.Size = new System.Drawing.Size(593, 62);
-			label2.TabIndex = 3;
-			label2.Text = "Import Bitcoin (BTC) blockchain data from Bitcoin Core BLK data files.";
-			label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// label1
-			// 
-			label1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label1.Location = new System.Drawing.Point(206, 44);
-			label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-			label1.Name = "label1";
-			label1.Size = new System.Drawing.Size(593, 62);
-			label1.TabIndex = 1;
-			label1.Text = "Generate or repair an empty BlockchainSQL database.";
-			label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
 			// groupBox2
 			// 
 			groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
 			groupBox2.Controls.Add(button3);
 			groupBox2.Controls.Add(label9);
-			groupBox2.Controls.Add(label2);
 			groupBox2.Controls.Add(button2);
 			groupBox2.Controls.Add(label8);
-			groupBox2.Controls.Add(label3);
 			groupBox2.Controls.Add(button1);
 			groupBox2.Controls.Add(label7);
-			groupBox2.Controls.Add(label1);
-			groupBox2.Location = new System.Drawing.Point(9, 347);
+			groupBox2.Location = new System.Drawing.Point(9, 333);
 			groupBox2.Name = "groupBox2";
-			groupBox2.Size = new System.Drawing.Size(818, 243);
+			groupBox2.Size = new System.Drawing.Size(818, 270);
 			groupBox2.TabIndex = 2;
 			groupBox2.TabStop = false;
 			groupBox2.Text = "Tools";
@@ -181,10 +139,10 @@ namespace BlockchainSQL.Server {
 			// label9
 			// 
 			label9.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label9.Location = new System.Drawing.Point(206, 97);
+			label9.Location = new System.Drawing.Point(220, 97);
 			label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label9.Name = "label9";
-			label9.Size = new System.Drawing.Size(500, 62);
+			label9.Size = new System.Drawing.Size(486, 62);
 			label9.TabIndex = 3;
 			label9.Text = "Rapidly import blocks into the database by scanning the raw Bitcoin Core BLK data files. ";
 			label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -203,10 +161,10 @@ namespace BlockchainSQL.Server {
 			// label8
 			// 
 			label8.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label8.Location = new System.Drawing.Point(206, 163);
+			label8.Location = new System.Drawing.Point(220, 163);
 			label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label8.Name = "label8";
-			label8.Size = new System.Drawing.Size(490, 62);
+			label8.Size = new System.Drawing.Size(476, 62);
 			label8.TabIndex = 7;
 			label8.Text = "Import blocks into the database using the network protocol and a trusted Bitcoin node.";
 			label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -225,10 +183,10 @@ namespace BlockchainSQL.Server {
 			// label7
 			// 
 			label7.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
-			label7.Location = new System.Drawing.Point(210, 31);
+			label7.Location = new System.Drawing.Point(220, 31);
 			label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
 			label7.Name = "label7";
-			label7.Size = new System.Drawing.Size(569, 62);
+			label7.Size = new System.Drawing.Size(559, 62);
 			label7.TabIndex = 1;
 			label7.Text = "Generate an empty or repair an existing BlockchainSQL database.";
 			label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -269,26 +227,26 @@ namespace BlockchainSQL.Server {
 			// _productManualMenuItem
 			// 
 			_productManualMenuItem.Name = "_productManualMenuItem";
-			_productManualMenuItem.Size = new System.Drawing.Size(180, 22);
+			_productManualMenuItem.Size = new System.Drawing.Size(168, 22);
 			_productManualMenuItem.Text = "Product Manual";
 			_productManualMenuItem.Click += _productManualMenuItem_Click;
 			// 
 			// _hardwareManualMenuItem
 			// 
 			_hardwareManualMenuItem.Name = "_hardwareManualMenuItem";
-			_hardwareManualMenuItem.Size = new System.Drawing.Size(180, 22);
+			_hardwareManualMenuItem.Size = new System.Drawing.Size(168, 22);
 			_hardwareManualMenuItem.Text = "Hardware Manual";
 			_hardwareManualMenuItem.Click += _hardwareManualMenuItem_Click;
 			// 
 			// toolStripSeparator1
 			// 
 			toolStripSeparator1.Name = "toolStripSeparator1";
-			toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			toolStripSeparator1.Size = new System.Drawing.Size(165, 6);
 			// 
 			// _aboutMenuItem
 			// 
 			_aboutMenuItem.Name = "_aboutMenuItem";
-			_aboutMenuItem.Size = new System.Drawing.Size(180, 22);
+			_aboutMenuItem.Size = new System.Drawing.Size(168, 22);
 			_aboutMenuItem.Text = "About";
 			_aboutMenuItem.Click += _aboutMenuItem_Click_1;
 			// 
@@ -297,9 +255,9 @@ namespace BlockchainSQL.Server {
 			AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			ClientSize = new System.Drawing.Size(838, 615);
+			Controls.Add(groupBox1);
 			Controls.Add(_appBanner);
 			Controls.Add(groupBox2);
-			Controls.Add(groupBox1);
 			Controls.Add(_bsqlMenuStrip);
 			FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
@@ -308,9 +266,9 @@ namespace BlockchainSQL.Server {
 			Name = "BSQLMainForm";
 			Text = "BlockchainSQL Management Studio";
 			Controls.SetChildIndex(_bsqlMenuStrip, 0);
-			Controls.SetChildIndex(groupBox1, 0);
 			Controls.SetChildIndex(groupBox2, 0);
 			Controls.SetChildIndex(_appBanner, 0);
+			Controls.SetChildIndex(groupBox1, 0);
 			groupBox1.ResumeLayout(false);
 			groupBox2.ResumeLayout(false);
 			_bsqlMenuStrip.ResumeLayout(false);
@@ -322,11 +280,8 @@ namespace BlockchainSQL.Server {
 		#endregion
 
 		private System.Windows.Forms.GroupBox groupBox1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button _installServiceButton;
 		private System.Windows.Forms.Button _uninstallServiceButton;
-		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Label label5;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.GroupBox groupBox2;

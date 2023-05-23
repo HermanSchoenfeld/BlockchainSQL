@@ -38,6 +38,7 @@ namespace BlockchainSQL.Server {
 				var settings = UserSettings.Get<NetworkScannerFormSettings>();
 				_nodeIPTextBox.Text = settings.NodeIP;
 				_nodePortBox.Value = settings.NodePort;
+				_blocksPerBatchIntBox.Value = settings.BlocksPerBatch;
 				_dbConnectionBar.SelectedDBMSType = settings.DBMS;
 				_dbConnectionBar.ConnectionString = settings.ConnectionString;
 			}
@@ -47,6 +48,7 @@ namespace BlockchainSQL.Server {
 			var settings = UserSettings.Get<NetworkScannerFormSettings>();
 			settings.NodeIP = _nodeIPTextBox.Text;
 			settings.NodePort = _nodePortBox.Value;
+			settings.BlocksPerBatch = _blocksPerBatchIntBox.Value;
 			settings.DBMS = _dbConnectionBar.SelectedDBMSType;
 			settings.ConnectionString = _dbConnectionBar.ConnectionString;
 			settings.Save();
@@ -87,7 +89,7 @@ namespace BlockchainSQL.Server {
 			var dbmsType = _dbConnectionBar.SelectedDBMSType;
 			var connectionString = _dbConnectionBar.ConnectionString;
 			using (var scope = new BizLogicScope(dbmsType, connectionString, _logger)) {
-				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(_nodeIPTextBox.Text, _nodePortBox.Value))) {
+				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(_nodeIPTextBox.Text, _nodePortBox.Value), _blocksPerBatchIntBox.Value.GetValueOrDefault(1))) {
 					var blockStreamParser = BizLogicFactory.NewNodeStreamParser(nodeStream, BizLogicFactory.NewBlockLocator(), BizLogicFactory.NewPreProcessor(false, true), BizLogicFactory.NewPostProcessor(), BizLogicFactory.NewBlockStreamPersistor());
 					Action<int> progressHandler = i => _progressBar.BeginInvokeEx(() => _progressBar.Value = i);
 					SaveFormSettings();
@@ -172,6 +174,8 @@ namespace BlockchainSQL.Server {
 
 		public DBMSType DBMS { get; set; } = DBMSType.SQLServer;
 
+		[DefaultValue(10)]
+		public int? BlocksPerBatch { get; set; }
 
 		public string ConnectionString { get; set; }
 
