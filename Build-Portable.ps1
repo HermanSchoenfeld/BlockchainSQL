@@ -4,4 +4,5 @@ dotnet publish .\BlockchainSQL.Web\BlockchainSQL.Web.csproj -c Release /p:Publis
 
 # Delete .pdb and .json files from the specified directory
 $keepFiles = "appsettings.json", "web.config"
-Get-ChildItem -Path "Z:/Builds/BlockchainSQL/latest/portable" -Include *.pdb, *.json, *.xml, *.config -Recurse | Where-Object { $_.Name -notin $keepFiles } | Remove-Item -Force
+#Get-ChildItem -Path "Z:/Builds/BlockchainSQL/latest/portable" -Include *.pdb, *.json, *.xml, *.config -Recurse | Where-Object { $_.Name -notin $keepFiles } | Remove-Item -Force
+Get-ChildItem -Path "Z:/Builds/BlockchainSQL/latest/portable" -Include *.pdb -Recurse | Where-Object { $_.Name -notin $keepFiles } | Remove-Item -Force
