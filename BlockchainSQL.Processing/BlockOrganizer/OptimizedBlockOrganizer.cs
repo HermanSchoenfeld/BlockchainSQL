@@ -62,11 +62,27 @@ namespace BlockchainSQL.Processing {
             while (blocksToSequence.Count > 0) {
                 var wipBlock = blocksToSequence.First();
                 // skip block if already processed
-                if (_blockCache[wipBlock.Block.Hash] != null) {
-                    throw new BlockAlreadySequencedException(wipBlock.Block.Hash);
+                var block = _blockCache[wipBlock.Block.Hash];
+                if (block != null) {
+                    //throw new BlockAlreadySequencedException(wipBlock.Block.Hash);
                     // CANNOT RE-PROCESS BLOCK AS BELOW!! ERROR!!! Need to figure out proper way to deal with this
-                    //blocksToSequence.RemoveFirst();
-                    //continue;
+					
+					// A previously orphaned block has been re-established as a valid block, so it needs to be de-orphaned
+					// SOLUTION - the orphaned block needs to be unorphaned, and existing 
+					
+					// Before this can happen, the existing tip block (and everything above) needs to orphaned
+					SplitBranch(_mainChain.ID, block.Height.Value, wipBlock.Block.TimeStampUnix, results);
+
+					// Migrate the orphan branch back to main branch
+					MigrateBranch(block.Branch.ID, block.Height.Value, _mainChain, results);
+					// Delete the orphan branch with the current block
+					DeleteBranch(block.Branch.ID);
+
+					// Remove block from cache, since de-orphaned
+					_blockCache.Remove(wipBlock.Block.Hash);
+					
+                    blocksToSequence.RemoveFirst();
+                    continue;
                 }
 
                 if (wipBlock.Block.IsGenesisBlock()) {
@@ -350,7 +366,7 @@ namespace BlockchainSQL.Processing {
             if (segment.ParentBranch.ID != (long)KnownBranches.MainChain)
                 path.AddRange(GetPathFromRootToOrphanBranch(segment.ParentBranch.ID, recursionPreventor));
 
-           // path = path.OrderBy(b => b.ForkHeight).ThenBy(b => b.ID).ToList();
+            // path = path.OrderBy(b => b.ForkHeight).ThenBy(b => b.ID).ToList();
             return path;
         }
 
@@ -382,6 +398,7 @@ namespace BlockchainSQL.Processing {
         }
 
         protected BlockPtr TryFindBlockInDatabase(byte[] hash) {
+			Tools.Debugger.CounterA++;
             using (BizLogicScope.Current.DAC.BeginDirtyReadScope()) {
                 var results = BizLogicScope.Current.DAC.GetBlocksByHash(new[] {hash});
                 if (results.Any()) {
