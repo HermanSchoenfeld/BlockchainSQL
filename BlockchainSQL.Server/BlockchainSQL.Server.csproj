@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<OutputType>WinExe</OutputType>
 		<SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
 		<RestorePackages>true</RestorePackages>
@@ -18,7 +18,9 @@
 		<DebugType>none</DebugType>
 		<UseVSHostingProcess>false</UseVSHostingProcess>
 	</PropertyGroup>
-	<PropertyGroup />
+	<ItemGroup>
+		<PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.0" />
+	</ItemGroup>
 	<ItemGroup>
 	  <Compile Include="..\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
 	</ItemGroup>
@@ -57,9 +59,6 @@
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.Processing\BlockchainSQL.Processing.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="System.ServiceProcess.ServiceController" Version="7.0.0" />
 	</ItemGroup>
 	<ItemGroup>
 	  <EmbeddedResource Update="Controls\UserControl1 - Copy %282%29.resx">

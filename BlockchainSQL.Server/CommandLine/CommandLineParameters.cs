@@ -49,7 +49,7 @@ namespace BlockchainSQL.Server {
 		public Result<CommandLineResults> TryParseArguments(string[] args) {
 			Guard.ArgumentNotNull(args, nameof(args));
 
-			var parameters = new LookupEx<string, string>();
+			var parameters = new ExtendedLookup<string, string>();
 			CommandLineResults currentResults = new CommandLineResults {
 				Arguments = parameters
 			};
@@ -111,7 +111,7 @@ namespace BlockchainSQL.Server {
 							break;
 						}
 
-						parameters = new LookupEx<string, string>();
+						parameters = new ExtendedLookup<string, string>();
 						SetSubCommandResult(currentResults,
 							new CommandLineResults {
 								Arguments = parameters,
@@ -165,8 +165,8 @@ namespace BlockchainSQL.Server {
 					}
 
 					if (!paramDef.Traits.HasFlag(CommandLineParameterOptions.Multiple)) {
-						LookupEx<string, string> lookupEx = results.Arguments as LookupEx<string, string>;
-						if (lookupEx!.CountForKey(paramDef.Name) > 1)
+						ExtendedLookup<string, string> lookupEx = results.Arguments as ExtendedLookup<string, string>;
+						if (lookupEx!.GetValuesCount(paramDef.Name) > 1)
 							parseResults.AddError($"Parameter {paramDef.Name} supplied more than once but does not support multiple values.");
 					}
 
