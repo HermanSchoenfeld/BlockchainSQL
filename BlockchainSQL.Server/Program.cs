@@ -64,7 +64,7 @@ namespace BlockchainSQL.Server {
 			
 				using (new AttachToCommandPromptScope()) {
 					var userArgsResult = Arguments.TryParseArguments(args);
-					if (userArgsResult.Failure) {
+					if (userArgsResult.IsFailure) {
 						userArgsResult.ErrorMessages.ForEach(Console.WriteLine);
 						return;
 					}
@@ -78,23 +78,33 @@ namespace BlockchainSQL.Server {
 						case "":
 						case null:
 							if (Environment.UserInteractive) {
-								SystemLog.RegisterLogger( HydrogenFramework.Instance.CreateApplicationLogger("gui.log"));
+								HydrogenFramework.Instance.Initialized += () => {
+									SystemLog.RegisterLogger( HydrogenFramework.Instance.CreateApplicationLogger("gui.log", true));
+								};
 								RunAsGUI();
 							} else {
-								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
+								HydrogenFramework.Instance.Initialized += () => {
+									SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
+								};
 								RunAsService();
 							}
 							break;
 						case "INSTALL":
-							SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
+							HydrogenFramework.Instance.Initialized += () => {
+								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
+							};
 							RunAsInstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "UNINSTALL":
-							SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
+							HydrogenFramework.Instance.Initialized += () => {
+								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
+							};
 							RunAsUninstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "SERVICE":
-							SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log"));
+							HydrogenFramework.Instance.Initialized += () => {
+								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
+							};
 							RunAsService();
 							break;
 					}

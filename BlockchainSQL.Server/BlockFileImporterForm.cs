@@ -52,7 +52,7 @@ namespace BlockchainSQL.Server {
 		protected virtual async Task TestDatabase() {
 			using (_loadingCircle.BeginAnimationScope(this)) {
 				var testResult = await _dbConnectionBar.TestConnection();
-				if (testResult.Failure) {
+				if (testResult.IsFailure) {
 					DialogEx.Show(SystemIconType.Information, "Connection Failed", testResult.ErrorMessages.ToParagraphCase(), "OK");
 				} else {
 					DialogEx.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -68,10 +68,10 @@ namespace BlockchainSQL.Server {
 
 		protected virtual async Task StartScanning() {
 			var blockchainSourceValidation = await Task.Run(() => ProcessingTierHelper.ValidateBlocksDirectory(_blkDataPathControl.Path));
-			if (!blockchainSourceValidation.Success)
+			if (!blockchainSourceValidation.IsSuccess)
 				throw new ApplicationException(blockchainSourceValidation.ErrorMessages.ToParagraphCase());
 			var databaseValidation = await _dbConnectionBar.TestConnection();
-			if (!databaseValidation.Success)
+			if (!databaseValidation.IsSuccess)
 				throw new ApplicationException(databaseValidation.ErrorMessages.ToParagraphCase());
 
 
@@ -142,7 +142,7 @@ namespace BlockchainSQL.Server {
 		private async void _BLKDataFolderValidator_PerformValidation(ValidationIndicator arg1, ValidationIndicatorEvent arg2) {
 			try {
 				var result = await ValidateBLKDataFolder();
-				arg2.ValidationResult = result.Success;
+				arg2.ValidationResult = result.IsSuccess;
 				arg2.ValidationMessage = result.GetMessages().ToParagraphCase();
 			} catch (Exception error) {
 				ExceptionDialog.Show(error);

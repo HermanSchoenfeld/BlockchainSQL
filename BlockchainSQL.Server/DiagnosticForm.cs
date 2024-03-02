@@ -96,7 +96,7 @@ namespace BlockchainSQL.Server
         private async void Connect() {
             using (_loadingCircle.BeginAnimationScope(this)) {
                 var connectionResult = await _dbConnectionBar.TestConnection();
-                if (!connectionResult.Success)
+                if (!connectionResult.IsSuccess)
                     throw new SoftwareException(connectionResult);                             
                 _connectButton.Text = "Disconnect";
             }

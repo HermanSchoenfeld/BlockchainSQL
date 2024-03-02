@@ -52,7 +52,7 @@ namespace BlockchainSQL.Processing {
                 }
             }
 
-            if (!result.Success)
+            if (!result.IsSuccess)
                 return result;
 
             if ((maxFileNo - minFileNo) + 1 != blkFiles.Length)

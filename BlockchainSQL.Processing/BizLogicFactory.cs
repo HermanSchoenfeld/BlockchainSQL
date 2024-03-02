@@ -27,7 +27,7 @@ namespace BlockchainSQL.Processing {
         public static IBlockStream NewBlockStream(string directory) {
             if (!Directory.Exists(directory)) throw new ArgumentException("Directory not found", nameof(directory));
             var indexDB = Path.Combine(directory, "index");
-            if (Directory.Exists(indexDB) && ProcessingTierHelper.ValidateLevelDBDirectory(indexDB).Success) {
+            if (Directory.Exists(indexDB) && ProcessingTierHelper.ValidateLevelDBDirectory(indexDB).IsSuccess) {
                 return new IndexedFilesBlockStream(directory, indexDB);
             }            
             return new UnindexedFilesBlockStream(directory);

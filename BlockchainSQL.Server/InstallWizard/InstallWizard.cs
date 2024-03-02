@@ -28,7 +28,7 @@ public class InstallWizard : WizardBase<InstallWizardModel> {
 		} catch (Exception error) {
 			return Result.Error("Failed to install Service Process.", error.ToDisplayString());
 		}
-		return Result.Valid;
+		return Result.Success;
 	}
 
 	protected override IEnumerable<WizardScreen<InstallWizardModel>> ConstructScreens() {

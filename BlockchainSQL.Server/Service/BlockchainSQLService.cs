@@ -79,7 +79,7 @@ namespace BlockchainSQL.Server {
 
 		private async Task StartScanning(DBReference database, ILogger logger, CancellationToken cancelToken) {
 			var databaseValidation = await TestDatabase(database);
-			if (!databaseValidation.Success)
+			if (!databaseValidation.IsSuccess)
 				throw new ApplicationException("Failed to connect to database. " + databaseValidation.ErrorMessages.ToParagraphCase());
 
 			var dbmsType = database.DBMSType;
@@ -89,7 +89,7 @@ namespace BlockchainSQL.Server {
 				var nodeIP = scope.Settings.Get<ServiceNodeSettings>().IP;
 				int? nodePort = null; // TODO add port setting
 				var nodeValidation = await ValidateNode(nodeIP, nodePort);
-				if (!nodeValidation.Success)
+				if (!nodeValidation.IsSuccess)
 					throw new ApplicationException("Failed to connect to Bitcoin node. " + nodeValidation.ErrorMessages.ToParagraphCase());
 
 				using (var nodeStream = BizLogicFactory.NewNodeBlockStream(NodeEndpoint.For(nodeIP, nodePort), 1)) {

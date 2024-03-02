@@ -57,7 +57,7 @@ namespace BlockchainSQL.Server {
 		protected virtual async Task TestDatabase() {
 			using (_loadingCircle.BeginAnimationScope(this)) {
 				var testResult = await _dbConnectionBar.TestConnection();
-				if (testResult.Failure) {
+				if (testResult.IsFailure) {
 					DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				} else {
 					DialogEx.Show(this, "Success", "Database Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -80,10 +80,10 @@ namespace BlockchainSQL.Server {
 
 		protected virtual async Task StartScanning() {
 			var blockchainSourceValidation = await ValidateNode();
-			if (!blockchainSourceValidation.Success)
+			if (!blockchainSourceValidation.IsSuccess)
 				throw new ApplicationException(blockchainSourceValidation.ErrorMessages.ToParagraphCase());
 			var databaseValidation = await _dbConnectionBar.TestConnection();
-			if (!databaseValidation.Success)
+			if (!databaseValidation.IsSuccess)
 				throw new ApplicationException(databaseValidation.ErrorMessages.ToParagraphCase());
 
 			var dbmsType = _dbConnectionBar.SelectedDBMSType;
@@ -152,7 +152,7 @@ namespace BlockchainSQL.Server {
 		private async void _testNodeButton_Click(object sender, EventArgs e) {
 			try {
 				var result = await ValidateNode();
-				if (result.Failure)
+				if (result.IsFailure)
 					DialogEx.Show(this, result.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				else
 					DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);

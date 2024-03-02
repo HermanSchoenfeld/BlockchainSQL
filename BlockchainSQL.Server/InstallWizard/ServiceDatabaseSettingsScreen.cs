@@ -36,7 +36,7 @@ namespace BlockchainSQL.Server {
 
 		public async Task<Result> ValidateDatabase() {
 			var result = await _blockchainDatabaseSettingsControl.DatabasePanel.TestConnection();
-			if (result.Success) {
+			if (result.IsSuccess) {
 				var dac = BlockchainDatabase.NewDAC(_blockchainDatabaseSettingsControl.DatabasePanel.GetDAC());
 				if (!dac.IsValidSchema())
 					result.AddError("BlockchainSQL Database schema is not valid. Try regenerating.");

@@ -19,7 +19,7 @@ namespace BlockchainSQL.Server {
 
 		public override async Task<Result> Validate() {
 			var result = Model.WebSettings.Validate();
-			if (result.Failure)
+			if (result.IsFailure)
 				return result;
 			if (Model.WebSettings.Enabled)
 				result = await ValidateDatabase();
@@ -30,13 +30,13 @@ namespace BlockchainSQL.Server {
 			var result = Result.Default;
 			;
 			var webResult = await _webSettingsControl.WebDatabasePanel.TestConnection();
-			if (webResult.Failure) {
+			if (webResult.IsFailure) {
 				result.AddError("Unable to connect to web database");
 				result.Merge(webResult);
 			}
 
 			var bsqlResult = await _webSettingsControl.BlockchainDatabasePanel.TestConnection();
-			if (bsqlResult.Failure) {
+			if (bsqlResult.IsFailure) {
 				result.AddError("Unable to connect to blockchain database");
 				result.Merge(bsqlResult);
 			}

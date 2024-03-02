@@ -92,7 +92,7 @@ namespace BlockchainSQL.Web.Controllers {
 					result.AddError("Could not connect to the BSQL database, check connection details.");
 				}
 
-				if (result.Failure) {
+				if (result.IsFailure) {
 					return Json(new FormResult {
 						Result = false,
 						Message = result.ErrorMessages.ToDelimittedString("<br/>")

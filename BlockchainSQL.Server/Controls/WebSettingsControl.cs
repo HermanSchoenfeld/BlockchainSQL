@@ -177,7 +177,7 @@ namespace BlockchainSQL.Server.Controls {
 				using (_loadingCircle.BeginAnimationScope(this)) {
 					testResult = await TestWebDatabaseConnection();
 				}
-				if (testResult.Failure)
+				if (testResult.IsFailure)
 					DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				else
 					DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -192,7 +192,7 @@ namespace BlockchainSQL.Server.Controls {
 				using (_loadingCircle.BeginAnimationScope(this)) {
 					testResult = await TestBlockchainDatabaseConnection();
 				}
-				if (testResult.Failure)
+				if (testResult.IsFailure)
 					DialogEx.Show(this, testResult.ErrorMessages.ToParagraphCase(), "Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				else
 					DialogEx.Show(this, "Success", "Connection Succeeded", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -19,7 +19,7 @@ namespace BlockchainSQL.Processing {
 		public IndexedFilesBlockStream(string directoryPath, string indexDBPath) : base(directoryPath) {
 			if (string.IsNullOrWhiteSpace(indexDBPath)) throw new ArgumentException("Null or whitespace", nameof(indexDBPath));
 			var indexDBValidation = ProcessingTierHelper.ValidateLevelDBDirectory(indexDBPath);
-			if (indexDBValidation.Failure) throw new ArgumentException(indexDBValidation.ToString(), nameof(indexDBValidation));
+			if (indexDBValidation.IsFailure) throw new ArgumentException(indexDBValidation.ToString(), nameof(indexDBValidation));
 			_indexDBPath = indexDBPath;
 		}
 

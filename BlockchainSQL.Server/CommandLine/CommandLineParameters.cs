@@ -120,7 +120,7 @@ namespace BlockchainSQL.Server {
 					}
 				}
 
-				if (parseResults.Failure)
+				if (parseResults.IsFailure)
 					break;
 			}
 
@@ -135,10 +135,10 @@ namespace BlockchainSQL.Server {
 		}
 
 		private void ValidateParameters(Result<CommandLineResults> parseResults) {
-			if (parseResults.Success)
+			if (parseResults.IsSuccess)
 				ValidateMandatoryParameters(parseResults);
 
-			if (parseResults.Success)
+			if (parseResults.IsSuccess)
 				ValidateParameterOptions(parseResults);
 		}
 

@@ -42,14 +42,14 @@ using Hydrogen.Application;
 	      "majorVersionApplicable": 1,
 	      "expirationDays": 90
 	    },
-	    "Signature": "MEQCIAo13PYeurMiRNz+zgTWFWLfY22HiqwMSvP/bsfvxmCrAiBeeZNxIkX3TlJmn1AnmzoZrYVrmhQu9ewWwPjafoKoZQ=="
+	    "Signature": "MEQCIF7sBuxPsG+oTWlBZpc/JHkCz+8qb86DU4mxi/U5SruGAiAksP3GwGbg0s5MIzMqqkdfX2PwbsXts9zccNg1KKCJYQ=="
 	  },
 	  "command": {
 	    "Item": {
 	      "productKey": "0000-0000-0000-0004",
 	      "action": "enable"
 	    },
-	    "Signature": "MEQCIHcZcf+8MvivmZF/TTKDQt1v6dz/pscQNfrJ/OOqyop+AiBkLBj5ugambukYjCFa3EbdZPUuMqXtD2Bwe+My/x4wjQ=="
+	    "Signature": "MEQCIEQE23qgIOSWuPhP/BVckJ3i5+84x3vdG3e55fsZEA94AiA1TSdPcScUdWZfzpIt2vkMcS/7/1eo2/JEkoAEh6+R7w=="
 	  }
 	}
 	""")]

@@ -21,8 +21,10 @@ namespace BlockchainSQL.Web {
 				.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder => {
 					webBuilder.UseStartup<Startup>();
-					SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));
-					SystemLog.Info("Web Server Started");
+					HydrogenFramework.Instance.Initialized += () => {
+						SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));SystemLog.Info("Web Server Started");
+					};
+					
 				})
 				.UseHydrogenFramework()
 				.Build()
