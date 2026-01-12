@@ -1,6 +1,6 @@
 # BlockchainSQL
 
-BlockchainSQL gives you the blockchain as an SQL database. Easily build your analytics and BI platform without ever worrying about protocols again.
+BlockchainSQL is an SQL database, indexer, and explorer for Bitcoin-based blockchains. Easily build your analytics and BI platform without ever worrying about protocols again.
 
 This repository contains the source code for the BlockchainSQL application.
 
