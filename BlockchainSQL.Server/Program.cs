@@ -4,12 +4,12 @@ using System.IO;
 using System.Linq;
 using System.ServiceProcess;
 using System.Windows.Forms;
-using Hydrogen;
-using Hydrogen.Data;
-using Hydrogen.Windows.Forms;
-using Hydrogen.Application;
-using Hydrogen.CryptoEx;
-using Hydrogen.Windows;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
+using Sphere10.Framework.Windows.Forms;
+using Sphere10.Framework.Application;
+using Sphere10.Framework.CryptoEx;
+using Sphere10.Framework.Windows;
 
 namespace BlockchainSQL.Server {
 	public static partial class Program {
@@ -78,32 +78,32 @@ namespace BlockchainSQL.Server {
 						case "":
 						case null:
 							if (Environment.UserInteractive) {
-								HydrogenFramework.Instance.Initialized += () => {
-									SystemLog.RegisterLogger( HydrogenFramework.Instance.CreateApplicationLogger("gui.log", true));
+								Sphere10Framework.Instance.Initialized += () => {
+									SystemLog.RegisterLogger( Sphere10Framework.Instance.CreateApplicationLogger("gui.log", true));
 								};
 								RunAsGUI();
 							} else {
-								HydrogenFramework.Instance.Initialized += () => {
-									SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
+								Sphere10Framework.Instance.Initialized += () => {
+									SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
 								};
 								RunAsService();
 							}
 							break;
 						case "INSTALL":
-							HydrogenFramework.Instance.Initialized += () => {
-								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
+							Sphere10Framework.Instance.Initialized += () => {
+								SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("installer.log"));
 							};
 							RunAsInstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "UNINSTALL":
-							HydrogenFramework.Instance.Initialized += () => {
-								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("installer.log"));
+							Sphere10Framework.Instance.Initialized += () => {
+								SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("installer.log"));
 							};
 							RunAsUninstallServiceCommand(userArgs.SubCommand);
 							break;
 						case "SERVICE":
-							HydrogenFramework.Instance.Initialized += () => {
-								SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
+							Sphere10Framework.Instance.Initialized += () => {
+								SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("service.log", visibleToAllUsers: true));
 							};
 							RunAsService();
 							break;
@@ -115,8 +115,8 @@ namespace BlockchainSQL.Server {
 				System.Threading.Thread.Sleep(200); // give time for output to flush to parent process
 				Environment.ExitCode = -1;
 			} finally {
-				if (HydrogenFramework.Instance.IsStarted)
-					HydrogenFramework.Instance.EndFramework();
+				if (Sphere10Framework.Instance.IsStarted)
+					Sphere10Framework.Instance.EndFramework();
 			}
 		}
 

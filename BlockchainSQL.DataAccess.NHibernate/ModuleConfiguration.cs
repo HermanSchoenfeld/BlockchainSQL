@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Hydrogen.Application;
-using Hydrogen.Data;
+using Sphere10.Framework.Application;
+using Sphere10.Framework.Data;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BlockchainSQL.DataAccess.NHibernate {

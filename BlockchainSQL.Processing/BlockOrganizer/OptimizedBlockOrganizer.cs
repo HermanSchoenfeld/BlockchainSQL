@@ -5,8 +5,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using BlockchainSQL.DataObjects;
-using Hydrogen;
-using Hydrogen.Data;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Processing {
 	public class OptimizedBlockOrganizer : BizComponent, IBlockOrganizer {

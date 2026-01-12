@@ -1,7 +1,7 @@
 ﻿using FluentNHibernate.Cfg;
 using NHibernate.Event;
 using NHibernate.Tool.hbm2ddl;
-using Hydrogen.Data.NHibernate;
+using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
 	internal static class DatabaseGeneratorHelper {

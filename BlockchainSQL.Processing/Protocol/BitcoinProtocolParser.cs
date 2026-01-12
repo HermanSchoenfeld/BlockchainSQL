@@ -7,7 +7,7 @@ using System.Text;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing.Domain;
 using NBitcoin;
-using Hydrogen;
+using Sphere10.Framework;
 using Block = BlockchainSQL.DataObjects.Block;
 using Script = BlockchainSQL.DataObjects.Script;
 using ScriptType = BlockchainSQL.DataObjects.ScriptType;

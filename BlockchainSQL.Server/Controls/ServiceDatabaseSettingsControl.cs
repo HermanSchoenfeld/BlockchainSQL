@@ -1,8 +1,8 @@
 ﻿using BlockchainSQL.DataAccess;
 using BlockchainSQL.Processing;
-using Hydrogen;
-using Hydrogen.Data;
-using Hydrogen.Windows.Forms;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
+using Sphere10.Framework.Windows.Forms;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;

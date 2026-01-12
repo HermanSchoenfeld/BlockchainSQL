@@ -2,8 +2,8 @@
 using System.Linq;
 using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
-using Hydrogen;
-using Hydrogen.Data;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Processing {
 	public sealed class TransactionCache : CacheBase<byte[], Transaction> {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
-using Hydrogen;
+using Sphere10.Framework;
 
 namespace BlockchainSQL.NUnit {
     public class MockPaymentBuilder {

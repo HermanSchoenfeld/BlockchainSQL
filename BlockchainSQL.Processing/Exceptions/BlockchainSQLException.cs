@@ -1,5 +1,5 @@
 ﻿using System;
-using Hydrogen;
+using Sphere10.Framework;
 
 namespace BlockchainSQL.Processing {
 	public class BlockchainSQLException : SoftwareException {

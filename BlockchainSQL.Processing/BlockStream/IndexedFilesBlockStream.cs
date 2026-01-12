@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using BlockchainSQL.Processing.BusinessObjects;
-using Hydrogen;
-using Hydrogen.Windows.LevelDB;
+using Sphere10.Framework;
+using Sphere10.Framework.Windows.LevelDB;
 // ReSharper disable InconsistentNaming
 
 namespace BlockchainSQL.Processing {

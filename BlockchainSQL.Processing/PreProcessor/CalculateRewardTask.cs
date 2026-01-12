@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
-using Hydrogen.Data;
+using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.Processing {
 	public class CalculateRewardTask : BizComponent, IPreProcessingTask {

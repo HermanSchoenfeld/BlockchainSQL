@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using Hydrogen;
+using Sphere10.Framework;
 
 namespace BlockchainSQL.Processing.Domain {
 

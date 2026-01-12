@@ -19,6 +19,16 @@
 		<UseVSHostingProcess>false</UseVSHostingProcess>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="Sphere10.Framework" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Application" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.CryptoEx" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Data" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Data.MSSQL" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Data.Sqlite" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Drawing" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Windows.Forms" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Windows.Forms.MSSQL" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Windows.Forms.Sqlite" Version="3.0.3" />
 		<PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.0" />
 	</ItemGroup>
 	<ItemGroup>
@@ -47,14 +57,6 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Application\Hydrogen.Application.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.CryptoEx\Hydrogen.CryptoEx.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Drawing\Hydrogen.Drawing.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.MSSQL\Hydrogen.Windows.Forms.MSSQL.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms.Sqlite\Hydrogen.Windows.Forms.Sqlite.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Windows.Forms\Hydrogen.Windows.Forms.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen\Hydrogen.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />

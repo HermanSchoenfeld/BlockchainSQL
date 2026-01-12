@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using BlockchainSQL.DataObjects;
-using Hydrogen;
+using Sphere10.Framework;
 
 namespace BlockchainSQL.Processing {
 	public sealed class WipPipelineScope : SyncContextScope {

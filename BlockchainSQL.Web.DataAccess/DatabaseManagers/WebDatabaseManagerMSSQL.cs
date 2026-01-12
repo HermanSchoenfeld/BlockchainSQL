@@ -8,12 +8,12 @@ using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Event;
 using NHibernate.Tool.hbm2ddl;
-using Hydrogen.Data;
-using Hydrogen;
+using Sphere10.Framework.Data;
+using Sphere10.Framework;
 using System.Threading.Tasks;
 using BlockchainSQL.Web.DataAccess;
 using System.Data.SqlClient;
-using Hydrogen.Data.NHibernate;
+using Sphere10.Framework.Data.NHibernate;
 
 
 namespace BlockchainSQL.Web.DataAccess {

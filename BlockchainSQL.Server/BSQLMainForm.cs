@@ -1,10 +1,10 @@
-﻿using Hydrogen.Windows.Forms;
+﻿using Sphere10.Framework.Windows.Forms;
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Hydrogen.Application;
+using Sphere10.Framework.Application;
 using BlockchainSQL.Processing;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -77,7 +77,7 @@ namespace BlockchainSQL.Server {
 
 		private void _productManualMenuItem_Click(object sender, EventArgs e) {
 			try {
-				var launcher = HydrogenFramework.Instance.ServiceProvider.GetService<IWebsiteLauncher>();
+				var launcher = Sphere10Framework.Instance.ServiceProvider.GetService<IWebsiteLauncher>();
 				launcher.LaunchWebsite("https://sphere10.com/products/blockchainsql/manual");
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);
@@ -86,7 +86,7 @@ namespace BlockchainSQL.Server {
 
 		private void _hardwareManualMenuItem_Click(object sender, EventArgs e) {
 			try {
-				var launcher = HydrogenFramework.Instance.ServiceProvider.GetService<IWebsiteLauncher>();
+				var launcher = Sphere10Framework.Instance.ServiceProvider.GetService<IWebsiteLauncher>();
 				launcher.LaunchWebsite("https://sphere10.com/products/blockchainsql/hardware-manual");
 			} catch (Exception error) {
 				ExceptionDialog.Show(this, error);

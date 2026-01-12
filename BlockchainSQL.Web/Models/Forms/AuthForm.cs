@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Hydrogen.Web.AspNetCore;
+using Sphere10.Framework.Web.AspNetCore;
 
 namespace BlockchainSQL.Web.Models {
 	public class LoginForm : AweFormModelBase {

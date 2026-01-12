@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BlockchainSQL.Web.DataObjects;
 using NHibernate;
-using Hydrogen.Data.NHibernate;
+using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
     public class PrimingDataGenerator : NHDataGeneratorBase {

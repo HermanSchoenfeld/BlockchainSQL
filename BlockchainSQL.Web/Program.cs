@@ -5,8 +5,8 @@
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Hydrogen;
-using Hydrogen.Application;
+using Sphere10.Framework;
+using Sphere10.Framework.Application;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -21,18 +21,18 @@ namespace BlockchainSQL.Web {
 				.CreateDefaultBuilder(args)
 				.ConfigureWebHostDefaults(webBuilder => {
 					webBuilder.UseStartup<Startup>();
-					HydrogenFramework.Instance.Initialized += () => {
-						SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));SystemLog.Info("Web Server Started");
+					Sphere10Framework.Instance.Initialized += () => {
+						SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));SystemLog.Info("Web Server Started");
 					};
 					
 				})
-				.UseHydrogenFramework()
+				.UseSphere10Framework()
 				.Build()
-				.StartHydrogenFramework()
+				.StartSphere10Framework()
 				.RunAsync();
 			SystemLog.Info("Web Server Ended");
-			//HydrogenFramework.Instance.StartFramework();
-			//SystemLog.RegisterLogger(HydrogenFramework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));
+			//Sphere10Framework.Instance.StartFramework();
+			//SystemLog.RegisterLogger(Sphere10Framework.Instance.CreateApplicationLogger("web.log", visibleToAllUsers:true));
 			//SystemLog.Info("Web Server Started");
 			//CreateHostBuilder(args).Build().Run();
 			//SystemLog.Info("Web Server Ended");

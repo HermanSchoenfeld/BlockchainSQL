@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BlockchainSQL.DataObjects;
-using Hydrogen;
-using Hydrogen.Data;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
 
 
 // ReSharper disable InconsistentNaming

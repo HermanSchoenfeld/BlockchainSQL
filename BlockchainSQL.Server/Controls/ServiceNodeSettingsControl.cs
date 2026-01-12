@@ -1,5 +1,5 @@
 ﻿using BlockchainSQL.Processing;
-using Hydrogen;
+using Sphere10.Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Hydrogen.Windows.Forms;
+using Sphere10.Framework.Windows.Forms;
 
 namespace BlockchainSQL.Server.Controls {
 	public partial class ServiceNodeSettingsControl : UserControlEx {

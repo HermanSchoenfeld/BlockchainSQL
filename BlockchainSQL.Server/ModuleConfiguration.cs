@@ -14,8 +14,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using Sphere10.Framework.Application;
 
-namespace Hydrogen.Application {
+namespace BlockchainSQL.Server {
 	public class ModuleConfiguration : ModuleConfigurationBase {
 
 		public override int Priority => int.MinValue; // last to execute

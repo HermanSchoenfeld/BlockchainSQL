@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using BlockchainSQL.DataAccess;
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
-using Hydrogen;
-using Hydrogen.Data;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
 
 namespace BlockchainSQL.NUnit {
     public class UnitTestScope : IDisposable {

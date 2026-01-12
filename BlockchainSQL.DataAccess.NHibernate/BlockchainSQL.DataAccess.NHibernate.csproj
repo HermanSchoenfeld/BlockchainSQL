@@ -8,16 +8,15 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.MSSQL\Hydrogen.Data.MSSQL.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.NHibernate\Hydrogen.Data.NHibernate.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data.Sqlite\Hydrogen.Data.Sqlite.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Data\Hydrogen.Data.csproj" />
-		<ProjectReference Include="..\..\Hydrogen\src\Hydrogen\Hydrogen.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
 		<ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Sphere10.Framework" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Data" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Data.MSSQL" Version="3.0.3" />
+		<PackageReference Include="Sphere10.Framework.Data.Sqlite" Version="3.0.3" />
 	</ItemGroup>
 	<Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
 	<Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />

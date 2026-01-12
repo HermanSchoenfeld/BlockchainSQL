@@ -2,7 +2,7 @@
 using BlockchainSQL.DataObjects;
 using BlockchainSQL.Processing;
 using BlockchainSQL.Web.Models;
-using Hydrogen.Web.AspNetCore.AnimateCss;
+using Sphere10.Framework.Web.AspNetCore.AnimateCss;
 
 
 namespace BlockchainSQL.Web.Code {

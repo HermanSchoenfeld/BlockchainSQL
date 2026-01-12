@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using BlockchainSQL.DataObjects;
-using Hydrogen;
-using Hydrogen.Application;
-using Hydrogen.Data;
+using Sphere10.Framework;
+using Sphere10.Framework.Application;
+using Sphere10.Framework.Data;
 using Microsoft.Extensions.DependencyInjection;
 using Tools;
 
@@ -44,9 +44,9 @@ namespace BlockchainSQL.DataAccess {
 		public static IDatabaseManager NewDatabaseManager(DBMSType dbmsType) {
             switch (dbmsType) {
                 case DBMSType.SQLServer:
-                    return HydrogenFramework.Instance.ServiceProvider.GetNamedService<IDatabaseManager>(DBMSType.SQLServer.ToString());
+                    return Sphere10Framework.Instance.ServiceProvider.GetNamedService<IDatabaseManager>(DBMSType.SQLServer.ToString());
                 case DBMSType.Sqlite:
-	                return HydrogenFramework.Instance.ServiceProvider.GetNamedService<IDatabaseManager>(DBMSType.Sqlite.ToString());
+	                return Sphere10Framework.Instance.ServiceProvider.GetNamedService<IDatabaseManager>(DBMSType.Sqlite.ToString());
                 default:
                     throw new ApplicationException($"Unsupported DBMS '{dbmsType}'");
             }

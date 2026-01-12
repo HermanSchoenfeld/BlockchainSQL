@@ -85,7 +85,6 @@
     <None Include="wwwroot\images\utility.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Hydrogen\src\Hydrogen.Web.AspNetCore\Hydrogen.Web.AspNetCore.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess.NHibernate\BlockchainSQL.DataAccess.NHibernate.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataAccess\BlockchainSQL.DataAccess.csproj" />
     <ProjectReference Include="..\BlockchainSQL.DataObjects\BlockchainSQL.DataObjects.csproj" />
@@ -98,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.SqlServer.Management.SqlParser" Version="170.9.0" />
+    <PackageReference Include="Sphere10.Framework.Web.AspNetCore" Version="3.0.3" />
   </ItemGroup>
   <ItemGroup>
     <_ContentIncludedByDefault Remove="wwwroot\Scripts\jquery-validate\jquery.validate.min.js" />

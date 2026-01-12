@@ -7,10 +7,10 @@ using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Windows.Forms;
 using BlockchainSQL.Processing;
-using Hydrogen;
-using Hydrogen.Data;
-using Hydrogen.Windows.Forms;
-using Hydrogen.Application;
+using Sphere10.Framework;
+using Sphere10.Framework.Data;
+using Sphere10.Framework.Windows.Forms;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Server {
 	public static partial class Program {
@@ -22,7 +22,7 @@ namespace BlockchainSQL.Server {
 			Application.ThreadException += (s, e) =>
 				Tools.Exceptions.ExecuteIgnoringException(() => ExceptionDialog.Show("Error", e.Exception));
 			SystemLog.RegisterLogger(new ConsoleLogger());
-			HydrogenFramework.Instance.StartWinFormsApplication<BSQLMainForm>(options:HydrogenFrameworkOptions.EnableDrm | HydrogenFrameworkOptions.BackgroundLicenseVerify);
+			Sphere10Framework.Instance.StartWinFormsApplication<BSQLMainForm>(/*options:Sphere10FrameworkOptions.EnableDrm | Sphere10FrameworkOptions.BackgroundLicenseVerify*/);
 		}
 
 		static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {

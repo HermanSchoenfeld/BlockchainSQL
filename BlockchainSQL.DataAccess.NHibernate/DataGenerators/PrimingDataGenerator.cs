@@ -13,15 +13,14 @@ using NHibernate;
 using NHibernate.Exceptions;
 using NHibernate.Hql.Ast.ANTLR;
 using NHibernate.Linq;
-using Hydrogen;
+using Sphere10.Framework;
 using System.Threading.Tasks;
 using System.Transactions;
 using BlockchainSQL.DataAccess.NHibernate.Mappings;
 using BlockchainSQL.DataObjects;
-using HYD = Hydrogen.Data.NHibernate;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
-    public class PrimingDataGenerator : HYD.NHDataGeneratorBase {
+    public class PrimingDataGenerator : Sphere10.Framework.Data.NHibernate.NHDataGeneratorBase {
         protected readonly string DatabaseName;
 
         public PrimingDataGenerator(

@@ -5,9 +5,9 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using Hydrogen.Data;
+using Sphere10.Framework.Data;
 using BlockchainSQL.DataAccess.NHibernate.Mappings;
-using Hydrogen.Data.NHibernate;
+using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.DataAccess.NHibernate {
 

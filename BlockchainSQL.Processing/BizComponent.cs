@@ -1,6 +1,6 @@
 ﻿using BlockchainSQL.DataAccess;
-using Hydrogen;
-using Hydrogen.Application;
+using Sphere10.Framework;
+using Sphere10.Framework.Application;
 
 namespace BlockchainSQL.Processing {
 	public abstract class BizComponent : IBizComponent {

@@ -12,7 +12,7 @@ using NHibernate;
 using NHibernate.AdoNet;
 using NHibernate.Exceptions;
 using NHibernate.Mapping.ByCode;
-using Hydrogen;
+using Sphere10.Framework;
 
 
 namespace BlockchainSQL.DataAccess.NHibernate {

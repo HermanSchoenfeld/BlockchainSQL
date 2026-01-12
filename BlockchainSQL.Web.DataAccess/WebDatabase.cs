@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NHibernate;
-using Hydrogen.Data;
-using Hydrogen.Data.NHibernate;
+using Sphere10.Framework.Data;
+using Sphere10.Framework.Data.NHibernate;
 
 namespace BlockchainSQL.Web.DataAccess {
     public static class WebDatabase {
