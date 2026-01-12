@@ -1,4 +1,12 @@
-﻿using System;
+// Copyright (c) Herman Schoenfeld 2018 - Present. All rights reserved. (https://sphere10.com/products/blockchainsql)
+// Author: Herman Schoenfeld <***REDACTED_EMAIL***>
+//
+// Distributed under the GPLv3 software license, see the accompanying file LICENSE 
+// or visit https://github.com/HermanSchoenfeld/blockchainsql/blob/master/LICENSE
+//
+// This notice must not be removed when duplicating this file or its contents, in whole or in part.
+
+using System;
 using System.Text.Encodings.Web;
 using Sphere10.Framework;
 using Sphere10.Framework.Web.AspNetCore;
@@ -13,7 +21,7 @@ namespace BlockchainSQL.Web {
 		public const string DefaultControllerName = "Form";
 
 		//private const string ErrorDivHtml = 
-		//    @"<div class=""alert alert-danger""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">×</button>{0}</div>";
+		//    @"<div class=""alert alert-danger""><button type=""button"" class=""close"" data-dismiss=""alert"" aria-hidden=""true"">�</button>{0}</div>";
 
 		private const string ResultDivHtml = @"<div id=""{0}""></div>";
 
