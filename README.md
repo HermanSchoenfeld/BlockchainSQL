@@ -128,7 +128,7 @@ This project is licensed under the **GNU GPL v3.0** (or later).
 
 ## Credits
 
-**Author:** Herman Schoenfeld (<***REDACTED_EMAIL***>)
+**Author:** Herman Schoenfeld (<herman@sphere10.com>)
 
 **Website:** [https://sphere10.com/products/localnotion](https://sphere10.com/products/localnotion)
 
